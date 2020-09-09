@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 function HEADER() {
   const history = useHistory();
-  // const { pageName } = useContext();
+  const { searchBarOn, setSearchBarOn } = useContext(AppContext);
   return (
     <div>
       <button data-testid="profile-top-btn" onClick={() => history('/profile')}>
@@ -14,7 +14,7 @@ function HEADER() {
       </button>
       <h1 data-testid="page-title">CABEÇALHO</h1>
       <button data-testid="search-top-btn">
-        <img alt="search" src={search} />
+        <img alt="search" src={search} onClick={() => setSearchBarOn(!searchBarOn)} />
       </button>
     </div>
   );
