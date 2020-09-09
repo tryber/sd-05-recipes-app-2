@@ -4,31 +4,43 @@ import profile from '../images/profileIcon.svg';
 import search from '../images/searchIcon.svg';
 import AppContext from '../contexts/AppContext';
 
+const pageName = (history, setName) => {
+  switch (history.location.pathname) {
+    case '/comidas':
+      return setName('Comidas');
+    case '/bebidas':
+      return setName('Bebidas');
+    case '/explorar':
+      return setName('Explorar');
+    case '/explorar/comidas':
+      return setName('Explorar Comidas');
+    case '/explorar/bebidas':
+      return setName('Explorar Bebidas');
+    case '/explorar/comidas/ingredientes':
+      return setName('Explorar Ingredientes');
+    case '/explorar/bebidas/ingredientes':
+      return setName('Explorar Ingredientes');
+    case '/explorar/comidas/area':
+      return setName('Explorar Origem');
+    case '/receitas-feitas':
+      return setName('Receitas Feitas');
+    case '/receitas-favoritas':
+      return setName('Receitas Favoritas');
+    case '/profile':
+      return setName('Perfil');
+    default:
+      return false;
+  }
+}
+
 function HEADER() {
   const history = useHistory();
   const { searchBarOn, setSearchBarOn } = useContext(AppContext);
 
   const [headerName, setHeaderName] = useState();
-
-  const pageName = () => {
-    switch (history.location) {
-      case '/comidas':
-        return setHeaderName('Comidas');
-      case '/bebidas':
-        return setHeaderName('Bebidas');
-      case '/explorar':
-        return setHeaderName('Explorar');
-      case '/explorar/comidas':
-        return setHeaderName('Explorar Comidas');
-      case '/explorar/bebidas':
-        return setHeaderName('Explorar Bebidas')
-      default:
-        return false;
-    }
-  }
-
+ 
   useState(() => {
-    pageName();
+    pageName(history, setHeaderName);
   }, []);
 
   return (
