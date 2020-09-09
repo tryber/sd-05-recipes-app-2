@@ -13,8 +13,8 @@ function emailInput(handleEmail) {
         onChange={(e) => handleEmail(e)}
       />
     </label>
-  )
-};
+  );
+}
 
 function passwordInput(handlePassword) {
   return (
@@ -27,47 +27,45 @@ function passwordInput(handlePassword) {
         onChange={(e) => handlePassword(e)}
       />
     </label>
-  )
-};
+  );
+}
+
+function checkEmail(email, setEmailChecked) {
+  const regex = /\S+@\S+\.\S+/;
+  if (regex.test(email) === true) {
+    setEmailChecked(true);
+    return true;
+  }
+  setEmailChecked(false);
+}
+
+function checkPassword(password, setPasswordChecked) {
+  if (password.length > 6) {
+    setPasswordChecked(true);
+    return true;
+  } else {
+    setPasswordChecked(false);
+    return false;
+  }
+}
 
 function Login() {
   const [emailChecked, setEmailChecked] = useState(false);
   const [passwordChecked, setPasswordChecked] = useState(false);
   const { email, setEmail, setPassword } = useContext(AppContext);
 
-  const checkEmail = (email) => {
-    const regex = /\S+@\S+\.\S+/;
-    if (regex.test(email) === true) {
-      setEmailChecked(true);
-      return true;
-    } else {
-      setEmailChecked(false);
-      return false;
-    }
-  };
-
-  const checkPassword = (password) => {
-    if (password.length > 6) {
-      setPasswordChecked(true);
-      return true;
-    } else {
-      setPasswordChecked(false);
-      return false;
-    }
-  };
-
   const handleEmail = (e) => {
-    if (checkEmail(e.target.value) === true) setEmail(e.target.value);
+    if (checkEmail(e.target.value, setEmailChecked) === true) setEmail(e.target.value);
   };
 
   const handlePassword = (e) => {
-    if (checkPassword(e.target.value) === true) setPassword(e.target.value);
+    if (checkPassword(e.target.value, setPasswordChecked) === true) setPassword(e.target.value);
   };
 
-  const saveToStorage = (email) => {
+  const saveToStorage = () => {
     localStorage.setItem('mealsToken', 1);
     localStorage.setItem('cocktailsToken', 1);
-    localStorage.setItem('email', JSON.stringify({ email }))
+    localStorage.setItem('email', JSON.stringify({ email }));
   };
 
   /*  const teclaEnter = (tecla, email) => {
