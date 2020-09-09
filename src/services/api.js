@@ -23,8 +23,8 @@ export const defaultMeals = () => generalAPIRequest(defaultMealsEndpoint);
 export const drinkCategories = () => generalAPIRequest(drinkCategoriesEndpoint);
 export const defaultDrinks = () => generalAPIRequest(defaultDrinksEndpoint);
 
-//APIs Meals
-//API de acesso às informações do Meal completas pelo ID
+// APIs Meals
+// API de acesso às informações do Meal completas pelo ID
 export const byMealId = (id) =>
   fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
     .then((response) =>
@@ -36,7 +36,7 @@ export const byMealId = (id) =>
     )
     .catch((error) => console.log('Erro na API Meals de id', error));
 
-//API de acesso às informações do Meal completo por ingrediente
+// API de acesso às informações do Meal completo por ingrediente
 export const byMealIngredient = (ingredient) =>
   fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`)
     .then((response) =>
@@ -48,7 +48,7 @@ export const byMealIngredient = (ingredient) =>
     )
     .catch((error) => console.log('Erro na API Meals de ingrediente', error));
 
-//API de acesso às informações do Meal completo por Nome
+// API de acesso às informações do Meal completo por Nome
 export const byMealName = (name) =>
   fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${name}`)
     .then((response) =>
@@ -60,7 +60,7 @@ export const byMealName = (name) =>
     )
     .catch((error) => console.log('Erro na API Meals de nome', error));
 
-//API de acesso às informações do Meal completo por Ingrediente
+// API de acesso às informações do Meal completo por Ingrediente
 export const byMealFirstLetter = (firstLetter) =>
   fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${firstLetter}`)
     .then((response) =>
@@ -74,8 +74,8 @@ export const byMealFirstLetter = (firstLetter) =>
       console.log('Erro na API Meals de primeira letra', error),
     );
 
-//APIs Drinks
-//API de acesso às informações do Drink completas pelo ID
+// APIs Drinks
+// API de acesso às informações do Drink completas pelo ID
 export const byDrinkId = (id) =>
   fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
     .then((response) =>
@@ -87,7 +87,7 @@ export const byDrinkId = (id) =>
     )
     .catch((error) => console.log('Erro na API Drinks de id', error));
 
-//API de acesso às informações do Drink completo por ingrediente
+// API de acesso às informações do Drink completo por ingrediente
 export const byDrinkIngredient = (ingredient) =>
   fetch(
     `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`,
@@ -101,7 +101,7 @@ export const byDrinkIngredient = (ingredient) =>
     )
     .catch((error) => console.log('Erro na API Drinks de ingrediente', error));
 
-//API de acesso às informações do Drink completo por Nome
+// API de acesso às informações do Drink completo por Nome
 export const byDrinkName = (name) =>
   fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`)
     .then((response) =>
@@ -113,7 +113,7 @@ export const byDrinkName = (name) =>
     )
     .catch((error) => console.log('Erro na API Drinks de nome', error));
 
-//API de acesso às informações do Drink completo por Ingrediente
+// API de acesso às informações do Drink completo por Ingrediente
 export const byDrinkFirstLetter = (firstLetter) =>
   fetch(
     `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${firstLetter}`,
@@ -121,7 +121,7 @@ export const byDrinkFirstLetter = (firstLetter) =>
     .then((response) =>
       response
         .json()
-        .then((data) => 
+        .then((data) =>
           (response.ok ? Promise.resolve(data) : Promise.reject(data)),
         ),
     )
