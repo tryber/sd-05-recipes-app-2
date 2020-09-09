@@ -16,15 +16,15 @@ export default function Login() {
       <form>
         <label>
           Email:
-          <input type="email" name="email" onChange={(e) => setEmail(e.target.value)} />
+          <input data-testid="email-input" type="email" name="email" onChange={(e) => setEmail(e.target.value)} />
         </label>
         <label>
           Senha:
-          <input type="password" name="senha" onChange={(e) => setPassword(e.target.value)} />
+          <input data-testid="password-input" type="password" name="senha" onChange={(e) => setPassword(e.target.value)} />
         </label>
       </form>
 {/*       <Link to="/comidas"></Link> */}
-        <button type="button">
+        <button data-testid="login-submit-btn" type="button">
           Entrar
         </button>
     </div>
