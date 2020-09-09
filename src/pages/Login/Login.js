@@ -65,7 +65,7 @@ function Login() {
   const saveToStorage = () => {
     localStorage.setItem('mealsToken', 1);
     localStorage.setItem('cocktailsToken', 1);
-    localStorage.setItem('email', JSON.stringify({ email }));
+    localStorage.setItem('user', JSON.stringify({ email }));
   };
 
   /*  const teclaEnter = (tecla, email) => {
