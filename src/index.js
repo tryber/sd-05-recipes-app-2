@@ -1,11 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
 // import { debugContextDevtool } from 'react-context-devtool';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-// import Provider from './contexts/Provider';
 
 const container = document.getElementById('root');
 
