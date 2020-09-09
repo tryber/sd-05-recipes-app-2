@@ -22,6 +22,6 @@ const Provider = ({ children }) => {
 
 export default Provider;
 
-AppContext.propTypes = {
+Provider.propTypes = {
   children: PropTypes.node.isRequired,
 };
