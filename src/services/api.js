@@ -1,11 +1,11 @@
 const mealCategoriesEndpoint =
-  "https://www.themealdb.com/api/json/v1/1/categories.php";
+  'https://www.themealdb.com/api/json/v1/1/categories.php';
 const defaultMealsEndpoint =
-  "https://www.themealdb.com/api/json/v1/1/search.php?s=";
+  'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 const drinkCategoriesEndpoint =
-  "https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list";
+  'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
 const defaultDrinksEndpoint =
-  "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
+  'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 
 const generalAPIRequest = (URL) =>
   fetch(URL)
@@ -16,7 +16,7 @@ const generalAPIRequest = (URL) =>
           response.ok ? Promise.resolve(data) : Promise.reject(data)
         )
     )
-    .catch((error) => console.log("Erro na API", error));
+    .catch((error) => console.log('Erro na API', error));
 
 export const mealCategories = () => generalAPIRequest(mealCategoriesEndpoint);
 export const defaultMeals = () => generalAPIRequest(defaultMealsEndpoint);
@@ -34,7 +34,7 @@ export const byMealId = (id) =>
           response.ok ? Promise.resolve(data) : Promise.reject(data)
         )
     )
-    .catch((error) => console.log("Erro na API Meals de id", error));
+    .catch((error) => console.log('Erro na API Meals de id', error));
 
 //API de acesso às informações do Meal completo por ingrediente
 export const byMealIngredient = (ingredient) =>
@@ -46,7 +46,7 @@ export const byMealIngredient = (ingredient) =>
           response.ok ? Promise.resolve(data) : Promise.reject(data)
         )
     )
-    .catch((error) => console.log("Erro na API Meals de ingrediente", error));
+    .catch((error) => console.log('Erro na API Meals de ingrediente', error));
 
 //API de acesso às informações do Meal completo por Nome
 export const byMealName = (name) =>
@@ -58,7 +58,7 @@ export const byMealName = (name) =>
           response.ok ? Promise.resolve(data) : Promise.reject(data)
         )
     )
-    .catch((error) => console.log("Erro na API Meals de nome", error));
+    .catch((error) => console.log('Erro na API Meals de nome', error));
 
 //API de acesso às informações do Meal completo por Ingrediente
 export const byMealFirstLetter = (firstLetter) =>
@@ -71,7 +71,7 @@ export const byMealFirstLetter = (firstLetter) =>
         )
     )
     .catch((error) =>
-      console.log("Erro na API Meals de primeira letra", error)
+      console.log('Erro na API Meals de primeira letra', error)
     );
 
 //APIs Drinks
@@ -85,7 +85,7 @@ export const byDrinkId = (id) =>
           response.ok ? Promise.resolve(data) : Promise.reject(data)
         )
     )
-    .catch((error) => console.log("Erro na API Drinks de id", error));
+    .catch((error) => console.log('Erro na API Drinks de id', error));
 
 //API de acesso às informações do Drink completo por ingrediente
 export const byDrinkIngredient = (ingredient) =>
@@ -99,7 +99,7 @@ export const byDrinkIngredient = (ingredient) =>
           response.ok ? Promise.resolve(data) : Promise.reject(data)
         )
     )
-    .catch((error) => console.log("Erro na API Drinks de ingrediente", error));
+    .catch((error) => console.log('Erro na API Drinks de ingrediente', error));
 
 //API de acesso às informações do Drink completo por Nome
 export const byDrinkName = (name) =>
@@ -111,7 +111,7 @@ export const byDrinkName = (name) =>
           response.ok ? Promise.resolve(data) : Promise.reject(data)
         )
     )
-    .catch((error) => console.log("Erro na API Drinks de nome", error));
+    .catch((error) => console.log('Erro na API Drinks de nome', error));
 
 //API de acesso às informações do Drink completo por Ingrediente
 export const byDrinkFirstLetter = (firstLetter) =>
@@ -126,5 +126,5 @@ export const byDrinkFirstLetter = (firstLetter) =>
         )
     )
     .catch((error) =>
-      console.log("Erro na API Drinks de primeira letra", error)
+      console.log('Erro na API Drinks de primeira letra', error)
     );
