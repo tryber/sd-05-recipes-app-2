@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AppContext from '../../contexts/AppContext';
-import HEADER from '../../components/Header';
 
 function emailInput(handleEmail) {
   return (
@@ -75,7 +74,6 @@ function Login() {
    */
   return (
     <div>
-      <HEADER />
       <form>
         {emailInput(handleEmail)}
         {passwordInput(handlePassword)}
