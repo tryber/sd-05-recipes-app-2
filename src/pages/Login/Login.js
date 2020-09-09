@@ -45,8 +45,8 @@ function checkPassword(password, setPasswordChecked) {
     setPasswordChecked(true);
     return true;
   }
-    setPasswordChecked(false);
-    return false;
+  setPasswordChecked(false);
+  return false;
 }
 
 function Login() {
