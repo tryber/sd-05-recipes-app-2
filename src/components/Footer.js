@@ -1,8 +1,8 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import drinks from '../images/drinkIcon.svg';
 import explore from '../images/exploreIcon.svg';
 import meal from '../images/mealIcon.svg';
-import { useHistory } from 'react-router-dom';
 
 export default function FOOTER() {
   const history = useHistory();

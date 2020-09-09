@@ -31,14 +31,13 @@ const pageName = (history, setName) => {
     default:
       return false;
   }
-}
+};
 
 function HEADER() {
   const history = useHistory();
   const { searchBarOn, setSearchBarOn } = useContext(AppContext);
 
   const [headerName, setHeaderName] = useState();
- 
   useState(() => {
     pageName(history, setHeaderName);
   }, []);
@@ -49,8 +48,8 @@ function HEADER() {
         <img alt="profile" src={profile} />
       </button>
       <h1 data-testid="page-title">{headerName}</h1>
-      <button data-testid="search-top-btn">
-        <img alt="search" src={search} onClick={() => setSearchBarOn(!searchBarOn)} />
+      <button data-testid="search-top-btn" onClick={() => setSearchBarOn(!searchBarOn)} >
+        <img alt="search" src={search} />
       </button>
     </div>
   );
