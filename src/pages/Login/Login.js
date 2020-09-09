@@ -16,11 +16,19 @@ export default function Login() {
       <form>
         <label htmlFor="email">
           Email:
-          <input data-testid="email-input" type="email" name="email" onChange={(e) => setEmail(e.target.value)} />
+          <input
+            data-testid="email-input"
+            type="email"
+            name="email"
+            onChange={(e) => setEmail(e.target.value)} />
         </label>
         <label htmlFor="password">
           Senha:
-          <input data-testid="password-input" type="password" name="senha" onChange={(e) => setPassword(e.target.value)} />
+          <input
+            data-testid="password-input"
+            type="password"
+            name="senha"
+            onChange={(e) => setPassword(e.target.value)} />
         </label>
       </form>
       {/* <Link to="/comidas"></Link> */}
@@ -28,5 +36,5 @@ export default function Login() {
         Entrar
         </button>
     </div>
-  )
+  );
 }
