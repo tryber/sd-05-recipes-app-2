@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AppContext from './AppContext';
+import PropTypes from 'prop-types';
 
 const Provider = ({ children }) => {
   const [email, setEmail] = useState('');

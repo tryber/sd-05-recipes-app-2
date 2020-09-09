@@ -20,7 +20,8 @@ export default function Login() {
             data-testid="email-input"
             type="email"
             name="email"
-            onChange={(e) => setEmail(e.target.value)} />
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </label>
         <label htmlFor="password">
           Senha:
@@ -28,7 +29,8 @@ export default function Login() {
             data-testid="password-input"
             type="password"
             name="senha"
-            onChange={(e) => setPassword(e.target.value)} />
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </label>
       </form>
       <Link to="/comidas">
