@@ -6,11 +6,14 @@ const Provider = ({ children }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const [searchBarOn, setSearchBarOn] = useState(false);
   const estados = {
     email,
     password,
     setEmail,
     setPassword,
+    searchBarOn,
+    setSearchBarOn,
   };
 
   return (
