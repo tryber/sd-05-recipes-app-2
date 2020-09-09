@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AppContext from '../../contexts/AppContext';
+import HEADER from '../../components/Header';
 
 /* função pro futuro: ao clicar no enter, fazer o login */
 /* function teclaEnter(tecla) {
@@ -13,6 +14,7 @@ export default function Login() {
   const { setEmail, setPassword } = useContext(AppContext);
   return (
     <div>
+      <HEADER />
       <form>
         <label htmlFor="email">
           Email:
