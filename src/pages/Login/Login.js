@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AppContext from '../../contexts/AppContext';
 
 /* função pro futuro: ao clicar no enter, fazer o login */
@@ -31,10 +31,11 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)} />
         </label>
       </form>
-      {/* <Link to="/comidas"></Link> */}
-      <button data-testid="login-submit-btn" type="button">
-        Entrar
+      <Link to="/comidas">
+        <button data-testid="login-submit-btn" type="button">
+          Entrar
         </button>
+      </Link>
     </div>
   );
 }
