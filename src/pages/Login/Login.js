@@ -37,16 +37,16 @@ function checkEmail(email, setEmailChecked) {
     return true;
   }
   setEmailChecked(false);
+  return false;
 }
 
 function checkPassword(password, setPasswordChecked) {
   if (password.length > 6) {
     setPasswordChecked(true);
     return true;
-  } else {
+  }
     setPasswordChecked(false);
     return false;
-  }
 }
 
 function Login() {
