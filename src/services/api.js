@@ -1,5 +1,5 @@
 const mealCategoriesEndpoint =
-  'https://www.themealdb.com/api/json/v1/1/categories.php';
+  'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
 const defaultMealsEndpoint =
   'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 const drinkCategoriesEndpoint =
@@ -50,7 +50,7 @@ export const byMealIngredient = (ingredient) =>
 
 // API de acesso às informações do Meal completo por Nome
 export const byMealName = (name) =>
-  fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${name}`)
+  fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`)
     .then((response) =>
       response
         .json()
@@ -62,7 +62,7 @@ export const byMealName = (name) =>
 
 // API de acesso às informações do Meal completo por Ingrediente
 export const byMealFirstLetter = (firstLetter) =>
-  fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${firstLetter}`)
+  fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${firstLetter}`)
     .then((response) =>
       response
         .json()
