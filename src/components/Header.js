@@ -31,12 +31,15 @@ const pageName = (history, setName, searchIcon) => {
       return setName('Receitas Favoritas');
     case '/profile':
       return setName('Perfil');
+    case '/':
+      searchIcon(true);
+      return setName('HEADER MANEIRO');
     default:
       return false;
   }
 };
 
-function HEADER() {
+function Header() {
   const history = useHistory();
   const { searchBarOn, setSearchBarOn } = useContext(AppContext);
 
@@ -62,4 +65,4 @@ function HEADER() {
   );
 }
 
-export default HEADER;
+export default Header;
