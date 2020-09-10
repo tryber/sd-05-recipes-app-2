@@ -126,18 +126,18 @@ export function FilterButtons() {
     if (history.location.pathname === '/bebidas') {
       api.drinkCategories().then((data) => setCategories(data.drinks));
     }
-  }, [])
+  }, []);
   return (
     <div>
       <button value={'All'}>All</button>
-      {categories.filter((cat, i) => i < 5).map((cat) => 
+      {categories.filter((cat, i) => i < 5).map((cat) =>
         <div key={cat.id}>
           <button
             data-testid={`${cat.strCategory}-category-filter`}
             value={cat.strCategory}
             onClick={(e) => handleCat(e)}
           >{cat.strCategory}</button>
-        </div>
+        </div>,
       )}
     </div>
   );
