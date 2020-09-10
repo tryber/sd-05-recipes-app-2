@@ -3,41 +3,43 @@ import { useHistory } from 'react-router-dom';
 import * as api from '../services/api';
 import AppContext from '../contexts/AppContext';
 
-function getAPIByFilter(ing, type, history, setResults) {
-  if (history.location.pathname === '/comidas') {
-    switch  (type) {
-      case 'ingredient':
-        api.byMealIngredient(ing).then((data) => setResults(data.meals));
-        return true;
-      case 'name':
-        api.byMealName(ing).then((data) => setResults(data.meals));
-        return true;
-      // case 'first-letter':
-      //   return ing.length > 1 ? alert('Sua busca deve conter somente 1 (um) caracter') 
-      // : (api.byMealFirstLetter(ing).then((data) => setResults(data.meals)));
-      default:
-        return false;
-    };
+function filterAPIComidas(ing, type, setResults) {
+  switch  (type) {
+    case 'ingredient':
+      api.byMealIngredient(ing).then((data) => setResults(data.meals));
+      return true;
+    case 'name':
+      api.byMealName(ing).then((data) => setResults(data.meals));
+      return true;
+    case 'first-letter':
+      return (ing.length > 1 ?
+        alert('Sua busca deve conter somente 1 (um) caracter') :
+        (api.byMealFirstLetter(ing).then((data) => setResults(data.meals)))
+      );
+    default:
+      return false;
   };
-  if (history.location.pathname === '/bebidas') {
-    switch  (type) {
-      case 'ingredient':
-        api.byDrinkIngredient(ing).then((data) => setResults(data.drinks));
-        return true;
-      case 'name':
-        api.byDrinkName(ing).then((data) => setResults(data.drinks));
-        return true;
-      case 'first-letter':
-        return (ing.length > 1 ?
-          alert('Sua busca deve conter somente 1 (um) caracter') :
-          (api.byDrinkFirstLetter(ing).then((data) => setResults(data.drinks)))
-        );
-      default:
-        return false;
-    };
+};
+
+function filterAPIBebidas(ing, type, setResults) {
+  switch  (type) {
+    case 'ingredient':
+      api.byDrinkIngredient(ing).then((data) => setResults(data.drinks));
+      return true;
+    case 'name':
+      api.byDrinkName(ing).then((data) => setResults(data.drinks));
+      return true;
+    case 'first-letter':
+      return (ing.length > 1 ?
+        alert('Sua busca deve conter somente 1 (um) caracter') :
+        (api.byDrinkFirstLetter(ing).then((data) => setResults(data.drinks)))
+      );
+    default:
+      return false;
   };
 }
 
+// INPUTS RADIO BUTTON
 const radiosBtn = (radioFilter) => {
   const radios = [
     {filterValue: 'ingredient', dataTestID: 'ingredient-search-radio', title: 'Ingrediente'},
@@ -61,18 +63,22 @@ const radiosBtn = (radioFilter) => {
   )
 }
 
+// LÓGICA CASO SÓ TENHA 1 RESPOSTA OU NENHUMA CONSIDERANDO OS FILTROS APLICADOS
 const resultValidation = (history, filteredData) => {
-  if (filteredData.length === 1 && filteredData !== undefined && history.location.pathname === '/comidas') {
+  if (filteredData === null) {
+    return alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+  }
+  if (filteredData.length === 1 && filteredData !== null && history.location.pathname === '/comidas') {
     console.log(filteredData);
     history.push(`/comidas/${filteredData[0].idMeal}`);
   }
   if (filteredData.length === 1 && filteredData !== null && history.location.pathname === '/bebidas') {
     console.log(filteredData);
-    history.push(`/bebidas/${filteredData[0].idDrink}`);
+    return history.push(`/bebidas/${filteredData[0].idDrink}`);
   }
-
 }
 
+// COMPONENTE SEARCHBAR
 export default function SearchBar() {
   const history = useHistory();
   const { searchBarOn, filteredData, setFilteredData } = useContext(AppContext);
@@ -84,6 +90,12 @@ export default function SearchBar() {
     resultValidation(history, filteredData);
   }, [filteredData]);
 
+  const handleClick = () => {
+    const pathname = history.location.pathname;
+    if (pathname === '/comidas') return filterAPIComidas(ingredientName, radioFilter, setFilteredData);
+    if (pathname === '/bebidas') return filterAPIBebidas(ingredientName, radioFilter, setFilteredData);
+  }
+
   if (searchBarOn) {
     return (
       <div>
@@ -91,7 +103,7 @@ export default function SearchBar() {
         {radiosBtn(setRadioFilter)}
         <button 
           data-testid="exec-search-btn"
-          onClick={() => getAPIByFilter(ingredientName, radioFilter, history, setFilteredData)}
+          onClick={() => handleClick()}
         >
           Buscar
         </button>
