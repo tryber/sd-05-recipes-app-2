@@ -4,7 +4,7 @@ import drinks from '../images/drinkIcon.svg';
 import explore from '../images/exploreIcon.svg';
 import meal from '../images/mealIcon.svg';
 
-export default function FOOTER() {
+export default function Footer() {
   const history = useHistory();
   return (
     <div data-testid="footer">

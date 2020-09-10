@@ -39,7 +39,7 @@ const pageName = (history, setName, searchIcon) => {
   }
 };
 
-function HEADER() {
+function Header() {
   const history = useHistory();
   const { searchBarOn, setSearchBarOn } = useContext(AppContext);
 
@@ -65,4 +65,4 @@ function HEADER() {
   );
 }
 
-export default HEADER;
+export default Header;
