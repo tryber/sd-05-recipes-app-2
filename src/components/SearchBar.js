@@ -121,12 +121,13 @@ export function FilterButtons() {
 
   useEffect(() => {
     if (history.location.pathname === '/comidas') {
-      api.mealCategories().then((data) => setCategories(data.categories));
+      api.mealCategories().then((data) => setCategories(data.meals));
     }
     if (history.location.pathname === '/bebidas') {
       api.drinkCategories().then((data) => setCategories(data.drinks));
     }
   }, []);
+
   return (
     <div>
       <button value={'All'}>All</button>
