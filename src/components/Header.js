@@ -29,7 +29,7 @@ const pageName = (history, setName, searchIcon) => {
       return setName('Receitas Feitas');
     case '/receitas-favoritas':
       return setName('Receitas Favoritas');
-    case '/profile':
+    case '/perfil':
       return setName('Perfil');
     case '/':
       searchIcon(true);
@@ -52,7 +52,7 @@ function Header() {
 
   return (
     <div>
-      <button data-testid="profile-top-btn" onClick={() => history.push('/profile')} src={profileIcon}>
+      <button data-testid="profile-top-btn" onClick={() => history.push('/perfil')} src={profileIcon}>
         <img alt="profile" src={profileIcon}  />
       </button>
       <h1 data-testid="page-title">{headerName}</h1>
