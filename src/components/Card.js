@@ -6,7 +6,7 @@ import './style.css';
 function Card(props) {
   const { description, thumb, i } = props;
   return (
-    <div className="card">
+    <div className="card" data-testid={`${i}-recipe-card`}>
       <img
         src={thumb}
         alt={description}
