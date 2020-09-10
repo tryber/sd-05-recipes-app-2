@@ -53,11 +53,15 @@ function Header() {
   return (
     <div>
       <button data-testid="profile-top-btn" onClick={() => history.push('/perfil')} src={profileIcon}>
-        <img alt="profile" src={profileIcon}  />
+        <img alt="profile" src={profileIcon} />
       </button>
       <h1 data-testid="page-title">{headerName}</h1>
       {hasSearch &&
-        <button data-testid="search-top-btn" onClick={() => setSearchBarOn(!searchBarOn)} src={search}>
+        <button
+          data-testid="search-top-btn"
+          onClick={() => setSearchBarOn(!searchBarOn)}
+          src={search}
+        >
           <img alt="search" src={search} />
         </button>
       }
