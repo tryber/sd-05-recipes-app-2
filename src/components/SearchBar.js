@@ -45,7 +45,7 @@ const radiosBtn = (radioFilter) => {
     { filterValue: 'ingredient', dataTestID: 'ingredient-search-radio', title: 'Ingrediente' },
     { filterValue: 'name', dataTestID: 'name-search-radio', title: 'Nome' },
     { filterValue: 'first-letter', dataTestID: 'first-letter-search-radio', title: 'Primeira Letra' },
-  ]
+  ];
   return (
     <div>
       {radios.map((radio) =>
@@ -75,9 +75,9 @@ const resultValidation = (history, filteredData) => {
   if (filteredData.length === 1 && filteredData !== null && history.location.pathname === '/bebidas') {
     console.log(filteredData);
     return history.push(`/bebidas/${filteredData[0].idDrink}`);
-  };
+  }
   return true;
-}
+};
 
 // COMPONENTE SEARCHBAR
 export default function SearchBar() {
