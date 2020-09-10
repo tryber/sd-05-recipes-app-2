@@ -3,79 +3,100 @@ import { useHistory } from 'react-router-dom';
 import * as api from '../services/api';
 import AppContext from '../contexts/AppContext';
 
-function getAPIByFilter(ing, type, location, setResults) {
-    if (location.pathname === '/comidas') {
-      console.log('entrei aqui no if');
-      switch  (type) {
-        case 'ingredient':
-          api.byMealIngredient(ing).then((data) => setResults(data.meals));
-          return true;
-        case 'name':
-          api.byMealName(ing).then((data) => setResults(data.meals));
-          return true;
-        // case 'first-letter':
-        //   return ing.length > 1 ? alert('Sua busca deve conter somente 1 (um) caracter') : (api.byMealFirstLetter(ing).then((data) => setResults(data.meals)));
-        default:
-          return false;
-      }
-    }
-    if (location.pathname === '/bebidas') {
-      console.log('entrei no if', ing);
-      switch  (type) {
-        case 'ingredient':
-          console.log('entrei no case', ing, type);
-          api.byDrinkIngredient(ing).then((data) => setResults(data.drinks));
-          return true;
-        case 'name':
-          api.byDrinkName(ing).then((data) => setResults(data.drinks));
-          return true;
-        case 'first-letter':
-          return ing.length > 1 ? alert('Sua busca deve conter somente 1 (um) caracter') : (api.byDrinkFirstLetter(ing).then((data) => setResults(data.drinks)));
-        default:
-          return false;
-      }
-    }
+function getAPIByFilter(ing, type, history, setResults) {
+  if (history.location.pathname === '/comidas') {
+    switch  (type) {
+      case 'ingredient':
+        api.byMealIngredient(ing).then((data) => setResults(data.meals));
+        return true;
+      case 'name':
+        api.byMealName(ing).then((data) => setResults(data.meals));
+        return true;
+      // case 'first-letter':
+      //   return ing.length > 1 ? alert('Sua busca deve conter somente 1 (um) caracter') 
+      // : (api.byMealFirstLetter(ing).then((data) => setResults(data.meals)));
+      default:
+        return false;
+    };
+  };
+  if (history.location.pathname === '/bebidas') {
+    switch  (type) {
+      case 'ingredient':
+        api.byDrinkIngredient(ing).then((data) => setResults(data.drinks));
+        return true;
+      case 'name':
+        api.byDrinkName(ing).then((data) => setResults(data.drinks));
+        return true;
+      case 'first-letter':
+        return (ing.length > 1 ?
+          alert('Sua busca deve conter somente 1 (um) caracter') :
+          (api.byDrinkFirstLetter(ing).then((data) => setResults(data.drinks)))
+        );
+      default:
+        return false;
+    };
+  };
+}
+
+const radiosBtn = (radioFilter) => {
+  const radios = [
+    {filterValue: 'ingredient', dataTestID: 'ingredient-search-radio', title: 'Ingrediente'},
+    {filterValue: 'name', dataTestID: 'name-search-radio', title: 'Nome'},
+    {filterValue: 'first-letter', dataTestID: 'first-letter-search-radio', title: 'Primeira Letra'}
+  ]
+  return (
+    <div>
+      {radios.map((radio) => 
+        <div key={radio.filterValue}>
+          <input
+            type="radio"
+            name="filter"
+            value={radio.filterValue}
+            data-testid={radio.dataTestID}
+            onClick={(e) => radioFilter(e.target.value)}
+          />{radio.title}
+        </div>
+      )}
+    </div>
+  )
+}
+
+const resultValidation = (history, filteredData) => {
+  if (filteredData.length === 1 && filteredData !== undefined && history.location.pathname === '/comidas') {
+    console.log(filteredData);
+    history.push(`/comidas/${filteredData[0].idMeal}`);
   }
+  if (filteredData.length === 1 && filteredData !== null && history.location.pathname === '/bebidas') {
+    console.log(filteredData);
+    history.push(`/bebidas/${filteredData[0].idDrink}`);
+  }
+
+}
 
 export default function SearchBar() {
   const history = useHistory();
   const { searchBarOn, filteredData, setFilteredData } = useContext(AppContext);
   const [ingredientName, setIngredientName] = useState('');
   const [radioFilter, setRadioFilter] = useState();
-  const [loading, setLoading] = useState(false);
 
-  const divResultado = () => {
-    if (loading) {
-      return <p>Loading...</p>
-    } else if (filteredData.length > 0) {
-      return filteredData.map((result) => <p>{result.strMeal || result.strDrink}</p>)
-    } else {
-      return <p>Sem resultados</p>
-    }
-  }
   useEffect(() => {
-    setLoading(false);
-    console.log(filteredData);
+    console.log((filteredData));
+    resultValidation(history, filteredData);
   }, [filteredData]);
 
   if (searchBarOn) {
     return (
       <div>
         <input data-testid="search-input" onChange={(e) => setIngredientName(e.target.value)} />
-        <input type="radio" name="filter" value="ingredient" data-testid="ingredient-search-radio" onClick={(e) => setRadioFilter(e.target.value)} />Ingrediente
-        <input type="radio" name="filter" value="name" data-testid="name-search-radio" onClick={(e) => setRadioFilter(e.target.value)} />Nome
-        <input type="radio" name="filter" value="first-letter" data-testid="first-letter-search-radio" onClick={(e) => setRadioFilter(e.target.value)} />Primeira letra
-        <button data-testid="exec-search-btn" onClick={() => {setLoading(true);
-          getAPIByFilter(ingredientName, radioFilter, history.location, setFilteredData)}}>Buscar
+        {radiosBtn(setRadioFilter)}
+        <button 
+          data-testid="exec-search-btn"
+          onClick={() => getAPIByFilter(ingredientName, radioFilter, history, setFilteredData)}
+        >
+          Buscar
         </button>
-        {divResultado()}
       </div>
     )
-  } 
- 
-  return (
-    <div>
-      <button>fica</button>
-    </div>
-  )
+  }
+  return <div>Acho que temos que fazer os filtros por categoria em outro componente. </div>
 }
