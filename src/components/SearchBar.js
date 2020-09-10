@@ -4,30 +4,33 @@ import * as api from '../services/api';
 import AppContext from '../contexts/AppContext';
 
 function getAPIByFilter(ing, type, location, setResults) {
-  console.log('entrei aqui no getAPI');
-  console.log(location.pathname);
-    if (location.pathname === '/') {
+    if (location.pathname === '/comidas') {
       console.log('entrei aqui no if');
       switch  (type) {
         case 'ingredient':
           api.byMealIngredient(ing).then((data) => setResults(data.meals));
           return true;
         case 'name':
-          return setResults(api.byMealName(ing));
-        case 'first-letter':
-          return ing.length > 1 ? alert('Sua busca deve conter somente 1 (um) caracter') : setResults(api.byMealFirstLetter(ing));
+          api.byMealName(ing).then((data) => setResults(data.meals));
+          return true;
+        // case 'first-letter':
+        //   return ing.length > 1 ? alert('Sua busca deve conter somente 1 (um) caracter') : (api.byMealFirstLetter(ing).then((data) => setResults(data.meals)));
         default:
           return false;
       }
     }
-    if (location === '/bebidas') {
+    if (location.pathname === '/bebidas') {
+      console.log('entrei no if', ing);
       switch  (type) {
         case 'ingredient':
-          return setResults(api.byDrinkIngredient(ing));
+          console.log('entrei no case', ing, type);
+          api.byDrinkIngredient(ing).then((data) => setResults(data.drinks));
+          return true;
         case 'name':
-          return setResults(api.byDrinkName(ing));
+          api.byDrinkName(ing).then((data) => setResults(data.drinks));
+          return true;
         case 'first-letter':
-          return ing.length > 1 ? alert('Sua busca deve conter somente 1 (um) caracter') : setResults(api.byDrinkFirstLetter(ing));
+          return ing.length > 1 ? alert('Sua busca deve conter somente 1 (um) caracter') : (api.byDrinkFirstLetter(ing).then((data) => setResults(data.drinks)));
         default:
           return false;
       }
@@ -36,33 +39,36 @@ function getAPIByFilter(ing, type, location, setResults) {
 
 export default function SearchBar() {
   const history = useHistory();
-  const { searchBarOn } = useContext(AppContext);
+  const { searchBarOn, filteredData, setFilteredData } = useContext(AppContext);
   const [ingredientName, setIngredientName] = useState('');
   const [radioFilter, setRadioFilter] = useState();
-  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
 
+  const divResultado = () => {
+    if (loading) {
+      return <p>Loading...</p>
+    } else if (filteredData.length > 0) {
+      return filteredData.map((result) => <p>{result.strMeal || result.strDrink}</p>)
+    } else {
+      return <p>Sem resultados</p>
+    }
+  }
   useEffect(() => {
-    console.log(ingredientName);
-    console.log(radioFilter);
-    console.log(results);
-  }, [ingredientName, radioFilter, results]);
+    setLoading(false);
+    console.log(filteredData);
+  }, [filteredData]);
 
-  // useEffect(() => {
-  //   getAPIByFilter(ingredientName, radioFilter, history);
-  // }, []);
-
-
-  if (!searchBarOn) {
+  if (searchBarOn) {
     return (
       <div>
         <input data-testid="search-input" onChange={(e) => setIngredientName(e.target.value)} />
         <input type="radio" name="filter" value="ingredient" data-testid="ingredient-search-radio" onClick={(e) => setRadioFilter(e.target.value)} />Ingrediente
         <input type="radio" name="filter" value="name" data-testid="name-search-radio" onClick={(e) => setRadioFilter(e.target.value)} />Nome
         <input type="radio" name="filter" value="first-letter" data-testid="first-letter-search-radio" onClick={(e) => setRadioFilter(e.target.value)} />Primeira letra
-        <button data-testid="exec-search-btn" onClick={() =>
-          getAPIByFilter(ingredientName, radioFilter, history.location, setResults)}>Buscar
+        <button data-testid="exec-search-btn" onClick={() => {setLoading(true);
+          getAPIByFilter(ingredientName, radioFilter, history.location, setFilteredData)}}>Buscar
         </button>
-        {results.map((result) => <p>{result.strMeal}</p>)}
+        {divResultado()}
       </div>
     )
   } 

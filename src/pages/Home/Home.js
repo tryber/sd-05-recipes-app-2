@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Card from '../../components/Card';
 import * as api from '../../services/api';
 import Header from '../../components/Header';
+import SearchBar from '../../components/SearchBar';
 import Footer from '../../components/Footer';
 
 function Home() {
@@ -33,6 +34,7 @@ function Home() {
   return (
     <div>
       <Header />
+      <SearchBar />
       <div className="d-flex flex-row flex-wrap justify-content-around">
         {defaultCards
           .filter((data, index) => {
