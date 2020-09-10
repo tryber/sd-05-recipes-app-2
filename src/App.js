@@ -6,7 +6,7 @@ import Login from './pages/Login/Login';
 import ComidaDetalhes from './pages/Comidas/ComidaDetalhes/ComidaDetalhes';
 import BebidaDetalhes from './pages/Bebidas/BebidaDetalhes/BebidaDetalhes'; */
 import Provider from './contexts/Provider';
-import Comidas from './pages/Comidas/Comidas';
+/* import Comidas from './pages/Comidas/Comidas'; */
 import Home from './pages/Home/Home';
 
 function App() {

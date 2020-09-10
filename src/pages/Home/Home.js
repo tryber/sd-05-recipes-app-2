@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import Card from '../../components/Card';
+import * as api from '../../services/api';
 /* import Header from '../../components/Header';
 import Footer from '../../components/Footer'; */
-import * as api from '../../services/api';
-import { useHistory } from 'react-router-dom';
 
 function Home() {
   const history = useHistory();
@@ -13,7 +13,7 @@ function Home() {
 
   useEffect(() => {
     setLoading(true);
-    if (history.location.pathname == '/comidas') {
+    if (history.location.pathname === '/comidas') {
       setMealBool(true);
       api.defaultMeals().then((data) => {
         setDefaultCards(data.meals);
@@ -37,6 +37,7 @@ function Home() {
         {defaultCards
           .filter((data, index) => {
             if (index < 12) return data;
+            return false;
           })
           .map((card, index) => (
             <Card
