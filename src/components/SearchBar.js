@@ -101,10 +101,7 @@ export default function SearchBar() {
       <div>
         <input data-testid="search-input" onChange={(e) => setIngredientName(e.target.value)} />
         {radiosBtn(setRadioFilter)}
-        <button 
-          data-testid="exec-search-btn"
-          onClick={() => handleClick()}
-        >
+        <button data-testid="exec-search-btn" onClick={() => handleClick()}>
           Buscar
         </button>
       </div>
