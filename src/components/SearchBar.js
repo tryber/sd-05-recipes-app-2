@@ -130,7 +130,7 @@ export function FilterButtons() {
 
   return (
     <div>
-      <button value={'All'}>All</button>
+      <button value={'All'} onClick={(e) => handleCat(e)}>All</button>
       {categories.filter((cat, i) => i < 5).map((cat) =>
         <div key={cat.id}>
           <button
