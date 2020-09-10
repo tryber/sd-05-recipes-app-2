@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Card from '../../components/Card';
 import * as api from '../../services/api';
-/* import Header from '../../components/Header';
-import Footer from '../../components/Footer'; */
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 
 function Home() {
   const history = useHistory();
@@ -32,7 +32,7 @@ function Home() {
 
   return (
     <div>
-      {/* <Header /> */}
+      <Header />
       <div className="d-flex flex-row flex-wrap justify-content-around">
         {defaultCards
           .filter((data, index) => {
@@ -48,7 +48,7 @@ function Home() {
             />
           ))}
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
