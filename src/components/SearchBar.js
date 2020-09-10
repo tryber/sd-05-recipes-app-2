@@ -115,29 +115,28 @@ export default function SearchBar() {
 // COMPONENT FILTERBUTTONS
 export function FilterButtons() {
   const history = useHistory();
+  const { setSelecCategory } = useContext(AppContext);
   const [categories, setCategories] = useState([]);
+  const handleCat = (e) => setSelecCategory(e.target.value);
 
   useEffect(() => {
     if (history.location.pathname === '/comidas') {
-      api.mealCategories().then((data) => {
-        console.log(data);
-        setCategories(data.categories);
-      });
+      api.mealCategories().then((data) => setCategories(data.categories));
     }
     if (history.location.pathname === '/bebidas') {
-      api.drinkCategories().then((data) => {
-        console.log(data);
-        setCategories(data.drinks);
-      });
+      api.drinkCategories().then((data) => setCategories(data.drinks));
     }
   }, [])
-  console.log('cat', categories);
   return (
     <div>
-      <button>All</button>
+      <button value={'All'}>All</button>
       {categories.filter((cat, i) => i < 5).map((cat) => 
         <div key={cat.id}>
-          <button data-testid={`${cat.strCategory}-category-filter`}>{cat.strCategory}</button>
+          <button
+            data-testid={`${cat.strCategory}-category-filter`}
+            value={cat.strCategory}
+            onClick={(e) => handleCat(e)}
+          >{cat.strCategory}</button>
         </div>
       )}
     </div>
