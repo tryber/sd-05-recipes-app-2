@@ -23,7 +23,7 @@ export const defaultMeals = () => generalAPIRequest(defaultMealsEndpoint);
 export const drinkCategories = () => generalAPIRequest(drinkCategoriesEndpoint);
 export const defaultDrinks = () => generalAPIRequest(defaultDrinksEndpoint);
 
-defaultMeals().then(data => console.log(data))
+defaultDrinks().then(data => console.log(data))
 
 // APIs Meals
 // API de acesso às informações do Meal completas pelo ID

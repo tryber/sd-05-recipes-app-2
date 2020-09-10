@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
 
@@ -25,3 +26,9 @@ function Card(props) {
 }
 
 export default Card;
+
+Card.propTypes = {
+  thumb: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  i: PropTypes.number.isRequired,
+};
