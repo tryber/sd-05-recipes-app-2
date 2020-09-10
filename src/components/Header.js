@@ -57,7 +57,7 @@ function Header() {
       </button>
       <h1 data-testid="page-title">{headerName}</h1>
       {hasSearch &&
-        <button data-testid="search-top-btn" onClick={() => {setSearchBarOn(!searchBarOn)}} >
+        <button data-testid="search-top-btn" onClick={() => setSearchBarOn(!searchBarOn)} >
           <img alt="search" src={search} />
         </button>
       }

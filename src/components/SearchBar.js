@@ -4,7 +4,7 @@ import * as api from '../services/api';
 import AppContext from '../contexts/AppContext';
 
 function filterAPIComidas(ing, type, setResults) {
-  switch  (type) {
+  switch (type) {
     case 'ingredient':
       api.byMealIngredient(ing).then((data) => setResults(data.meals));
       return true;
@@ -18,11 +18,11 @@ function filterAPIComidas(ing, type, setResults) {
       );
     default:
       return false;
-  };
-};
+  }
+}
 
 function filterAPIBebidas(ing, type, setResults) {
-  switch  (type) {
+  switch (type) {
     case 'ingredient':
       api.byDrinkIngredient(ing).then((data) => setResults(data.drinks));
       return true;
@@ -36,19 +36,19 @@ function filterAPIBebidas(ing, type, setResults) {
       );
     default:
       return false;
-  };
+  }
 }
 
 // INPUTS RADIO BUTTON
 const radiosBtn = (radioFilter) => {
   const radios = [
-    {filterValue: 'ingredient', dataTestID: 'ingredient-search-radio', title: 'Ingrediente'},
-    {filterValue: 'name', dataTestID: 'name-search-radio', title: 'Nome'},
-    {filterValue: 'first-letter', dataTestID: 'first-letter-search-radio', title: 'Primeira Letra'}
+    { filterValue: 'ingredient', dataTestID: 'ingredient-search-radio', title: 'Ingrediente' },
+    { filterValue: 'name', dataTestID: 'name-search-radio', title: 'Nome' },
+    { filterValue: 'first-letter', dataTestID: 'first-letter-search-radio', title: 'Primeira Letra' },
   ]
   return (
     <div>
-      {radios.map((radio) => 
+      {radios.map((radio) =>
         <div key={radio.filterValue}>
           <input
             type="radio"
@@ -57,11 +57,11 @@ const radiosBtn = (radioFilter) => {
             data-testid={radio.dataTestID}
             onClick={(e) => radioFilter(e.target.value)}
           />{radio.title}
-        </div>
+        </div>,
       )}
     </div>
-  )
-}
+  );
+};
 
 // LÓGICA CASO SÓ TENHA 1 RESPOSTA OU NENHUMA CONSIDERANDO OS FILTROS APLICADOS
 const resultValidation = (history, filteredData) => {
@@ -75,7 +75,8 @@ const resultValidation = (history, filteredData) => {
   if (filteredData.length === 1 && filteredData !== null && history.location.pathname === '/bebidas') {
     console.log(filteredData);
     return history.push(`/bebidas/${filteredData[0].idDrink}`);
-  }
+  };
+  return true;
 }
 
 // COMPONENTE SEARCHBAR
@@ -94,7 +95,8 @@ export default function SearchBar() {
     const pathname = history.location.pathname;
     if (pathname === '/comidas') return filterAPIComidas(ingredientName, radioFilter, setFilteredData);
     if (pathname === '/bebidas') return filterAPIBebidas(ingredientName, radioFilter, setFilteredData);
-  }
+    return true;
+  };
 
   if (searchBarOn) {
     return (
@@ -105,7 +107,7 @@ export default function SearchBar() {
           Buscar
         </button>
       </div>
-    )
+    );
   }
-  return <div>Acho que temos que fazer os filtros por categoria em outro componente. </div>
+  return <div>Acho que temos que fazer os filtros por categoria em outro componente. </div>;
 }
