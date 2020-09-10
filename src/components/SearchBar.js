@@ -109,5 +109,27 @@ export default function SearchBar() {
       </div>
     );
   }
-  return <div>Acho que temos que fazer os filtros por categoria em outro componente. </div>;
+  return <FilterButtons />;
+}
+
+// COMPONENT FILTERBUTTONS
+export function FilterButtons() {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    api.mealCategories().then((data) => {
+      console.log(data);
+      setCategories(data.categories);
+    });
+  }, [])
+  console.log('cat', categories);
+  return (
+    <div>
+      {categories.filter((cat, i) => i < 5).map((cat) => 
+        <div>
+          <button data-testid={`${cat.strCategory}-category-filter`}>{cat.strCategory}</button>
+        </div>
+      )}
+    </div>
+  );
 }
