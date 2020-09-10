@@ -7,6 +7,7 @@ import ComidaDetalhes from './pages/Comidas/ComidaDetalhes/ComidaDetalhes';
 import BebidaDetalhes from './pages/Bebidas/BebidaDetalhes/BebidaDetalhes'; */
 import Provider from './contexts/Provider';
 import Comidas from './pages/Comidas/Comidas';
+import Home from './pages/Home/Home';
 
 function App() {
   return (
@@ -14,8 +15,8 @@ function App() {
       <div>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/comidas" component={Comidas} />
-            {/* <Route exact path="/bebidas" component={Bebidas} /> */}
+            <Route exact path="/comidas" component={Home} />
+            <Route exact path="/bebidas" component={Home} />
             {/* <Route exact path="/comidas/:id" component={ComidaDetalhes} /> */}
             {/* <Route exact path="/bebidas/:id" component={BebidaDetalhes} /> */}
             {/* <Route exact path="/comidas/:id/in-progress" component={ComidaDetalhes} /> */}
