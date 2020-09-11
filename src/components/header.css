@@ -1,0 +1,30 @@
+.header-comp {
+  background-color: var(--laranja);
+  position: relative;
+}
+
+.header-comp button {
+  outline: none;
+}
+
+.header-comp button img:hover {
+  opacity: 0.5;
+}
+
+.header-comp h3 {
+  padding-top: 1.5vh;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+/* inicio do footer  */
+.footer-comp {
+  background-color: var(--laranja);
+}
+
+.footer-comp button {
+  background: none;
+  border: none;
+  outline: none;
+}

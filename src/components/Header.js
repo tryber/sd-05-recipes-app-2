@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import './header.css';
 import profileIcon from '../images/profileIcon.svg';
 import search from '../images/searchIcon.svg';
 import AppContext from '../contexts/AppContext';
@@ -48,13 +49,14 @@ function Header() {
   }, []);
 
   return (
-    <div>
-      <button data-testid="profile-top-btn" onClick={() => history.push('/perfil')} src={profileIcon}>
+    <div className="navbar header-comp">
+      <button className="navbar-toggler" data-testid="profile-top-btn" onClick={() => history.push('/perfil')} src={profileIcon}>
         <img alt="profile" src={profileIcon} />
       </button>
-      <h1 data-testid="page-title">{headerName}</h1>
+      <h3 data-testid="page-title">{headerName}</h3>
       {hasSearch &&
         <button
+          className="navbar-toggler"
           data-testid="search-top-btn"
           onClick={() => setSearchBarOn(!searchBarOn)}
           src={search}

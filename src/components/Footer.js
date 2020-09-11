@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import './header.css';
 import drinks from '../images/drinkIcon.svg';
 import explore from '../images/exploreIcon.svg';
 import meal from '../images/mealIcon.svg';
@@ -7,7 +8,7 @@ import meal from '../images/mealIcon.svg';
 export default function Footer() {
   const history = useHistory();
   return (
-    <div data-testid="footer">
+    <div className="navbar fixed-bottom footer-comp" data-testid="footer">
       <button data-testid="drinks-bottom-btn" onClick={() => history.push('/bebidas')}>
         <img alt="drinks" src={drinks} />
       </button>

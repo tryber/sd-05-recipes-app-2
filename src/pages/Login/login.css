@@ -1,4 +1,4 @@
-:root {
+/* :root {
   margin: 0;
   padding: 0;
   font-size: 16px;
@@ -11,11 +11,11 @@
   --bege: #f2e7da;
   --laranja: #ff8600;
   --amarelo: #ffae0d;
-}
+} */
 
 .login-page {
   align-items: center;
-  background-image: var(--bg-img);
+  background-image: url("../../images/background/bg-light-center.png");
   display: flex;
   height: 100vh;
 }
