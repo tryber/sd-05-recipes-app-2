@@ -172,7 +172,7 @@ export function FilterButtons() {
           <div key={cat.id}>
             <button
               data-testid={`${cat.strCategory}-category-filter`}
-              value={cat.strCategory.replace(/ /gi, '_')}
+              value={cat.strCategory}
               onClick={(e) => handleCat(e)}
             >
               {cat.strCategory}
