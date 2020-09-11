@@ -13,9 +13,10 @@ function HandleClick(id, history, setSelectedId) {
 function Card(props) {
   const { setSelectedId } = useContext(AppContext);
   const history = useHistory();
+  console.log(history)
   const { description, thumb, i, id } = props;
   return (
-    <a data-testid={`${i}-recipe-card`} onClick={() => HandleClick(id, history, setSelectedId)}>
+    <button data-testid={`${i}-recipe-card`} onClick={() => HandleClick(id, history, setSelectedId)}>
       <div className="card">
         <img
           src={thumb}
@@ -32,7 +33,7 @@ function Card(props) {
           </p>
         </div>
       </div>
-    </a>
+    </button>
   );
 }
 

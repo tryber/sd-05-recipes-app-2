@@ -140,7 +140,7 @@ export const byDrinkFirstLetter = (firstLetter) =>
       console.log('Erro na API Drinks de primeira letra', error),
     );
 
-export const byDrinkCategory = (category) => 
+export const byDrinkCategory = (category) =>
   fetch(
     `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`,
   )
