@@ -3,7 +3,7 @@
   position: relative;
 }
 
-.header-comp button {
+.header-comp button:focus {
   outline: none;
 }
 
@@ -11,10 +11,10 @@
   opacity: 0.5;
 }
 
-.header-comp h3 {
+.header-comp .header-title {
+  left: 50%;
   padding-top: 1.5vh;
   position: absolute;
-  left: 50%;
   transform: translate(-50%, 0);
 }
 
@@ -26,5 +26,8 @@
 .footer-comp button {
   background: none;
   border: none;
+}
+
+.footer-comp button:focus {
   outline: none;
 }

@@ -159,7 +159,7 @@ export function FilterButtons() {
   }, [history.location.pathname]);
 
   return (
-    <div class="btn-toolbar cat-section">
+    <div className="btn-toolbar cat-section">
       <button
         className="btn btn-sm cat-btn"
         value="All"

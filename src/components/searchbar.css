@@ -1,7 +1,7 @@
 .cat-section {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
   max-width: 90vw;
   margin: 1vh auto;
 }
@@ -10,10 +10,13 @@
   background-color: var(--amarelo);
   border-radius: 18px;
   margin: 1vh 0.2vh;
-  outline: none;
   width: 100px;
 }
 
 .cat-btn:hover {
   opacity: 0.6;
+}
+
+.cat-btn:focus {
+  outline: none;
 }

@@ -3,7 +3,7 @@
   padding: 0;
   font-size: 16px;
   font-family: 'Montserrat', sans-serif;
-  --bg-img: url("../../images/background/bg-light-center.png");
+  --bg-img: url('../../images/background/bg-light-center.png');
   --bg-color: #f5f5f5;
   --off-black: #141414;
   --off-white: #f5f5f5;
@@ -15,7 +15,7 @@
 
 .login-page {
   align-items: center;
-  background-image: url("../../images/background/bg-light-center.png");
+  background-image: url('../../images/background/bg-light-center.png');
   display: flex;
   height: 100vh;
 }

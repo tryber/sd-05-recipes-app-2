@@ -85,7 +85,6 @@ function Login() {
     };
    */
   return (
-    <React.Fragment>
     <div className="login-page">
       <div className="login-container">
         <form>
@@ -105,7 +104,6 @@ function Login() {
         </div>
       </div>
     </div>
-    </React.Fragment>
   );
 }
 
