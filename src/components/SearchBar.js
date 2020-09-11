@@ -126,9 +126,16 @@ export function FilterButtons() {
     }
   }, []);
 
+  const handleCat = (e) => {
+    if (e.target.value === selecCategory) return setSelecCategory('All');
+    return setSelecCategory(e.target.value);
+  };
+
   return (
     <div>
-      <button value='All' data-testid="All-category-filter" onClick={(e) => handleCat(e)}>All</button>
+      <button value='All' data-testid="All-category-filter" onClick={(e) => handleCat(e)}>
+        All
+      </button>
       {categories.filter((cat, i) => i < 5).map((cat) =>
         <div key={cat.id}>
           <button
