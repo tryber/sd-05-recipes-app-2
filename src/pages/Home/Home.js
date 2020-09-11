@@ -18,6 +18,7 @@ function Home() {
     if (history.location.pathname === '/comidas') {
       setMealBool(true);
       console.log(selecCategory);
+      console.log(filteredData);
       api.defaultMeals().then((data) => {
         setDefaultCards(data.meals);
         setLoading(false);
