@@ -1,4 +1,4 @@
-limport React, { useContext } from 'react';
+import React, { useContext } from 'react';
 import * as api from '../../services/api';
 import AppContext from '../../contexts/AppContext';
 import shareIcon from '../images/shareIcon.svg';
