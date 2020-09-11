@@ -7,6 +7,7 @@ const Provider = ({ children }) => {
   const [password, setPassword] = useState('');
   const [filteredData, setFilteredData] = useState([]);
   const [selecCategory, setSelecCategory] = useState('');
+  const [selectedId, setSelectedId] = useState('');
 
   const [searchBarOn, setSearchBarOn] = useState(false);
   const estados = {
@@ -20,13 +21,10 @@ const Provider = ({ children }) => {
     setFilteredData,
     selecCategory,
     setSelecCategory,
+    setSelectedId,
   };
 
-  return (
-    <AppContext.Provider value={estados}>
-      {children}
-    </AppContext.Provider>
-  );
+  return <AppContext.Provider value={estados}>{children}</AppContext.Provider>;
 };
 
 export default Provider;

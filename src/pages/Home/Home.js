@@ -10,27 +10,68 @@ import AppContext from '../../contexts/AppContext';
 function Home() {
   const history = useHistory();
   const { selecCategory, filteredData } = useContext(AppContext);
-  const [defaultCards, setDefaultCards] = useState([]);
+  const [cards, setCards] = useState([]);
   const [mealBool, setMealBool] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [catChecker, setCatChecker] = useState('');
 
   useEffect(() => {
     if (history.location.pathname === '/comidas') {
       setMealBool(true);
-      console.log(selecCategory);
-      console.log(filteredData);
       api.defaultMeals().then((data) => {
-        setDefaultCards(data.meals);
+        setCards(data.meals);
         setLoading(false);
       });
     } else {
       setMealBool(false);
       api.defaultDrinks().then((data) => {
-        setDefaultCards(data.drinks);
+        setCards(data.drinks);
         setLoading(false);
       });
     }
-  }, []);
+  }, [history.location.pathname]);
+
+  useEffect(() => {
+    if (history.location.pathname === '/comidas') {
+      setMealBool(true);
+      if (
+        selecCategory &&
+        selecCategory !== catChecker &&
+        selecCategory !== 'All'
+      ) {
+        api.byMealCategory(selecCategory).then((data) => {
+          console.log(data);
+          setCards(data.meals);
+          setCatChecker(selecCategory);
+        });
+      } else {
+        api.defaultMeals().then((data) => {
+          setCards(data.meals);
+          setLoading(false);
+          setCatChecker('');
+        });
+      }
+    } else if (history.location.pathname === '/bebidas') {
+      setMealBool(false);
+      if (
+        selecCategory &&
+        selecCategory !== catChecker &&
+        selecCategory !== 'All'
+      ) {
+        api.byDrinkCategory(selecCategory).then((data) => {
+          console.log(data);
+          setCards(data.drinks);
+          setCatChecker(selecCategory);
+        });
+      } else {
+        api.defaultDrinks().then((data) => {
+          setCards(data.drinks);
+          setLoading(false);
+          setCatChecker('');
+        });
+      }
+    }
+  }, [selecCategory]);
 
   if (loading) return <h1>Loading</h1>;
   return (
@@ -38,7 +79,7 @@ function Home() {
       <Header />
       <SearchBar />
       <div className="d-flex flex-row flex-wrap justify-content-around">
-        {defaultCards
+        {cards
           .filter((data, index) => {
             if (index < 12) return data;
             return false;
@@ -49,6 +90,9 @@ function Home() {
               description={mealBool ? card.strMeal : card.strDrink}
               i={index}
               key={mealBool ? card.idMeal : card.idDrink}
+              id={
+                mealBool ? `comidas ${card.idMeal}` : `bebidas ${card.idDrink}`
+              }
             />
           ))}
       </div>
