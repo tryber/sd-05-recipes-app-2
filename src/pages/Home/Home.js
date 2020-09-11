@@ -22,7 +22,16 @@ function drinkStarter(setCards, setLoading) {
   });
 }
 
-function meal({selecCategory, caCh, setCards, setcaCh, setLoading, filteredData, filCh, setfilCh}) {
+function meal({
+  selecCategory,
+  caCh,
+  setCards,
+  setcaCh,
+  setLoading,
+  filteredData,
+  filCh,
+  setfilCh,
+}) {
   if (selecCategory && selecCategory !== caCh && selecCategory !== 'All') {
     api.byMealCategory(selecCategory).then((data) => {
       setCards(data.meals);
@@ -40,7 +49,16 @@ function meal({selecCategory, caCh, setCards, setcaCh, setLoading, filteredData,
   }
 }
 
-function drink({selecCategory, caCh, setCards, setcaCh, setLoading, filteredData, filCh, setfilCh}) {
+function drink({
+  selecCategory,
+  caCh,
+  setCards,
+  setcaCh,
+  setLoading,
+  filteredData,
+  filCh,
+  setfilCh,
+}) {
   if (selecCategory && selecCategory !== caCh && selecCategory !== 'All') {
     api.byDrinkCategory(selecCategory).then((data) => {
       setCards(data.drinks);
@@ -82,10 +100,10 @@ function Home() {
   useEffect(() => {
     if (pathname === '/comidas') {
       setMeal(true);
-      meal({selecCategory, caCh, setCards, setcaCh, setLoading, filteredData, filCh, setfilCh});
+      meal({ selecCategory, caCh, setCards, setcaCh, setLoading, filteredData, filCh, setfilCh });
     } else if (pathname === '/bebidas') {
       setMeal(false);
-      drink({selecCategory, caCh, setCards, setcaCh, setLoading, filteredData, filCh, setfilCh});
+      drink({ selecCategory, caCh, setCards, setcaCh, setLoading, filteredData, filCh, setfilCh });
     }
   }, [selecCategory, filteredData]);
   if (loading) return <h1>Loading</h1>;
