@@ -5,7 +5,7 @@ import AppContext from '../../contexts/AppContext';
 function emailInput(handleEmail) {
   return (
     <label htmlFor="email">
-      Email:
+      E-mail:
       <input
         data-testid="email-input"
         type="email"

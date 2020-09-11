@@ -87,7 +87,6 @@ export default function SearchBar() {
   const [radioFilter, setRadioFilter] = useState();
 
   useEffect(() => {
-    console.log((filteredData));
     resultValidation(history, filteredData);
   }, [filteredData]);
 
