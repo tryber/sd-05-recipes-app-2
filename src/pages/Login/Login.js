@@ -12,6 +12,7 @@ function emailInput(handleEmail) {
           data-testid="email-input"
           type="email"
           name="email"
+          id="email"
           onChange={(e) => handleEmail(e)}
           className="form-control"
         />
@@ -32,6 +33,7 @@ function passwordInput(handlePassword) {
           data-testid="password-input"
           type="password"
           name="senha"
+          id="password"
           onChange={(e) => handlePassword(e)}
           className="form-control"
         />

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import './header.css';
 import profileIcon from '../images/profileIcon.svg';
@@ -44,9 +44,9 @@ function Header() {
   const [headerName, setHeaderName] = useState();
   const [hasSearch, setHasSearch] = useState(false);
 
-  useState(() => {
+  useEffect(() => {
     pageName(history, setHeaderName, setHasSearch);
-  }, []);
+  }, [history.location.pathname]);
 
   return (
     <div className="navbar header-comp">

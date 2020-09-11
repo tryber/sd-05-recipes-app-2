@@ -13,10 +13,9 @@ function filterAPIComidas(ing, type, setResults) {
       api.byMealName(ing).then((data) => setResults(data.meals));
       return true;
     case 'first-letter':
-      return (ing.length > 1 ?
-        alert('Sua busca deve conter somente 1 (um) caracter') :
-        (api.byMealFirstLetter(ing).then((data) => setResults(data.meals)))
-      );
+      return ing.length > 1
+        ? alert('Sua busca deve conter somente 1 (um) caracter')
+        : api.byMealFirstLetter(ing).then((data) => setResults(data.meals));
     default:
       return false;
   }
@@ -31,10 +30,9 @@ function filterAPIBebidas(ing, type, setResults) {
       api.byDrinkName(ing).then((data) => setResults(data.drinks));
       return true;
     case 'first-letter':
-      return (ing.length > 1 ?
-        alert('Sua busca deve conter somente 1 (um) caracter') :
-        (api.byDrinkFirstLetter(ing).then((data) => setResults(data.drinks)))
-      );
+      return ing.length > 1
+        ? alert('Sua busca deve conter somente 1 (um) caracter')
+        : api.byDrinkFirstLetter(ing).then((data) => setResults(data.drinks));
     default:
       return false;
   }
@@ -43,13 +41,21 @@ function filterAPIBebidas(ing, type, setResults) {
 // INPUTS RADIO BUTTON
 const radiosBtn = (radioFilter) => {
   const radios = [
-    { filterValue: 'ingredient', dataTestID: 'ingredient-search-radio', title: 'Ingrediente' },
+    {
+      filterValue: 'ingredient',
+      dataTestID: 'ingredient-search-radio',
+      title: 'Ingrediente',
+    },
     { filterValue: 'name', dataTestID: 'name-search-radio', title: 'Nome' },
-    { filterValue: 'first-letter', dataTestID: 'first-letter-search-radio', title: 'Primeira Letra' },
+    {
+      filterValue: 'first-letter',
+      dataTestID: 'first-letter-search-radio',
+      title: 'Primeira Letra',
+    },
   ];
   return (
     <div>
-      {radios.map((radio) =>
+      {radios.map((radio) => (
         <div key={radio.filterValue}>
           <input
             type="radio"
@@ -57,9 +63,10 @@ const radiosBtn = (radioFilter) => {
             value={radio.filterValue}
             data-testid={radio.dataTestID}
             onClick={(e) => radioFilter(e.target.value)}
-          />{radio.title}
-        </div>,
-      )}
+          />
+          {radio.title}
+        </div>
+      ))}
     </div>
   );
 };
@@ -67,13 +74,23 @@ const radiosBtn = (radioFilter) => {
 // LÓGICA CASO SÓ TENHA 1 RESPOSTA OU NENHUMA CONSIDERANDO OS FILTROS APLICADOS
 const resultValidation = (history, filteredData) => {
   if (filteredData === null) {
-    return alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+    return alert(
+      'Sinto muito, não encontramos nenhuma receita para esses filtros.',
+    );
   }
-  if (filteredData.length === 1 && filteredData !== null && history.location.pathname === '/comidas') {
+  if (
+    filteredData.length === 1 &&
+    filteredData !== null &&
+    history.location.pathname === '/comidas'
+  ) {
     console.log(filteredData);
     history.push(`/comidas/${filteredData[0].idMeal}`);
   }
-  if (filteredData.length === 1 && filteredData !== null && history.location.pathname === '/bebidas') {
+  if (
+    filteredData.length === 1 &&
+    filteredData !== null &&
+    history.location.pathname === '/bebidas'
+  ) {
     console.log(filteredData);
     return history.push(`/bebidas/${filteredData[0].idDrink}`);
   }
@@ -93,15 +110,22 @@ export default function SearchBar() {
 
   const handleClick = () => {
     const pathname = history.location.pathname;
-    if (pathname === '/comidas') return filterAPIComidas(ingredientName, radioFilter, setFilteredData);
-    if (pathname === '/bebidas') return filterAPIBebidas(ingredientName, radioFilter, setFilteredData);
+    if (pathname === '/comidas') {
+      return filterAPIComidas(ingredientName, radioFilter, setFilteredData);
+    }
+    if (pathname === '/bebidas') {
+      return filterAPIBebidas(ingredientName, radioFilter, setFilteredData);
+    }
     return true;
   };
 
   if (searchBarOn) {
     return (
       <div>
-        <input data-testid="search-input" onChange={(e) => setIngredientName(e.target.value)} />
+        <input
+          data-testid="search-input"
+          onChange={(e) => setIngredientName(e.target.value)}
+        />
         {radiosBtn(setRadioFilter)}
         <button data-testid="exec-search-btn" onClick={() => handleClick()}>
           Buscar
@@ -115,8 +139,15 @@ export default function SearchBar() {
 // COMPONENT FILTERBUTTONS
 export function FilterButtons() {
   const history = useHistory();
-  const { selecCategory, setSelecCategory } = useContext(AppContext);
+  const { setSelecCategory, selecCategory } = useContext(AppContext);
   const [categories, setCategories] = useState([]);
+  const handleCat = (e) => {
+    if (selecCategory !== e.target.value) {
+      setSelecCategory(e.target.value);
+    } else {
+      setSelecCategory('');
+    }
+  };
 
   useEffect(() => {
     if (history.location.pathname === '/comidas') {
@@ -125,29 +156,31 @@ export function FilterButtons() {
     if (history.location.pathname === '/bebidas') {
       api.drinkCategories().then((data) => setCategories(data.drinks));
     }
-  }, []);
-
-  const handleCat = (e) => {
-    if (e.target.value === selecCategory) return setSelecCategory('All');
-    return setSelecCategory(e.target.value);
-  };
+  }, [history.location.pathname]);
 
   return (
     <div class="btn-toolbar cat-section">
-      <button value="All" className="btn btn-sm cat-btn" data-testid="All-category-filter" onClick={(e) => handleCat(e)}>
+      <button
+        className="btn btn-sm cat-btn"
+        value="All"
+        data-testid="All-category-filter"
+        onClick={(e) => handleCat(e)}
+      >
         All
       </button>
-      {categories.filter((cat, i) => i < 5).map((cat) =>
-        <button
-          key={cat.id}
-          className="btn btn-sm cat-btn"
-          data-testid={`${cat.strCategory}-category-filter`}
-          value={cat.strCategory}
-          onClick={(e) => handleCat(e)}
-        >
-          {cat.strCategory}
-        </button>,
-      )}
+      {categories
+        .filter((cat, i) => i < 5)
+        .map((cat) => (
+          <button
+            key={cat.id}
+            className="btn btn-sm cat-btn"
+            data-testid={`${cat.strCategory}-category-filter`}
+            value={cat.strCategory}
+            onClick={(e) => handleCat(e)}
+          >
+            {cat.strCategory}
+          </button>
+        ))}
     </div>
   );
 }
