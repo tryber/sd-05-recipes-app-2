@@ -5,7 +5,7 @@ import Home from '../pages/Home/Home';
 import Provider from '../contexts/Provider';
 import * as api from '../services/api';
 
-const mockSuccessFood = Promise.resolve({
+export const mockSuccessFood = Promise.resolve({
   meals: [
     {
       strMeal: 'Corba',
@@ -70,7 +70,7 @@ const mockSuccessFood = Promise.resolve({
   ],
 });
 
-const mockSuccessDrink = Promise.resolve({
+export const mockSuccessDrink = Promise.resolve({
   drinks: [
     {
       strDrink: 'GG',
@@ -135,7 +135,7 @@ const mockSuccessDrink = Promise.resolve({
   ],
 });
 
-const fetchMock = Promise.resolve({
+export const fetchMock = Promise.resolve({
   json: () => mockSuccess,
 });
 
