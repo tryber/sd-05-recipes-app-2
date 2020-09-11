@@ -104,10 +104,10 @@ describe('Após a submissão, 2 tokens devem ser salvos em localStorage identifi
     const submitBtn = getByRole('button', { name: /Entrar/i });
     const emailInput = getByLabelText(/E-mail:/i);
     const passwordInput = getByLabelText(/Senha:/i);
-    
+
     expect(submitBtn).toBeDisabled();
     localStorage.clear();
-  
+
     fireEvent.change(emailInput, { target: { value: 'myemail@emailprovider.com' } });
     fireEvent.change(passwordInput, { target: { value: '12345678' } });
     fireEvent.click(submitBtn);
@@ -133,14 +133,14 @@ describe('Após a submissão, o e-mail de pessoa usuária deve ser salvo em loca
     fireEvent.change(emailInput, { target: { value: 'myemail@emailprovider.com' } });
     fireEvent.change(passwordInput, { target: { value: '12345678' } });
     fireEvent.click(submitBtn);
-
-    expect(localStorage.__STORE__['user']).toBe({ email: 'email@mail.com' });
+    const emailStorage = { "email": "myemail@emailprovider.com" };
+    expect(JSON.parse(localStorage.__STORE__['user'])).toStrictEqual(emailStorage);
   });
 });
 
- describe('Após a submissão e validação com sucesso do login, o usuário deve ser redirecionado para a tela principal de receitas de comidas', () => {
+describe('Após a submissão e validação com sucesso do login, o usuário deve ser redirecionado para a tela principal de receitas de comidas', () => {
   it('A rota muda para a tela principal de receitas de comidas', () => {
-    const { getByRole, getByLabelText } = renderWithRouter(
+    const { getByRole, getByLabelText, history } = renderWithRouter(
       <Provider>
         <Login />
       </Provider>);
@@ -154,7 +154,8 @@ describe('Após a submissão, o e-mail de pessoa usuária deve ser salvo em loca
     fireEvent.change(emailInput, { target: { value: 'myemail@emailprovider.com' } });
     fireEvent.change(passwordInput, { target: { value: '12345678' } });
     fireEvent.click(submitBtn);
-    expect(history.location.pathname).toEqual('/comidas')
+    const pathname = history.location.pathname;
+    expect(pathname).toEqual('/comidas')
   });
 });
 
