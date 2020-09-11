@@ -6,7 +6,7 @@ const Provider = ({ children }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [filteredData, setFilteredData] = useState([]);
-  const [selecCategory, setSelecCategory] = useState('');
+  const [selecCategory, setSelecCategory] = useState('All');
 
   const [searchBarOn, setSearchBarOn] = useState(false);
   const estados = {
