@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import search from '../images/searchIcon.svg';
@@ -43,9 +43,9 @@ function Header() {
   const [headerName, setHeaderName] = useState();
   const [hasSearch, setHasSearch] = useState(false);
 
-  useState(() => {
+  useEffect(() => {
     pageName(history, setHeaderName, setHasSearch);
-  }, []);
+  }, [history.location.pathname]);
 
   return (
     <div>
