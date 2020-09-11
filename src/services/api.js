@@ -74,6 +74,17 @@ export const byMealFirstLetter = (firstLetter) =>
       console.log('Erro na API Meals de primeira letra', error),
     );
 
+export const byMealCategory = (category) =>
+  fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
+    .then((response) =>
+      response
+        .json()
+        .then((data) =>
+          (response.ok ? Promise.resolve(data) : Promise.reject(data)),
+        ),
+    )
+    .catch((error) => console.log('Erro na API Meals de categoria', error));
+
 // APIs Drinks
 // API de acesso às informações do Drink completas pelo ID
 export const byDrinkId = (id) =>
@@ -127,4 +138,19 @@ export const byDrinkFirstLetter = (firstLetter) =>
     )
     .catch((error) =>
       console.log('Erro na API Drinks de primeira letra', error),
+    );
+
+export const byDrinkCategory = (category) =>
+  fetch(
+    `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`,
+  )
+    .then((response) =>
+      response
+        .json()
+        .then((data) =>
+          (response.ok ? Promise.resolve(data) : Promise.reject(data)),
+        ),
+    )
+    .catch((error) =>
+      console.log('Erro na API Drinks de categoria', error),
     );
