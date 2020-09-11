@@ -31,9 +31,6 @@ const pageName = (history, setName, searchIcon) => {
       return setName('Receitas Favoritas');
     case '/perfil':
       return setName('Perfil');
-    case '/':
-      searchIcon(true);
-      return setName('HEADER MANEIRO');
     default:
       return false;
   }
