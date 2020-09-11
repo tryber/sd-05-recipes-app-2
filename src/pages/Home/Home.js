@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import Card from '../../components/Card';
 import * as api from '../../services/api';
 import Header from '../../components/Header';
 import SearchBar from '../../components/SearchBar';

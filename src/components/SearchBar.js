@@ -109,10 +109,12 @@ export default function SearchBar() {
 
   const handleClick = () => {
     const pathname = history.location.pathname;
-    if (pathname === '/comidas')
+    if (pathname === '/comidas') {
       return filterAPIComidas(ingredientName, radioFilter, setFilteredData);
-    if (pathname === '/bebidas')
+    }
+    if (pathname === '/bebidas') {
       return filterAPIBebidas(ingredientName, radioFilter, setFilteredData);
+    }
     return true;
   };
 
@@ -170,7 +172,7 @@ export function FilterButtons() {
           <div key={cat.id}>
             <button
               data-testid={`${cat.strCategory}-category-filter`}
-              value={cat.strCategory.replace(/ /gi , '_')}
+              value={cat.strCategory.replace(/ /gi, '_')}
               onClick={(e) => handleCat(e)}
             >
               {cat.strCategory}
