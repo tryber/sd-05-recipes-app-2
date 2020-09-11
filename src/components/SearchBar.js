@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import './searchbar.css';
 import * as api from '../services/api';
 import AppContext from '../contexts/AppContext';
 
@@ -132,18 +133,20 @@ export function FilterButtons() {
   };
 
   return (
-    <div>
-      <button value="All" data-testid="All-category-filter" onClick={(e) => handleCat(e)}>
+    <div class="btn-toolbar cat-section">
+      <button value="All" className="btn btn-sm cat-btn" data-testid="All-category-filter" onClick={(e) => handleCat(e)}>
         All
       </button>
       {categories.filter((cat, i) => i < 5).map((cat) =>
-        <div key={cat.id}>
-          <button
-            data-testid={`${cat.strCategory}-category-filter`}
-            value={cat.strCategory}
-            onClick={(e) => handleCat(e)}
-          >{cat.strCategory}</button>
-        </div>,
+        <button
+          key={cat.id}
+          className="btn btn-sm cat-btn"
+          data-testid={`${cat.strCategory}-category-filter`}
+          value={cat.strCategory}
+          onClick={(e) => handleCat(e)}
+        >
+          {cat.strCategory}
+        </button>,
       )}
     </div>
   );

@@ -1,0 +1,19 @@
+.cat-section {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 90vw;
+  margin: 1vh auto;
+}
+
+.cat-btn {
+  background-color: var(--amarelo);
+  border-radius: 18px;
+  margin: 1vh 0.2vh;
+  outline: none;
+  width: 100px;
+}
+
+.cat-btn:hover {
+  opacity: 0.6;
+}
