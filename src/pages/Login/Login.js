@@ -90,16 +90,17 @@ function Login() {
           {emailInput(handleEmail)}
           {passwordInput(handlePassword)}
         </form>
-        <Link to="/comidas">
+        <div to="/comidas" className="enter-button">
           <button
+            className="btn button-laranja"
             data-testid="login-submit-btn"
             type="button"
             disabled={!(emailChecked && passwordChecked)}
             onClick={() => saveToStorage(email)}
           >
-            Entrar
+            <Link to="/comidas">Entrar</Link>
           </button>
-        </Link>
+        </div>
       </div>
     </div>
     </React.Fragment>
