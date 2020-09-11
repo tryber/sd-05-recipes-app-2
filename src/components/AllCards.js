@@ -1,6 +1,6 @@
 import React from 'react';
-import Card from './Card';
 import PropTypes from 'prop-types';
+import Card from './Card';
 
 function AllCards({ cards, Meal }) {
   return (
@@ -26,6 +26,6 @@ function AllCards({ cards, Meal }) {
 export default AllCards;
 
 AllCards.propTypes = {
-  Meals: PropTypes.bool.isRequired,
+  Meal: PropTypes.bool.isRequired,
   cards: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

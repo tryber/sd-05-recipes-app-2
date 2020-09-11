@@ -13,7 +13,6 @@ function HandleClick(id, history, setSelectedId) {
 function Card(props) {
   const { setSelectedId } = useContext(AppContext);
   const history = useHistory();
-  console.log(history)
   const { description, thumb, i, id } = props;
   return (
     <button data-testid={`${i}-recipe-card`} onClick={() => HandleClick(id, history, setSelectedId)}>
