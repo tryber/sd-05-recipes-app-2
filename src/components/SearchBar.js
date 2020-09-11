@@ -129,7 +129,7 @@ export function FilterButtons() {
 
   const handleCat = (e) => {
     if (e.target.value === selecCategory) return setSelecCategory('All');
-    setSelecCategory(e.target.value);
+    return setSelecCategory(e.target.value);
   }  
 
   return (
