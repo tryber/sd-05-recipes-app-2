@@ -95,32 +95,27 @@ describe('O formulário só fica válido após um email válido e uma senha de m
   });
 });
 
-/* describe('Após a submissão, 2 tokens devem ser salvos em localStorage identificados pelas chaves mealsToken e cocktailsToken', () => {
+describe('Após a submissão, 2 tokens devem ser salvos em localStorage identificados pelas chaves mealsToken e cocktailsToken', () => {
   it('Após a submissão mealsToken e cocktailsToken devem estar salvos em localStorage', () => {
-    cy.visit('http://localhost:3000/', {
-      onBeforeLoad(win) {
-        win.localStorage.clear();
-      },
-    });
+    const { getByRole, getByLabelText } = renderWithRouter(
+      <Provider>
+        <Login />
+      </Provider>);
+    const submitBtn = getByRole('button', { name: /Entrar/i });
+    const emailInput = getByLabelText(/E-mail:/i);
+    const passwordInput = getByLabelText(/Senha:/i);
+    
+    expect(submitBtn).toBeDisabled();
+    localStorage.clear();
+  
+    fireEvent.change(emailInput, { target: { value: 'myemail@emailprovider.com' } });
+    fireEvent.change(passwordInput, { target: { value: '12345678' } });
+    fireEvent.click(submitBtn);
 
-    cy.get('[data-testid="login-submit-btn"]').should('be.disabled');
-    cy.window().then((win) => {
-      expect(win.localStorage.getItem('mealsToken')).to.be.null;
-      expect(win.localStorage.getItem('cocktailsToken')).to.be.null;
-    });
-
-
-    cy.get('[data-testid="email-input"]').type('email@mail.com');
-    cy.get('[data-testid="password-input"]').type('1234567');
-    cy.get('[data-testid="login-submit-btn"]').click();
-
-    cy.window().then((win) => {
-      expect(win.localStorage.getItem('mealsToken')).to.eq('1');
-      expect(win.localStorage.getItem('cocktailsToken')).to.eq('1');
-      win.localStorage.clear();
-    });
+    expect(localStorage.__STORE__['mealsToken']).toBe('1');
+    expect(localStorage.__STORE__['cocktailsToken']).toBe('1');
   });
-}); */
+});
 
 /* describe('Após a submissão, o e-mail de pessoa usuária deve ser salvo em localStorage na chave user', () => {
   it('Após a submissão a chave user deve estar salva em localStorage', () => {
