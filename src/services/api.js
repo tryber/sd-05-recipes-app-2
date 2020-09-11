@@ -141,7 +141,6 @@ export const byDrinkFirstLetter = (firstLetter) =>
     );
 
 export const byDrinkCategory = (category) =>{
-  console.log(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`)
   return fetch(
     `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`,
   )

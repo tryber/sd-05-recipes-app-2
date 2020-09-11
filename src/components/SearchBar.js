@@ -155,11 +155,6 @@ export function FilterButtons() {
     }
   }, [history.location.pathname]);
 
-  const handleCat = (e) => {
-    if (e.target.value === selecCategory) return setSelecCategory('All');
-    return setSelecCategory(e.target.value);
-  };
-
   return (
     <div>
       <button
