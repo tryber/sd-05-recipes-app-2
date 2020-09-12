@@ -41,14 +41,14 @@ a:hover {
   transform: translateY(-3px);
 }
 
-.button-amarelo {
+.btn-amarelo {
   background-color: var(--amarelo);
   /* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
   cursor: pointer;
   transition: all 0.3s ease 0s; 
 }
 
-.button-amarelo:hover {
+.btn-amarelo:hover {
   box-shadow: 0 5px 10px rgba(92, 92, 92, 0.8);
   opacity: 0.7;
   transform: translateY(-3px);

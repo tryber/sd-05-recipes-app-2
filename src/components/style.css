@@ -1,9 +1,10 @@
 .card-btn {
-  border: none;
   background-color: var(--off-white);
+  border: none;
 }
 
 .card-btn:focus {
+  opacity: 0.8;
   outline: none;
 }
 

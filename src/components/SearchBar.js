@@ -131,7 +131,7 @@ export default function SearchBar() {
           onChange={(e) => setIngredientName(e.target.value)}
         />
         {radiosBtn(setRadioFilter)}
-        <button className="btn  button-amarelo" data-testid="exec-search-btn" onClick={() => handleClick()}>
+        <button className="btn  btn-amarelo" data-testid="exec-search-btn" onClick={() => handleClick()}>
           Buscar
         </button>
       </div>
