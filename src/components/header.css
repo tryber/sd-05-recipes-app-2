@@ -1,4 +1,4 @@
-:root {
+/* :root {
   margin: 0;
   padding: 0;
   font-size: 16px;
@@ -10,7 +10,7 @@
   --bege: #f2e7da;
   --laranja: rgb(255, 134, 0);
   --amarelo: #ffae0d;
-}
+} */
 
 .header-comp {
   background-color: rgb(255, 134, 0);
