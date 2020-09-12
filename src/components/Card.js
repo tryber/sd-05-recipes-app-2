@@ -15,7 +15,7 @@ function Card(props) {
   const history = useHistory();
   const { description, thumb, i, id } = props;
   return (
-    <button data-testid={`${i}-recipe-card`} onClick={() => HandleClick(id, history, setSelectedId)}>
+    <button className="card-btn" data-testid={`${i}-recipe-card`} onClick={() => HandleClick(id, history, setSelectedId)}>
       <div className="card">
         <img
           src={thumb}

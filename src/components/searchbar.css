@@ -17,6 +17,8 @@
   opacity: 0.6;
 }
 
-.cat-btn:focus {
+.cat-btn:focus,
+.cat-btn:disabled {
   outline: none;
+  border: none;
 }
