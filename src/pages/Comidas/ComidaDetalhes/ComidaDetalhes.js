@@ -28,7 +28,7 @@ function ingredientsList(details) {
         ))}
       </ul>
     </div>
-  )
+  );
 }
 
 function ComidaDetalhes() {
@@ -39,8 +39,8 @@ function ComidaDetalhes() {
     api.byMealId(selectedId).then((data) => {
       setDetails(data.meals[0]);
       setLoading(false);
-    })
-  }, [])
+    });
+  }, []);
 
   if (loading) return <h1>Loading...</h1>;
   return (
