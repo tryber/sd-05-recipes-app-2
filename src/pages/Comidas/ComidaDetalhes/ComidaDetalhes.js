@@ -1,22 +1,23 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
+import 'pure-react-carousel/dist/react-carousel.es.css';
 import * as api from '../../../services/api';
 import AppContext from '../../../contexts/AppContext';
-import shareIcon from '../../../images/shareIcon.svg';
-import whiteHeartIcon from '../../../images/whiteHeartIcon.svg';
+import Details from '../../../components/Details';
+/* import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'; */
 
 function ingredientsList(details) {
   const quantities = [];
   const ingredients = [];
-
   Object.entries(details).forEach((element) => {
-    if (element[0].includes('strMeasure')) {
+    console.log(element);
+    if (element[0].includes('strMeasure') && element[1] && element[1] !== ' ') {
       quantities.push(element[1]);
     }
-    if (element[0].includes('strIngredient')) {
+    if (element[0].includes('strIngredient') && element[1] && element[1] !== ' ') {
       ingredients.push(element[1]);
     }
   });
-
   return (
     <div>
       <h3>Ingredients</h3>
@@ -32,45 +33,39 @@ function ingredientsList(details) {
 }
 
 function ComidaDetalhes() {
-  const { selectedId, loading, setLoading, details, setDetails } = useContext(AppContext);
+  const { loading, setLoading, details, setDetails } = useContext(AppContext);
+  const [recom, setRecom] = useState([]);
+  const [Meal, setMeal] = useState(true);
+  const {
+    location: { pathname },
+  } = useHistory();
+  const { id } = useParams();
 
   useEffect(() => {
-    setLoading(true);
-    api.byMealId(selectedId).then((data) => {
-      setDetails(data.meals[0]);
-      setLoading(false);
-    });
-  }, []);
+    if (pathname.includes('comidas')) {
+      setLoading(true);
+      api.byMealId(id).then((data) => {
+        setDetails(data.meals[0]);
+        setLoading(false);
+      });
+      api.defaultDrinks().then((data) => {
+        setRecom(data.drinks.slice(0, 6));
+      });
+      setMeal(true);
+    }
+    if (pathname.includes('bebidas')) {
+      api.byDrinkId(id).then((data) => {
+        setDetails(data.drinks[0]);
+      });
+      api.defaultMeals().then((data) => {
+        setRecom(data.meals.slice(0, 6));
+      });
+      setMeal(false);
+    }
+  }, [id]);
 
   if (loading) return <h1>Loading...</h1>;
-  return (
-    <div>
-      <div className="details-header">
-        <img
-          alt={details.strMeal}
-          data-testid="recipe-photo"
-          src={details.strMealThumb}
-        />
-        <h2 data-testid="recipe-title">{details.strMeal}</h2>
-        <h4 data-testid="recipe-category">{details.strCategory}</h4>
-        <img alt="share button" data-testid="share-btn" src={shareIcon} />
-        <img alt="favorite button" data-testid="favorite-btn" src={whiteHeartIcon} />
-      </div>
-      <div className="details-body">
-        <h3>Ingredients</h3>
-        {ingredientsList(details)}
-        <h3>Instructions</h3>
-        <p data-testid="instructions">{details.strInstructions}</p>
-        <h3>Vídeo</h3>
-        <video width="320" height="240" controls>
-          <source data-testid="video" src={details.strYoutube} type="video/mp4" />
-        </video>
-        <h3>Recomendadas</h3>
-        <p>Carossel de recomendações</p>
-        <button data-testid="start-recipe-btn"> Iniciar receita</button>
-      </div>
-    </div>
-  );
+  return <Details details={details} Meal={Meal} recom={recom} ingredientsList={ingredientsList} />;
 }
 
 export default ComidaDetalhes;
