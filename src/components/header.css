@@ -38,7 +38,7 @@
   border: none;
 }
 
-.header-comp button:focus, .footer-comp button:focus {
+.header-comp button:focus , .footer-comp button:focus {
   opacity: 0.9;
   outline: none;
 }

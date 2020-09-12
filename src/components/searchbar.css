@@ -2,8 +2,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 90vw;
   margin: 1vh auto;
+  max-width: 90vw;
 }
 
 .cat-btn {
@@ -17,7 +17,7 @@
   opacity: 0.6;
 }
 
-.cat-btn:focus, .cat-btn:disabled {
+.cat-btn:focus , .cat-btn:disabled {
   border: none;
   outline: none;
 }
