@@ -10,7 +10,6 @@ function ingredientsList(details) {
   const quantities = [];
   const ingredients = [];
   Object.entries(details).forEach((element) => {
-    console.log(element);
     if (element[0].includes('strMeasure') && element[1] && element[1] !== ' ') {
       quantities.push(element[1]);
     }

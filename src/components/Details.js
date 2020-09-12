@@ -5,6 +5,7 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import Card from './Card';
 
 function Details({ Meal, details, recom, ingredientsList }) {
+  console.log(details)
   return (
     <div>
       <div className="details-header">
@@ -37,7 +38,7 @@ function Details({ Meal, details, recom, ingredientsList }) {
             thumb={Meal ? each.strDrinkThumb : each.strMealThumb}
             id={Meal ? `bebidas ${each.idDrink}` : `comidas ${each.idMeal}`}
             i={index}
-            rec={true}
+            rec
           />
         ))}
         <button data-testid="start-recipe-btn"> Iniciar receita</button>
@@ -50,7 +51,7 @@ export default Details;
 
 Details.propTypes = {
   Meal: PropTypes.bool.isRequired,
-  details: PropTypes.object.isRequired,
+  details: PropTypes.objectOf(PropTypes.object).isRequired,
   recom: PropTypes.arrayOf(PropTypes.object).isRequired,
   ingredientsList: PropTypes.func.isRequired,
 };
