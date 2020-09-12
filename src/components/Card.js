@@ -23,7 +23,7 @@ function Card(props) {
           className="card-image-top"
           data-testid={`${i}-card-img`}
         />
-        <div className="card-body">
+        <div className="card-body card-description">
           <p
             className="card-title d-flex flex-column justify-content-end align-items-center"
             data-testid={`${i}-card-name`}

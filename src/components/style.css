@@ -7,12 +7,16 @@
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   height: 31vh;
   margin: 1vh 0;
-  width: 45vw;
+  width: 160px;
+}
+
+.card .card-description {
+  padding: 8% 1%;
 }
 
 .card-image-top {
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
-  height: 75%;
+  height: 70%;
   width: 100%;
 }

@@ -22,3 +22,22 @@
   outline: none;
   border: none;
 }
+
+.search-container {
+  padding: 2vh 5vw;
+  text-align: center;
+}
+
+.radio-container {
+  align-items: center;
+  display: flex;
+  font-size: 14px;
+  justify-content: space-between;
+  max-width: 90%;
+  margin: 1vh auto;
+  padding: 0 1vw;
+}
+
+.radio-opt label {
+  padding: 2px 0;
+}

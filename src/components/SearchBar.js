@@ -54,17 +54,19 @@ const radiosBtn = (radioFilter) => {
     },
   ];
   return (
-    <div>
+    <div className="radio-container">
       {radios.map((radio) => (
-        <div key={radio.filterValue}>
+        <div key={radio.filterValue} className="radio-opt">
           <input
+            className="form-check-input"
             type="radio"
             name="filter"
+            id="filter"
             value={radio.filterValue}
             data-testid={radio.dataTestID}
             onClick={(e) => radioFilter(e.target.value)}
           />
-          {radio.title}
+          <label htmlFor="filter">{radio.title}</label>
         </div>
       ))}
     </div>
@@ -121,13 +123,15 @@ export default function SearchBar() {
 
   if (searchBarOn) {
     return (
-      <div>
+      <div className="search-container">
         <input
+          className="form-control"
           data-testid="search-input"
+          placeholder="Digite sua busca"
           onChange={(e) => setIngredientName(e.target.value)}
         />
         {radiosBtn(setRadioFilter)}
-        <button data-testid="exec-search-btn" onClick={() => handleClick()}>
+        <button className="btn  button-amarelo" data-testid="exec-search-btn" onClick={() => handleClick()}>
           Buscar
         </button>
       </div>
