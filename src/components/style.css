@@ -1,5 +1,5 @@
 .card-btn {
-  background-color: var(--off-white);
+  background-color: rgb(245, 245, 245);
   border: none;
 }
 
@@ -21,7 +21,7 @@
 }
 
 .card:hover {
-  background-color: var(--amarelo);
+  background-color: rgb(255, 174, 13);
   box-shadow: 0 20px 10px rgba(0, 0, 0, 0.25);
 }
 

@@ -7,7 +7,7 @@
 }
 
 .cat-btn {
-  background-color: var(--amarelo);
+  background-color: rgb(255, 174, 13);
   border-radius: 18px;
   margin: 1vh 0.2vh;
   width: 100px;
@@ -17,8 +17,7 @@
   opacity: 0.6;
 }
 
-.cat-btn:focus , 
-.cat-btn:disabled {
+.cat-btn:focus, .cat-btn:disabled {
   border: none;
   outline: none;
 }

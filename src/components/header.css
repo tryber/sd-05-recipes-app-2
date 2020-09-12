@@ -8,17 +8,13 @@
   --off-white: #f5f5f5;
   --off-gray: #5c5c5c;
   --bege: #f2e7da;
-  --laranja: #ff8600;
+  --laranja: rgb(255, 134, 0);
   --amarelo: #ffae0d;
 }
 
 .header-comp {
-  background-color: var(--laranja);
+  background-color: rgb(255, 134, 0);
   position: relative;
-}
-
-.header-comp button:focus {
-  outline: none;
 }
 
 .header-comp button img:hover {
@@ -34,7 +30,7 @@
 
 /* inicio do footer  */
 .footer-comp {
-  background-color: var(--laranja);
+  background-color: rgb(255, 134, 0);
 }
 
 .footer-comp button {
@@ -42,7 +38,7 @@
   border: none;
 }
 
-.footer-comp button:focus {
+.header-comp button:focus, .footer-comp button:focus {
   opacity: 0.9;
   outline: none;
 }

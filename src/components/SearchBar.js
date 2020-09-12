@@ -110,7 +110,7 @@ export default function SearchBar() {
     resultValidation(history, filteredData);
   }, [filteredData]);
 
-  const handleClick = () => {
+  const hClick = () => {
     const pathname = history.location.pathname;
     if (pathname === '/comidas') {
       return filterAPIComidas(ingredientName, radioFilter, setFilteredData);
@@ -131,7 +131,7 @@ export default function SearchBar() {
           onChange={(e) => setIngredientName(e.target.value)}
         />
         {radiosBtn(setRadioFilter)}
-        <button className="btn  btn-amarelo" data-testid="exec-search-btn" onClick={() => handleClick()}>
+        <button className="btn btn-amarelo" data-testid="exec-search-btn" onClick={() => hClick()}>
           Buscar
         </button>
       </div>
