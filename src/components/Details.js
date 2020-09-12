@@ -5,7 +5,6 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import Card from './Card';
 
 function Details({ Meal, details, recom, ingredientsList }) {
-  console.log(details)
   return (
     <div>
       <div className="details-header">
