@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import Card from './Card';
-import { useHistory } from 'react-router-dom';
 
 function share(Meal, details, setCopied) {
+  let textField;
   if (Meal) {
-    let copyLink = `http://localhost:3000/comidas/${details.idMeal}`;
-    var textField = document.createElement('textarea');
+    const copyLink = `http://localhost:3000/comidas/${details.idMeal}`;
+    textField = document.createElement('textarea');
     textField.innerText = copyLink;
     document.body.appendChild(textField);
     textField.select();
     document.execCommand('copy');
     textField.remove();
   } else {
-    let copyLink = `http://localhost:3000/bebidas/${details.idDrink}`;
-    var textField = document.createElement('textarea');
+    const copyLink = `http://localhost:3000/bebidas/${details.idDrink}`;
+    textField = document.createElement('textarea');
     textField.innerText = copyLink;
     document.body.appendChild(textField);
     textField.select();
