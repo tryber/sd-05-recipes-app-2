@@ -25,7 +25,7 @@
 }
 
 .page-title {
-  color: var(--laranja);
+  color: rgb(255, 134, 0);
   font-weight: 300;
   text-align: center;
 }
@@ -36,6 +36,6 @@
 }
 
 .form-input {
-  border: 1px solid var(--amarelo);
+  border: 1px solid rgb(255, 174, 13);
   border-radius: 15px;
 }
