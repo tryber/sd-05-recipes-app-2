@@ -53,7 +53,7 @@ function Header() {
       <button className="navbar-toggler" data-testid="profile-top-btn" onClick={() => history.push('/perfil')} src={profileIcon}>
         <img alt="profile" src={profileIcon} />
       </button>
-      <h3 className="header-title" data-testid="page-title">{headerName}</h3>
+      <h5 className="header-title" data-testid="page-title">{headerName}</h5>
       {hasSearch &&
         <button
           className="navbar-toggler"

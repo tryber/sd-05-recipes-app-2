@@ -14,7 +14,8 @@ function emailInput(handleEmail) {
           name="email"
           id="email"
           onChange={(e) => handleEmail(e)}
-          className="form-control"
+          className="form-control form-input"
+          placeholder="Email"
         />
         {/* <small id="emailHelp" class="form-text text-muted">
           We'll never share your email <br/> with anyone else.
@@ -35,7 +36,8 @@ function passwordInput(handlePassword) {
           name="senha"
           id="password"
           onChange={(e) => handlePassword(e)}
-          className="form-control"
+          className="form-control form-input"
+          placeholder="Senha"
         />
       </label>
     </div>
@@ -87,6 +89,7 @@ function Login() {
   return (
     <div className="login-page">
       <div className="login-container">
+        <h2 className="page-title">Login</h2>
         <form>
           {emailInput(handleEmail)}
           {passwordInput(handlePassword)}

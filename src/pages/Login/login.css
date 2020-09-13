@@ -24,7 +24,18 @@
   margin: 0 auto;
 }
 
+.page-title {
+  color: var(--laranja);
+  font-weight: 300;
+  text-align: center;
+}
+
 .enter-button {
   display: flex;
   justify-content: center;
+}
+
+.form-input {
+  border: 1px solid var(--amarelo);
+  border-radius: 15px;
 }
