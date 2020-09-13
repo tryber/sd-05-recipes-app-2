@@ -6,12 +6,12 @@ import AppContext from '../../contexts/AppContext';
 
 export default function Perfil() {
   const history = useHistory();
-  const { email } = useContext(AppContext)
+  const { email } = useContext(AppContext);
 
   const handleClick = () => {
     localStorage.clear();
     history.push('/');
-  }
+  };
 
   return (
     <div>
