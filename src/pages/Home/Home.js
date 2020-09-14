@@ -110,7 +110,9 @@ function Home() {
     <div>
       <Header />
       <SearchBar />
-      <AllCards cards={cards} Meal={Meal} />
+      <div className="home-body">
+        <AllCards cards={cards} Meal={Meal} />
+      </div>
       <Footer />
     </div>
   );
