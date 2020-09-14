@@ -69,13 +69,13 @@ function Details({ Meal, details, recom, ingredientsList }) {
       </div>
       <div className="details-body">
         {ingredientsList(details)}
-        <h3>Instructions</h3>
+        <h4 className="topic-title">Instructions</h4>
         <p data-testid="instructions">{details.strInstructions}</p>
-        <h3>Vídeo</h3>
+        <h4 className="topic-title">Vídeo</h4>
         <video width="320" height="240" controls>
           <source data-testid="video" src={details.strYoutube} type="video/mp4" />
         </video>
-        <h3>Recomendadas</h3>
+        <h4 className="topic-title">Recomendadas</h4>
         {recom.map((each, index) => (
           <Card
             description={Meal ? each.strDrink : each.strMeal}

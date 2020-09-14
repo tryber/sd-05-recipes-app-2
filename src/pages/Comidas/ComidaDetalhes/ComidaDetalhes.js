@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import 'pure-react-carousel/dist/react-carousel.es.css';
+import '../../../components/details.css';
 import * as api from '../../../services/api';
 import AppContext from '../../../contexts/AppContext';
 import Details from '../../../components/Details';
@@ -18,15 +19,17 @@ function ingredientsList(details) {
     }
   });
   return (
-    <div>
-      <h3>Ingredients</h3>
-      <ul>
-        {quantities.map((element, index) => (
-          <li data-testid={`${index}-ingredient-name-and-measure`}>
-            {ingredients[index]} - {element}
-          </li>
-        ))}
-      </ul>
+    <div className="topic-container">
+      <h4 className="topic-title">Ingredients</h4>
+      <div className="list-container">
+        <ul>
+          {quantities.map((element, index) => (
+            <li data-testid={`${index}-ingredient-name-and-measure`}>
+              {ingredients[index]} - {element}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

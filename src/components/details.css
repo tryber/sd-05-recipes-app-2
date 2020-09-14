@@ -4,14 +4,14 @@
 
 .header-pic {
   height: 30vh;
-  min-width: 100vw;
+  width: 100vw;
 }
 
 .details-header {
   /* border: 3px solid green; */
   display: flex;
   justify-content: space-between;
-  margin: 2vh auto 1vh;
+  margin: 2vh auto 3vh;
   max-width: 85vw;
 }
 
@@ -47,12 +47,37 @@
 }
 
 .det-btn:focus {
-  outline: none;
   border: none;
+  outline: none;
 }
 
 .det-btn span {
   color: rgb(255, 134, 0);
   font-size: 12px;
   text-emphasis: wrap;
+}
+
+.details-body {
+  margin: 1vh auto;
+  max-width: 85vw;
+}
+
+/* arquivo ComidaDetalhes */
+.topic-container {
+  margin: 3vh 0;
+}
+
+.topic-title {
+  font-weight: 400;
+  border-bottom: 1px solid rgb(255, 134, 0);
+  margin: 0 6vw 2vh 0;
+  /* letter-spacing: 0.3vw; */
+}
+
+.list-container {
+  background-color: rgb(245, 245, 245);
+  max-width: 75vw;
+  border-radius: 25px;
+  padding: 2vh 0;
+  font-size: 14px;
 }
