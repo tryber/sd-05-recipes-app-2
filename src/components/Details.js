@@ -36,11 +36,6 @@ function handleIniciarReceita(history) {
   history.push(`${history.location.pathname}/in-progress`);
 }
 
-const style = {
-  position: 'fixed',
-  bottom: 0,
-  left: 0,
-};
 function Details({ Meal, details, recom, ingredientsList }) {
   const [copied, setCopied] = useState(false);
   const history = useHistory();
@@ -72,10 +67,11 @@ function Details({ Meal, details, recom, ingredientsList }) {
         <h4 className="topic-title">Instructions</h4>
         <p data-testid="instructions">{details.strInstructions}</p>
         <h4 className="topic-title">Vídeo</h4>
-        <video width="320" height="240" controls>
+        <video width="300" height="240" controls>
           <source data-testid="video" src={details.strYoutube} type="video/mp4" />
         </video>
         <h4 className="topic-title">Recomendadas</h4>
+        <div className="card-container">
         {recom.map((each, index) => (
           <Card
             description={Meal ? each.strDrink : each.strMeal}
@@ -84,9 +80,10 @@ function Details({ Meal, details, recom, ingredientsList }) {
             i={index}
             rec
           />
-        ))}
+          ))}
+        </div>
         <button
-          style={style}
+          className="start-btn"
           data-testid="start-recipe-btn"
           onClick={() => handleIniciarReceita(history)}
         >
