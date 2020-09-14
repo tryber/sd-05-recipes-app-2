@@ -10,6 +10,7 @@
     "bootstrap": "^4.5.2",
     "clipboard-copy": "^3.1.0",
     "lodash": "^4.17.15",
+    "pure-react-carousel": "^1.27.3",
     "react": "^16.13.1",
     "react-context-devtool": "^2.0.0",
     "react-dom": "^16.13.1",

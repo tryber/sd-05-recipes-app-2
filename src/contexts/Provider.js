@@ -8,6 +8,8 @@ const Provider = ({ children }) => {
   const [filteredData, setFilteredData] = useState([]);
   const [selecCategory, setSelecCategory] = useState('');
   const [selectedId, setSelectedId] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [details, setDetails] = useState([]);
 
   console.log(selectedId);
 
@@ -23,7 +25,12 @@ const Provider = ({ children }) => {
     setFilteredData,
     selecCategory,
     setSelecCategory,
+    selectedId,
     setSelectedId,
+    loading,
+    setLoading,
+    details,
+    setDetails,
   };
 
   return <AppContext.Provider value={estados}>{children}</AppContext.Provider>;
