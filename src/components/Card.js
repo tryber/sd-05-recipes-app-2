@@ -13,20 +13,24 @@ function HandleClick(id, history, setSelectedId) {
 function Card(props) {
   const { setSelectedId } = useContext(AppContext);
   const history = useHistory();
-  const { description, thumb, i, id } = props;
+  const { description, thumb, i, id, rec } = props;
   return (
-    <button data-testid={`${i}-recipe-card`} onClick={() => HandleClick(id, history, setSelectedId)}>
+    <button
+      className={rec && i > 1 ? 'hidden' : ''}
+      data-testid={rec ? `${i}-recomendation-card` : `${i}-recipe-card`}
+      onClick={() => HandleClick(id, history, setSelectedId)}
+    >
       <div className="card">
         <img
           src={thumb}
           alt={description}
           className="card-image-top"
-          data-testid={`${i}-card-img`}
+          data-testid={rec ? `${i}-recomendation-img` : `${i}-card-img`}
         />
         <div className="card-body">
           <p
             className="card-title d-flex flex-column justify-content-end align-items-center"
-            data-testid={`${i}-card-name`}
+            data-testid={rec ? `${i}-recomendation-title` : `${i}-card-name`}
           >
             {description}
           </p>
@@ -43,4 +47,5 @@ Card.propTypes = {
   description: PropTypes.string.isRequired,
   i: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
+  rec: PropTypes.bool.isRequired,
 };
