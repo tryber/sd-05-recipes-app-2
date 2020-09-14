@@ -90,7 +90,7 @@ function Home() {
     if (pathname === '/comidas') {
       setMeal(true);
       mealStarter(setCards, setLoading);
-    } else {
+    } else if (pathname === '/bebidas') {
       setMeal(false);
       drinkStarter(setCards, setLoading);
     }

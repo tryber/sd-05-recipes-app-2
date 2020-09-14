@@ -6,6 +6,8 @@ import './style.css';
 import AppContext from '../contexts/AppContext';
 
 function HandleClick(id, history, setSelectedId) {
+  localStorage.setItem('doneRecipes', 'abobrinha');
+  localStorage.setItem('favoriteRecipes', 'batatinha');
   const info = id.split(' ');
   setSelectedId(info[1]);
   history.push(`/${info[0]}/${info[1]}`);
