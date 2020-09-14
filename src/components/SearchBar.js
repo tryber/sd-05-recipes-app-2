@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import './searchbar.css';
 import * as api from '../services/api';
 import AppContext from '../contexts/AppContext';
 
@@ -53,17 +54,19 @@ const radiosBtn = (radioFilter) => {
     },
   ];
   return (
-    <div>
+    <div className="radio-container">
       {radios.map((radio) => (
-        <div key={radio.filterValue}>
+        <div key={radio.filterValue} className="radio-opt">
           <input
+            className="form-check-input"
             type="radio"
             name="filter"
+            id="filter"
             value={radio.filterValue}
             data-testid={radio.dataTestID}
             onClick={(e) => radioFilter(e.target.value)}
           />
-          {radio.title}
+          <label htmlFor="filter">{radio.title}</label>
         </div>
       ))}
     </div>
@@ -107,7 +110,7 @@ export default function SearchBar() {
     resultValidation(history, filteredData);
   }, [filteredData]);
 
-  const handleClick = () => {
+  const hClick = () => {
     const pathname = history.location.pathname;
     if (pathname === '/comidas') {
       return filterAPIComidas(ingredientName, radioFilter, setFilteredData);
@@ -120,13 +123,15 @@ export default function SearchBar() {
 
   if (searchBarOn) {
     return (
-      <div>
+      <div className="search-container">
         <input
+          className="form-control"
           data-testid="search-input"
+          placeholder="Digite sua busca"
           onChange={(e) => setIngredientName(e.target.value)}
         />
         {radiosBtn(setRadioFilter)}
-        <button data-testid="exec-search-btn" onClick={() => handleClick()}>
+        <button className="btn btn-amarelo" data-testid="exec-search-btn" onClick={() => hClick()}>
           Buscar
         </button>
       </div>
@@ -158,8 +163,9 @@ export function FilterButtons() {
   }, [history.location.pathname]);
 
   return (
-    <div>
+    <div className="btn-toolbar cat-section">
       <button
+        className="btn btn-sm cat-btn"
         value="All"
         data-testid="All-category-filter"
         onClick={(e) => handleCat(e)}
@@ -169,15 +175,15 @@ export function FilterButtons() {
       {categories
         .filter((cat, i) => i < 5)
         .map((cat) => (
-          <div key={cat.id}>
-            <button
-              data-testid={`${cat.strCategory}-category-filter`}
-              value={cat.strCategory}
-              onClick={(e) => handleCat(e)}
-            >
-              {cat.strCategory}
-            </button>
-          </div>
+          <button
+            key={cat.id}
+            className="btn btn-sm cat-btn"
+            data-testid={`${cat.strCategory}-category-filter`}
+            value={cat.strCategory}
+            onClick={(e) => handleCat(e)}
+          >
+            {cat.strCategory}
+          </button>
         ))}
     </div>
   );

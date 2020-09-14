@@ -1,34 +1,46 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import './login.css';
 import AppContext from '../../contexts/AppContext';
 
 function emailInput(handleEmail) {
   return (
-    <label htmlFor="email">
-      E-mail:
-      <input
-        data-testid="email-input"
-        type="email"
-        name="email"
-        id="email"
-        onChange={(e) => handleEmail(e)}
-      />
-    </label>
+    <div className="form-group">
+      <label htmlFor="email">
+        E-mail:
+        <input
+          data-testid="email-input"
+          type="email"
+          name="email"
+          id="email"
+          onChange={(e) => handleEmail(e)}
+          className="form-control form-input"
+          placeholder="Email"
+        />
+        {/* <small id="emailHelp" class="form-text text-muted">
+          We'll never share your email <br/> with anyone else.
+        </small> */}
+      </label>
+    </div>
   );
 }
 
 function passwordInput(handlePassword) {
   return (
-    <label htmlFor="password">
-      Senha:
-      <input
-        data-testid="password-input"
-        type="password"
-        name="senha"
-        id="password"
-        onChange={(e) => handlePassword(e)}
-      />
-    </label>
+    <div className="form-group">
+      <label htmlFor="password">
+        Senha:
+        <input
+          data-testid="password-input"
+          type="password"
+          name="senha"
+          id="password"
+          onChange={(e) => handlePassword(e)}
+          className="form-control form-input"
+          placeholder="Senha"
+        />
+      </label>
+    </div>
   );
 }
 
@@ -75,21 +87,25 @@ function Login() {
     };
    */
   return (
-    <div>
-      <form>
-        {emailInput(handleEmail)}
-        {passwordInput(handlePassword)}
-      </form>
-      <Link to="/comidas">
-        <button
-          data-testid="login-submit-btn"
-          type="button"
-          disabled={!(emailChecked && passwordChecked)}
-          onClick={() => saveToStorage(email)}
-        >
-          Entrar
-        </button>
-      </Link>
+    <div className="login-page">
+      <div className="login-container">
+        <h2 className="page-title">Login</h2>
+        <form>
+          {emailInput(handleEmail)}
+          {passwordInput(handlePassword)}
+        </form>
+        <div to="/comidas" className="enter-button">
+          <button
+            className="btn button-laranja"
+            data-testid="login-submit-btn"
+            type="button"
+            disabled={!(emailChecked && passwordChecked)}
+            onClick={() => saveToStorage(email)}
+          >
+            <Link to="/comidas">Entrar</Link>
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
