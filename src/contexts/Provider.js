@@ -10,9 +10,6 @@ const Provider = ({ children }) => {
   const [selectedId, setSelectedId] = useState('');
   const [loading, setLoading] = useState(false);
   const [details, setDetails] = useState([]);
-
-  console.log(selectedId);
-
   const [searchBarOn, setSearchBarOn] = useState(false);
   const estados = {
     email,

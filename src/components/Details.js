@@ -46,7 +46,7 @@ function Details({ Meal, details, recom, ingredientsList }) {
 
   return (
     <div>
-      <div className="details-header">
+      <div>
         <img
           alt={Meal ? details.strMeal : details.strDrink}
           data-testid="recipe-photo"
