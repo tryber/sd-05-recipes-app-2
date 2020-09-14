@@ -1,0 +1,58 @@
+.details-page {
+  background-color: rgb(242, 231, 218);
+}
+
+.header-pic {
+  height: 30vh;
+  min-width: 100vw;
+}
+
+.details-header {
+  /* border: 3px solid green; */
+  display: flex;
+  justify-content: space-between;
+  margin: 2vh auto 1vh;
+  max-width: 85vw;
+}
+
+.title-side h2 {
+  color: rgb(255, 134, 0);
+  font-weight: 400;
+}
+
+.title-side h5 {
+  color: rgb(92, 92, 92);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.icon-side {
+  /* border: 2px solid red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1vh 1vw 0;
+}
+
+.det-btn {
+  background-color: rgb(242, 231, 218);
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.det-btn:hover {
+  opacity: 0.8;
+}
+
+.det-btn:focus {
+  outline: none;
+  border: none;
+}
+
+.det-btn span {
+  color: rgb(255, 134, 0);
+  font-size: 12px;
+  text-emphasis: wrap;
+}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
+import './details.css';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import Card from './Card';
@@ -45,21 +46,26 @@ function Details({ Meal, details, recom, ingredientsList }) {
   const history = useHistory();
 
   return (
-    <div>
+    <div className="details-page">
+      <img
+        className="header-pic"
+        alt={Meal ? details.strMeal : details.strDrink}
+        data-testid="recipe-photo"
+        src={Meal ? details.strMealThumb : details.strDrinkThumb}
+      />
       <div className="details-header">
-        <img
-          alt={Meal ? details.strMeal : details.strDrink}
-          data-testid="recipe-photo"
-          src={Meal ? details.strMealThumb : details.strDrinkThumb}
-        />
-        <h2 data-testid="recipe-title">{Meal ? details.strMeal : details.strDrink}</h2>
-        <h4 data-testid="recipe-category">
-          {details.strCategory} {!Meal ? `- ${details.strAlcoholic}` : ''}
-        </h4>
-        <button data-testid="share-btn" onClick={() => share(Meal, details, setCopied)}>
-          <img alt="share button" src={shareIcon} /> {copied && <span>Link copiado!</span>}
-        </button>
-        <img alt="favorite button" data-testid="favorite-btn" src={whiteHeartIcon} />
+        <div className="title-side">
+          <h2 data-testid="recipe-title">{Meal ? details.strMeal : details.strDrink}</h2>
+          <h5 data-testid="recipe-category">
+            {details.strCategory} {!Meal ? `- ${details.strAlcoholic}` : ''}
+          </h5>
+        </div>
+        <div className="icon-side">
+          <img alt="favorite button" data-testid="favorite-btn" src={whiteHeartIcon} />
+          <button className="det-btn" data-testid="share-btn" onClick={() => share(Meal, details, setCopied)}>
+            <img alt="share button" src={shareIcon} /> {copied && <span>Link <br/> copiado!</span>}
+          </button>
+        </div>
       </div>
       <div className="details-body">
         {ingredientsList(details)}
@@ -69,9 +75,7 @@ function Details({ Meal, details, recom, ingredientsList }) {
         <video width="320" height="240" controls>
           <source data-testid="video" src={details.strYoutube} type="video/mp4" />
         </video>
-
         <h3>Recomendadas</h3>
-
         {recom.map((each, index) => (
           <Card
             description={Meal ? each.strDrink : each.strMeal}
