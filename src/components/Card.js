@@ -16,7 +16,7 @@ function Card(props) {
   const { description, thumb, i, id, rec } = props;
   return (
     <button
-      className={rec && i > 1 ? 'hidden' : ''}
+      className={rec && i > 1 ? 'hidden card-btn' : 'card-btn'}
       data-testid={rec ? `${i}-recomendation-card` : `${i}-recipe-card`}
       onClick={() => HandleClick(id, history, setSelectedId)}
     >
@@ -27,7 +27,7 @@ function Card(props) {
           className="card-image-top"
           data-testid={rec ? `${i}-recomendation-img` : `${i}-card-img`}
         />
-        <div className="card-body">
+        <div className="card-body card-description">
           <p
             className="card-title d-flex flex-column justify-content-end align-items-center"
             data-testid={rec ? `${i}-recomendation-title` : `${i}-card-name`}
