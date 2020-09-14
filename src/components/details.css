@@ -43,14 +43,14 @@
   align-items: center;
 }
 
-.det-btn:hover {
+/* .det-btn:hover {
   opacity: 0.8;
 }
 
 .det-btn:focus {
   border: none;
   outline: none;
-}
+} */
 
 .det-btn span {
   color: rgb(255, 134, 0);

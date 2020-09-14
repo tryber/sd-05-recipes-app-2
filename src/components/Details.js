@@ -58,7 +58,7 @@ function Details({ Meal, details, recom, ingredientsList }) {
         <div className="icon-side">
           <img alt="favorite button" data-testid="favorite-btn" src={whiteHeartIcon} />
           <button className="det-btn" data-testid="share-btn" onClick={() => share(Meal, details, setCopied)}>
-            <img alt="share button" src={shareIcon} /> {copied && <span>Link <br/> copiado!</span>}
+            <img alt="share button" src={shareIcon} /> {copied && <span>Link copiado!</span>}
           </button>
         </div>
       </div>
