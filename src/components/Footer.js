@@ -9,7 +9,7 @@ export default function Footer() {
   const history = useHistory();
   return (
     <div className="navbar fixed-bottom footer-comp" data-testid="footer">
-      <button data-testid="drinks-bottom-btn" onClick={() => history.push('/bebidas')}>
+      <button data-testid="drinks-bottom-btn" onClick={() => history.push('/bebidas')} src={drinks}>
         <img alt="drinks" src={drinks} />
       </button>
       <button onClick={() => history.push('/explorar')}>

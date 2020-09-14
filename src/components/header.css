@@ -31,6 +31,7 @@
 /* inicio do footer  */
 .footer-comp {
   background-color: rgb(255, 134, 0);
+  position: fixed;
 }
 
 .footer-comp button {
