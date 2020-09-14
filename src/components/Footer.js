@@ -12,11 +12,11 @@ export default function Footer() {
       <button data-testid="drinks-bottom-btn" onClick={() => history.push('/bebidas')}>
         <img alt="drinks" src={drinks} />
       </button>
-      <button data-testid="explore-bottom-btn" onClick={() => history.push('/explorar')}>
-        <img alt="explorar" src={explore} />
+      <button onClick={() => history.push('/explorar')}>
+        <img data-testid="explore-bottom-btn" alt="explorar" src={explore} />
       </button>
-      <button data-testid="food-bottom-btn" onClick={() => history.push('/comidas')}>
-        <img alt="comidas" src={meal} />
+      <button onClick={() => history.push('/comidas')}>
+        <img alt="comidas" data-testid="food-bottom-btn" src={meal} />
       </button>
     </div>
   );
