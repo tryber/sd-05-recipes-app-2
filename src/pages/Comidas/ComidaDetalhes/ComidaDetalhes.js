@@ -5,6 +5,7 @@ import * as api from '../../../services/api';
 import AppContext from '../../../contexts/AppContext';
 import Details from '../../../components/Details';
 /* import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'; */
+/* comentário inútil */
 
 function ingredientsList(details) {
   const quantities = [];
