@@ -37,7 +37,7 @@ function favoriting(setLiked, liked, details, Meal) {
   storage.setNewFavLS(Meal, details);
 }
 
-function ShLiButton({ id, copied, setCopied }) {
+function ShLiButton({ copied, setCopied }) {
   const { liked, setLiked, details, Meal } = useContext(AppContext);
   return (
     <div>
@@ -59,11 +59,6 @@ function ShLiButton({ id, copied, setCopied }) {
 export default ShLiButton;
 
 ShLiButton.propTypes = {
-  Meal: PropTypes.bool.isRequired,
-  id: PropTypes.number.isRequired,
-  details: PropTypes.objectOf(PropTypes.object).isRequired,
   copied: PropTypes.bool.isRequired,
-  liked: PropTypes.bool.isRequired,
   setCopied: PropTypes.func.isRequired,
-  setLiked: PropTypes.func.isRequired,
 };

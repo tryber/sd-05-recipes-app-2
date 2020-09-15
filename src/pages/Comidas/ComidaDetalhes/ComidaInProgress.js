@@ -4,10 +4,7 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 import * as api from '../../../services/api';
 import * as storage from '../../../services/localStorage';
 import AppContext from '../../../contexts/AppContext';
-import shareIcon from '../../../images/shareIcon.svg';
-import whiteHeartIcon from '../../../images/whiteHeartIcon.svg';
 import './style.css';
-import blackHeartIcon from '../../../images/blackHeartIcon.svg';
 import DetailHeader from '../../../components/DetailHeader';
 import * as builder from '../../../services/builders';
 import ShLiButton from '../../../components/ShareLikeButtons';
@@ -116,11 +113,6 @@ function ingredientsList(details, setUtilizados, utilizados, id, history) {
       </ul>
     </div>
   );
-}
-
-function favoriting(setLiked, id, liked, details, Meal) {
-  setLiked(!liked);
-  storage.setNewFavLS(Meal, details);
 }
 
 function ComidaInProgress() {
