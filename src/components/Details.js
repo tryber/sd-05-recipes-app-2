@@ -7,6 +7,7 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import Card from './Card';
 import './style.css';
+import DetailHeader from './DetailHeader';
 
 function share(Meal, details, setCopied) {
   let textField;
@@ -126,15 +127,7 @@ function Details({ Meal, details, recom, ingredientsList }) {
   return (
     <div>
       <div>
-        <img
-          alt={Meal ? details.strMeal : details.strDrink}
-          data-testid="recipe-photo"
-          src={Meal ? details.strMealThumb : details.strDrinkThumb}
-        />
-        <h2 data-testid="recipe-title">{Meal ? details.strMeal : details.strDrink}</h2>
-        <h4 data-testid="recipe-category">
-          {details.strCategory} {!Meal ? `- ${details.strAlcoholic}` : ''}
-        </h4>
+        <DetailHeader Meal={Meal} details={details} />
         <button data-testid="share-btn" onClick={() => share(Meal, details, setCopied)}>
           <img alt="share button" src={shareIcon} /> {copied && <span>Link copiado!</span>}
         </button>

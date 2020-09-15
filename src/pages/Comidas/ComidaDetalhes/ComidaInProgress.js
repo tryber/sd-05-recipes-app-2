@@ -8,6 +8,7 @@ import shareIcon from '../../../images/shareIcon.svg';
 import whiteHeartIcon from '../../../images/whiteHeartIcon.svg';
 import './style.css';
 import blackHeartIcon from '../../../images/blackHeartIcon.svg';
+import DetailHeader from '../../../components/DetailHeader';
 /* import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'; */
 
 function share(Meal, details, setCopied) {
@@ -220,15 +221,7 @@ function ComidaInProgress() {
   return (
     <div>
       <div>
-        <img
-          alt={Meal ? details.strMeal : details.strDrink}
-          data-testid="recipe-photo"
-          src={Meal ? details.strMealThumb : details.strDrinkThumb}
-        />
-        <h2 data-testid="recipe-title">{Meal ? details.strMeal : details.strDrink}</h2>
-        <h4 data-testid="recipe-category">
-          {details.strCategory} {!Meal ? `- ${details.strAlcoholic}` : ''}
-        </h4>
+        <DetailHeader Meal={Meal} details={details} />
         <button onClick={() => share(Meal, details, setCopied)}>
           <img data-testid="share-btn" alt="share button" src={shareIcon} />{' '}
           {copied && <span>Link copiado!</span>}
