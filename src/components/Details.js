@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useParams } from 'react-router-dom';
 import Card from './Card';
@@ -6,6 +6,7 @@ import './style.css';
 import DetailHeader from './DetailHeader';
 import ShLiButton from './ShareLikeButtons';
 import * as storage from '../services/localStorage';
+import AppContext from '../contexts/AppContext';
 
 function handleIniciarReceita(history, id) {
   const {
@@ -43,9 +44,9 @@ const style = {
   left: 0,
 };
 function Details({ Meal, details, recom, ingredientsList }) {
+  const { setLiked } = useContext(AppContext);
   const [copied, setCopied] = useState(false);
   const [DIS, setDIS] = useState(false);
-  const [liked, setLiked] = useState(false);
   const [IP, setIP] = useState(false);
   const history = useHistory();
   const { id } = useParams();
@@ -75,15 +76,7 @@ function Details({ Meal, details, recom, ingredientsList }) {
     <div>
       <div>
         <DetailHeader Meal={Meal} details={details} />
-        <ShLiButton
-          Meal={Meal}
-          id={id}
-          liked={liked}
-          details={details}
-          copied={copied}
-          setCopied={setCopied}
-          setLiked={setLiked}
-        />
+        <ShLiButton id={id} copied={copied} setCopied={setCopied} />
       </div>
       <div className="details-body">
         {ingredientsList(details)}

@@ -10,33 +10,8 @@ import './style.css';
 import blackHeartIcon from '../../../images/blackHeartIcon.svg';
 import DetailHeader from '../../../components/DetailHeader';
 import * as builder from '../../../services/builders';
+import ShLiButton from '../../../components/ShareLikeButtons';
 /* import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'; */
-
-function share(Meal, details, setCopied) {
-  let textField;
-  if (Meal) {
-    const copyLink = `http://localhost:3000/comidas/${details.idMeal}`;
-    textField = document.createElement('textarea');
-    textField.innerText = copyLink;
-    document.body.appendChild(textField);
-    textField.select();
-    document.execCommand('copy');
-    textField.remove();
-  } else {
-    const copyLink = `http://localhost:3000/bebidas/${details.idDrink}`;
-    textField = document.createElement('textarea');
-    textField.innerText = copyLink;
-    document.body.appendChild(textField);
-    textField.select();
-    document.execCommand('copy');
-    textField.remove();
-  }
-
-  setCopied(true);
-  setTimeout(() => {
-    setCopied(false);
-  }, 5000);
-}
 
 function disabling() {
   let disabled = true;
@@ -149,10 +124,9 @@ function favoriting(setLiked, id, liked, details, Meal) {
 }
 
 function ComidaInProgress() {
-  const { loading, setLoading, details, setDetails } = useContext(AppContext);
+  const { loading, setLoading, details, setDetails, setLiked } = useContext(AppContext);
   const [copied, setCopied] = useState(false);
   const [Meal, setMeal] = useState(true);
-  const [liked, setLiked] = useState(false);
   const history = useHistory();
   const { id } = useParams();
   const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));
@@ -187,17 +161,7 @@ function ComidaInProgress() {
     <div>
       <div>
         <DetailHeader Meal={Meal} details={details} />
-        <button onClick={() => share(Meal, details, setCopied)}>
-          <img data-testid="share-btn" alt="share button" src={shareIcon} />{' '}
-          {copied && <span>Link copiado!</span>}
-        </button>
-        <button onClick={() => favoriting(setLiked, id, liked, details, Meal)}>
-          <img
-            alt="favorite button"
-            data-testid="favorite-btn"
-            src={liked ? blackHeartIcon : whiteHeartIcon}
-          />
-        </button>
+        <ShLiButton id={id} copied={copied} setCopied={setCopied} />
       </div>
       <div className="details-body">
         {ingredientsList(details, setUtilizados, utilizados, id, history)}
