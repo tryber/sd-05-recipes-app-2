@@ -4,7 +4,6 @@ import { useHistory, useParams } from 'react-router-dom';
 import Card from './Card';
 import './style.css';
 import DetailHeader from './DetailHeader';
-import ShLiButton from './ShareLikeButtons';
 import * as storage from '../services/localStorage';
 import AppContext from '../contexts/AppContext';
 
@@ -45,7 +44,6 @@ const style = {
 };
 function Details({ Meal, details, recom, ingredientsList }) {
   const { setLiked } = useContext(AppContext);
-  const [copied, setCopied] = useState(false);
   const [DIS, setDIS] = useState(false);
   const [IP, setIP] = useState(false);
   const history = useHistory();

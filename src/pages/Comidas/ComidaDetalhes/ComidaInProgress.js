@@ -7,7 +7,6 @@ import AppContext from '../../../contexts/AppContext';
 import './style.css';
 import DetailHeader from '../../../components/DetailHeader';
 import * as builder from '../../../services/builders';
-import ShLiButton from '../../../components/ShareLikeButtons';
 /* import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'; */
 
 function disabling() {
@@ -116,9 +115,7 @@ function ingredientsList(details, setUtilizados, utilizados, id, history) {
 }
 
 function ComidaInProgress() {
-  const { loading, setLoading, details, setDetails, setLiked, copied, setCopied } = useContext(
-    AppContext,
-  );
+  const { loading, setLoading, details, setDetails, setLiked } = useContext(AppContext);
   const [Meal, setMeal] = useState(true);
   const history = useHistory();
   const { id } = useParams();
@@ -128,20 +125,7 @@ function ComidaInProgress() {
   const [utilizados, setUtilizados] = useState(historico);
 
   useEffect(() => {
-    if (history.location.pathname.includes('comidas')) {
-      setLoading(true);
-      api.byMealId(id).then((data) => {
-        setDetails(data.meals[0]);
-        setLoading(false);
-      });
-      setMeal(true);
-    }
-    if (history.location.pathname.includes('bebidas')) {
-      api.byDrinkId(id).then((data) => {
-        setDetails(data.drinks[0]);
-        setMeal(false);
-      });
-    }
+    builder.inProgressBuilder(history, setLoading, setDetails, id, setMeal);
   }, [id]);
 
   useEffect(() => {
