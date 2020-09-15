@@ -14,7 +14,7 @@ function handleIniciarReceita(history, id) {
   history.push(`${pathname}/in-progress`);
 
   const LS = localStorage.getItem('inProgressRecipes');
-  
+
   if (!LS && pathname.includes('bebidas')) {
     localStorage.setItem(
       'inProgressRecipes',

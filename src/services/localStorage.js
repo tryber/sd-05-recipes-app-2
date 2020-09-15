@@ -15,12 +15,7 @@ export function inProgressLS(id, history) {
     meals: {},
   };
 
-  let historico = [];
-  if (LS && history.location.pathname.includes('comidas')) {
-    historico = LS.meals[id];
-  } else if (LS && history.location.pathname.includes('bebidas')) {
-    historico = LS.cocktails[id];
-  }
+  const historico = starterLS(history, id, LS);
 
   const LSIP = localStorage.getItem('inProgressRecipes');
   if (!LSIP && history.location.pathname.includes('bebidas')) {
