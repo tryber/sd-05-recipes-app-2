@@ -12,25 +12,37 @@ const startObj = {
   meals: {},
 };
 
+function emptyLS(history, id) {
+  if (history.location.pathname.includes('bebidas')) {
+    startObj.cocktails = { [id]: [] };
+    localStorage.setItem('inProgressRecipes', JSON.stringify(startObj));
+  } else if (history.location.pathname.includes('comidas')) {
+    startObj.meals = { [id]: [] };
+    localStorage.setItem('inProgressRecipes', JSON.stringify(startObj));
+  }
+}
+
+function existingLS(history, id, LS) {
+  if (history.location.pathname.includes('bebidas')) {
+    const toEdit = JSON.parse(LS);
+    toEdit.cocktails[id] = [];
+    localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
+  } else if (history.location.pathname.includes('comidas')) {
+    const toEdit = JSON.parse(LS);
+    toEdit.meals[id] = [];
+    localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
+  }
+}
+
 function handleIniciarReceita(history, id) {
   history.push(`${history.location.pathname}/in-progress`);
 
   const LS = localStorage.getItem('inProgressRecipes');
 
-  if (!LS && history.location.pathname.includes('bebidas')) {
-    startObj.cocktails = { [id]: [] };
-    localStorage.setItem('inProgressRecipes', JSON.stringify(startObj));
-  } else if (!LS && history.location.pathname.includes('comidas')) {
-    startObj.meals = { [id]: [] };
-    localStorage.setItem('inProgressRecipes', JSON.stringify(startObj));
-  } else if (LS && history.location.pathname.includes('bebidas')) {
-    const toEdit = JSON.parse(LS);
-    toEdit.cocktails[id] = [];
-    localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
-  } else if (LS && history.location.pathname.includes('comidas')) {
-    const toEdit = JSON.parse(LS);
-    toEdit.meals[id] = [];
-    localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
+  if (!LS) {
+    emptyLS(history, id);
+  } else {
+    existingLS(history, id, LS);
   }
 }
 
