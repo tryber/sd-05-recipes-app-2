@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function DetailHeader({ Meal, details }) {
   return (
@@ -17,3 +18,8 @@ function DetailHeader({ Meal, details }) {
 }
 
 export default DetailHeader;
+
+DetailHeader.propTypes = {
+  Meal: PropTypes.bool.isRequired,
+  details: PropTypes.objectOf(PropTypes.object).isRequired,
+};

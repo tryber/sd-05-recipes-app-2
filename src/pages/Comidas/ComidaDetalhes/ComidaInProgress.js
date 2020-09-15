@@ -175,22 +175,9 @@ function ComidaInProgress() {
   const [Meal, setMeal] = useState(true);
   const [liked, setLiked] = useState(false);
   const history = useHistory();
-  const {
-    location: { pathname },
-  } = history;
   const { id } = useParams();
   const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));
-  let historico = [];
-  if (history.location.pathname.includes('comidas')) {
-    if (LS) {
-      historico = LS.meals[id];
-    }
-  }
-  if (history.location.pathname.includes('bebidas')) {
-    if (LS) {
-      historico = LS.cocktails[id];
-    }
-  }
+  let historico = storage.starterLS(history, id, LS);
 
   const [utilizados, setUtilizados] = useState(historico);
 

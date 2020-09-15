@@ -47,3 +47,18 @@ export function inProgressLS(id, history) {
     localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
   }
 }
+
+export function starterLS(history, id ,LS) {
+  let historico = [];
+  if (history.location.pathname.includes('comidas')) {
+    if (LS) {
+      historico = LS.meals[id];
+    }
+  }
+  if (history.location.pathname.includes('bebidas')) {
+    if (LS) {
+      historico = LS.cocktails[id];
+    }
+  }
+  return historico
+}
