@@ -10,38 +10,32 @@ export function favoriteLS(id, setLiked) {
 
 export function inProgressLS(id, history) {
   const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  const starterObj = {
+    cocktails: {},
+    meals: {},
+  };
+
   let historico = [];
-  if (history.location.pathname.includes('comidas')) {
-    if (LS) {
-      historico = LS.meals[id];
-    }
-  }
-  if (history.location.pathname.includes('bebidas')) {
-    if (LS) {
-      historico = LS.cocktails[id];
-    }
+  if (LS && history.location.pathname.includes('comidas')) {
+    historico = LS.meals[id];
+  } else if (LS && history.location.pathname.includes('bebidas')) {
+    historico = LS.cocktails[id];
   }
 
   const LSIP = localStorage.getItem('inProgressRecipes');
   if (!LSIP && history.location.pathname.includes('bebidas')) {
-    localStorage.setItem(
-      'inProgressRecipes',
-      JSON.stringify({ cocktails: { [id]: [] }, meals: {} }),
-    );
-  }
-  if (!LSIP && history.location.pathname.includes('comidas')) {
-    localStorage.setItem(
-      'inProgressRecipes',
-      JSON.stringify({ meals: { [id]: [] }, cocktails: {} }),
-    );
+    starterObj.cocktails = { [id]: [] };
+    localStorage.setItem('inProgressRecipes', JSON.stringify(starterObj));
+  } else if (!LSIP && history.location.pathname.includes('comidas')) {
+    starterObj.meals = { [id]: [] };
+    localStorage.setItem('inProgressRecipes', JSON.stringify(starterObj));
   }
 
   if (LSIP && history.location.pathname.includes('bebidas')) {
     const toEdit = JSON.parse(localStorage.getItem('inProgressRecipes'));
     toEdit.cocktails[id] = historico;
     localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
-  }
-  if (LSIP && history.location.pathname.includes('comidas')) {
+  } else if (LSIP && history.location.pathname.includes('comidas')) {
     const toEdit = JSON.parse(localStorage.getItem('inProgressRecipes'));
     toEdit.meals[id] = historico;
     localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
