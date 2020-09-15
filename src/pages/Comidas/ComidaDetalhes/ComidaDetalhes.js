@@ -6,19 +6,13 @@ import * as api from '../../../services/api';
 import AppContext from '../../../contexts/AppContext';
 import Details from '../../../components/Details';
 import Loading from '../../../components/Loading';
+import * as builder from '../../../services/builders';
 /* import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'; */
 
 function ingredientsList(details) {
-  const quantities = [];
-  const ingredients = [];
-  Object.entries(details).forEach((element) => {
-    if (element[0].includes('strMeasure') && element[1] && element[1] !== ' ') {
-      quantities.push(element[1]);
-    }
-    if (element[0].includes('strIngredient') && element[1] && element[1] !== ' ') {
-      ingredients.push(element[1]);
-    }
-  });
+  const quantities = builder.quantityBuilder(details);
+  const ingredients = builder.ingredientBuilder(details);
+
   return (
     <div className="topic-container">
       <h4 className="topic-title">Ingredients</h4>
@@ -36,9 +30,8 @@ function ingredientsList(details) {
 }
 
 function ComidaDetalhes() {
-  const { loading, setLoading, details, setDetails } = useContext(AppContext);
+  const { loading, setLoading, details, setDetails, Meal, setMeal } = useContext(AppContext);
   const [recom, setRecom] = useState([]);
-  const [Meal, setMeal] = useState(true);
   const {
     location: { pathname },
   } = useHistory();
@@ -57,8 +50,10 @@ function ComidaDetalhes() {
       setMeal(true);
     }
     if (pathname.includes('bebidas')) {
+      setLoading(true);
       api.byDrinkId(id).then((data) => {
         setDetails(data.drinks[0]);
+        setLoading(false);
       });
       api.defaultMeals().then((data) => {
         setRecom(data.meals.slice(0, 6));

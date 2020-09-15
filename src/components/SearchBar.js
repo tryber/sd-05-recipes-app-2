@@ -76,9 +76,7 @@ const radiosBtn = (radioFilter) => {
 // LÓGICA CASO SÓ TENHA 1 RESPOSTA OU NENHUMA CONSIDERANDO OS FILTROS APLICADOS
 const resultValidation = (history, filteredData) => {
   if (filteredData === null) {
-    return alert(
-      'Sinto muito, não encontramos nenhuma receita para esses filtros.',
-    );
+    return alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
   }
   if (
     filteredData.length === 1 &&

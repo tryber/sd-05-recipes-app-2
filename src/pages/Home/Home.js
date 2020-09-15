@@ -80,9 +80,8 @@ function Home() {
   const {
     location: { pathname },
   } = useHistory();
-  const { selecCategory, filteredData } = useContext(AppContext);
+  const { selecCategory, filteredData, Meal, setMeal } = useContext(AppContext);
   const [cards, setCards] = useState([]);
-  const [Meal, setMeal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [caCh, setcaCh] = useState('');
   const [filCh, setfilCh] = useState('');

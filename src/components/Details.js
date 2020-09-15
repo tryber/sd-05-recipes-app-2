@@ -1,45 +1,82 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import './details.css';
+import './style.css';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import goBack from '../images/go-back.svg';
 import Card from './Card';
+import DetailHeader from './DetailHeader';
+import * as storage from '../services/localStorage';
+import AppContext from '../contexts/AppContext';
 
-function share(Meal, details, setCopied) {
-  let textField;
-  if (Meal) {
-    const copyLink = `http://localhost:3000/comidas/${details.idMeal}`;
-    textField = document.createElement('textarea');
-    textField.innerText = copyLink;
-    document.body.appendChild(textField);
-    textField.select();
-    document.execCommand('copy');
-    textField.remove();
-  } else {
-    const copyLink = `http://localhost:3000/bebidas/${details.idDrink}`;
-    textField = document.createElement('textarea');
-    textField.innerText = copyLink;
-    document.body.appendChild(textField);
-    textField.select();
-    document.execCommand('copy');
-    textField.remove();
+const startObj = {
+  cocktails: {},
+  meals: {},
+};
+
+function emptyLS(history, id) {
+  if (history.location.pathname.includes('bebidas')) {
+    startObj.cocktails = { [id]: [] };
+    localStorage.setItem('inProgressRecipes', JSON.stringify(startObj));
+  } else if (history.location.pathname.includes('comidas')) {
+    startObj.meals = { [id]: [] };
+    localStorage.setItem('inProgressRecipes', JSON.stringify(startObj));
   }
-
-  setCopied(true);
-  setTimeout(() => {
-    setCopied(false);
-  }, 5000);
 }
 
-function handleIniciarReceita(history) {
+function existingLS(history, id, LS) {
+  if (history.location.pathname.includes('bebidas')) {
+    const toEdit = JSON.parse(LS);
+    toEdit.cocktails[id] = [];
+    localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
+  } else if (history.location.pathname.includes('comidas')) {
+    const toEdit = JSON.parse(LS);
+    toEdit.meals[id] = [];
+    localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
+  }
+}
+
+function handleIniciarReceita(history, id) {
   history.push(`${history.location.pathname}/in-progress`);
+
+  const LS = localStorage.getItem('inProgressRecipes');
+
+  if (!LS) {
+    emptyLS(history, id);
+  } else {
+    existingLS(history, id, LS);
+  }
 }
 
 function Details({ Meal, details, recom, ingredientsList }) {
-  const [copied, setCopied] = useState(false);
+  const { setLiked } = useContext(AppContext);
+  const [DIS, setDIS] = useState(false);
+  const [IP, setIP] = useState(false);
   const history = useHistory();
+  const { id } = useParams();
+
+  useEffect(() => {
+    const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+    if (doneRecipes) {
+      setDIS(doneRecipes.some((data) => data.id === id));
+    }
+
+    const inProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (inProgress) {
+      if (history.location.pathname.includes('comidas')) {
+        const testArr = Object.keys(inProgress.meals);
+        setIP(testArr.some((data) => data === id));
+      }
+      if (history.location.pathname.includes('bebidas')) {
+        const testArr = Object.keys(inProgress.cocktails);
+        setIP(testArr.some((data) => data === id));
+      }
+    }
+    setLiked(false);
+    storage.favoriteLS(id, setLiked);
+  }, []);
 
   const handleClick = () => {
     if (Meal) {
@@ -50,28 +87,9 @@ function Details({ Meal, details, recom, ingredientsList }) {
   };
 
   return (
-    <div className="details-page">
-      <button className="back-button" onClick={() => handleClick()}>
-        <img src={ goBack } alt="Voltar" height="40px" />
-      </button>
-      <img
-        className="header-pic"
-        alt={Meal ? details.strMeal : details.strDrink}
-        data-testid="recipe-photo"
-        src={Meal ? details.strMealThumb : details.strDrinkThumb}
-      />
-      <div className="details-header">
-        <div className="title-side">
-          <h2 className="det-title" data-testid="recipe-title">
-            {Meal ? details.strMeal : details.strDrink}
-          </h2>
-          <h5 data-testid="recipe-category" className="det-subtitle">
-            {details.strCategory} {!Meal ? `- ${details.strAlcoholic}` : ''}
-          </h5>
-        </div>
-        <div className="icon-side">
-          <img alt="favorite button" data-testid="favorite-btn" src={whiteHeartIcon} />
-        </div>
+    <div>
+      <div>
+        <DetailHeader Meal={Meal} details={details} />
       </div>
       <div className="details-body">
         <button
@@ -102,9 +120,10 @@ function Details({ Meal, details, recom, ingredientsList }) {
         <button
           className="start-btn"
           data-testid="start-recipe-btn"
-          onClick={() => handleIniciarReceita(history)}
+          className={DIS ? 'hidden' : ''}
+          onClick={() => handleIniciarReceita(history, id)}
         >
-          Iniciar receita
+          {IP ? 'Continuar Receita' : 'Iniciar receita'}
         </button>
       </div>
     </div>

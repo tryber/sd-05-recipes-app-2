@@ -50,11 +50,18 @@ function Header() {
 
   return (
     <div className="navbar header-comp">
-      <button className="navbar-toggler" data-testid="profile-top-btn" onClick={() => history.push('/perfil')} src={profileIcon}>
+      <button
+        className="navbar-toggler"
+        data-testid="profile-top-btn"
+        onClick={() => history.push('/perfil')}
+        src={profileIcon}
+      >
         <img alt="profile" src={profileIcon} />
       </button>
-      <h5 className="header-title" data-testid="page-title">{headerName}</h5>
-      {hasSearch &&
+      <h5 className="header-title" data-testid="page-title">
+        {headerName}
+      </h5>
+      {hasSearch && (
         <button
           className="navbar-toggler"
           data-testid="search-top-btn"
@@ -63,7 +70,7 @@ function Header() {
         >
           <img alt="search" src={search} />
         </button>
-      }
+      )}
     </div>
   );
 }
