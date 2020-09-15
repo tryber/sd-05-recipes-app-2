@@ -4,19 +4,13 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 import * as api from '../../../services/api';
 import AppContext from '../../../contexts/AppContext';
 import Details from '../../../components/Details';
+import * as builder from '../../../services/builders';
 /* import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'; */
 
 function ingredientsList(details) {
-  const quantities = [];
-  const ingredients = [];
-  Object.entries(details).forEach((element) => {
-    if (element[0].includes('strMeasure') && element[1] && element[1] !== ' ') {
-      quantities.push(element[1]);
-    }
-    if (element[0].includes('strIngredient') && element[1] && element[1] !== ' ') {
-      ingredients.push(element[1]);
-    }
-  });
+  const quantities = builder.quantityBuilder(details);
+  const ingredients = builder.ingredientBuilder(details);
+
   return (
     <div>
       <h3>Ingredients</h3>

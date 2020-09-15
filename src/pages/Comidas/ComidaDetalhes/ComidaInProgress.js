@@ -9,6 +9,7 @@ import whiteHeartIcon from '../../../images/whiteHeartIcon.svg';
 import './style.css';
 import blackHeartIcon from '../../../images/blackHeartIcon.svg';
 import DetailHeader from '../../../components/DetailHeader';
+import * as builder from '../../../services/builders';
 /* import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'; */
 
 function share(Meal, details, setCopied) {
@@ -110,17 +111,9 @@ function handleDashed(e, setUtilizados, utilizados, id, history) {
 }
 
 function ingredientsList(details, setUtilizados, utilizados, id, history) {
-  const quantities = [];
-  const ingredients = [];
+  const quantities = builder.quantityBuilder(details);
+  const ingredients = builder.ingredientBuilder(details);
 
-  Object.entries(details).forEach((element) => {
-    if (element[0].includes('strMeasure') && element[1] && element[1] !== ' ') {
-      quantities.push(element[1]);
-    }
-    if (element[0].includes('strIngredient') && element[1] && element[1] !== ' ') {
-      ingredients.push(element[1]);
-    }
-  });
   return (
     <div>
       <h3>Ingredients</h3>
