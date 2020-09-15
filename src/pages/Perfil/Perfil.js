@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import './perfil.css';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import AppContext from '../../contexts/AppContext';
@@ -16,31 +17,33 @@ export default function Perfil() {
   return (
     <div>
       <Header />
-      <div data-testid="profile-email">
-        {email}
-      </div>
-      <div>
-        <button
-          data-testid="profile-done-btn"
-          className="btn"
-          onClick={() => history.push('/receitas-feitas')}
-        >
-          Receitas Feitas
-        </button>
-        <button
-          data-testid="profile-favorite-btn"
-          className="btn"
-          onClick={() => history.push('/receitas-favoritas')}
-        >
-          Receitas Favoritas
-        </button>
-        <button
-          data-testid="profile-logout-btn"
-          className="btn"
-          onClick={() => handleClick()}
-        >
-          Sair
-        </button>
+      <div className="profile-body">
+        <h4 className="email" data-testid="profile-email">
+          {email} rnovaiscs@gmail.com
+        </h4>
+        <div className="btn-container">
+          <button
+            data-testid="profile-done-btn"
+            className="btn btn-opt"
+            onClick={() => history.push('/receitas-feitas')}
+          >
+            Receitas Feitas
+          </button>
+          <button
+            data-testid="profile-favorite-btn"
+            className="btn btn-opt"
+            onClick={() => history.push('/receitas-favoritas')}
+          >
+            Receitas Favoritas
+          </button>
+          <button
+            data-testid="profile-logout-btn"
+            className="btn btn-opt"
+            onClick={() => handleClick()}
+          >
+            Sair
+          </button>
+        </div>
       </div>
       <Footer />
     </div>
