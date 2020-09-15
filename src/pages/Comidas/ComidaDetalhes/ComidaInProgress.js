@@ -152,21 +152,7 @@ function ingredientsList(details, setUtilizados, utilizados, id, history) {
 
 function favoriting(setLiked, id, liked, details, Meal) {
   setLiked(!liked);
-  const newFav = {
-    id: Meal ? details.idMeal : details.idDrink,
-    type: Meal ? 'comida' : 'bebida',
-    area: Meal ? details.strArea : '',
-    category: details.strCategory,
-    alcoholicOrNot: Meal ? '' : details.strAlcoholic,
-    name: Meal ? details.strMeal : details.strDrink,
-    image: Meal ? details.strMealThumb : details.strDrinkThumb,
-  };
-  const historico = JSON.parse(localStorage.getItem('favoriteRecipes'));
-  if (!historico) {
-    localStorage.setItem('favoriteRecipes', JSON.stringify([newFav]));
-  } else {
-    localStorage.setItem('favoriteRecipes', JSON.stringify([...historico, newFav]));
-  }
+  storage.setNewFavLS(Meal, details);
 }
 
 function ComidaInProgress() {
@@ -177,7 +163,7 @@ function ComidaInProgress() {
   const history = useHistory();
   const { id } = useParams();
   const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));
-  let historico = storage.starterLS(history, id, LS);
+  const historico = storage.starterLS(history, id, LS);
 
   const [utilizados, setUtilizados] = useState(historico);
 

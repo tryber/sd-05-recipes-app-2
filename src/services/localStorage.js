@@ -48,7 +48,7 @@ export function inProgressLS(id, history) {
   }
 }
 
-export function starterLS(history, id ,LS) {
+export function starterLS(history, id, LS) {
   let historico = [];
   if (history.location.pathname.includes('comidas')) {
     if (LS) {
@@ -60,5 +60,23 @@ export function starterLS(history, id ,LS) {
       historico = LS.cocktails[id];
     }
   }
-  return historico
+  return historico;
+}
+
+export function setNewFavLS(Meal, details) {
+  const newFav = {
+    id: Meal ? details.idMeal : details.idDrink,
+    type: Meal ? 'comida' : 'bebida',
+    area: Meal ? details.strArea : '',
+    category: details.strCategory,
+    alcoholicOrNot: Meal ? '' : details.strAlcoholic,
+    name: Meal ? details.strMeal : details.strDrink,
+    image: Meal ? details.strMealThumb : details.strDrinkThumb,
+  };
+  const historico = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  if (!historico) {
+    localStorage.setItem('favoriteRecipes', JSON.stringify([newFav]));
+  } else {
+    localStorage.setItem('favoriteRecipes', JSON.stringify([...historico, newFav]));
+  }
 }
