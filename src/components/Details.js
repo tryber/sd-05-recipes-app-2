@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useParams } from 'react-router-dom';
+import * as storage from '../services/localStorage';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
@@ -119,13 +120,7 @@ function Details({ Meal, details, recom, ingredientsList }) {
       }
     }
 
-    const favLS = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    if (favLS) {
-      const teste = favLS.some((data) => data.id === id);
-      if (teste) {
-        setLiked(true);
-      }
-    }
+    storage.favoriteLS(id, setLiked);
   }, []);
 
   return (
