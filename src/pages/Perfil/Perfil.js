@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import './perfil.css';
+import door from '../../images/door.svg';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import AppContext from '../../contexts/AppContext';
@@ -36,14 +37,15 @@ export default function Perfil() {
           >
             Receitas Favoritas
           </button>
-          <button
-            data-testid="profile-logout-btn"
-            className="btn btn-opt"
-            onClick={() => handleClick()}
-          >
-            Sair
-          </button>
         </div>
+        <button
+          data-testid="profile-logout-btn"
+          className="btn btn-exit"
+          onClick={() => handleClick()}
+        >
+          <span className="exit-text">Sair</span>
+          <img className="door-icon" src={door} alt="sair" />
+        </button>
       </div>
       <Footer />
     </div>

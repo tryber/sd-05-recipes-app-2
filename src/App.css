@@ -9,7 +9,7 @@
   --off-gray: #5c5c5c;
   --bege: #f2e7da;
   --laranja: #ff8600;
-  --amarelo: #ffae0d;
+  --amarelo: rgb(255, 174, 13);
 }
 
 body {

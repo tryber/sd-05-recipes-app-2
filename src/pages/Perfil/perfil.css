@@ -30,3 +30,23 @@
   margin: 3vh 0;
   width: 100%;
 }
+
+.btn-exit {
+  display: flex;
+  position: absolute;
+  bottom: 10vh;
+  right: 3vw;
+  /* border: 3px solid green; */
+}
+
+.door-icon {
+  background-color: rgb(255, 174, 13);
+  border-radius: 50%;
+  height: 8vh;
+  padding: 3px;
+}
+
+.exit-text {
+  font-weight: 700;
+  padding: 2vh 2vw 1vh 0;
+}
