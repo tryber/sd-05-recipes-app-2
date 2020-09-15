@@ -51,30 +51,37 @@ function checkLS(str, id, history) {
   return false;
 }
 
+function isChecked(line, setUtilizados, utilizados, history, id, e) {
+  line.style.textDecoration = 'line-through';
+  setUtilizados([...utilizados, e.target.id]);
+  const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  if (history.location.pathname.includes('comidas')) {
+    LS.meals[id] = [...utilizados, e.target.id];
+  } else if (history.location.pathname.includes('bebidas')) {
+    LS.cocktails[id] = [...utilizados, e.target.id];
+  }
+  localStorage.setItem('inProgressRecipes', JSON.stringify(LS));
+}
+
+function notChecked(line, setUtilizados, utilizados, history, id, e) {
+  line.style.textDecoration = 'none';
+  const newArr = utilizados.filter((data) => data !== e.target.id);
+  setUtilizados(newArr);
+  const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  if (history.location.pathname.includes('comidas')) {
+    LS.meals[id] = newArr;
+  } else if (history.location.pathname.includes('bebidas')) {
+    LS.cocktails[id] = newArr;
+  }
+  localStorage.setItem('inProgressRecipes', JSON.stringify(LS));
+}
+
 function handleDashed(e, setUtilizados, utilizados, id, history) {
   const line = document.getElementsByClassName(`${e.target.id}`)[0];
   if (e.target.checked) {
-    line.style.textDecoration = 'line-through';
-    setUtilizados([...utilizados, e.target.id]);
-    const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (history.location.pathname.includes('comidas')) {
-      LS.meals[id] = [...utilizados, e.target.id];
-    } else if (history.location.pathname.includes('bebidas')) {
-      LS.cocktails[id] = [...utilizados, e.target.id];
-    }
-
-    localStorage.setItem('inProgressRecipes', JSON.stringify(LS));
+    isChecked(line, setUtilizados, utilizados, history, id, e);
   } else {
-    line.style.textDecoration = 'none';
-    const newArr = utilizados.filter((data) => data !== e.target.id);
-    setUtilizados(newArr);
-    const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (history.location.pathname.includes('comidas')) {
-      LS.meals[id] = newArr;
-    } else if (history.location.pathname.includes('bebidas')) {
-      LS.cocktails[id] = newArr;
-    }
-    localStorage.setItem('inProgressRecipes', JSON.stringify(LS));
+    notChecked(line, setUtilizados, utilizados, history, id, e);
   }
 }
 
