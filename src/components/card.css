@@ -1,6 +1,7 @@
 .card-btn {
-  background-color: whitesmoke;
+  background-color: rgb(242, 231, 218);
   border: none;
+  width: 45vw;
 }
 
 .card-btn:focus {
@@ -11,9 +12,7 @@
 .card {
   border-radius: 12px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  height: 31vh;
   margin: 1vh 0;
-  width: 160px;
 }
 
 .card .card-description {
@@ -34,4 +33,19 @@
 
 .hidden {
   display: none;
+}
+
+.home-body {
+  margin-bottom: 10vh;
+}
+
+.card-rec {
+  background-color: rgb(242, 231, 218);
+  border: none;
+  width: 40vw;
+}
+
+.card-rec:focus {
+  opacity: 0.9;
+  outline: none;
 }

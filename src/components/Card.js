@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './style.css';
+import './card.css';
 import AppContext from '../contexts/AppContext';
 
 function HandleClick(id, history, setSelectedId, setMeal) {
@@ -22,7 +22,7 @@ function Card(props) {
   const { description, thumb, i, id, rec } = props;
   return (
     <button
-      className={rec && i > 1 ? 'hidden card-btn' : 'card-btn'}
+      className={rec && i > 1 ? 'hidden card-rec' : 'card-rec'}
       data-testid={rec ? `${i}-recomendation-card` : `${i}-recipe-card`}
       onClick={() => HandleClick(id, history, setSelectedId, setMeal)}
     >

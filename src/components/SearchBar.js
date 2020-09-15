@@ -61,12 +61,12 @@ const radiosBtn = (radioFilter) => {
             className="form-check-input"
             type="radio"
             name="filter"
-            id="filter"
+            id={radio.title}
             value={radio.filterValue}
             data-testid={radio.dataTestID}
             onClick={(e) => radioFilter(e.target.value)}
           />
-          <label htmlFor="filter">{radio.title}</label>
+          <label htmlFor={radio.title}>{radio.title}</label>
         </div>
       ))}
     </div>

@@ -3,14 +3,15 @@
   flex-wrap: wrap;
   justify-content: center;
   margin: 1vh auto;
-  max-width: 90vw;
+  max-width: 95vw;
 }
 
 .cat-btn {
   background-color: rgb(255, 174, 13);
   border-radius: 18px;
-  margin: 1vh 0.2vh;
-  width: 100px;
+  height: 5vh;
+  margin: 1vh 0.2vw;
+  min-width: 42vw;
 }
 
 .cat-btn:hover {

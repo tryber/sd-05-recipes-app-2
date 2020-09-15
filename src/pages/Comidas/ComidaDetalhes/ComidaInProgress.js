@@ -4,8 +4,10 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 import * as storage from '../../../services/localStorage';
 import AppContext from '../../../contexts/AppContext';
 import './style.css';
+import '../../../components/details.css';
 import DetailHeader from '../../../components/DetailHeader';
 import * as builder from '../../../services/builders';
+import Loading from '../../../components/Loading';
 /* import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'; */
 
 function disabling() {
@@ -92,10 +94,10 @@ function ingredientsList(details, setUtilizados, utilizados, id, history) {
 
   return (
     <div>
-      <h3>Ingredients</h3>
+      <h4 className="topic-title">Ingredients</h4>
       <ul>
         {quantities.map((element, index) => (
-          <li data-testid={`${index}-ingredient-step`}>
+          <li className="prog-list" data-testid={`${index}-ingredient-step`}>
             <input
               type="checkbox"
               checked={checkLS(`${ingredients[index]} - ${element}`, id, history)}
@@ -139,7 +141,7 @@ function ComidaInProgress() {
     storage.favoriteLS(id, setLiked);
   }, []);
 
-  if (loading) return <h1>Loading...</h1>;
+  if (loading) return <Loading />;
   return (
     <div>
       <div>
@@ -147,18 +149,18 @@ function ComidaInProgress() {
       </div>
       <div className="details-body">
         {ingredientsList(details, setUtilizados, utilizados, id, history)}
-        <h3>Instructions</h3>
+        <h4 className="topic-title">Instructions</h4>
         <p data-testid="instructions">{details.strInstructions}</p>
-        <button
-          style={style}
-          data-testid="finish-recipe-btn"
-          disabled={disabling()}
-          onClick={() => handleFinalizarReceita(history)}
-        >
-          {' '}
-          Finalizar receita
-        </button>
       </div>
+      <button
+        className="start-btn"
+        style={style}
+        data-testid="finish-recipe-btn"
+        disabled={disabling()}
+        onClick={() => handleFinalizarReceita(history)}
+      >
+        Finalizar receita
+      </button>
     </div>
   );
 }

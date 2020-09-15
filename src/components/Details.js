@@ -1,8 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useParams } from 'react-router-dom';
+import './details.css';
+import './card.css';
+// import shareIcon from '../images/shareIcon.svg';
+// import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+// import goBack from '../images/go-back.svg';
 import Card from './Card';
-import './style.css';
 import DetailHeader from './DetailHeader';
 import * as storage from '../services/localStorage';
 import AppContext from '../contexts/AppContext';
@@ -46,11 +50,6 @@ function handleIniciarReceita(history, id) {
   }
 }
 
-const style = {
-  position: 'fixed',
-  bottom: 0,
-  left: 0,
-};
 function Details({ Meal, details, recom, ingredientsList }) {
   const { setLiked } = useContext(AppContext);
   const [DIS, setDIS] = useState(false);
@@ -86,31 +85,29 @@ function Details({ Meal, details, recom, ingredientsList }) {
       </div>
       <div className="details-body">
         {ingredientsList(details)}
-        <h3>Instructions</h3>
+        <h4 className="topic-title">Instructions</h4>
         <p data-testid="instructions">{details.strInstructions}</p>
-        <h3>Vídeo</h3>
-        <video width="320" height="240" controls>
+        <h4 className="topic-title">Vídeo</h4>
+        <video width="300" height="240" controls>
           <source data-testid="video" src={details.strYoutube} type="video/mp4" />
         </video>
-
-        <h3>Recomendadas</h3>
-
-        {recom.map((each, index) => (
-          <Card
-            description={Meal ? each.strDrink : each.strMeal}
-            thumb={Meal ? each.strDrinkThumb : each.strMealThumb}
-            id={Meal ? `bebidas ${each.idDrink}` : `comidas ${each.idMeal}`}
-            i={index}
-            rec
-          />
-        ))}
+        <h4 className="topic-title">Recomendadas</h4>
+        <div className="card-container">
+          {recom.map((each, index) => (
+            <Card
+              description={Meal ? each.strDrink : each.strMeal}
+              thumb={Meal ? each.strDrinkThumb : each.strMealThumb}
+              id={Meal ? `bebidas ${each.idDrink}` : `comidas ${each.idMeal}`}
+              i={index}
+              rec
+            />
+            ))}
+        </div>
         <button
-          style={style}
           data-testid="start-recipe-btn"
-          className={DIS ? 'hidden' : ''}
+          className={DIS ? 'hidden' : 'start-btn'}
           onClick={() => handleIniciarReceita(history, id)}
         >
-          {' '}
           {IP ? 'Continuar Receita' : 'Iniciar receita'}
         </button>
       </div>

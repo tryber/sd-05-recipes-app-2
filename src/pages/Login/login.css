@@ -15,7 +15,10 @@
 
 .login-page {
   align-items: center;
+  background-color: rgb(242, 231, 218);
   background-image: url('../../images/background/bg-light-center.png');
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   height: 100vh;
 }
