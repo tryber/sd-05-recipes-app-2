@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import * as api from '../../../services/api';
+import * as storage from '../../../services/localStorage';
 import AppContext from '../../../contexts/AppContext';
 import shareIcon from '../../../images/shareIcon.svg';
 import whiteHeartIcon from '../../../images/whiteHeartIcon.svg';
@@ -40,7 +41,7 @@ function disabling() {
   let checked = 0;
   const inputs = document.querySelectorAll('input');
   inputs.forEach((input) => (input.checked ? (checked += 1) : 0));
-  if (checked === inputs.length) {
+  if (checked > 0 && checked === inputs.length) {
     disabled = false;
   }
   return disabled;
@@ -179,7 +180,6 @@ function ComidaInProgress() {
   } = history;
   const { id } = useParams();
   const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));
-  console.log(details);
   let historico = [];
   if (history.location.pathname.includes('comidas')) {
     if (LS) {
@@ -212,40 +212,8 @@ function ComidaInProgress() {
   }, [id]);
 
   useEffect(() => {
-    const LSIP = localStorage.getItem('inProgressRecipes');
-    if (!LSIP && pathname.includes('bebidas')) {
-      localStorage.setItem(
-        'inProgressRecipes',
-        JSON.stringify({ cocktails: { [id]: [] }, meals: {} }),
-      );
-    }
-    if (!LSIP && pathname.includes('comidas')) {
-      localStorage.setItem(
-        'inProgressRecipes',
-        JSON.stringify({ meals: { [id]: [] }, cocktails: {} }),
-      );
-    }
-
-    if (LSIP && pathname.includes('bebidas')) {
-      const toEdit = JSON.parse(LS);
-      console.log(toEdit);
-      toEdit.cocktails[id] = historico;
-      localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
-    }
-    if (LSIP && pathname.includes('comidas')) {
-      const toEdit = JSON.parse(LS);
-      console.log(toEdit);
-      toEdit.meals[id] = historico;
-      localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
-    }
-
-    const favLS = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    if (favLS) {
-      const teste = favLS.some((data) => data.id === id);
-      if (teste) {
-        setLiked(true);
-      }
-    }
+    storage.inProgressLS(id, LS, historico, pathname);
+    storage.favoriteLS(id, setLiked);
   }, []);
 
   if (loading) return <h1>Loading...</h1>;
