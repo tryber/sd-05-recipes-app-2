@@ -40,18 +40,23 @@ function favoriting(setLiked, liked, details, Meal) {
 function ShLiButton() {
   const { liked, setLiked, details, Meal, copied, setCopied } = useContext(AppContext);
   return (
-    <div>
-      <button onClick={() => share(Meal, details, setCopied)}>
-        <img data-testid="share-btn" alt="share button" src={shareIcon} />{' '}
-        {copied && <span>Link copiado!</span>}
-      </button>
-      <button onClick={() => favoriting(setLiked, liked, details, Meal)}>
+    <div className="icon-side">
+      <div>
+      <button
+        className="det-btn"
+        onClick={() => favoriting(setLiked, liked, details, Meal)}
+      >
         <img
           alt="favorite button"
           data-testid="favorite-btn"
           src={liked ? blackHeartIcon : whiteHeartIcon}
         />
       </button>
+      <button className="det-btn" onClick={() => share(Meal, details, setCopied)}>
+        {copied && <span>Link copiado!</span>}
+        <img data-testid="share-btn" alt="share button" src={shareIcon} />{' '}
+      </button>
+      </div>
     </div>
   );
 }

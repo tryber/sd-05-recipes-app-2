@@ -20,7 +20,7 @@ export default function Perfil() {
       <Header />
       <div className="profile-body">
         <h4 className="email" data-testid="profile-email">
-          {email} rnovaiscs@gmail.com
+          {email}
         </h4>
         <div className="btn-container">
           <button

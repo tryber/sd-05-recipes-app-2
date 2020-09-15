@@ -6,6 +6,7 @@ import AppContext from '../../../contexts/AppContext';
 import './style.css';
 import DetailHeader from '../../../components/DetailHeader';
 import * as builder from '../../../services/builders';
+import Loading from '../../../components/Loading';
 /* import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'; */
 
 function disabling() {
@@ -139,7 +140,7 @@ function ComidaInProgress() {
     storage.favoriteLS(id, setLiked);
   }, []);
 
-  if (loading) return <h1>Loading...</h1>;
+  if (loading) return <Loading />;
   return (
     <div>
       <div>
