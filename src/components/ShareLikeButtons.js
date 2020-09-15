@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as storage from '../services/localStorage';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
@@ -30,7 +31,7 @@ function share(Meal, details, setCopied) {
   }, 5000);
 }
 
-function favoriting(setLiked, id, liked, details, Meal) {
+function favoriting(setLiked, liked, details, Meal) {
   setLiked(!liked);
   storage.setNewFavLS(Meal, details);
 }
@@ -54,3 +55,13 @@ function ShLiButton({ Meal, id, details, copied, setCopied, liked, setLiked }) {
 }
 
 export default ShLiButton;
+
+ShLiButton.propTypes = {
+  Meal: PropTypes.bool.isRequired,
+  id: PropTypes.number.isRequired,
+  details: PropTypes.objectOf(PropTypes.object).isRequired,
+  copied: PropTypes.bool.isRequired,
+  liked: PropTypes.bool.isRequired,
+  setCopied: PropTypes.func.isRequired,
+  setLiked: PropTypes.func.isRequired,
+};
