@@ -8,28 +8,25 @@ import * as storage from '../services/localStorage';
 import AppContext from '../contexts/AppContext';
 
 function handleIniciarReceita(history, id) {
-  const {
-    location: { pathname },
-  } = history;
-  history.push(`${pathname}/in-progress`);
+  history.push(`${history.location.pathname}/in-progress`);
 
   const LS = localStorage.getItem('inProgressRecipes');
 
-  if (!LS && pathname.includes('bebidas')) {
+  if (!LS && history.location.pathname.includes('bebidas')) {
     localStorage.setItem(
       'inProgressRecipes',
       JSON.stringify({ cocktails: { [id]: [] }, meals: {} }),
     );
-  } else if (!LS && pathname.includes('comidas')) {
+  } else if (!LS && history.location.pathname.includes('comidas')) {
     localStorage.setItem(
       'inProgressRecipes',
       JSON.stringify({ meals: { [id]: [] }, cocktails: {} }),
     );
-  } else if (LS && pathname.includes('bebidas')) {
+  } else if (LS && history.location.pathname.includes('bebidas')) {
     const toEdit = JSON.parse(LS);
     toEdit.cocktails[id] = [];
     localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
-  } else if (LS && pathname.includes('comidas')) {
+  } else if (LS && history.location.pathname.includes('comidas')) {
     const toEdit = JSON.parse(LS);
     toEdit.meals[id] = [];
     localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));

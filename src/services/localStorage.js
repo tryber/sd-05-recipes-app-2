@@ -8,6 +8,16 @@ export function favoriteLS(id, setLiked) {
   }
 }
 
+export function starterLS(history, id, LS) {
+  let historico = [];
+  if (LS && history.location.pathname.includes('comidas')) {
+    historico = LS.meals[id];
+  } else if (LS && history.location.pathname.includes('bebidas')) {
+    historico = LS.cocktails[id];
+  }
+  return historico;
+}
+
 export function inProgressLS(id, history) {
   const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));
   const starterObj = {
@@ -24,9 +34,7 @@ export function inProgressLS(id, history) {
   } else if (!LSIP && history.location.pathname.includes('comidas')) {
     starterObj.meals = { [id]: [] };
     localStorage.setItem('inProgressRecipes', JSON.stringify(starterObj));
-  }
-
-  if (LSIP && history.location.pathname.includes('bebidas')) {
+  } else if (LSIP && history.location.pathname.includes('bebidas')) {
     const toEdit = JSON.parse(localStorage.getItem('inProgressRecipes'));
     toEdit.cocktails[id] = historico;
     localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
@@ -35,16 +43,6 @@ export function inProgressLS(id, history) {
     toEdit.meals[id] = historico;
     localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
   }
-}
-
-export function starterLS(history, id, LS) {
-  let historico = [];
-  if (LS && history.location.pathname.includes('comidas')) {
-    historico = LS.meals[id];
-  } else if (LS && history.location.pathname.includes('bebidas')) {
-    historico = LS.cocktails[id];
-  }
-  return historico;
 }
 
 export function setNewFavLS(Meal, details) {
