@@ -37,8 +37,8 @@ function favoriting(setLiked, liked, details, Meal) {
   storage.setNewFavLS(Meal, details);
 }
 
-function ShLiButton({ copied, setCopied }) {
-  const { liked, setLiked, details, Meal } = useContext(AppContext);
+function ShLiButton() {
+  const { liked, setLiked, details, Meal, copied, setCopied } = useContext(AppContext);
   return (
     <div>
       <button onClick={() => share(Meal, details, setCopied)}>

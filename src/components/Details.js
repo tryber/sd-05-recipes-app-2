@@ -76,7 +76,6 @@ function Details({ Meal, details, recom, ingredientsList }) {
     <div>
       <div>
         <DetailHeader Meal={Meal} details={details} />
-        <ShLiButton id={id} copied={copied} setCopied={setCopied} />
       </div>
       <div className="details-body">
         {ingredientsList(details)}

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ShLiButton from './ShareLikeButtons';
 
 function DetailHeader({ Meal, details }) {
   return (
@@ -13,6 +14,7 @@ function DetailHeader({ Meal, details }) {
       <h4 data-testid="recipe-category">
         {details.strCategory} {!Meal ? `- ${details.strAlcoholic}` : ''}
       </h4>
+      <ShLiButton />
     </div>
   );
 }

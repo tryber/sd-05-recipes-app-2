@@ -116,8 +116,9 @@ function ingredientsList(details, setUtilizados, utilizados, id, history) {
 }
 
 function ComidaInProgress() {
-  const { loading, setLoading, details, setDetails, setLiked } = useContext(AppContext);
-  const [copied, setCopied] = useState(false);
+  const { loading, setLoading, details, setDetails, setLiked, copied, setCopied } = useContext(
+    AppContext,
+  );
   const [Meal, setMeal] = useState(true);
   const history = useHistory();
   const { id } = useParams();
@@ -153,7 +154,6 @@ function ComidaInProgress() {
     <div>
       <div>
         <DetailHeader Meal={Meal} details={details} />
-        <ShLiButton id={id} copied={copied} setCopied={setCopied} />
       </div>
       <div className="details-body">
         {ingredientsList(details, setUtilizados, utilizados, id, history)}

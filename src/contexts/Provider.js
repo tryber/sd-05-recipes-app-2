@@ -12,6 +12,7 @@ const Provider = ({ children }) => {
   const [details, setDetails] = useState([]);
   const [searchBarOn, setSearchBarOn] = useState(false);
   const [Meal, setMeal] = useState(true);
+  const [copied, setCopied] = useState(false);
   const [liked, setLiked] = useState(false);
   const estados = {
     email,
@@ -34,6 +35,8 @@ const Provider = ({ children }) => {
     setMeal,
     liked,
     setLiked,
+    copied,
+    setCopied,
   };
 
   return <AppContext.Provider value={estados}>{children}</AppContext.Provider>;
