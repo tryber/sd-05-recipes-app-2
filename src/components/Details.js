@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import Card from './Card';
@@ -31,8 +31,34 @@ function share(Meal, details, setCopied) {
   }, 5000);
 }
 
-function handleIniciarReceita(history) {
-  history.push(`${history.location.pathname}/in-progress`);
+function handleIniciarReceita(history, id) {
+  const {
+    location: { pathname },
+  } = history;
+  history.push(`${pathname}/in-progress`);
+  
+  
+  
+  const LS = localStorage.getItem('inProgressRecipes');
+  if (!LS && pathname.includes('bebidas')) {
+    localStorage.setItem('inProgressRecipes', JSON.stringify({ cocktails: {[id]:[]}, meals: {} }));
+  }
+  if (!LS && pathname.includes('comidas')) {
+    localStorage.setItem('inProgressRecipes', JSON.stringify({ meals: {[id]:[]}, cocktails: {} }));
+  }
+
+  if (LS && pathname.includes('bebidas')) {
+    const toEdit = JSON.parse(LS);
+    console.log(toEdit);
+    toEdit.cocktails[id] = [];
+    localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
+  }
+  if (LS && pathname.includes('comidas')) {
+    const toEdit = JSON.parse(LS);
+    console.log(toEdit);
+    toEdit.meals[id] = [];
+    localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
+  }
 }
 
 const style = {
@@ -43,6 +69,7 @@ const style = {
 function Details({ Meal, details, recom, ingredientsList }) {
   const [copied, setCopied] = useState(false);
   const history = useHistory();
+  const { id } = useParams();
 
   return (
     <div>
@@ -84,7 +111,7 @@ function Details({ Meal, details, recom, ingredientsList }) {
         <button
           style={style}
           data-testid="start-recipe-btn"
-          onClick={() => handleIniciarReceita(history)}
+          onClick={() => handleIniciarReceita(history, id)}
         >
           {' '}
           Iniciar receita

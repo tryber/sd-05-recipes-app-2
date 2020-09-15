@@ -9,9 +9,6 @@ import './style.css';
 import blackHeartIcon from '../../../images/blackHeartIcon.svg';
 /* import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'; */
 
-localStorage.setItem('inProgressRecipes', JSON.stringify({ meals: {} }));
-
-
 function share(Meal, details, setCopied) {
   let textField;
   if (Meal) {
@@ -38,8 +35,19 @@ function share(Meal, details, setCopied) {
   }, 5000);
 }
 
+function disabling() {
+  let disabled = true;
+  let checked = 0;
+  const inputs = document.querySelectorAll('input');
+  inputs.forEach(input => input.checked ? checked += 1: 0)
+  if(checked === inputs.length){
+    disabled = false;
+  }
+  return disabled
+}
+
 function handleFinalizarReceita(history) {
-  history.push(`/`);
+  history.push(`/receitas-feitas`);
 }
 
 const style = {
@@ -48,22 +56,55 @@ const style = {
   left: 0,
 };
 
-function handleDashed(e, setUtilizados, utilizados, id) {
+const styleDash = {
+  textDecoration: 'line-through',
+};
+const styleNone = {
+  textDecoration: 'none',
+};
+
+function checkLS(str, id, history) {
+  const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  if (history.location.pathname.includes('comidas')) {
+    const newCheck = LS.meals[id].some((each) => each === str);
+    return newCheck;
+  }
+  if (history.location.pathname.includes('bebidas')) {
+    const newCheck = LS.cocktails[id].some((each) => each === str);
+    return newCheck;
+  }
+}
+
+function handleDashed(e, setUtilizados, utilizados, id, history) {
   const line = document.getElementsByClassName(`${e.target.id}`)[0];
   if (e.target.checked) {
     line.style.textDecoration = 'line-through';
     setUtilizados([...utilizados, e.target.id]);
     const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    LS.meals[id] = [...utilizados, e.target.id];
+    if (history.location.pathname.includes('comidas')) {
+      LS.meals[id] = [...utilizados, e.target.id];
+    }
+    if (history.location.pathname.includes('bebidas')) {
+      LS.cocktails[id] = [...utilizados, e.target.id];
+    }
+
     localStorage.setItem('inProgressRecipes', JSON.stringify(LS));
   } else {
     line.style.textDecoration = 'none';
     const newArr = utilizados.filter((data) => data !== e.target.id);
     setUtilizados(newArr);
+    const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (history.location.pathname.includes('comidas')) {
+      LS.meals[id] = newArr;
+    }
+    if (history.location.pathname.includes('bebidas')) {
+      LS.cocktails[id] = newArr;
+    }
+    localStorage.setItem('inProgressRecipes', JSON.stringify(LS));
   }
 }
 
-function ingredientsList(details, setUtilizados, utilizados, id) {
+function ingredientsList(details, setUtilizados, utilizados, id, history) {
   const quantities = [];
   const ingredients = [];
 
@@ -83,11 +124,17 @@ function ingredientsList(details, setUtilizados, utilizados, id) {
           <li data-testid={`${index}-ingredient-step`}>
             <input
               type="checkbox"
+              checked={checkLS(`${ingredients[index]} - ${element}`, id, history)}
               id={`${ingredients[index]} - ${element}`}
-              onChange={(e) => handleDashed(e, setUtilizados, utilizados, id)}
+              onChange={(e) => handleDashed(e, setUtilizados, utilizados, id, history)}
             />
             <label htmlFor={`${ingredients[index]} - ${element}`}>
-              <span className={`${ingredients[index]} - ${element} ing`}>
+              <span
+                style={
+                  checkLS(`${ingredients[index]} - ${element}`, id, history) ? styleDash : styleNone
+                }
+                className={`${ingredients[index]} - ${element} ing`}
+              >
                 {ingredients[index]} - {element}
               </span>
             </label>
@@ -102,9 +149,26 @@ function ComidaInProgress() {
   const { loading, setLoading, details, setDetails } = useContext(AppContext);
   const [copied, setCopied] = useState(false);
   const [Meal, setMeal] = useState(true);
-  const [utilizados, setUtilizados] = useState([]);
   const history = useHistory();
+  const {
+    location: { pathname },
+  } = history;
   const { id } = useParams();
+  const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  console.log(LS);
+  let historico = [];
+  if (history.location.pathname.includes('comidas')) {
+    if (LS) {
+      historico = LS.meals[id];
+    }
+  }
+  if (history.location.pathname.includes('bebidas')) {
+    if (LS) {
+      historico = LS.cocktails[id];
+    }
+  }
+
+  const [utilizados, setUtilizados] = useState(historico);
 
   useEffect(() => {
     if (history.location.pathname.includes('comidas')) {
@@ -124,7 +188,33 @@ function ComidaInProgress() {
   }, [id]);
 
   useEffect(() => {
-  }, [utilizados]);
+    const LS = localStorage.getItem('inProgressRecipes');
+    if (!LS && pathname.includes('bebidas')) {
+      localStorage.setItem(
+        'inProgressRecipes',
+        JSON.stringify({ cocktails: { [id]: [] }, meals: {} }),
+      );
+    }
+    if (!LS && pathname.includes('comidas')) {
+      localStorage.setItem(
+        'inProgressRecipes',
+        JSON.stringify({ meals: { [id]: [] }, cocktails: {} }),
+      );
+    }
+
+    if (LS && pathname.includes('bebidas')) {
+      const toEdit = JSON.parse(LS);
+      console.log(toEdit);
+      toEdit.cocktails[id] = historico;
+      localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
+    }
+    if (LS && pathname.includes('comidas')) {
+      const toEdit = JSON.parse(LS);
+      console.log(toEdit);
+      toEdit.meals[id] = historico;
+      localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
+    }
+  }, []);
 
   if (loading) return <h1>Loading...</h1>;
   return (
@@ -145,12 +235,13 @@ function ComidaInProgress() {
         <img alt="favorite button" data-testid="favorite-btn" src={whiteHeartIcon} />
       </div>
       <div className="details-body">
-        {ingredientsList(details, setUtilizados, utilizados, id)}
+        {ingredientsList(details, setUtilizados, utilizados, id, history)}
         <h3>Instructions</h3>
         <p data-testid="instructions">{details.strInstructions}</p>
         <button
           style={style}
           data-testid="finish-recipe-btn"
+          disabled={disabling()}
           onClick={() => handleFinalizarReceita(history)}
         >
           {' '}
