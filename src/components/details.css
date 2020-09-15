@@ -11,7 +11,7 @@
 .details-header {
   display: flex;
   justify-content: space-between;
-  margin: 2vh auto 3vh;
+  margin: 2vh auto 1vh;
   max-width: 85vw;
 }
 
@@ -30,7 +30,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1vh 1vw 0;
+  padding: 1.5vh 2vw 0 3vw;
 }
 
 .det-btn {
@@ -38,7 +38,6 @@
   background-color: rgb(242, 231, 218);
   border: none;
   display: flex;
-  flex-direction: column;
 }
 
 /* .det-btn:hover {
@@ -53,7 +52,7 @@
 .det-btn span {
   color: rgb(255, 134, 0);
   font-size: 12px;
-  text-emphasis: wrap;
+  padding-left: 2vw;
 }
 
 .details-body {
