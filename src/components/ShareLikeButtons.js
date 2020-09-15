@@ -42,20 +42,20 @@ function ShLiButton() {
   return (
     <div className="icon-side">
       <div>
-      <button
-        className="det-btn"
-        onClick={() => favoriting(setLiked, liked, details, Meal)}
-      >
-        <img
-          alt="favorite button"
-          data-testid="favorite-btn"
-          src={liked ? blackHeartIcon : whiteHeartIcon}
-        />
-      </button>
-      <button className="det-btn" onClick={() => share(Meal, details, setCopied)}>
-        {copied && <span>Link copiado!</span>}
-        <img data-testid="share-btn" alt="share button" src={shareIcon} />{' '}
-      </button>
+        <button
+          className="det-btn"
+          onClick={() => favoriting(setLiked, liked, details, Meal)}
+        >
+          <img
+            alt="favorite button"
+            data-testid="favorite-btn"
+            src={liked ? blackHeartIcon : whiteHeartIcon}
+          />
+        </button>
+        <button className="det-btn" onClick={() => share(Meal, details, setCopied)}>
+          {copied && <span>Link copiado!</span>}
+          <img data-testid="share-btn" alt="share button" src={shareIcon} />{' '}
+        </button>
       </div>
     </div>
   );
