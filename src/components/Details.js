@@ -14,6 +14,7 @@ function handleIniciarReceita(history, id) {
   history.push(`${pathname}/in-progress`);
 
   const LS = localStorage.getItem('inProgressRecipes');
+  
   if (!LS && pathname.includes('bebidas')) {
     localStorage.setItem(
       'inProgressRecipes',
@@ -24,9 +25,7 @@ function handleIniciarReceita(history, id) {
       'inProgressRecipes',
       JSON.stringify({ meals: { [id]: [] }, cocktails: {} }),
     );
-  }
-
-  if (LS && pathname.includes('bebidas')) {
+  } else if (LS && pathname.includes('bebidas')) {
     const toEdit = JSON.parse(LS);
     toEdit.cocktails[id] = [];
     localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));

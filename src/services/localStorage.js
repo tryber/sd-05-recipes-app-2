@@ -44,15 +44,10 @@ export function inProgressLS(id, history) {
 
 export function starterLS(history, id, LS) {
   let historico = [];
-  if (history.location.pathname.includes('comidas')) {
-    if (LS) {
-      historico = LS.meals[id];
-    }
-  }
-  if (history.location.pathname.includes('bebidas')) {
-    if (LS) {
-      historico = LS.cocktails[id];
-    }
+  if (LS && history.location.pathname.includes('comidas')) {
+    historico = LS.meals[id];
+  } else if (LS && history.location.pathname.includes('bebidas')) {
+    historico = LS.cocktails[id];
   }
   return historico;
 }
