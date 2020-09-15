@@ -18,7 +18,6 @@
   justify-content: center;
   margin: 0 auto;
   min-height: 60vh;
-  /* align-items: center; */
 }
 
 .btn-opt {
@@ -32,11 +31,10 @@
 }
 
 .btn-exit {
+  bottom: 10vh;
   display: flex;
   position: absolute;
-  bottom: 10vh;
   right: 3vw;
-  /* border: 3px solid green; */
 }
 
 .door-icon {

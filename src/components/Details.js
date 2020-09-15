@@ -47,12 +47,12 @@ function Details({ Meal, details, recom, ingredientsList }) {
     } else {
       history.push('/bebidas');
     }
-  }
+  };
 
   return (
     <div className="details-page">
       <button className="back-button" onClick={() => handleClick()}>
-        <img src={goBack} alt="Voltar" height="40px"/>
+        <img src={ goBack } alt="Voltar" height="40px" />
       </button>
       <img
         className="header-pic"
