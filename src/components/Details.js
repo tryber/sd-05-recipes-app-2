@@ -7,11 +7,12 @@ import DetailHeader from './DetailHeader';
 import * as storage from '../services/localStorage';
 import AppContext from '../contexts/AppContext';
 
+const startObj = {
+  cocktails: {},
+  meals: {},
+};
+
 function handleIniciarReceita(history, id) {
-  const startObj = {
-    cocktails: {},
-    meals: {},
-  };
   history.push(`${history.location.pathname}/in-progress`);
 
   const LS = localStorage.getItem('inProgressRecipes');
@@ -65,10 +66,6 @@ function Details({ Meal, details, recom, ingredientsList }) {
     setLiked(false);
     storage.favoriteLS(id, setLiked);
   }, []);
-
-  useEffect(()=>{
-    
-  })
 
   return (
     <div>

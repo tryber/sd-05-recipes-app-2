@@ -1,5 +1,4 @@
 export function favoriteLS(id, setLiked) {
-  console.log(id)
   const favLS = JSON.parse(localStorage.getItem('favoriteRecipes'));
   if (favLS) {
     const teste = favLS.some((data) => data.id === id);
@@ -46,16 +45,6 @@ export function inProgressLS(id, history) {
   }
 }
 
-export function setNewFavLS(Meal, details) {
-  const newFav = Meal ? mealObj(details) : drinkObj(details);
-  const historico = JSON.parse(localStorage.getItem('favoriteRecipes'));
-  if (!historico) {
-    localStorage.setItem('favoriteRecipes', JSON.stringify([newFav]));
-  } else {
-    localStorage.setItem('favoriteRecipes', JSON.stringify([...historico, newFav]));
-  }
-}
-
 export function mealObj(details) {
   return {
     id: details.idMeal,
@@ -78,4 +67,14 @@ export function drinkObj(details) {
     name: details.strDrink,
     image: details.strDrinkThumb,
   };
+}
+
+export function setNewFavLS(Meal, details) {
+  const newFav = Meal ? mealObj(details) : drinkObj(details);
+  const historico = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  if (!historico) {
+    localStorage.setItem('favoriteRecipes', JSON.stringify([newFav]));
+  } else {
+    localStorage.setItem('favoriteRecipes', JSON.stringify([...historico, newFav]));
+  }
 }

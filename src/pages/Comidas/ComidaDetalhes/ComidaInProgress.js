@@ -59,8 +59,7 @@ function handleDashed(e, setUtilizados, utilizados, id, history) {
     const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));
     if (history.location.pathname.includes('comidas')) {
       LS.meals[id] = [...utilizados, e.target.id];
-    }
-    if (history.location.pathname.includes('bebidas')) {
+    } else if (history.location.pathname.includes('bebidas')) {
       LS.cocktails[id] = [...utilizados, e.target.id];
     }
 
@@ -72,8 +71,7 @@ function handleDashed(e, setUtilizados, utilizados, id, history) {
     const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));
     if (history.location.pathname.includes('comidas')) {
       LS.meals[id] = newArr;
-    }
-    if (history.location.pathname.includes('bebidas')) {
+    } else if (history.location.pathname.includes('bebidas')) {
       LS.cocktails[id] = newArr;
     }
     localStorage.setItem('inProgressRecipes', JSON.stringify(LS));
@@ -114,7 +112,9 @@ function ingredientsList(details, setUtilizados, utilizados, id, history) {
 }
 
 function ComidaInProgress() {
-  const { loading, setLoading, details, setDetails, setLiked, Meal, setMeal } = useContext(AppContext);
+  const { loading, setLoading, details, setDetails, setLiked, Meal, setMeal } = useContext(
+    AppContext,
+  );
   const history = useHistory();
   const { id } = useParams();
   const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
@@ -17,7 +17,7 @@ function HandleClick(id, history, setSelectedId, setMeal) {
   }
 }
 function Card(props) {
-  const { setSelectedId, Meal, setMeal } = useContext(AppContext);
+  const { setSelectedId, setMeal } = useContext(AppContext);
   const history = useHistory();
   const { description, thumb, i, id, rec } = props;
   return (
