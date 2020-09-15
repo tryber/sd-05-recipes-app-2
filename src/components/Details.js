@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import './details.css';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import goBack from '../images/go-back.svg';
 import Card from './Card';
 
 function share(Meal, details, setCopied) {
@@ -40,8 +41,19 @@ function Details({ Meal, details, recom, ingredientsList }) {
   const [copied, setCopied] = useState(false);
   const history = useHistory();
 
+  const handleClick = () => {
+    if (Meal) {
+      history.push('/comidas');
+    } else {
+      history.push('/bebidas');
+    }
+  }
+
   return (
     <div className="details-page">
+      <button className="back-button" onClick={() => handleClick()}>
+        <img src={goBack} alt="Voltar" height="40px"/>
+      </button>
       <img
         className="header-pic"
         alt={Meal ? details.strMeal : details.strDrink}

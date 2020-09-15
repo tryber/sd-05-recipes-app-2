@@ -3,6 +3,17 @@
   width: 100vw;
 }
 
+.back-button {
+  background-color: none;
+  border: none;
+  position: absolute;
+  right: 0;
+}
+
+.back-button img {
+  background-color: none;
+}
+
 .header-pic {
   height: 30vh;
   width: 100vw;
