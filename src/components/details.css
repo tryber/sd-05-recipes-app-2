@@ -1,11 +1,11 @@
 .details-page {
   background-color: rgb(242, 231, 218);
-  width: 360px;
+  width: 100vw;
 }
 
 .header-pic {
   height: 30vh;
-  width: 360px;
+  width: 100vw;
 }
 
 .details-header {
@@ -94,7 +94,20 @@
   border: none;
   border-radius: 15px;
   bottom: 0;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.8);
   margin: 3vh auto;
   padding: 1vh 5vw;
   position: fixed;
+}
+
+.start-btn:hover {
+  background-color: rgba(255, 174, 13);
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.7);
+  transition: 0.3s ease;
+}
+
+.start-btn:focus {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  outline: none;
+  transition: 0.3s ease;
 }
