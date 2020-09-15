@@ -45,8 +45,7 @@ function handleIniciarReceita(history, id) {
       'inProgressRecipes',
       JSON.stringify({ cocktails: { [id]: [] }, meals: {} }),
     );
-  }
-  if (!LS && pathname.includes('comidas')) {
+  } else if (!LS && pathname.includes('comidas')) {
     localStorage.setItem(
       'inProgressRecipes',
       JSON.stringify({ meals: { [id]: [] }, cocktails: {} }),
@@ -58,8 +57,7 @@ function handleIniciarReceita(history, id) {
     console.log(toEdit);
     toEdit.cocktails[id] = [];
     localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
-  }
-  if (LS && pathname.includes('comidas')) {
+  } else if (LS && pathname.includes('comidas')) {
     const toEdit = JSON.parse(LS);
     console.log(toEdit);
     toEdit.meals[id] = [];
@@ -67,9 +65,8 @@ function handleIniciarReceita(history, id) {
   }
 }
 
-function favoriting(setLiked, id, liked, details, Meal) {
-  setLiked(!liked);
-  const newFav = {
+function newFavo(Meal, details) {
+  return {
     id: Meal ? details.idMeal : details.idDrink,
     type: Meal ? 'comida' : 'bebida',
     area: Meal ? details.strArea : '',
@@ -78,13 +75,17 @@ function favoriting(setLiked, id, liked, details, Meal) {
     name: Meal ? details.strMeal : details.strDrink,
     image: Meal ? details.strMealThumb : details.strDrinkThumb,
   };
+}
+
+function favoriting(setLiked, id, liked, details, Meal) {
+  setLiked(!liked);
+  const newFav = newFavo(Meal, details);
   const historico = JSON.parse(localStorage.getItem('favoriteRecipes'));
   if (!historico) {
     localStorage.setItem('favoriteRecipes', JSON.stringify([newFav]));
   } else {
     localStorage.setItem('favoriteRecipes', JSON.stringify([...historico, newFav]));
   }
-  console.log(historico);
 }
 
 const style = {
@@ -105,14 +106,15 @@ function Details({ Meal, details, recom, ingredientsList }) {
     if (doneRecipes) {
       setDIS(doneRecipes.some((data) => data.id === id));
     }
+
     const inProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
     if (inProgress) {
       if (history.location.pathname.includes('comidas')) {
-        let testArr = Object.keys(inProgress.meals);
+        const testArr = Object.keys(inProgress.meals);
         setIP(testArr.some((data) => data === id));
       }
       if (history.location.pathname.includes('bebidas')) {
-        let testArr = Object.keys(inProgress.cocktails);
+        const testArr = Object.keys(inProgress.cocktails);
         setIP(testArr.some((data) => data === id));
       }
     }

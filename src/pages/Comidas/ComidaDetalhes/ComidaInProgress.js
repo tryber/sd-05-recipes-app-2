@@ -47,7 +47,7 @@ function disabling() {
 }
 
 function handleFinalizarReceita(history) {
-  history.push(`/receitas-feitas`);
+  history.push('/receitas-feitas');
 }
 
 const style = {
@@ -212,27 +212,27 @@ function ComidaInProgress() {
   }, [id]);
 
   useEffect(() => {
-    const LS = localStorage.getItem('inProgressRecipes');
-    if (!LS && pathname.includes('bebidas')) {
+    const LSIP = localStorage.getItem('inProgressRecipes');
+    if (!LSIP && pathname.includes('bebidas')) {
       localStorage.setItem(
         'inProgressRecipes',
         JSON.stringify({ cocktails: { [id]: [] }, meals: {} }),
       );
     }
-    if (!LS && pathname.includes('comidas')) {
+    if (!LSIP && pathname.includes('comidas')) {
       localStorage.setItem(
         'inProgressRecipes',
         JSON.stringify({ meals: { [id]: [] }, cocktails: {} }),
       );
     }
 
-    if (LS && pathname.includes('bebidas')) {
+    if (LSIP && pathname.includes('bebidas')) {
       const toEdit = JSON.parse(LS);
       console.log(toEdit);
       toEdit.cocktails[id] = historico;
       localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
     }
-    if (LS && pathname.includes('comidas')) {
+    if (LSIP && pathname.includes('comidas')) {
       const toEdit = JSON.parse(LS);
       console.log(toEdit);
       toEdit.meals[id] = historico;
