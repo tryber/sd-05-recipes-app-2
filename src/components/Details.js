@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useParams } from 'react-router-dom';
 import './details.css';
-import './style.css';
-import shareIcon from '../images/shareIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
-import goBack from '../images/go-back.svg';
+import './card.css';
+// import shareIcon from '../images/shareIcon.svg';
+// import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+// import goBack from '../images/go-back.svg';
 import Card from './Card';
 import DetailHeader from './DetailHeader';
 import * as storage from '../services/localStorage';
@@ -78,26 +78,12 @@ function Details({ Meal, details, recom, ingredientsList }) {
     storage.favoriteLS(id, setLiked);
   }, []);
 
-  const handleClick = () => {
-    if (Meal) {
-      history.push('/comidas');
-    } else {
-      history.push('/bebidas');
-    }
-  };
-
   return (
     <div>
       <div>
         <DetailHeader Meal={Meal} details={details} />
       </div>
       <div className="details-body">
-        <button
-          className="det-btn" data-testid="share-btn"
-          onClick={() => share(Meal, details, setCopied)}
-        >
-          <img alt="share button" src={shareIcon} /> {copied && <span>Link copiado!</span>}
-        </button>
         {ingredientsList(details)}
         <h4 className="topic-title">Instructions</h4>
         <p data-testid="instructions">{details.strInstructions}</p>
@@ -118,9 +104,8 @@ function Details({ Meal, details, recom, ingredientsList }) {
             ))}
         </div>
         <button
-          className="start-btn"
           data-testid="start-recipe-btn"
-          className={DIS ? 'hidden' : ''}
+          className={DIS ? 'hidden' : 'start-btn'}
           onClick={() => handleIniciarReceita(history, id)}
         >
           {IP ? 'Continuar Receita' : 'Iniciar receita'}
