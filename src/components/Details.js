@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useParams } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 import Card from './Card';
+import './style.css';
 
 function share(Meal, details, setCopied) {
   let textField;
@@ -36,15 +38,19 @@ function handleIniciarReceita(history, id) {
     location: { pathname },
   } = history;
   history.push(`${pathname}/in-progress`);
-  
-  
-  
+
   const LS = localStorage.getItem('inProgressRecipes');
   if (!LS && pathname.includes('bebidas')) {
-    localStorage.setItem('inProgressRecipes', JSON.stringify({ cocktails: {[id]:[]}, meals: {} }));
+    localStorage.setItem(
+      'inProgressRecipes',
+      JSON.stringify({ cocktails: { [id]: [] }, meals: {} }),
+    );
   }
   if (!LS && pathname.includes('comidas')) {
-    localStorage.setItem('inProgressRecipes', JSON.stringify({ meals: {[id]:[]}, cocktails: {} }));
+    localStorage.setItem(
+      'inProgressRecipes',
+      JSON.stringify({ meals: { [id]: [] }, cocktails: {} }),
+    );
   }
 
   if (LS && pathname.includes('bebidas')) {
@@ -61,6 +67,26 @@ function handleIniciarReceita(history, id) {
   }
 }
 
+function favoriting(setLiked, id, liked, details, Meal) {
+  setLiked(!liked);
+  const newFav = {
+    id: Meal ? details.idMeal : details.idDrink,
+    type: Meal ? 'comida' : 'bebida',
+    area: Meal ? details.strArea : '',
+    category: details.strCategory,
+    alcoholicOrNot: Meal ? '' : details.strAlcoholic,
+    name: Meal ? details.strMeal : details.strDrink,
+    image: Meal ? details.strMealThumb : details.strDrinkThumb,
+  };
+  const historico = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  if (!historico) {
+    localStorage.setItem('favoriteRecipes', JSON.stringify([newFav]));
+  } else {
+    localStorage.setItem('favoriteRecipes', JSON.stringify([...historico, newFav]));
+  }
+  console.log(historico);
+}
+
 const style = {
   position: 'fixed',
   bottom: 0,
@@ -68,8 +94,37 @@ const style = {
 };
 function Details({ Meal, details, recom, ingredientsList }) {
   const [copied, setCopied] = useState(false);
+  const [DIS, setDIS] = useState(false);
+  const [liked, setLiked] = useState(false);
+  const [IP, setIP] = useState(false);
   const history = useHistory();
   const { id } = useParams();
+
+  useEffect(() => {
+    const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+    if (doneRecipes) {
+      setDIS(doneRecipes.some((data) => data.id === id));
+    }
+    const inProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (inProgress) {
+      if (history.location.pathname.includes('comidas')) {
+        let testArr = Object.keys(inProgress.meals);
+        setIP(testArr.some((data) => data === id));
+      }
+      if (history.location.pathname.includes('bebidas')) {
+        let testArr = Object.keys(inProgress.cocktails);
+        setIP(testArr.some((data) => data === id));
+      }
+    }
+
+    const favLS = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    if (favLS) {
+      const teste = favLS.some((data) => data.id === id);
+      if (teste) {
+        setLiked(true);
+      }
+    }
+  }, []);
 
   return (
     <div>
@@ -86,7 +141,13 @@ function Details({ Meal, details, recom, ingredientsList }) {
         <button data-testid="share-btn" onClick={() => share(Meal, details, setCopied)}>
           <img alt="share button" src={shareIcon} /> {copied && <span>Link copiado!</span>}
         </button>
-        <img alt="favorite button" data-testid="favorite-btn" src={whiteHeartIcon} />
+        <button onClick={() => favoriting(setLiked, id, liked, details, Meal)}>
+          <img
+            alt="favorite button"
+            data-testid="favorite-btn"
+            src={liked ? blackHeartIcon : whiteHeartIcon}
+          />
+        </button>
       </div>
       <div className="details-body">
         {ingredientsList(details)}
@@ -111,10 +172,11 @@ function Details({ Meal, details, recom, ingredientsList }) {
         <button
           style={style}
           data-testid="start-recipe-btn"
+          className={DIS ? 'hidden' : ''}
           onClick={() => handleIniciarReceita(history, id)}
         >
           {' '}
-          Iniciar receita
+          {IP ? 'Continuar Receita' : 'Iniciar receita'}
         </button>
       </div>
     </div>

@@ -39,11 +39,11 @@ function disabling() {
   let disabled = true;
   let checked = 0;
   const inputs = document.querySelectorAll('input');
-  inputs.forEach(input => input.checked ? checked += 1: 0)
-  if(checked === inputs.length){
+  inputs.forEach((input) => (input.checked ? (checked += 1) : 0));
+  if (checked === inputs.length) {
     disabled = false;
   }
-  return disabled
+  return disabled;
 }
 
 function handleFinalizarReceita(history) {
@@ -65,14 +65,17 @@ const styleNone = {
 
 function checkLS(str, id, history) {
   const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));
-  if (history.location.pathname.includes('comidas')) {
-    const newCheck = LS.meals[id].some((each) => each === str);
-    return newCheck;
+  if (LS && history.location.pathname.includes('comidas')) {
+    if (LS.meals[id]) {
+      const newCheck = LS.meals[id].some((each) => each === str);
+      return newCheck;
+    }
   }
-  if (history.location.pathname.includes('bebidas')) {
+  if (LS && history.location.pathname.includes('bebidas')) {
     const newCheck = LS.cocktails[id].some((each) => each === str);
     return newCheck;
   }
+  return false;
 }
 
 function handleDashed(e, setUtilizados, utilizados, id, history) {
@@ -145,17 +148,38 @@ function ingredientsList(details, setUtilizados, utilizados, id, history) {
   );
 }
 
+function favoriting(setLiked, id, liked, details, Meal) {
+  setLiked(!liked);
+  const newFav = {
+    id: Meal ? details.idMeal : details.idDrink,
+    type: Meal ? 'comida' : 'bebida',
+    area: Meal ? details.strArea : '',
+    category: details.strCategory,
+    alcoholicOrNot: Meal ? '' : details.strAlcoholic,
+    name: Meal ? details.strMeal : details.strDrink,
+    image: Meal ? details.strMealThumb : details.strDrinkThumb,
+  };
+  const historico = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  if (!historico) {
+    localStorage.setItem('favoriteRecipes', JSON.stringify([newFav]));
+  } else {
+    localStorage.setItem('favoriteRecipes', JSON.stringify([...historico, newFav]));
+  }
+  console.log(historico);
+}
+
 function ComidaInProgress() {
   const { loading, setLoading, details, setDetails } = useContext(AppContext);
   const [copied, setCopied] = useState(false);
   const [Meal, setMeal] = useState(true);
+  const [liked, setLiked] = useState(false);
   const history = useHistory();
   const {
     location: { pathname },
   } = history;
   const { id } = useParams();
   const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));
-  console.log(LS);
+  console.log(details);
   let historico = [];
   if (history.location.pathname.includes('comidas')) {
     if (LS) {
@@ -214,6 +238,14 @@ function ComidaInProgress() {
       toEdit.meals[id] = historico;
       localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
     }
+
+    const favLS = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    if (favLS) {
+      const teste = favLS.some((data) => data.id === id);
+      if (teste) {
+        setLiked(true);
+      }
+    }
   }, []);
 
   if (loading) return <h1>Loading...</h1>;
@@ -229,10 +261,17 @@ function ComidaInProgress() {
         <h4 data-testid="recipe-category">
           {details.strCategory} {!Meal ? `- ${details.strAlcoholic}` : ''}
         </h4>
-        <button data-testid="share-btn" onClick={() => share(Meal, details, setCopied)}>
-          <img alt="share button" src={shareIcon} /> {copied && <span>Link copiado!</span>}
+        <button onClick={() => share(Meal, details, setCopied)}>
+          <img data-testid="share-btn" alt="share button" src={shareIcon} />{' '}
+          {copied && <span>Link copiado!</span>}
         </button>
-        <img alt="favorite button" data-testid="favorite-btn" src={whiteHeartIcon} />
+        <button onClick={() => favoriting(setLiked, id, liked, details, Meal)}>
+          <img
+            alt="favorite button"
+            data-testid="favorite-btn"
+            src={liked ? blackHeartIcon : whiteHeartIcon}
+          />
+        </button>
       </div>
       <div className="details-body">
         {ingredientsList(details, setUtilizados, utilizados, id, history)}
