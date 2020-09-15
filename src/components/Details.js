@@ -1,39 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useParams } from 'react-router-dom';
-import * as storage from '../services/localStorage';
-import shareIcon from '../images/shareIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
 import Card from './Card';
 import './style.css';
 import DetailHeader from './DetailHeader';
-
-function share(Meal, details, setCopied) {
-  let textField;
-  if (Meal) {
-    const copyLink = `http://localhost:3000/comidas/${details.idMeal}`;
-    textField = document.createElement('textarea');
-    textField.innerText = copyLink;
-    document.body.appendChild(textField);
-    textField.select();
-    document.execCommand('copy');
-    textField.remove();
-  } else {
-    const copyLink = `http://localhost:3000/bebidas/${details.idDrink}`;
-    textField = document.createElement('textarea');
-    textField.innerText = copyLink;
-    document.body.appendChild(textField);
-    textField.select();
-    document.execCommand('copy');
-    textField.remove();
-  }
-
-  setCopied(true);
-  setTimeout(() => {
-    setCopied(false);
-  }, 5000);
-}
+import ShLiButton from './ShareLikeButtons';
+import * as storage from '../services/localStorage';
 
 function handleIniciarReceita(history, id) {
   const {
@@ -62,29 +34,6 @@ function handleIniciarReceita(history, id) {
     const toEdit = JSON.parse(LS);
     toEdit.meals[id] = [];
     localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
-  }
-}
-
-function newFavo(Meal, details) {
-  return {
-    id: Meal ? details.idMeal : details.idDrink,
-    type: Meal ? 'comida' : 'bebida',
-    area: Meal ? details.strArea : '',
-    category: details.strCategory,
-    alcoholicOrNot: Meal ? '' : details.strAlcoholic,
-    name: Meal ? details.strMeal : details.strDrink,
-    image: Meal ? details.strMealThumb : details.strDrinkThumb,
-  };
-}
-
-function favoriting(setLiked, id, liked, details, Meal) {
-  setLiked(!liked);
-  const newFav = newFavo(Meal, details);
-  const historico = JSON.parse(localStorage.getItem('favoriteRecipes'));
-  if (!historico) {
-    localStorage.setItem('favoriteRecipes', JSON.stringify([newFav]));
-  } else {
-    localStorage.setItem('favoriteRecipes', JSON.stringify([...historico, newFav]));
   }
 }
 
@@ -126,16 +75,15 @@ function Details({ Meal, details, recom, ingredientsList }) {
     <div>
       <div>
         <DetailHeader Meal={Meal} details={details} />
-        <button data-testid="share-btn" onClick={() => share(Meal, details, setCopied)}>
-          <img alt="share button" src={shareIcon} /> {copied && <span>Link copiado!</span>}
-        </button>
-        <button onClick={() => favoriting(setLiked, id, liked, details, Meal)}>
-          <img
-            alt="favorite button"
-            data-testid="favorite-btn"
-            src={liked ? blackHeartIcon : whiteHeartIcon}
-          />
-        </button>
+        <ShLiButton
+          Meal={Meal}
+          id={id}
+          liked={liked}
+          details={details}
+          copied={copied}
+          setCopied={setCopied}
+          setLiked={setLiked}
+        />
       </div>
       <div className="details-body">
         {ingredientsList(details)}
