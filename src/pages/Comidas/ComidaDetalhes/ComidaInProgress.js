@@ -167,7 +167,6 @@ function favoriting(setLiked, id, liked, details, Meal) {
   } else {
     localStorage.setItem('favoriteRecipes', JSON.stringify([...historico, newFav]));
   }
-  console.log(historico);
 }
 
 function ComidaInProgress() {
@@ -213,7 +212,7 @@ function ComidaInProgress() {
   }, [id]);
 
   useEffect(() => {
-    storage.inProgressLS(id, LS, historico, pathname);
+    storage.inProgressLS(id, history);
     storage.favoriteLS(id, setLiked);
   }, []);
 

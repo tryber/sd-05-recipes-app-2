@@ -56,12 +56,10 @@ function handleIniciarReceita(history, id) {
 
   if (LS && pathname.includes('bebidas')) {
     const toEdit = JSON.parse(LS);
-    console.log(toEdit);
     toEdit.cocktails[id] = [];
     localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
   } else if (LS && pathname.includes('comidas')) {
     const toEdit = JSON.parse(LS);
-    console.log(toEdit);
     toEdit.meals[id] = [];
     localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
   }
