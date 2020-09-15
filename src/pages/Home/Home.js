@@ -6,6 +6,7 @@ import SearchBar from '../../components/SearchBar';
 import Footer from '../../components/Footer';
 import AppContext from '../../contexts/AppContext';
 import AllCards from '../../components/AllCards';
+import Loading from '../../components/Loading';
 
 function mealStarter(setCards, setLoading) {
   api.defaultMeals().then((data) => {
@@ -105,7 +106,7 @@ function Home() {
       drink({ selecCategory, caCh, setCards, setcaCh, setLoading, filteredData, filCh, setfilCh });
     }
   }, [selecCategory, filteredData]);
-  if (loading) return <h1>Loading</h1>;
+  if (loading) return <Loading />;
   return (
     <div>
       <Header />

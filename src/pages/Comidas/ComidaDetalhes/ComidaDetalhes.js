@@ -5,6 +5,7 @@ import '../../../components/details.css';
 import * as api from '../../../services/api';
 import AppContext from '../../../contexts/AppContext';
 import Details from '../../../components/Details';
+import Loading from '../../../components/Loading';
 /* import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'; */
 
 function ingredientsList(details) {
@@ -66,7 +67,7 @@ function ComidaDetalhes() {
     }
   }, [id]);
 
-  if (loading) return <h1>Loading...</h1>;
+  if (loading) return <Loading />;
   return <Details details={details} Meal={Meal} recom={recom} ingredientsList={ingredientsList} />;
 }
 
