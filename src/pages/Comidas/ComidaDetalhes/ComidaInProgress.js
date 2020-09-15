@@ -51,7 +51,8 @@ function checkLS(str, id, history) {
   return false;
 }
 
-function isChecked(line, setUtilizados, utilizados, history, id, e) {
+function isChecked(setUtilizados, utilizados, history, id, e) {
+  const line = document.getElementsByClassName(`${e.target.id}`)[0];
   line.style.textDecoration = 'line-through';
   setUtilizados([...utilizados, e.target.id]);
   const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));
@@ -63,8 +64,9 @@ function isChecked(line, setUtilizados, utilizados, history, id, e) {
   localStorage.setItem('inProgressRecipes', JSON.stringify(LS));
 }
 
-function notChecked(line, setUtilizados, utilizados, history, id, e) {
-  line.style.textDecoration = 'none';
+function notChecked(setUtilizados, utilizados, history, id, e) {
+  const line1 = document.getElementsByClassName(`${e.target.id}`)[0];
+  line1.style.textDecoration = 'none';
   const newArr = utilizados.filter((data) => data !== e.target.id);
   setUtilizados(newArr);
   const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));
@@ -77,11 +79,10 @@ function notChecked(line, setUtilizados, utilizados, history, id, e) {
 }
 
 function handleDashed(e, setUtilizados, utilizados, id, history) {
-  const line = document.getElementsByClassName(`${e.target.id}`)[0];
   if (e.target.checked) {
-    isChecked(line, setUtilizados, utilizados, history, id, e);
+    isChecked(setUtilizados, utilizados, history, id, e);
   } else {
-    notChecked(line, setUtilizados, utilizados, history, id, e);
+    notChecked(setUtilizados, utilizados, history, id, e);
   }
 }
 
