@@ -114,8 +114,7 @@ function ingredientsList(details, setUtilizados, utilizados, id, history) {
 }
 
 function ComidaInProgress() {
-  const { loading, setLoading, details, setDetails, setLiked } = useContext(AppContext);
-  const [Meal, setMeal] = useState(true);
+  const { loading, setLoading, details, setDetails, setLiked, Meal, setMeal } = useContext(AppContext);
   const history = useHistory();
   const { id } = useParams();
   const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));

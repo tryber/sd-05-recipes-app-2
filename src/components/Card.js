@@ -1,24 +1,30 @@
 import React, { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
 import AppContext from '../contexts/AppContext';
 
-function HandleClick(id, history, setSelectedId) {
+function HandleClick(id, history, setSelectedId, setMeal) {
   const info = id.split(' ');
   setSelectedId(info[1]);
   history.push(`/${info[0]}/${info[1]}`);
+
+  if (info[0] === 'bebidas') {
+    setMeal(false);
+  } else {
+    setMeal(true);
+  }
 }
 function Card(props) {
-  const { setSelectedId } = useContext(AppContext);
+  const { setSelectedId, Meal, setMeal } = useContext(AppContext);
   const history = useHistory();
   const { description, thumb, i, id, rec } = props;
   return (
     <button
       className={rec && i > 1 ? 'hidden card-btn' : 'card-btn'}
       data-testid={rec ? `${i}-recomendation-card` : `${i}-recipe-card`}
-      onClick={() => HandleClick(id, history, setSelectedId)}
+      onClick={() => HandleClick(id, history, setSelectedId, setMeal)}
     >
       <div className="card">
         <img

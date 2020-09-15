@@ -26,9 +26,8 @@ function ingredientsList(details) {
 }
 
 function ComidaDetalhes() {
-  const { loading, setLoading, details, setDetails } = useContext(AppContext);
+  const { loading, setLoading, details, setDetails, Meal, setMeal } = useContext(AppContext);
   const [recom, setRecom] = useState([]);
-  const [Meal, setMeal] = useState(true);
   const {
     location: { pathname },
   } = useHistory();
@@ -47,8 +46,10 @@ function ComidaDetalhes() {
       setMeal(true);
     }
     if (pathname.includes('bebidas')) {
+      setLoading(true);
       api.byDrinkId(id).then((data) => {
         setDetails(data.drinks[0]);
+        setLoading(false);
       });
       api.defaultMeals().then((data) => {
         setRecom(data.meals.slice(0, 6));

@@ -1,4 +1,5 @@
 export function favoriteLS(id, setLiked) {
+  console.log(id)
   const favLS = JSON.parse(localStorage.getItem('favoriteRecipes'));
   if (favLS) {
     const teste = favLS.some((data) => data.id === id);
@@ -46,19 +47,35 @@ export function inProgressLS(id, history) {
 }
 
 export function setNewFavLS(Meal, details) {
-  const newFav = {
-    id: Meal ? details.idMeal : details.idDrink,
-    type: Meal ? 'comida' : 'bebida',
-    area: Meal ? details.strArea : '',
-    category: details.strCategory,
-    alcoholicOrNot: Meal ? '' : details.strAlcoholic,
-    name: Meal ? details.strMeal : details.strDrink,
-    image: Meal ? details.strMealThumb : details.strDrinkThumb,
-  };
+  const newFav = Meal ? mealObj(details) : drinkObj(details);
   const historico = JSON.parse(localStorage.getItem('favoriteRecipes'));
   if (!historico) {
     localStorage.setItem('favoriteRecipes', JSON.stringify([newFav]));
   } else {
     localStorage.setItem('favoriteRecipes', JSON.stringify([...historico, newFav]));
   }
+}
+
+export function mealObj(details) {
+  return {
+    id: details.idMeal,
+    type: 'comida',
+    area: details.strArea,
+    category: details.strCategory,
+    alcoholicOrNot: '',
+    name: details.strMeal,
+    image: details.strMealThumb,
+  };
+}
+
+export function drinkObj(details) {
+  return {
+    id: details.idDrink,
+    type: 'bebida',
+    area: '',
+    category: details.strCategory,
+    alcoholicOrNot: details.strAlcoholic,
+    name: details.strDrink,
+    image: details.strDrinkThumb,
+  };
 }

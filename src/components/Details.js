@@ -8,20 +8,20 @@ import * as storage from '../services/localStorage';
 import AppContext from '../contexts/AppContext';
 
 function handleIniciarReceita(history, id) {
+  const startObj = {
+    cocktails: {},
+    meals: {},
+  };
   history.push(`${history.location.pathname}/in-progress`);
 
   const LS = localStorage.getItem('inProgressRecipes');
 
   if (!LS && history.location.pathname.includes('bebidas')) {
-    localStorage.setItem(
-      'inProgressRecipes',
-      JSON.stringify({ cocktails: { [id]: [] }, meals: {} }),
-    );
+    startObj.cocktails = { [id]: [] };
+    localStorage.setItem('inProgressRecipes', JSON.stringify(startObj));
   } else if (!LS && history.location.pathname.includes('comidas')) {
-    localStorage.setItem(
-      'inProgressRecipes',
-      JSON.stringify({ meals: { [id]: [] }, cocktails: {} }),
-    );
+    startObj.meals = { [id]: [] };
+    localStorage.setItem('inProgressRecipes', JSON.stringify(startObj));
   } else if (LS && history.location.pathname.includes('bebidas')) {
     const toEdit = JSON.parse(LS);
     toEdit.cocktails[id] = [];
@@ -62,9 +62,13 @@ function Details({ Meal, details, recom, ingredientsList }) {
         setIP(testArr.some((data) => data === id));
       }
     }
-
+    setLiked(false);
     storage.favoriteLS(id, setLiked);
   }, []);
+
+  useEffect(()=>{
+    
+  })
 
   return (
     <div>
