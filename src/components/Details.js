@@ -50,14 +50,19 @@ function Details({ Meal, details, recom, ingredientsList }) {
       />
       <div className="details-header">
         <div className="title-side">
-          <h2 data-testid="recipe-title">{Meal ? details.strMeal : details.strDrink}</h2>
-          <h5 data-testid="recipe-category">
+          <h2 className="det-title" data-testid="recipe-title">
+            {Meal ? details.strMeal : details.strDrink}
+          </h2>
+          <h5 data-testid="recipe-category" className="det-subtitle">
             {details.strCategory} {!Meal ? `- ${details.strAlcoholic}` : ''}
           </h5>
         </div>
         <div className="icon-side">
           <img alt="favorite button" data-testid="favorite-btn" src={whiteHeartIcon} />
-          <button className="det-btn" data-testid="share-btn" onClick={() => share(Meal, details, setCopied)}>
+          <button
+            className="det-btn" data-testid="share-btn"
+            onClick={() => share(Meal, details, setCopied)}
+          >
             <img alt="share button" src={shareIcon} /> {copied && <span>Link copiado!</span>}
           </button>
         </div>
@@ -72,22 +77,21 @@ function Details({ Meal, details, recom, ingredientsList }) {
         </video>
         <h4 className="topic-title">Recomendadas</h4>
         <div className="card-container">
-        {recom.map((each, index) => (
-          <Card
-            description={Meal ? each.strDrink : each.strMeal}
-            thumb={Meal ? each.strDrinkThumb : each.strMealThumb}
-            id={Meal ? `bebidas ${each.idDrink}` : `comidas ${each.idMeal}`}
-            i={index}
-            rec
-          />
-          ))}
+          {recom.map((each, index) => (
+            <Card
+              description={Meal ? each.strDrink : each.strMeal}
+              thumb={Meal ? each.strDrinkThumb : each.strMealThumb}
+              id={Meal ? `bebidas ${each.idDrink}` : `comidas ${each.idMeal}`}
+              i={index}
+              rec
+            />
+            ))}
         </div>
         <button
           className="start-btn"
           data-testid="start-recipe-btn"
           onClick={() => handleIniciarReceita(history)}
         >
-          {' '}
           Iniciar receita
         </button>
       </div>

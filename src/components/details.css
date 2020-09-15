@@ -9,26 +9,24 @@
 }
 
 .details-header {
-  /* border: 3px solid green; */
   display: flex;
   justify-content: space-between;
   margin: 2vh auto 3vh;
   max-width: 85vw;
 }
 
-.title-side h2 {
+.title-side .det-title {
   color: rgb(255, 134, 0);
   font-weight: 400;
 }
 
-.title-side h5 {
+.title-side .det-subtitle {
   color: rgb(92, 92, 92);
   font-style: italic;
   font-weight: 300;
 }
 
 .icon-side {
-  /* border: 2px solid red; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -36,11 +34,11 @@
 }
 
 .det-btn {
+  align-items: center;
   background-color: rgb(242, 231, 218);
   border: none;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 /* .det-btn:hover {
@@ -64,23 +62,23 @@
 }
 
 /* arquivo ComidaDetalhes */
+
 /* .topic-container {
   margin: 3vh 0;
 } */
 
 .topic-title {
-  font-weight: 400;
   border-bottom: 1px solid rgb(255, 134, 0);
+  font-weight: 400;
   margin: 3vh 2vw 2vh 0;
-  /* letter-spacing: 0.3vw; */
 }
 
 .list-container {
-  background-color: rgb(245, 245, 245);
-  max-width: 75vw;
+  background-color: whitesmoke;
   border-radius: 25px;
-  padding: 2vh 0;
   font-size: 14px;
+  max-width: 75vw;
+  padding: 2vh 0;
 }
 
 .card-container {
@@ -99,4 +97,4 @@
   margin: 3vh auto;
   padding: 1vh 5vw;
   position: fixed;
-};
+}
