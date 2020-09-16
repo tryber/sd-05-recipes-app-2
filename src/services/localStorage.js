@@ -10,9 +10,9 @@ export function favoriteLS(id, setLiked) {
 
 export function starterLS(history, id, LS) {
   let historico = [];
-  if (LS && history.location.pathname.includes('comidas')) {
+  if (LS.meals[id] && history.location.pathname.includes('comidas')) {
     historico = LS.meals[id];
-  } else if (LS && history.location.pathname.includes('bebidas')) {
+  } else if (LS.cocktails[id] && history.location.pathname.includes('bebidas')) {
     historico = LS.cocktails[id];
   }
   return historico;
