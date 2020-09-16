@@ -6,6 +6,14 @@ const drinkCategoriesEndpoint =
   'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
 const defaultDrinksEndpoint =
   'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
+const randomMealEndpoint =
+  'https://www.themealdb.com/api/json/v1/1/random.php';
+const randomDrinkEndpoint =
+  'https://www.thecocktaildb.com/api/json/v1/1/random.php';
+const mealIngredientListEndpoint =
+  'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
+const drinkIngredientListEndpoint =
+  'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
 
 const generalAPIRequest = (URL) =>
   fetch(URL)
@@ -22,6 +30,10 @@ export const mealCategories = () => generalAPIRequest(mealCategoriesEndpoint);
 export const defaultMeals = () => generalAPIRequest(defaultMealsEndpoint);
 export const drinkCategories = () => generalAPIRequest(drinkCategoriesEndpoint);
 export const defaultDrinks = () => generalAPIRequest(defaultDrinksEndpoint);
+export const mealRandom = () => generalAPIRequest(randomMealEndpoint);
+export const drinkRandom = () => generalAPIRequest(randomDrinkEndpoint);
+export const mealListIng = () => generalAPIRequest(mealIngredientListEndpoint);
+export const drinkListIng = () => generalAPIRequest(drinkIngredientListEndpoint);
 
 // APIs Meals
 // API de acesso às informações do Meal completas pelo ID

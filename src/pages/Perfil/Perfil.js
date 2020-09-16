@@ -1,26 +1,29 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './perfil.css';
 import door from '../../images/door.svg';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import AppContext from '../../contexts/AppContext';
 
 export default function Perfil() {
   const history = useHistory();
-  const { email } = useContext(AppContext);
+  const [mail, setMail] = useState('');
 
   const handleClick = () => {
     localStorage.clear();
     history.push('/');
   };
 
+  useEffect(() => {
+    setMail(localStorage.getItem('user'));
+  }, []);
+
   return (
     <div>
       <Header />
       <div className="profile-body">
         <h4 className="email" data-testid="profile-email">
-          {email}
+          {mail}
         </h4>
         <div className="btn-container">
           <button

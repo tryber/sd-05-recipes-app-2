@@ -10,10 +10,18 @@ export default function Explorar() {
     <div>
       <Header />
       <div className="explorar-container">
-        <button className="btn" onClick={() => history.push('/explorar/comidas')}>
+        <button
+          data-testid="explore-food"
+          className="btn"
+          onClick={() => history.push('/explorar/comidas')}
+        >
           Explorar Comidas
         </button>
-        <button className="btn" onClick={() => history.push('/explorar/bebidas')}>
+        <button
+          data-testid="explore-drinks"
+          className="btn"
+          onClick={() => history.push('/explorar/bebidas')}
+        >
           Explorar Bebidas
         </button>
       </div>

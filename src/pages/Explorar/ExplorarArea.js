@@ -6,6 +6,7 @@ export default function ExplorarArea() {
   return (
     <div>
       <Header />
+      <div>oi</div>
       <Footer />
     </div>
   );
