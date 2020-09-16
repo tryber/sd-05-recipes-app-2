@@ -78,3 +78,37 @@ export function setNewFavLS(Meal, details) {
     localStorage.setItem('favoriteRecipes', JSON.stringify([...historico, newFav]));
   }
 }
+
+export function setDoneLS(Meal, details) {
+  const newFavo = Meal ? mealObj(details) : drinkObj(details);
+  newFavo.doneDate = new Date();
+  newFavo.tags = details.strTags;
+  console.log(newFavo);
+  const historico = JSON.parse(localStorage.getItem('doneRecipes'));
+  if (!historico) {
+    localStorage.setItem('doneRecipes', JSON.stringify([newFavo]));
+  } else {
+    localStorage.setItem('doneRecipes', JSON.stringify([...historico, newFavo]));
+  }
+}
+
+export function removeIPLS(Meal, details) {
+  const historico = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  if (Meal) {
+    delete historico.meals[details.idMeal];
+  } else {
+    delete historico.cocktails[details.idDrink];
+  }
+  localStorage.setItem('inProgressRecipes', JSON.stringify(historico));
+}
+
+export function removeFavLS(Meal, details) {
+  const hist = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  let removed;
+  if (Meal) {
+    removed = hist.filter((each) => each.id !== details.idMeal);
+  } else {
+    removed = hist.filter((each) => each.id !== details.idDrink);
+  }
+  localStorage.setItem('favoriteRecipes', JSON.stringify(removed));
+}
