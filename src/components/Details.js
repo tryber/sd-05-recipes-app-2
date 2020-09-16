@@ -27,11 +27,11 @@ function emptyLS(history, id) {
 }
 
 function existingLS(history, id, LS) {
-  if (history.location.pathname.includes('bebidas')) {
+  if (history.location.pathname.includes('bebidas') && !LS.cocktails[id]) {
     const toEdit = JSON.parse(LS);
     toEdit.cocktails[id] = [];
     localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
-  } else if (history.location.pathname.includes('comidas')) {
+  } else if (history.location.pathname.includes('comidas') && !LS.meals[id]) {
     const toEdit = JSON.parse(LS);
     toEdit.meals[id] = [];
     localStorage.setItem('inProgressRecipes', JSON.stringify(toEdit));
@@ -41,7 +41,7 @@ function existingLS(history, id, LS) {
 function handleIniciarReceita(history, id) {
   history.push(`${history.location.pathname}/in-progress`);
 
-  const LS = localStorage.getItem('inProgressRecipes');
+  const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));
 
   if (!LS) {
     emptyLS(history, id);
@@ -101,7 +101,7 @@ function Details({ Meal, details, recom, ingredientsList }) {
               i={index}
               rec
             />
-            ))}
+          ))}
         </div>
         <button
           data-testid="start-recipe-btn"

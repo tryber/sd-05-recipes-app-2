@@ -21,8 +21,10 @@ function disabling() {
   return disabled;
 }
 
-function handleFinalizarReceita(history) {
+function handleFinalizarReceita(history, details, Meal) {
   history.push('/receitas-feitas');
+  storage.removeIPLS(Meal, details);
+  storage.setDoneLS(Meal, details);
 }
 
 const style = {
@@ -157,7 +159,7 @@ function ComidaInProgress() {
         style={style}
         data-testid="finish-recipe-btn"
         disabled={disabling()}
-        onClick={() => handleFinalizarReceita(history)}
+        onClick={() => handleFinalizarReceita(history, details, Meal)}
       >
         Finalizar receita
       </button>
