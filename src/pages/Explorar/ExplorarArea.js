@@ -11,9 +11,8 @@ export default function ExplorarArea() {
   const [cards, setCards] = useState([]);
   const Meal = true;
 
-  
   useEffect(() => {
-    api.defaultMeals().then((data) => setCards(data.meals))
+    api.defaultMeals().then((data) => setCards(data.meals));
     api.mealListArea().then((data) => setAreaList(data.meals));
     setLoading(false);
   }, []);
@@ -22,7 +21,7 @@ export default function ExplorarArea() {
     setLoading(true);
     api.byMealArea(area).then((data) => setCards(data.meals));
     setLoading(false);
-  }
+  };
 
   if (loading) return <Loading />;
   return (
@@ -34,7 +33,7 @@ export default function ExplorarArea() {
           {areaList.map((area) =>
             <option data-testid={`${area.strArea}-option`} key={area.strArea} value={area.strArea}>
               {area.strArea}
-            </option>
+            </option>,
           )}
         </select>
       </div>

@@ -6,9 +6,9 @@ export default function NotFound() {
 
   const redirectPage = () => {
     setTimeout(() => {
-      history.push('/comidas')
-    }, 30000)
-  }
+      history.push('/comidas');
+    }, 30000);
+  };
 
   return (
     <div>
