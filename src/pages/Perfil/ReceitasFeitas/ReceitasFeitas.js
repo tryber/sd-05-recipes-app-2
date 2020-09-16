@@ -1,20 +1,16 @@
 import React from 'react';
 import Header from '../../../components/Header';
+import HCard from '../../../components/HorizontalCard';
 
 // pegar as receitas feitas do local storage ok
-// falta: e se não tiver nada no localstorage?
-const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+// e se não tiver nada no localstorage = array vazio
+const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes')) || [];
 
 // mepear cards (card comum para favs/feitas)
 // clicar no card leva pro detalhes
 // comida: card deve ter 2 tags de categoria
 // bebida: card deve dizer se é alcoolica ou não
 // botão de compartilhar copia url
-function mapDoneRecipes(filteredRecipes) {
-  filteredRecipes.map(() => ())
-}
-
-
 export default function ReceitasFeitas() {
   const [filters, setFilters] = useState(doneRecipes);
   return (
@@ -41,7 +37,7 @@ export default function ReceitasFeitas() {
         </button>
       </div>
       <div>
-        {mapDoneRecipes(filters)}
+        {filters.map((card, index) => (<HCard card={card} index={index} />))}
       </div>
     </div>
   );
