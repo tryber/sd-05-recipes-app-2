@@ -28,7 +28,11 @@ export default function ExplorarArea() {
       <Header />
       <div>
         <select data-testid="explore-by-area-dropdown" onChange={(e) => hCh(e.target.value)}>
-          {areaList.map((area) => <option key={area.strArea} value={area.strArea}>{area.strArea}</option>)}
+          {areaList.map((area) =>
+            <option data-testid={`${area.strArea}-option`} key={area.strArea} value={area.strArea}>
+              {area.strArea}
+            </option>
+          )}
         </select>
       </div>
       <div className="home-body">
