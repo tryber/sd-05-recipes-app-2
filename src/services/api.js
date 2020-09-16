@@ -14,6 +14,8 @@ const mealIngredientListEndpoint =
   'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
 const drinkIngredientListEndpoint =
   'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
+const mealAreaListEndpoint =
+  'https://www.themealdb.com/api/json/v1/1/list.php?a=list';
 
 const generalAPIRequest = (URL) =>
   fetch(URL)
@@ -34,6 +36,7 @@ export const mealRandom = () => generalAPIRequest(randomMealEndpoint);
 export const drinkRandom = () => generalAPIRequest(randomDrinkEndpoint);
 export const mealListIng = () => generalAPIRequest(mealIngredientListEndpoint);
 export const drinkListIng = () => generalAPIRequest(drinkIngredientListEndpoint);
+export const mealListArea = () => generalAPIRequest(mealAreaListEndpoint);
 
 // APIs Meals
 // API de acesso às informações do Meal completas pelo ID
@@ -96,6 +99,17 @@ export const byMealCategory = (category) =>
         ),
     )
     .catch((error) => console.log('Erro na API Meals de categoria', error));
+
+export const byMealArea = (area) =>
+  fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`)
+    .then((response) =>
+      response
+        .json()
+        .then((data) =>
+          (response.ok ? Promise.resolve(data) : Promise.reject(data)),
+        ),
+    )
+    .catch((error) => console.log(error));
 
 // APIs Drinks
 // API de acesso às informações do Drink completas pelo ID
