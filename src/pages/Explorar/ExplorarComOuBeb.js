@@ -55,7 +55,7 @@ export default function ExplorarComOuBeb() {
   return (
     <div>
       <Header />
-      <div>
+      <div className="btn-container">
         {btns.map((topic) => (
           <button
             key={topic.name}
