@@ -32,28 +32,27 @@ export default function ExplorarIngredientes() {
     <div>
       <Header />
       {list.filter((ing, i) => i < 12).map((item, i) =>
-        <div>
-          <button
-            className='card-rec'
-          >
-            <div className="card">
-              <img
-                src={Meal ? urlMeal(item) : urlDrink(item)}
-                alt={Meal ? item.strIngredient : item.strIngredient1}
-                className="card-image-top"
-                data-testid={`${i}-card-img`}
-              />
-              <div className="card-body card-description">
-                <p
-                  className="card-title d-flex flex-column justify-content-end align-items-center"
-                  data-testid={`${i}-card-name`}
-                >
-                  {Meal ? item.strIngredient : item.strIngredient1}
-                </p>
-              </div>
+        <button
+          data-testid={`${i}-ingredient-card`}
+          className='card-rec'
+        >
+          <div className="card">
+            <img
+              src={Meal ? urlMeal(item) : urlDrink(item)}
+              alt={Meal ? item.strIngredient : item.strIngredient1}
+              className="card-image-top"
+              data-testid={`${i}-card-img`}
+            />
+            <div className="card-body card-description">
+              <p
+                className="card-title d-flex flex-column justify-content-end align-items-center"
+                data-testid={`${i}-card-name`}
+              >
+                {Meal ? item.strIngredient : item.strIngredient1}
+              </p>
             </div>
-          </button>
-        </div>
+          </div>
+        </button>
       )}
       <Footer />
     </div>
