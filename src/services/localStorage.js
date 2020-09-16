@@ -95,9 +95,9 @@ export function setDoneLS(Meal, details) {
 export function removeIPLS(Meal, details) {
   const historico = JSON.parse(localStorage.getItem('inProgressRecipes'));
   if (Meal) {
-    delete historico['meals'][details.idMeal];
+    delete historico.meals.[details.idMeal];
   } else {
-    delete historico['cocktails'][details.idDrink];
+    delete historico.cocktails[details.idDrink];
   }
   localStorage.setItem('inProgressRecipes', JSON.stringify(historico));
 }
@@ -105,10 +105,10 @@ export function removeIPLS(Meal, details) {
 export function removeFavLS(Meal, details) {
   const hist = JSON.parse(localStorage.getItem('favoriteRecipes'));
   let removed;
-  if(Meal) {
-    removed = hist.filter(each => each.id !== details.idMeal)
+  if (Meal) {
+    removed = hist.filter((each) => each.id !== details.idMeal);
   } else {
-    removed = hist.filter(each => each.id !== details.idDrink)
+    removed = hist.filter((each) => each.id !== details.idDrink);
   }
   localStorage.setItem('favoriteRecipes', JSON.stringify(removed));
 }
