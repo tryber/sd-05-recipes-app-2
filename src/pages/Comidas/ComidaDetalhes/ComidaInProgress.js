@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import 'pure-react-carousel/dist/react-carousel.es.css';
+// import 'pure-react-carousel/dist/react-carousel.es.css';
 import * as storage from '../../../services/localStorage';
 import AppContext from '../../../contexts/AppContext';
 import './style.css';
