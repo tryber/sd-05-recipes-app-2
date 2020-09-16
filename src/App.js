@@ -16,6 +16,7 @@ import ExplorarArea from './pages/Explorar/ExplorarArea';
 import Perfil from './pages/Perfil/Perfil';
 import ReceitasFeitas from './pages/Perfil/ReceitasFeitas/ReceitasFeitas';
 import ReceitasFavoritas from './pages/Perfil/ReceitasFavoritas/ReceitasFavoritas';
+import NotFound from './components/NotFound';
 
 function App() {
   return (
@@ -29,7 +30,6 @@ function App() {
             <Route exact path="/bebidas/:id" component={ComidaDetalhes} />
             <Route exact path="/comidas/:id/in-progress" component={ComidaInProgress} />
             <Route exact path="/bebidas/:id/in-progress" component={ComidaInProgress} />
-            <Route exact path="/explorar/bebidas/area" component={ExplorarArea} />
             <Route exact path="/explorar/comidas/area" component={ExplorarArea} />
             <Route exact path="/explorar/bebidas/ingredientes" component={ExplorarIngredientes} />
             <Route exact path="/explorar/comidas/ingredientes" component={ExplorarIngredientes} />
@@ -40,6 +40,7 @@ function App() {
             <Route exact path="/receitas-feitas" component={ReceitasFeitas} />
             <Route exact path="/receitas-favoritas" component={ReceitasFavoritas} />
             <Route exact path="/" component={Login} />
+            <Route component={NotFound} />
           </Switch>
         </BrowserRouter>
       </div>
