@@ -131,8 +131,13 @@ function ComidaInProgress() {
   const { id } = useParams();
   const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));
   const historico = storage.starterLS(history, id, LS);
-
-  const [utilizados, setUtilizados] = useState(historico);
+  let initialState;
+  if (historico) {
+    initialState = historico;
+  } else {
+    initialState = [];
+  }
+  const [utilizados, setUtilizados] = useState(initialState);
 
   useEffect(() => {
     builder.inProgressBuilder(history, setLoading, setDetails, id, setMeal);
