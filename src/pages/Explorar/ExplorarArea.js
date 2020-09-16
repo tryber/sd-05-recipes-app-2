@@ -11,7 +11,9 @@ export default function ExplorarArea() {
   const [cards, setCards] = useState([]);
   const Meal = true;
 
+  
   useEffect(() => {
+    api.defaultMeals().then((data) => setCards(data.meals))
     api.mealListArea().then((data) => setAreaList(data.meals));
     setLoading(false);
   }, []);
@@ -28,6 +30,7 @@ export default function ExplorarArea() {
       <Header />
       <div>
         <select data-testid="explore-by-area-dropdown" onChange={(e) => hCh(e.target.value)}>
+          <option data-testid="All-option" value="All">All</option>
           {areaList.map((area) =>
             <option data-testid={`${area.strArea}-option`} key={area.strArea} value={area.strArea}>
               {area.strArea}
