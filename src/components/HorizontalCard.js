@@ -1,9 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import shareI from '../images/shareIcon.svg';
 import blackHI from '../images/blackHeartIcon.svg';
-import { useHistory } from 'react-router-dom';
 import AppContext from '../contexts/AppContext';
-import * as storage from '../services/localStorage';
 
 function handleClick(history, type, id) {
   if (type === 'comida') {
@@ -14,14 +13,13 @@ function handleClick(history, type, id) {
 }
 
 function shareBt(id, type, setCopied) {
-  let textCopy;
   let linkToCopy;
   if (type === 'comida') {
     linkToCopy = `http://localhost:3000/comidas/${id}`;
   } else {
     linkToCopy = `http://localhost:3000/bebidas/${id}`;
   }
-  textCopy = document.createElement('textarea');
+  const textCopy = document.createElement('textarea');
   textCopy.innerText = linkToCopy;
   document.body.appendChild(textCopy);
   textCopy.select();
@@ -94,3 +92,8 @@ function HCard({ card, index }) {
 }
 
 export default HCard;
+
+HCard.propTypes = {
+  card: PropTypes.objectOf(PropTypes.object).isRequired,
+  index: PropTypes.number.isRequired,
+};
