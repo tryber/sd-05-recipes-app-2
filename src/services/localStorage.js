@@ -95,7 +95,7 @@ export function setDoneLS(Meal, details) {
 export function removeIPLS(Meal, details) {
   const historico = JSON.parse(localStorage.getItem('inProgressRecipes'));
   if (Meal) {
-    delete historico.meals.[details.idMeal];
+    delete historico.meals[details.idMeal];
   } else {
     delete historico.cocktails[details.idDrink];
   }
