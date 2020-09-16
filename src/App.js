@@ -7,14 +7,13 @@ import Login from './pages/Login/Login';
 import ComidaDetalhes from './pages/Comidas/ComidaDetalhes/ComidaDetalhes';
 // import BebidaDetalhes from './pages/Bebidas/BebidaDetalhes/BebidaDetalhes';
 import Provider from './contexts/Provider';
-import ComidaInProgress from './pages/Comidas//ComidaDetalhes/ComidaInProgress';
+import ComidaInProgress from './pages/Comidas/ComidaDetalhes/ComidaInProgress';
 import Home from './pages/Home/Home';
 import Explorar from './pages/Explorar/Explorar';
-import ExplorarComOuBeb from './pages/Explorar/ExplorarComidas/ExplorarComidas';
-import ExplorarBebidas from './pages/Explorar/ExplorarBebidas/ExplorarBebidas';
-import Perfil from './pages/Perfil/Perfil';
+import ExplorarComOuBeb from './pages/Explorar/ExplorarComOuBeb';
 import ExplorarIngredientes from './pages/Explorar/ExplorarIngredientes';
 import ExplorarArea from './pages/Explorar/ExplorarArea';
+import Perfil from './pages/Perfil/Perfil';
 import ReceitasFeitas from './pages/Perfil/ReceitasFeitas/ReceitasFeitas';
 import ReceitasFavoritas from './pages/Perfil/ReceitasFavoritas/ReceitasFavoritas';
 
