@@ -36,7 +36,7 @@ function IngCards(Meal, list, clickIng) {
         </button>,
       )}
     </div>
-  )
+  );
 }
 
 export default function ExplorarIngredientes() {
