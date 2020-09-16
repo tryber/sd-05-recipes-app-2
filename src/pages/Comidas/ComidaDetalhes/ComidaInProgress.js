@@ -58,7 +58,6 @@ function checkLS(str, id, history) {
 function isChecked(setUtilizados, utilizados, history, id, e) {
   const line = document.getElementsByClassName(`${e.target.id}`)[0];
   line.style.textDecoration = 'line-through';
-  console.log(utilizados)
   setUtilizados([...utilizados, e.target.id]);
   const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));
   if (history.location.pathname.includes('comidas')) {
