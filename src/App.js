@@ -10,7 +10,7 @@ import Provider from './contexts/Provider';
 import ComidaInProgress from './pages/Comidas//ComidaDetalhes/ComidaInProgress';
 import Home from './pages/Home/Home';
 import Explorar from './pages/Explorar/Explorar';
-import ExplorarComidas from './pages/Explorar/ExplorarComidas/ExplorarComidas';
+import ExplorarComOuBeb from './pages/Explorar/ExplorarComidas/ExplorarComidas';
 import ExplorarBebidas from './pages/Explorar/ExplorarBebidas/ExplorarBebidas';
 import Perfil from './pages/Perfil/Perfil';
 import ExplorarIngredientes from './pages/Explorar/ExplorarIngredientes';
@@ -34,8 +34,8 @@ function App() {
             <Route exact path="/explorar/comidas/area" component={ExplorarArea} />
             <Route exact path="/explorar/bebidas/ingredientes" component={ExplorarIngredientes} />
             <Route exact path="/explorar/comidas/ingredientes" component={ExplorarIngredientes} />
-            <Route exact path="/explorar/bebidas" component={ExplorarBebidas} />
-            <Route exact path="/explorar/comidas" component={ExplorarComidas} />
+            <Route exact path="/explorar/bebidas" component={ExplorarComOuBeb} />
+            <Route exact path="/explorar/comidas" component={ExplorarComOuBeb} />
             <Route exact path="/explorar" component={Explorar} />
             <Route exact path="/perfil" component={Perfil} />
             <Route exact path="/receitas-feitas" component={ReceitasFeitas} />
