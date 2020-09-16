@@ -11,36 +11,9 @@ const urlMeal = (item) =>
 const urlDrink = (item) =>
   `https://www.thecocktaildb.com/images/ingredients/${item.strIngredient1}-Small.png`;
 
-export default function ExplorarIngredientes() {
-  const history = useHistory();
-  const { setFilteredData, Meal, setMeal } = useContext(AppContext);
-  const [list, setList] = useState([]);
-
-  useEffect(() => {
-    if (history.location.pathname === '/explorar/comidas/ingredientes') {
-      api.mealListIng().then((data) => setList(data.meals));
-      setMeal(true);
-    }
-    if (history.location.pathname === '/explorar/bebidas/ingredientes') {
-      api.drinkListIng().then((data) => setList(data.drinks));
-      setMeal(false);
-    }
-  }, []);
-
-  const clickIng = (ing) => {
-    if (Meal) {
-      api.byMealIngredient(ing.strIngredient).then((data) => setFilteredData(data.meals));
-      history.push('/comidas');
-    } else {
-      api.byDrinkIngredient(ing.strIngredient1).then((data) => setFilteredData(data.drinks));
-      history.push('/bebidas');
-    }
-  };
-
-  if (list.length === 0) return <Loading />;
+function IngCards(Meal, list, clickIng) {
   return (
     <div>
-      <Header />
       {list.filter((ing, i) => i < 12).map((item, i) =>
         <button
           onClick={() => clickIng(item)}
@@ -62,6 +35,39 @@ export default function ExplorarIngredientes() {
           </div>
         </button>,
       )}
+    </div>
+  )
+}
+
+export default function ExplorarIngredientes() {
+  const history = useHistory();
+  const { setFilteredData, Meal, setMeal } = useContext(AppContext);
+  const [list, setList] = useState([]);
+  useEffect(() => {
+    if (history.location.pathname === '/explorar/comidas/ingredientes') {
+      api.mealListIng().then((data) => setList(data.meals));
+      setMeal(true);
+    }
+    if (history.location.pathname === '/explorar/bebidas/ingredientes') {
+      api.drinkListIng().then((data) => setList(data.drinks));
+      setMeal(false);
+    }
+  }, []);
+
+  const clickIng = (ing) => {
+    if (Meal) {
+      api.byMealIngredient(ing.strIngredient).then((data) => setFilteredData(data.meals));
+      history.push('/comidas');
+    } else {
+      api.byDrinkIngredient(ing.strIngredient1).then((data) => setFilteredData(data.drinks));
+      history.push('/bebidas');
+    }
+  };
+  if (list.length === 0) return <Loading />;
+  return (
+    <div>
+      <Header />
+      {IngCards(Meal, list, clickIng)}
       <Footer />
     </div>
   );
