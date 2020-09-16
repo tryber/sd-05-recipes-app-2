@@ -8,7 +8,6 @@ import '../../../components/details.css';
 import DetailHeader from '../../../components/DetailHeader';
 import * as builder from '../../../services/builders';
 import Loading from '../../../components/Loading';
-import { initial } from 'lodash';
 /* import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'; */
 
 function disabling() {
@@ -133,7 +132,11 @@ function ComidaInProgress() {
   const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));
   const historico = storage.starterLS(history, id, LS);
   let initialState;
-  historico ? (initialState = historico) : (initialState = []);
+  if (historico) {
+    initialState = historico;
+  } else {
+    initialState = [];
+  }
   const [utilizados, setUtilizados] = useState(initialState);
 
   useEffect(() => {

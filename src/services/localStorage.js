@@ -25,7 +25,6 @@ export function inProgressLS(id, history) {
     meals: {},
   };
 
-  
   const LSIP = localStorage.getItem('inProgressRecipes');
   if (!LSIP && history.location.pathname.includes('bebidas')) {
     starterObj.cocktails = { [id]: [] };
