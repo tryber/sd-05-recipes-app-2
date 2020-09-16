@@ -33,8 +33,13 @@ function share(Meal, details, setCopied) {
 }
 
 function favoriting(setLiked, liked, details, Meal) {
-  setLiked(!liked);
-  storage.setNewFavLS(Meal, details);
+  if (!liked) {
+    setLiked(true);
+    storage.setNewFavLS(Meal, details);
+  } else {
+    setLiked(false);
+    storage.removeFavLS(Meal, details);
+  }
 }
 
 function ShLiButton() {
@@ -42,10 +47,7 @@ function ShLiButton() {
   return (
     <div className="icon-side">
       <div>
-        <button
-          className="det-btn"
-          onClick={() => favoriting(setLiked, liked, details, Meal)}
-        >
+        <button className="det-btn" onClick={() => favoriting(setLiked, liked, details, Meal)}>
           <img
             alt="favorite button"
             data-testid="favorite-btn"

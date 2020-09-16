@@ -23,7 +23,7 @@ function disabling() {
 
 function handleFinalizarReceita(history, details, Meal) {
   history.push('/receitas-feitas');
-
+  storage.removeIPLS(Meal, details);
   storage.setDoneLS(Meal, details);
 }
 
