@@ -38,7 +38,7 @@ function ReceitasFeitas() {
         </button>
       </div>
       <div>
-        {filters.map((card, index) => (<HCard card={card} index={index} favOrDone='done' />))}
+        {filters.map((card, index) => (<HCard card={card} index={index} favOrDone="done" />))}
       </div>
     </div>
   );

@@ -51,7 +51,7 @@ function disFav(id, type, setFav) {
 function HCard({ card, index, favOrDone }) {
   const { copied, setCopied, setFav } = useContext(AppContext);
   const history = useHistory();
-  const tags = card.tags.split(",");
+  const tags = card.tags.split(',');
 
   return (
     <button className="card-rec">
@@ -106,4 +106,5 @@ export default HCard;
 HCard.propTypes = {
   card: PropTypes.objectOf(PropTypes.object).isRequired,
   index: PropTypes.number.isRequired,
+  favOrDone: PropTypes.string.isRequired,
 };

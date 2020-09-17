@@ -37,7 +37,7 @@ function ReceitasFavoritas() {
         </button>
       </div>
       {filters.map((card, index) => (
-        <HCard card={card} index={index} favOrDone='fav' />
+        <HCard card={card} index={index} favOrDone="fav" />
       ))}
       {fav && <span>Favoritos atualizados</span>}
     </div>
