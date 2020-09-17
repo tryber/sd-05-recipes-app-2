@@ -3,7 +3,7 @@ import Header from '../../../components/Header';
 import HCard from '../../../components/HorizontalCard';
 import AppContext from '../../../contexts/AppContext';
 
-function ReceitasFeitas() {
+function ReceitasFavoritas() {
   const { fav } = useContext(AppContext);
   const [favorites, setFavorites] = useState([]);
   const [filters, setFilters] = useState([]);
@@ -37,11 +37,11 @@ function ReceitasFeitas() {
         </button>
       </div>
       {filters.map((card, index) => (
-        <HCard card={card} index={index} />
+        <HCard card={card} index={index} favOrDone="fav" />
       ))}
       {fav && <span>Favoritos atualizados</span>}
     </div>
   );
 }
 
-export default ReceitasFeitas;
+export default ReceitasFavoritas;
