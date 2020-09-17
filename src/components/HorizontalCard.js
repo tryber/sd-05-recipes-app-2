@@ -48,9 +48,10 @@ function disFav(id, type, setFav) {
   }, 5000);
 }
 
-function HCard({ card, index }) {
+function HCard({ card, index, favOrDone }) {
   const { copied, setCopied, setFav } = useContext(AppContext);
   const history = useHistory();
+  const tags = card.tags.split(",");
 
   return (
     <button className="card-rec">
@@ -74,15 +75,15 @@ function HCard({ card, index }) {
             <p data-testid={`${index}-horizontal-name`}>{card.name}</p>
           </button>
           <p data-testid={`${index}-horizontal-done-date`}>{card.doneDate}</p>
-          {card.type === 'comida' && (
-            <div>
-              <span data-testid={`${index}-${card.category[0]}-horizontal-tag`}>{card.category[0]}</span>
-              <span data-testid={`${index}-${card.category[1]}-horizontal-tag`}>{card.category[1]}</span>
-            </div>
+          {favOrDone === 'done' && (
+            <p>
+              <span data-testid={`${index}-${tags[0]}-horizontal-tag`}>{tags[0]}</span> &nbsp;
+              <span data-testid={`${index}-${tags[1]}-horizontal-tag`}>{tags[0]}</span>
+            </p>
           )}
           <div>
-            {card.type === 'bebida' &&
-              (<button className="det-btn" onClick={() => disFav(card.id, card.type, setFav)}>
+            {favOrDone === 'fav' && (
+              <button className="det-btn" onClick={() => disFav(card.id, card.type, setFav)}>
                 <img
                   src={blackHI}
                   alt="favorite button"
