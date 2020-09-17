@@ -82,7 +82,8 @@ export function setNewFavLS(Meal, details) {
 export function setDoneLS(Meal, details) {
   const newFavo = Meal ? mealObj(details) : drinkObj(details);
   newFavo.doneDate = new Date();
-  newFavo.tags = details.strTags;
+  console.log(details)
+  newFavo.tags = details.strTags? details.strTags.split(','): [];
   console.log(newFavo);
   const historico = JSON.parse(localStorage.getItem('doneRecipes'));
   if (!historico) {
