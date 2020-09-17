@@ -6,94 +6,12 @@ import Header from '../components/Header';
 import App from '../App';
 import Home from '../pages/Home/Home';
 import SearchBar from '../components/SearchBar';
+import * as mockAPI from './mockAPI';
 
-const mockSuccessCatFood = Promise.resolve({
-  meals: [
-    {
-      strCategory: "Beef"
-    },
-    {
-      strCategory:"Breakfast"
-    },
-    {
-      strCategory:"Chicken"
-    },
-    {
-      strCategory:"Dessert"
-    },
-    {
-      strCategory:"Goat"
-    },
-    {
-      strCategory:"Lamb"
-    },
-    {
-      strCategory:"Miscellaneous"
-    },
-    {
-      strCategory:"Pasta"
-    },
-    {
-      strCategory:"Pork"
-    },
-    {
-      strCategory:"Seafood"
-    },
-    {
-      strCategory:"Side"
-    },
-    {
-      strCategory:"Starter"
-    },
-    {
-      strCategory:"Vegan"
-    },
-    {
-      strCategory:"Vegetarian"
-    }
-  ]
-});
-
-const mockSuccessCatDrink = Promise.resolve({
-  drinks: [
-    {
-      strCategory: "Ordinary Drink"
-    },
-    {
-      strCategory: "Cocktail"
-    },
-    {
-      strCategory: "Milk \/ Float \/ Shake"
-    },
-    {
-      strCategory: "Other\/Unknown"
-    },
-    {
-      strCategory: "Cocoa"
-    },
-    {
-      strCategory: "Shot"
-    },
-    {
-      strCategory: "Coffee \/ Tea"
-    },
-    {
-      strCategory: "Homemade Liqueur"
-    },
-    {
-      strCategory: "Punch \/ Party Drink"
-    },
-    {
-      strCategory: "Beer"
-    },
-    {
-      strCategory: "Soft Drink \/ Soda"
-    }
-  ]
-});
-
-jest.spyOn(api, 'mealCategories').mockImplementation(() => mockSuccessCatFood);
-jest.spyOn(api, 'drinkCategories').mockImplementation(() => mockSuccessCatDrink);
+jest.spyOn(api, 'mealCategories').mockImplementation(() => mockAPI.mockSuccessCatFood);
+jest.spyOn(api, 'drinkCategories').mockImplementation(() => mockAPI.mockSuccessCatDrink);
+jest.spyOn(api, 'byMealIngredient').mockImplementation(() => mockAPI.mockIngredChicken);
+jest.spyOn(api, 'byMealName').mockImplementation(() => mockAPI.mockNameSoup);
 
 describe('Deve ter uma seção de botões para filtrar por categorias', () => {
   it('Tela de comida deve ter categorias e data-test-ids corretos', async () => {
@@ -140,7 +58,7 @@ jest.spyOn(api, 'defaultDrinks').mockImplementation(() => mockSuccessDrink);
 
 describe('Todos os elementos devem respeitar os atributos descritos no protótipo para a barra de busca', () => {
   it('Data-test-ids devem estar na tela ao clicar na lupa', async () => {
-    const { history, getByTestId, getByRole, queryByTestId } = renderWithRouter(
+    const { history, getByTestId } = renderWithRouter(
       <Provider>
         <Home />
       </Provider>,
@@ -148,20 +66,53 @@ describe('Todos os elementos devem respeitar os atributos descritos no protótip
     );
 
     await waitFor(() => expect(api.defaultMeals).toHaveBeenCalled());
-    // getToHome(getByTestId, getByRole);
-    const pathname = history.location.pathname;
-    expect(pathname).toEqual('/comidas');
     const searchIcon = getByTestId('search-top-btn');
     fireEvent.click(searchIcon);
+
     const inputSearch = getByTestId('search-input');
-    expect(inputSearch).toBeInTheDocument();
     const ingredRadio = getByTestId('ingredient-search-radio');
-    expect(ingredRadio).toBeInTheDocument();
     const nameRadio = getByTestId('name-search-radio');
-    expect(nameRadio).toBeInTheDocument();
     const firstLetRadio = getByTestId('first-letter-search-radio');
-    expect(firstLetRadio).toBeInTheDocument();
     const searchBtn = getByTestId('exec-search-btn');
+    
+    expect(inputSearch).toBeInTheDocument();
+    expect(ingredRadio).toBeInTheDocument();
+    expect(nameRadio).toBeInTheDocument();
+    expect(firstLetRadio).toBeInTheDocument();
     expect(searchBtn).toBeInTheDocument();
+  });
+});
+
+describe('A barra de busca deve mudar a forma como serão filtradas as receitas', () => {
+  it('Se o radio selecionado for Ingrediente, a busca na API é feita corretamente pelo ingrediente', async () => {
+    const { history, getByTestId } = renderWithRouter(
+      <Provider>
+        <Home />
+      </Provider>,
+      { route: '/comidas' }
+    );
+    await waitFor(() => expect(api.defaultMeals).toHaveBeenCalled());
+    const searchIcon = getByTestId('search-top-btn');
+    fireEvent.click(searchIcon);
+
+    const inputSearch = getByTestId('search-input');
+    fireEvent.change(inputSearch, { target: { value: 'chicken' }});
+    const ingredRadio = getByTestId('ingredient-search-radio');
+    fireEvent.click(ingredRadio);
+    const searchBtn = getByTestId('exec-search-btn');
+    fireEvent.click(searchBtn);
+    await waitFor(() => expect(api.byMealIngredient).toHaveBeenCalled());
+
+    fireEvent.change(inputSearch, { target: { value: 'soup' }});
+    const nameRadio = getByTestId('name-search-radio');
+    fireEvent.click(nameRadio);
+    fireEvent.click(searchBtn);
+    await waitFor(() => expect(api.byMealName).toHaveBeenCalled());
+
+    fireEvent.change(inputSearch, { target: { value: 'a' }});
+    const firstLetRadio = getByTestId('first-letter-search-radio');
+    fireEvent.click(firstLetRadioRadio);
+    fireEvent.click(searchBtn);
+    await waitFor(() => expect(api.byMealFirstLetter).toHaveBeenCalled());
   })
 })
