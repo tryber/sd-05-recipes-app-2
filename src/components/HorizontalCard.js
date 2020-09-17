@@ -73,6 +73,13 @@ function HCard({ card, index }) {
           <button onClick={() => handleClick(history, card.type, card.id)}>
             <p data-testid={`${index}-horizontal-name`}>{card.name}</p>
           </button>
+          <p data-testid={`${index}-horizontal-done-date`}>{card.doneDate}</p>
+          {card.type === 'comida' && (
+            <div>
+              <span data-testid={`${index}-${card.category[0]}-horizontal-tag`}>{card.category[0]}</span>
+              <span data-testid={`${index}-${card.category[1]}-horizontal-tag`}>{card.category[1]}</span>
+            </div>
+          )}
           <div>
             {card.type === 'bebida' &&
               (<button className="det-btn" onClick={() => disFav(card.id, card.type, setFav)}>
