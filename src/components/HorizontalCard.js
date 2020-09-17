@@ -51,7 +51,7 @@ function disFav(id, type, setFav) {
 function HCard({ card, index, favOrDone }) {
   const { copied, setCopied, setFav } = useContext(AppContext);
   const history = useHistory();
-  const tags = card.tags.split(',');
+  const Htags = card.tags.split(',');
 
   return (
     <button className="card-rec">
@@ -77,8 +77,8 @@ function HCard({ card, index, favOrDone }) {
           <p data-testid={`${index}-horizontal-done-date`}>{card.doneDate}</p>
           {favOrDone === 'done' && (
             <p>
-              <span data-testid={`${index}-${tags[0]}-horizontal-tag`}>{tags[0]}</span> &nbsp;
-              <span data-testid={`${index}-${tags[1]}-horizontal-tag`}>{tags[0]}</span>
+              <span data-testid={`${index}-${Htags[0]}-horizontal-tag`}>{Htags[0]}</span> &nbsp;
+              <span data-testid={`${index}-${Htags[1]}-horizontal-tag`}>{Htags[1]}</span>
             </p>
           )}
           <div>
