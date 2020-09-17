@@ -51,8 +51,6 @@ function disFav(id, type, setFav) {
 function HCard({ card, index, favOrDone }) {
   const { copied, setCopied, setFav } = useContext(AppContext);
   const history = useHistory();
-  console.log(card)
-  console.log(card.tags)
 
   return (
     <button className="card-rec">
@@ -78,7 +76,9 @@ function HCard({ card, index, favOrDone }) {
           <p data-testid={`${index}-horizontal-done-date`}>{card.doneDate}</p>
           {favOrDone === 'done' && (
             <p>
-              {card.tags.map(each => <span data-testid={`${index}-${each}-horizontal-tag`}>{each}&nbsp;</span> )}
+              {card.tags.map((each) => (
+                <span data-testid={`${index}-${each}-horizontal-tag`}>{each}&nbsp;</span>
+              ))}
             </p>
           )}
           <div>
@@ -89,7 +89,8 @@ function HCard({ card, index, favOrDone }) {
                   alt="favorite button"
                   data-testid={`${index}-horizontal-favorite-btn`}
                 />
-              </button>)}
+              </button>
+            )}
             <button className="det-btn" onClick={() => shareBt(card.id, card.type, setCopied)}>
               <img data-testid={`${index}-horizontal-share-btn`} alt="share button" src={shareI} />
               {copied && <span>Link copiado!</span>}
