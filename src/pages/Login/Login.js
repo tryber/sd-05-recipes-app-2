@@ -2,25 +2,21 @@ import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './login.css';
 import AppContext from '../../contexts/AppContext';
+import logo1 from '../../images/logo_01.png';
+import logo2 from '../../images/logo_02.png';
 
 function emailInput(handleEmail) {
   return (
     <div className="form-group">
-      <label htmlFor="email">
-        E-mail:
-        <input
-          data-testid="email-input"
-          type="email"
-          name="email"
-          id="email"
-          onChange={(e) => handleEmail(e)}
-          className="form-control form-input"
-          placeholder="Email"
-        />
-        {/* <small id="emailHelp" class="form-text text-muted">
-          We'll never share your email <br/> with anyone else.
-        </small> */}
-      </label>
+      <input
+        data-testid="email-input"
+        type="email"
+        name="email"
+        id="email"
+        onChange={(e) => handleEmail(e)}
+        className="form-control form-input"
+        placeholder="E-mail"
+      />
     </div>
   );
 }
@@ -28,18 +24,15 @@ function emailInput(handleEmail) {
 function passwordInput(handlePassword) {
   return (
     <div className="form-group">
-      <label htmlFor="password">
-        Senha:
-        <input
-          data-testid="password-input"
-          type="password"
-          name="senha"
-          id="password"
-          onChange={(e) => handlePassword(e)}
-          className="form-control form-input"
-          placeholder="Senha"
-        />
-      </label>
+      <input
+        data-testid="password-input"
+        type="password"
+        name="senha"
+        id="password"
+        onChange={(e) => handlePassword(e)}
+        className="form-control form-input"
+        placeholder="Senha"
+      />
     </div>
   );
 }
@@ -89,7 +82,8 @@ function Login() {
   return (
     <div className="login-page">
       <div className="login-container">
-        <h2 className="page-title">Login</h2>
+        <img className="logo" alt="Logo Panelinha" src={logo1}></img>
+        <h3 className="page-title">Bem-vindo(a)!</h3>
         <form>
           {emailInput(handleEmail)}
           {passwordInput(handlePassword)}
