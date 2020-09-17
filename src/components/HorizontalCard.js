@@ -74,13 +74,14 @@ function HCard({ card, index }) {
             <p data-testid={`${index}-horizontal-name`}>{card.name}</p>
           </button>
           <div>
-            <button className="det-btn" onClick={() => disFav(card.id, card.type, setFav)}>
-              <img
-                src={blackHI}
-                alt="favorite button"
-                data-testid={`${index}-horizontal-favorite-btn`}
-              />
-            </button>
+            {card.type === 'bebida' &&
+              (<button className="det-btn" onClick={() => disFav(card.id, card.type, setFav)}>
+                <img
+                  src={blackHI}
+                  alt="favorite button"
+                  data-testid={`${index}-horizontal-favorite-btn`}
+                />
+              </button>)}
             <button className="det-btn" onClick={() => shareBt(card.id, card.type, setCopied)}>
               <img data-testid={`${index}-horizontal-share-btn`} alt="share button" src={shareI} />
               {copied && <span>Link copiado!</span>}

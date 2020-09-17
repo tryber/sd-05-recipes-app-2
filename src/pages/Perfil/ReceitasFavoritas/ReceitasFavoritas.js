@@ -3,7 +3,7 @@ import Header from '../../../components/Header';
 import HCard from '../../../components/HorizontalCard';
 import AppContext from '../../../contexts/AppContext';
 
-function ReceitasFeitas() {
+function ReceitasFavoritas() {
   const { fav } = useContext(AppContext);
   const [favorites, setFavorites] = useState([]);
   const [filters, setFilters] = useState([]);
@@ -44,4 +44,4 @@ function ReceitasFeitas() {
   );
 }
 
-export default ReceitasFeitas;
+export default ReceitasFavoritas;
