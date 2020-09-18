@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import shareI from '../images/shareIcon.svg';
 import blackHI from '../images/blackHeartIcon.svg';
 import AppContext from '../contexts/AppContext';
+import './horizontalCard.css';
 
 function handleClick(history, type, id) {
   if (type === 'comida') {
@@ -53,52 +54,46 @@ function HCard({ card, index, favOrDone }) {
   const history = useHistory();
 
   return (
-    <button className="card-rec">
-      <div className="card">
+    <div className="card-horizontal">
+      <div>
         <button onClick={() => handleClick(history, card.type, card.id)}>
-          <img
-            src={card.image}
-            alt={card.name}
-            className="card-image-top"
-            data-testid={`${index}-horizontal-image`}
-          />
+          <img className="hcard-img" src={card.image} alt={card.name} data-testid={`${index}-horizontal-image`} />
         </button>
-        <div className="card-body card-description">
-          <p
-            className="card-title d-flex flex-column justify-content-end align-items-center"
-            data-testid={`${index}-horizontal-top-text`}
-          >
+      </div>
+      <div className="hcard-info">
+        <div className="hcard-title">
+          <span data-testid={`${index}-horizontal-top-text`}>
             {`${card.type === 'bebida' ? card.alcoholicOrNot : card.area} - ${card.category}`}
-          </p>
-          <button onClick={() => handleClick(history, card.type, card.id)}>
-            <p data-testid={`${index}-horizontal-name`}>{card.name}</p>
-          </button>
-          <p data-testid={`${index}-horizontal-done-date`}>{card.doneDate}</p>
+          </span>
+          <h4 data-testid={`${index}-horizontal-name`}>{card.name}</h4>
+        </div>
+        <div className="hcard-details">
           {favOrDone === 'done' && (
             <p>
-              {card.tags.map((each) => (
-                <span data-testid={`${index}-${each}-horizontal-tag`}>{each}&nbsp;</span>
+              <b>Feita em:</b>
+              <span data-testid={`${index}-horizontal-done-date`}>{card.doneDate}</span>
+            </p>)}
+          {favOrDone === 'done' && (
+            <span>
+              {card.tags.filter((tag, index) => index <= 1).map((each) => (
+                <span className="h-tags" data-testid={`${index}-${each}-horizontal-tag`}>{each}</span>
               ))}
-            </p>
+            </span>
           )}
-          <div>
-            {favOrDone === 'fav' && (
-              <button className="det-btn" onClick={() => disFav(card.id, card.type, setFav)}>
-                <img
-                  src={blackHI}
-                  alt="favorite button"
-                  data-testid={`${index}-horizontal-favorite-btn`}
-                />
-              </button>
-            )}
-            <button className="det-btn" onClick={() => shareBt(card.id, card.type, setCopied)}>
+        </div>
+        {favOrDone === 'fav' && (
+          <div className="hcard-btns">
+            <button onClick={() => disFav(card.id, card.type, setFav)}>
+              <img src={blackHI} alt="favorite button" data-testid={`${index}-horizontal-favorite-btn`} />
+            </button>
+            <button onClick={() => shareBt(card.id, card.type, setCopied)}>
               <img data-testid={`${index}-horizontal-share-btn`} alt="share button" src={shareI} />
               {copied && <span>Link copiado!</span>}
             </button>
           </div>
-        </div>
+        )}
       </div>
-    </button>
+    </div>
   );
 }
 

@@ -28,6 +28,11 @@ a:hover {
   text-decoration: none;
 }
 
+button {
+  border: 0;
+  background-color: none;
+}
+
 .button-laranja {
   background-color: var(--laranja);
   /* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */

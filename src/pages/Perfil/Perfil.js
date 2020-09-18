@@ -15,16 +15,16 @@ export default function Perfil() {
   };
 
   useEffect(() => {
-    setMail(localStorage.getItem('user'));
+    setMail(JSON.parse(localStorage.getItem('user')).email);
   }, []);
 
   return (
     <div>
       <Header />
       <div className="profile-body">
-        <h4 className="email" data-testid="profile-email">
+        <p className="email" data-testid="profile-email">
           {mail}
-        </h4>
+        </p>
         <div className="btn-container">
           <button
             data-testid="profile-done-btn"

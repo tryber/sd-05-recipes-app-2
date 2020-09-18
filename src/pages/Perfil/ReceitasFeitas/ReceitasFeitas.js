@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../../../components/Header';
 import HCard from '../../../components/HorizontalCard';
+import Footer from '../../../components/Footer';
+import '../donefav.css';
 
 function ReceitasFeitas() {
   const [filters, setFilters] = useState([]);
@@ -17,29 +19,33 @@ function ReceitasFeitas() {
   return (
     <div>
       <Header />
-      <div>
+      <div className="profile-cat-section">
         <button
-          data-testid="filter-by-all-btn"
-          onClick={() => setFilters(done)}
-        >
-          Todas
-        </button>
-        <button
+          className="btn btn-sm cat-btn"
           data-testid="filter-by-food-btn"
           onClick={() => setFilters(done.filter((recipe) => recipe.type === 'comida'))}
         >
           Comidas
         </button>
         <button
+          className="btn btn-sm cat-btn"
           data-testid="filter-by-drink-btn"
           onClick={() => setFilters(done.filter((recipe) => recipe.type === 'bebida'))}
         >
           Bebidas
         </button>
+        <button
+          className="btn btn-sm cat-btn"
+          data-testid="filter-by-all-btn"
+          onClick={() => setFilters(done)}
+        >
+          Todas
+        </button>
       </div>
       <div>
         {filters.map((card, index) => (<HCard card={card} index={index} favOrDone="done" />))}
       </div>
+      <Footer />
     </div>
   );
 }

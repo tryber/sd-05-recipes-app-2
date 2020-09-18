@@ -36,7 +36,7 @@ body {
 }
 
 .page-title {
-  color: rgb(255, 134, 0);
+  color: #141414  ;
   font-weight: 300;
   text-align: center;
   padding: 2vh 0;
@@ -45,7 +45,7 @@ body {
 .enter-button {
   display: flex;
   justify-content: center;
-  margin-top: 8vh;
+  margin-top: 5vh;
 }
 
 .form-input {
