@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import Login from '../pages/Login/Login';
 import renderWithRouter from '../services/renderWithRouter';
 import Provider from '../contexts/Provider';
@@ -140,11 +140,11 @@ describe('Após a submissão, o e-mail de pessoa usuária deve ser salvo em loca
 
 describe('Após a submissão e validação com sucesso do login, o usuário deve ser redirecionado para a tela principal de receitas de comidas', () => {
   it('A rota muda para a tela principal de receitas de comidas', () => {
-    const { getByRole, getByPlaceholderText, history } = renderWithRouter(
+    const { getByTestId, getByPlaceholderText, history } = renderWithRouter(
       <Provider>
         <Login />
       </Provider>);
-    const submitBtn = getByRole('button', { name: /Entrar/i });
+    const submitBtn = getByTestId("login-submit-btn");
     const emailInput = getByPlaceholderText(/E-mail/i);
     const passwordInput = getByPlaceholderText(/Senha/i);
 
@@ -155,7 +155,7 @@ describe('Após a submissão e validação com sucesso do login, o usuário deve
     fireEvent.change(passwordInput, { target: { value: '12345678' } });
     fireEvent.click(submitBtn);
     const pathname = history.location.pathname;
-    expect(pathname).toEqual('/comidas')
+    expect(pathname).toBe('/comidas')
   });
 });
 
