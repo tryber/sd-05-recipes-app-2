@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import { useHistory, useParams } from 'react-router-dom';
 import './details.css';
 import './card.css';
-// import shareIcon from '../images/shareIcon.svg';
-// import whiteHeartIcon from '../images/whiteHeartIcon.svg';
-// import goBack from '../images/go-back.svg';
 import Card from './Card';
 import DetailHeader from './DetailHeader';
+import Header from './Header';
+import Footer from './Footer';
 import * as storage from '../services/localStorage';
 import AppContext from '../contexts/AppContext';
 
@@ -80,6 +79,7 @@ function Details({ Meal, details, recom, ingredientsList }) {
 
   return (
     <div>
+      <Header />
       <div>
         <DetailHeader Meal={Meal} details={details} />
       </div>
@@ -108,9 +108,10 @@ function Details({ Meal, details, recom, ingredientsList }) {
           className={DIS ? 'hidden' : 'start-btn'}
           onClick={() => handleIniciarReceita(history, id)}
         >
-          {IP ? 'Continuar Receita' : 'Iniciar receita'}
+          {IP ? 'Continue recipe' : 'Start recipe'}
         </button>
       </div>
+      <Footer />
     </div>
   );
 }

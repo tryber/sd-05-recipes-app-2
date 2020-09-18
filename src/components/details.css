@@ -94,18 +94,18 @@
 }
 
 .start-btn {
-  background-color: rgb(255, 134, 0);
+  background-color: #57cc99;
   border: none;
   border-radius: 15px;
-  bottom: 0;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.8);
-  margin: 3vh auto;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+  font-size: 16pt;
+  margin: 3vh 19vw;
   padding: 1vh 5vw;
-  position: fixed;
+/*   position: fixed; */
 }
 
 .start-btn:hover {
-  background-color: rgb(255, 174, 13);
+  background-color: #FFAE0D;
   box-shadow: 0 8px 8px rgba(0, 0, 0, 0.7);
   transition: 0.3s ease;
 }
