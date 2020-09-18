@@ -3,11 +3,17 @@ import { useHistory } from 'react-router-dom';
 import './explorar.css';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import background from '../../images/background/bg-light-left.png';
 
 export default function Explorar() {
   const history = useHistory();
   return (
-    <div>
+    <div style={{
+      backgroundImage: `url(${background})`,
+      backgroundPosition: 'center',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat'
+    }}>
       <Header />
       <div className="explorar-container">
         <button

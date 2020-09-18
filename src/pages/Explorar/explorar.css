@@ -1,17 +1,18 @@
 .explorar-container {
-  align-items: center;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   height: 80vh;
-  margin: 5vh auto;
-  max-width: 80%;
+  margin: 10vh auto;
+  padding-top: 5vh;
+  padding-bottom: 30vh;
+  max-width: 60vw;
 }
 
 .explorar-container button {
   border-left: 8px solid rgb(255, 134, 0);
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
-  font-size: 28px;
-  font-style: italic;
+  font-size: 16pt;
   font-weight: 300;
   margin: 5vh 0 0;
   width: 100%;

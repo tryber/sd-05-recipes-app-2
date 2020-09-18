@@ -4,6 +4,7 @@ import './perfil.css';
 import door from '../../images/door.svg';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import background from '../../images/background/bg-light-right.png';
 
 export default function Perfil() {
   const history = useHistory();
@@ -19,7 +20,12 @@ export default function Perfil() {
   }, []);
 
   return (
-    <div>
+    <div style={{
+      backgroundImage: `url(${background})`,
+      backgroundPosition: 'center',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat'
+    }}>
       <Header />
       <div className="profile-body">
         <p className="email" data-testid="profile-email">
