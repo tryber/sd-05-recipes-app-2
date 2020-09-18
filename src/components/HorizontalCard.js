@@ -55,7 +55,7 @@ function HCard({ card, index, favOrDone }) {
 
   return (
     <div className="card-horizontal">
-      <div>
+      <div className="d-flex align-items-center">
         <button onClick={() => handleClick(history, card.type, card.id)}>
           <img className="hcard-img" src={card.image} alt={card.name} data-testid={`${index}-horizontal-image`} />
         </button>
