@@ -1,5 +1,7 @@
 import React from 'react';
-import { screen, fireEvent } from '@testing-library/react';
+import { waitFor, fireEvent } from '@testing-library/react';
+import { mockSuccessFood, mockSuccessDrink } from './recipes_list.test';
+import * as api from '../services/api';
 import renderWithRouter from '../services/renderWithRouter';
 import Provider from '../contexts/Provider';
 import Header from '../components/Header';
@@ -8,14 +10,19 @@ import Home from '../pages/Home/Home';
 import SearchBar from '../components/SearchBar';
 import * as mockAPI from './mockAPI';
 
+jest.spyOn(api, 'defaultMeals').mockImplementation(() => mockSuccessFood);
+jest.spyOn(api, 'defaultDrinks').mockImplementation(() => mockSuccessDrink);
 jest.spyOn(api, 'mealCategories').mockImplementation(() => mockAPI.mockSuccessCatFood);
 jest.spyOn(api, 'drinkCategories').mockImplementation(() => mockAPI.mockSuccessCatDrink);
-jest.spyOn(api, 'byMealIngredient').mockImplementation(() => mockAPI.mockIngredChicken);
-jest.spyOn(api, 'byMealName').mockImplementation(() => mockAPI.mockNameSoup);
-jest.spyOn(api, 'byMealFirstLetter').mockImplementation(() => mockAPI.mockA);
-jest.spyOn(api, 'byDrinkIngredient').mockImplementation(() => mockAPI.mockIngredLemon);
-jest.spyOn(api, 'byDrinkName').mockImplementation(() => mockAPI.mockNameGin);
-jest.spyOn(api, 'byDrinkFirstLetter').mockImplementation(() => mockAPI.mockADrink);
+
+const checkTwelveRec = (recipes, type, testid) => {
+  recipes.splice(0, 12).forEach((recipe, i) => {
+    expect(testid(`${i}-recipe-card`)).toBeInTheDocument();
+    expect(testid(`${i}-card-img`)).toBeInTheDocument();
+    expect(testid(`${i}-card-img`)).toHaveAttribute('src', recipe[`str${type}Thumb`]);
+    expect(testid(`${i}-card-name`)).toBeInTheDocument();
+  })
+};
 
 describe('Deve ter uma seção de botões para filtrar por categorias', () => {
   it('Tela de comida deve ter categorias e data-test-ids corretos', async () => {
@@ -51,14 +58,233 @@ describe('Deve ter uma seção de botões para filtrar por categorias', () => {
     expect(getByTestId('Milk / Float / Shake-category-filter')).toBeInTheDocument();
     expect(getByTestId('Other/Unknown-category-filter')).toBeInTheDocument();
     expect(getByTestId('Cocoa-category-filter')).toBeInTheDocument();
-  })
+  });
+});
+
+describe('No filtro de categorias deve existir a opção de filtrar por todas as categorias', () => {
+  it('Caso as receitas sejam de comida deve existir a opção de filtrar por todas as categorias', async () => {
+    const { getByTestId, getByAltText } = renderWithRouter(
+      <Provider>
+        <Home />
+      </Provider>,
+      { route: '/comidas' }
+    );
+    await waitFor(() => expect(api.defaultMeals).toHaveBeenCalled());
+    
+    expect(getByTestId('All-category-filter')).toBeInTheDocument();
+    fireEvent.click(getByTestId('All-category-filter'));
+    await waitFor(() => expect(api.defaultMeals).toHaveBeenCalledTimes(2));
+  });
 })
 
-import { waitFor } from '@testing-library/react';
-import { mockSuccessFood, mockSuccessDrink } from './recipes_list.test';
-import * as api from '../services/api';
-jest.spyOn(api, 'defaultMeals').mockImplementation(() => mockSuccessFood);
-jest.spyOn(api, 'defaultDrinks').mockImplementation(() => mockSuccessDrink);
+describe('Ao clicar no filtro de categoria, todas as receitas devem mudar para os dados filtrados da API - PAGINA DE COMIDA', () => {
+  it('Caso as receitas sejam de comida e a categoria seja "Beef", deve-se carregar as 12 primeiras receitas de "Beef"', async () => {
+    const { getByTestId } = renderWithRouter(
+      <Provider>
+        <Home />
+      </Provider>,
+      { route: '/comidas' }
+    );
+    await waitFor(() => expect(api.defaultMeals).toHaveBeenCalled());
+    
+    jest.spyOn(api, 'byMealCategory').mockImplementation(() => mockAPI.mockBeefMeals);
+    fireEvent.click(getByTestId('Beef-category-filter'));
+    await waitFor(() => expect(api.byMealCategory).toHaveBeenCalled());
+    const beefMeals = require('../../cypress/mocks/beefMeals');
+    checkTwelveRec(beefMeals.meals, 'Meal', getByTestId);
+  });
+
+  it('Caso as receitas sejam de comida e a categoria seja "Breakfast", deve-se carregar as 12 primeiras receitas de "Breakfast"', async () => {
+    const { getByTestId } = renderWithRouter(
+      <Provider>
+        <Home />
+      </Provider>,
+      { route: '/comidas' }
+    );
+    await waitFor(() => expect(api.defaultMeals).toHaveBeenCalled());
+    
+    jest.spyOn(api, 'byMealCategory').mockImplementation(() => mockAPI.mockBreakFMeals);
+    fireEvent.click(getByTestId('Breakfast-category-filter'));
+    await waitFor(() => expect(api.byMealCategory).toHaveBeenCalled());
+    const breakFestMeals = require('../../cypress/mocks/breakfastMeals');
+    checkTwelveRec(breakFestMeals.meals, 'Meal', getByTestId);
+  });
+
+  it('Caso as receitas sejam de comida e a categoria seja "Chicken", deve-se carregar as 12 primeiras receitas de "Chicken"', async () => {
+    const { getByTestId } = renderWithRouter(
+      <Provider>
+        <Home />
+      </Provider>,
+      { route: '/comidas' }
+    );
+    await waitFor(() => expect(api.defaultMeals).toHaveBeenCalled());
+    
+    jest.spyOn(api, 'byMealCategory').mockImplementation(() => mockAPI.mockChickMeals);
+    fireEvent.click(getByTestId('Chicken-category-filter'));
+    await waitFor(() => expect(api.byMealCategory).toHaveBeenCalled());
+    const chickenMeals = require('../../cypress/mocks/chickenMeals');
+    checkTwelveRec(chickenMeals.meals, 'Meal', getByTestId);
+  });
+
+  it('Caso as receitas sejam de comida e a categoria seja "Dessert", deve-se carregar as 12 primeiras receitas de "Dessert"', async () => {
+    const { getByTestId } = renderWithRouter(
+      <Provider>
+        <Home />
+      </Provider>,
+      { route: '/comidas' }
+    );
+    await waitFor(() => expect(api.defaultMeals).toHaveBeenCalled());
+    
+    jest.spyOn(api, 'byMealCategory').mockImplementation(() => mockAPI.mockDessertMeals);
+    fireEvent.click(getByTestId('Dessert-category-filter'));
+    await waitFor(() => expect(api.byMealCategory).toHaveBeenCalled());
+    const dessertMeals = require('../../cypress/mocks/dessertMeals');
+    checkTwelveRec(dessertMeals.meals, 'Meal', getByTestId); 
+  });
+
+  it('Caso as receitas sejam de comida e a categoria seja "Goat", deve-se carregar as 12 primeiras receitas de "Goat"', async () => {
+    const { getByTestId } = renderWithRouter(
+      <Provider>
+        <Home />
+      </Provider>,
+      { route: '/comidas' }
+    );
+    await waitFor(() => expect(api.defaultMeals).toHaveBeenCalled());
+    
+    jest.spyOn(api, 'byMealCategory').mockImplementation(() => mockAPI.mockGoatMeals);
+    fireEvent.click(getByTestId('Goat-category-filter'));
+    await waitFor(() => expect(api.byMealCategory).toHaveBeenCalled());
+    const goatMeals = require('../../cypress/mocks/goatMeals');
+    checkTwelveRec(goatMeals.meals, 'Meal', getByTestId); 
+  });
+});
+  
+describe('Ao clicar no filtro de categoria, todas as receitas devem mudar para os dados filtrados da API - PAGINA DE BEBIDA', () => {
+  it('Caso as receitas sejam de bebida e a categoria seja "Ordinary Drink", deve-se carregar as 12 primeiras receitas de "Ordinary Drink"', async () => {
+    const { getByTestId } = renderWithRouter(
+      <Provider>
+        <Home />
+      </Provider>,
+      { route: '/bebidas' }
+    );
+    await waitFor(() => expect(api.defaultDrinks).toHaveBeenCalled());
+    
+    jest.spyOn(api, 'byDrinkCategory').mockImplementation(() => mockAPI.mockOrdinaryDrink);
+    fireEvent.click(getByTestId('Ordinary Drink-category-filter'));
+    await waitFor(() => expect(api.byDrinkCategory).toHaveBeenCalled());
+    const ordinaryDrinks = require('../../cypress/mocks/ordinaryDrinks');
+    checkTwelveRec(ordinaryDrinks.drinks, 'Drink', getByTestId);
+  });
+  
+  it('Caso as receitas sejam de bebida e a categoria seja "Cocktail", deve-se carregar as 12 primeiras receitas de "Cocktail"', async () => {
+    const { getByTestId } = renderWithRouter(
+      <Provider>
+        <Home />
+      </Provider>,
+      { route: '/bebidas' }
+    );
+    await waitFor(() => expect(api.defaultDrinks).toHaveBeenCalled());
+    
+    jest.spyOn(api, 'byDrinkCategory').mockImplementation(() => mockAPI.mockCocktailDrink);
+    fireEvent.click(getByTestId('Cocktail-category-filter'));
+    await waitFor(() => expect(api.byDrinkCategory).toHaveBeenCalled());
+    const cocktailDrinks = require('../../cypress/mocks/cocktailDrinks');
+    checkTwelveRec(cocktailDrinks.drinks, 'Drink', getByTestId);
+  });
+  
+  it('Caso as receitas sejam de bebida e a categoria seja "Milk / Float / Shake", deve-se carregar as 12 primeiras receitas de "Milk / Float / Shake"', async () => {
+    const { getByTestId } = renderWithRouter(
+      <Provider>
+        <Home />
+      </Provider>,
+      { route: '/bebidas' }
+    );
+    await waitFor(() => expect(api.defaultDrinks).toHaveBeenCalled());
+    
+    jest.spyOn(api, 'byDrinkCategory').mockImplementation(() => mockAPI.mockMilkDrink);
+    fireEvent.click(getByTestId('Milk / Float / Shake-category-filter'));
+    await waitFor(() => expect(api.byDrinkCategory).toHaveBeenCalled());
+    const milkDrinks = require('../../cypress/mocks/milkDrinks');
+    checkTwelveRec(milkDrinks.drinks, 'Drink', getByTestId);
+  });
+  
+  it('Caso as receitas sejam de bebida e a categoria seja "Other/Unknown", deve-se carregar as 12 primeiras receitas de "Other/Unknown"', async () => {
+    const { getByTestId } = renderWithRouter(
+      <Provider>
+        <Home />
+      </Provider>,
+      { route: '/bebidas' }
+    );
+    await waitFor(() => expect(api.defaultDrinks).toHaveBeenCalled());
+    
+    jest.spyOn(api, 'byDrinkCategory').mockImplementation(() => mockAPI.mockOtherDrink);
+    fireEvent.click(getByTestId('Other/Unknown-category-filter'));
+    await waitFor(() => expect(api.byDrinkCategory).toHaveBeenCalled());
+    const otherDrinks = require('../../cypress/mocks/otherDrinks');
+    checkTwelveRec(otherDrinks.drinks, 'Drink', getByTestId);
+  });
+  
+  it('Caso as receitas sejam de bebida e a categoria seja "Cocoa", deve-se carregar as 12 primeiras receitas de "Cocoa"', async () => {
+    const { getByTestId } = renderWithRouter(
+      <Provider>
+        <Home />
+      </Provider>,
+      { route: '/bebidas' }
+    );
+    await waitFor(() => expect(api.defaultDrinks).toHaveBeenCalled());
+    
+    jest.spyOn(api, 'byDrinkCategory').mockImplementation(() => mockAPI.mockCocoaDrink);
+    fireEvent.click(getByTestId('Cocoa-category-filter'));
+    await waitFor(() => expect(api.byDrinkCategory).toHaveBeenCalled());
+    const cocoaDrinks = require('../../cypress/mocks/cocoaDrinks');
+    checkTwelveRec(cocoaDrinks.drinks, 'Drink', getByTestId);
+  });
+});
+
+describe('Caso o filtro selecionado no momento seja selecionado de novo, o app deve retornar as receitas sem nenhum filtro, como se fosse um toggle', () => {
+  it('Caso as receitas sejam de comida e o filtro tenha sido selecionado novamente, deve-se retornar as 12 primeiras receitas sem filtro', async () => {
+    const { getByTestId } = renderWithRouter(
+      <Provider>
+        <Home />
+      </Provider>,
+      { route: '/comidas' }
+    );
+    await waitFor(() => expect(api.defaultMeals).toHaveBeenCalled());
+    
+    jest.spyOn(api, 'byMealCategory').mockImplementation(() => mockAPI.mockBeefMeals);
+    fireEvent.click(getByTestId('Beef-category-filter'));
+    await waitFor(() => expect(api.byMealCategory).toHaveBeenCalled());
+    fireEvent.click(getByTestId('Beef-category-filter'));
+    await waitFor(() => expect(api.defaultMeals).toHaveBeenCalledTimes(2));
+    const meals = require('../../cypress/mocks/meals');
+    checkTwelveRec(meals.meals, 'Meal', getByTestId);
+  });
+
+  it('Caso as receitas sejam de bebida e o filtro tenha sido selecionado novamente, deve-se retornar as 12 primeiras receitas sem filtro', async () => {
+    const { getByTestId } = renderWithRouter(
+      <Provider>
+        <Home />
+      </Provider>,
+      { route: '/bebidas' }
+    );
+    await waitFor(() => expect(api.defaultDrinks).toHaveBeenCalled());
+    
+    jest.spyOn(api, 'byDrinkCategory').mockImplementation(() => mockAPI.mockOrdinaryDrink);
+    fireEvent.click(getByTestId('Ordinary Drink-category-filter'));
+    await waitFor(() => expect(api.byDrinkCategory).toHaveBeenCalled());
+    fireEvent.click(getByTestId('Ordinary Drink-category-filter'));
+    await waitFor(() => expect(api.defaultDrinks).toHaveBeenCalled(3));
+    const drinks = require('../../cypress/mocks/drinks');
+    checkTwelveRec(drinks.drinks, 'Drink', getByTestId);
+  });
+});
+  
+jest.spyOn(api, 'byMealIngredient').mockImplementation(() => mockAPI.mockIngredChicken);
+jest.spyOn(api, 'byMealName').mockImplementation(() => mockAPI.mockNameSoup);
+jest.spyOn(api, 'byMealFirstLetter').mockImplementation(() => mockAPI.mockA);
+jest.spyOn(api, 'byDrinkIngredient').mockImplementation(() => mockAPI.mockIngredLemon);
+jest.spyOn(api, 'byDrinkName').mockImplementation(() => mockAPI.mockNameGin);
+jest.spyOn(api, 'byDrinkFirstLetter').mockImplementation(() => mockAPI.mockADrink);
 
 describe('Todos os elementos devem respeitar os atributos descritos no protótipo para a barra de busca', () => {
   it('Data-test-ids devem estar na tela ao clicar na lupa', async () => {
@@ -148,28 +374,28 @@ describe('A barra de busca deve mudar a forma como serão filtradas as receitas 
     fireEvent.click(searchBtn);
     await waitFor(() => expect(api.byMealFirstLetter).toHaveBeenCalled());
   });
-  // it('Se o radio selecionado for Primeira letra e a busca na API for feita com mais de uma letra, deve-se exibir um alert', async () => {
-  //   const { getByTestId, getByRole } = renderWithRouter(
-  //     <Provider>
-  //       <Home />
-  //     </Provider>,
-  //     { route: '/comidas' }
-  //   );
+  it('Se o radio selecionado for Primeira letra e a busca na API for feita com mais de uma letra, deve-se exibir um alert', async () => {
+    const { getByTestId, getByRole } = renderWithRouter(
+      <Provider>
+        <Home />
+      </Provider>,
+      { route: '/comidas' }
+    );
 
-  //   await waitFor(() => expect(api.defaultMeals).toHaveBeenCalled());
-  //   const searchIcon = getByTestId('search-top-btn');
-  //   fireEvent.click(searchIcon);
+    await waitFor(() => expect(api.defaultMeals).toHaveBeenCalled());
+    const searchIcon = getByTestId('search-top-btn');
+    fireEvent.click(searchIcon);
 
-  //   const inputSearch = getByTestId('search-input');
-  //   fireEvent.change(inputSearch, { target: { value: 'aaa' }});
-  //   const firstLetRadio = getByTestId('first-letter-search-radio');
-  //   fireEvent.click(firstLetRadio);
-  //   const searchBtn = getByTestId('exec-search-btn');
-  //   fireEvent.click(searchBtn);
-  //   const alert = getByRole('alert');
-  //   console.log(alert);
-  //   expect(getByRole('alert')).toBeInTheDocument();
-  // });
+    const inputSearch = getByTestId('search-input');
+    fireEvent.change(inputSearch, { target: { value: 'aaa' }});
+    const firstLetRadio = getByTestId('first-letter-search-radio');
+    fireEvent.click(firstLetRadio);
+    const searchBtn = getByTestId('exec-search-btn');
+    fireEvent.click(searchBtn);
+    const alert = getByRole('alert');
+    console.log(alert);
+    expect(getByRole('alert')).toBeInTheDocument();
+  });
 })
 
 describe('A barra de busca deve mudar a forma como serão filtradas as receitas de bebida', () => {
@@ -233,26 +459,128 @@ describe('A barra de busca deve mudar a forma como serão filtradas as receitas 
     fireEvent.click(searchBtn);
     await waitFor(() => expect(api.byDrinkFirstLetter).toHaveBeenCalled());
   });
-  // it('Se o radio selecionado for Primeira letra e a busca na API for feita com mais de uma letra, deve-se exibir um alert', async () => {
-  //   const { getByTestId, getByRole } = renderWithRouter(
-  //     <Provider>
-  //       <Home />
-  //     </Provider>,
-  //     { route: '/comidas' }
-  //   );
+  it('Se o radio selecionado for Primeira letra e a busca na API for feita com mais de uma letra, deve-se exibir um alert', async () => {
+    const { getByTestId, getByRole } = renderWithRouter(
+      <Provider>
+        <Home />
+      </Provider>,
+      { route: '/comidas' }
+    );
 
-  //   await waitFor(() => expect(api.defaultMeals).toHaveBeenCalled());
-  //   const searchIcon = getByTestId('search-top-btn');
-  //   fireEvent.click(searchIcon);
+    await waitFor(() => expect(api.defaultMeals).toHaveBeenCalled());
+    const searchIcon = getByTestId('search-top-btn');
+    fireEvent.click(searchIcon);
 
-  //   const inputSearch = getByTestId('search-input');
-  //   fireEvent.change(inputSearch, { target: { value: 'aaa' }});
-  //   const firstLetRadio = getByTestId('first-letter-search-radio');
-  //   fireEvent.click(firstLetRadio);
-  //   const searchBtn = getByTestId('exec-search-btn');
-  //   fireEvent.click(searchBtn);
-  //   const alert = getByRole('alert');
-  //   console.log(alert);
-  //   expect(getByRole('alert')).toBeInTheDocument();
-  // });
+    const inputSearch = getByTestId('search-input');
+    fireEvent.change(inputSearch, { target: { value: 'aaa' }});
+    const firstLetRadio = getByTestId('first-letter-search-radio');
+    fireEvent.click(firstLetRadio);
+    const searchBtn = getByTestId('exec-search-btn');
+    fireEvent.click(searchBtn);
+    expect(getByRole('alert')).toHaveBeenCalled();
+  });
+})
+
+describe('Caso apenas uma receita seja encontrada, a rota deve mudar para a tela de detalhes da receita com o ID da mesma na URL', () => {
+  it('Caso apenas uma comida seja encontrada, deve-se ir para sua rota de detalhes', async () => {
+    const { history, getByTestId } = renderWithRouter(
+      <Provider>
+        <Home />
+      </Provider>,
+      { route: '/comidas' }
+    );
+
+    await waitFor(() => expect(api.defaultMeals).toHaveBeenCalled());
+    const searchIcon = getByTestId('search-top-btn');
+    fireEvent.click(searchIcon);
+
+    const inputSearch = getByTestId('search-input');
+    fireEvent.change(inputSearch, { target: { value: 'Arrabiata' }});
+    const nameRadio = getByTestId('name-search-radio');
+    fireEvent.click(nameRadio);
+    const searchBtn = getByTestId('exec-search-btn');
+    fireEvent.click(searchBtn);
+    await waitFor(() => expect(api.byMealName).toHaveBeenCalled());
+    expect(history.location.pathname).toBe('/comidas/52771');
+  });
+  it('Caso apenas uma bebida seja encontrada, deve-se ir para sua rota de detalhes', async () => {
+    const { history, getByTestId } = renderWithRouter(
+      <Provider>
+        <Home />
+      </Provider>,
+      { route: '/bebidas' }
+    );
+
+    await waitFor(() => expect(api.defaultDrinks).toHaveBeenCalled());
+    const searchIcon = getByTestId('search-top-btn');
+    fireEvent.click(searchIcon);
+
+    const inputSearch = getByTestId('search-input');
+    fireEvent.change(inputSearch, { target: { value: 'Aquamarine' }});
+    const nameRadio = getByTestId('name-search-radio');
+    fireEvent.click(nameRadio);
+    const searchBtn = getByTestId('exec-search-btn');
+    fireEvent.click(searchBtn);
+    await waitFor(() => expect(api.byDrinkName).toHaveBeenCalled());
+    expect(history.location.pathname).toBe('/bebidas/178319');
+  });
+})
+
+describe('Caso mais de uma receita seja encontrada, mostrar as receitas em cards da mesma maneira que a tela principal de receitas', () => {
+  it('Caso mais de uma comida seja encontrada, mostrar as 12 primeiras', async () => {
+    const { getByTestId, queryByTestId } = renderWithRouter(
+      <Provider>
+        <Home />
+      </Provider>,
+      { route: '/comidas' }
+    );
+
+    await waitFor(() => expect(api.defaultMeals).toHaveBeenCalled());
+    const searchIcon = getByTestId('search-top-btn');
+    fireEvent.click(searchIcon);
+
+    const inputSearch = getByTestId('search-input');
+    fireEvent.change(inputSearch, { target: { value: 'soup' }});
+    const nameRadio = getByTestId('name-search-radio');
+    fireEvent.click(nameRadio);
+    const searchBtn = getByTestId('exec-search-btn');
+    fireEvent.click(searchBtn);
+    await waitFor(() => expect(api.byMealName).toHaveBeenCalled());
+
+    const soupMeals = require('../../cypress/mocks/soupMeals');
+    soupMeals.meals.forEach((meal, i) => {
+      expect(getByTestId(`${i}-recipe-card`)).toBeInTheDocument();
+      expect(getByTestId(`${i}-card-img`)).toBeInTheDocument();
+      expect(getByTestId(`${i}-card-name`)).toBeInTheDocument();
+    });
+    expect(queryByTestId('10-recipe-card')).not.toBeInTheDocument();
+  });
+  it('Caso mais de uma bebida seja encontrada, mostrar as 12 primeiras', async () => {
+    const { getByTestId, queryByTestId } = renderWithRouter(
+      <Provider>
+        <Home />
+      </Provider>,
+      { route: '/bebidas' }
+    );
+
+    await waitFor(() => expect(api.defaultDrinks).toHaveBeenCalled());
+    const searchIcon = getByTestId('search-top-btn');
+    fireEvent.click(searchIcon);
+
+    const inputSearch = getByTestId('search-input');
+    fireEvent.change(inputSearch, { target: { value: 'soup' }});
+    const nameRadio = getByTestId('name-search-radio');
+    fireEvent.click(nameRadio);
+    const searchBtn = getByTestId('exec-search-btn');
+    fireEvent.click(searchBtn);
+    await waitFor(() => expect(api.byMealName).toHaveBeenCalled());
+
+    const ginDrinks = require('../../cypress/mocks/ginDrinks');
+    ginDrinks.drinks.slice(0, 12).forEach((drink, i) => {
+      expect(getByTestId(`${i}-recipe-card`)).toBeInTheDocument();
+      expect(getByTestId(`${i}-card-img`)).toBeInTheDocument();
+      expect(getByTestId(`${i}-card-name`)).toBeInTheDocument();
+    });
+    expect(queryByTestId('12-recipe-card')).not.toBeInTheDocument();
+  });
 })
