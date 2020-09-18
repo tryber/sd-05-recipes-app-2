@@ -4,8 +4,6 @@ import { mockSuccessFood, mockSuccessDrink } from './recipes_list.test';
 import * as api from '../services/api';
 import renderWithRouter from '../services/renderWithRouter';
 import Provider from '../contexts/Provider';
-import Header from '../components/Header';
-import App from '../App';
 import Home from '../pages/Home/Home';
 import SearchBar from '../components/SearchBar';
 import * as mockAPI from './mockAPI';
