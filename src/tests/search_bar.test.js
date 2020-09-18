@@ -1,5 +1,5 @@
 import React from 'react';
-import { waitFor, fireEvent } from '@testing-library/react';
+import { waitFor, fireEvent, act } from '@testing-library/react';
 import { mockSuccessFood, mockSuccessDrink } from './recipes_list.test';
 import * as api from '../services/api';
 import renderWithRouter from '../services/renderWithRouter';
@@ -499,8 +499,10 @@ describe('Caso apenas uma receita seja encontrada, a rota deve mudar para a tela
     const nameRadio = getByTestId('name-search-radio');
     fireEvent.click(nameRadio);
     const searchBtn = getByTestId('exec-search-btn');
-    fireEvent.click(searchBtn);
-    await waitFor(() => expect(api.byMealName).toHaveBeenCalled());
+    act(() => {
+      fireEvent.click(searchBtn);
+    })
+    // await waitFor(() => expect(api.byMealName).toHaveBeenCalled());
     expect(history.location.pathname).toBe('/comidas/52771');
   });
   it('Caso apenas uma bebida seja encontrada, deve-se ir para sua rota de detalhes', async () => {
