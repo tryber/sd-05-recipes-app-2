@@ -27,7 +27,7 @@ export default function ExplorarArea() {
   return (
     <div>
       <Header />
-      <div>
+      <div className="explr-area-dpdown">
         <select data-testid="explore-by-area-dropdown" onChange={(e) => hCh(e.target.value)}>
           <option data-testid="All-option" value="All">All</option>
           {areaList.map((area) =>
@@ -37,7 +37,7 @@ export default function ExplorarArea() {
           )}
         </select>
       </div>
-      <div className="home-body">
+      <div className="home-body explorar-ingr">
         <AllCards cards={cards} Meal={Meal} />
       </div>
       <Footer />

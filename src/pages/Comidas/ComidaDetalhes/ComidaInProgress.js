@@ -9,6 +9,7 @@ import DetailHeader from '../../../components/DetailHeader';
 import * as builder from '../../../services/builders';
 import Loading from '../../../components/Loading';
 /* import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'; */
+import Footer from '../../../components/Footer';
 
 function disabling() {
   let disabled = true;
@@ -119,6 +120,7 @@ function ingredientsList(details, setUtilizados, utilizados, id, history) {
           </li>
         ))}
       </ul>
+      <Footer />
     </div>
   );
 }
@@ -160,7 +162,7 @@ function ComidaInProgress() {
         <p data-testid="instructions">{details.strInstructions}</p>
       </div>
       <button
-        className="start-btn"
+        className="finish-btn"
         style={style}
         data-testid="finish-recipe-btn"
         disabled={disabling()}

@@ -5,6 +5,7 @@ import Header from '../../components/Header';
 import Loading from '../../components/Loading';
 import AppContext from '../../contexts/AppContext';
 import * as api from '../../services/api';
+import './explorar.css';
 
 const urlMeal = (item) =>
   `https://www.themealdb.com/images/ingredients/${item.strIngredient}-Small.png`;
@@ -13,7 +14,7 @@ const urlDrink = (item) =>
 
 function IngCards(Meal, list, clickIng) {
   return (
-    <div>
+    <div className="explorar-ingr d-flex flex-row flex-wrap justify-content-around">
       {list.filter((ing, i) => i < 12).map((item, i) =>
         <button
           onClick={() => clickIng(item)}

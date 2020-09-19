@@ -4,6 +4,7 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import AppContext from '../../contexts/AppContext';
 import * as api from '../../services/api';
+import './explorar.css';
 
 const typeOfExplore = [
   { datatId: 'explore-by-ingredient', name: 'ingredientes', text: 'Por Ingredientes' },
@@ -55,12 +56,12 @@ export default function ExplorarComOuBeb() {
   return (
     <div>
       <Header />
-      <div className="btn-container">
+      <div className="btn-container-explorar">
         {btns.map((topic) => (
           <button
             key={topic.name}
             data-testid={topic.datatId}
-            className="btn"
+            className="btn-amarelo btn btn-sm cat-btn"
             onClick={() => handleClick(topic.name)}
           >
             {topic.text}

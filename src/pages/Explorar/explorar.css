@@ -21,3 +21,23 @@
 .explorar-container button:hover {
   opacity: 0.75;
 }
+
+.explorar-ingr {
+  margin-left: 2vw;
+  margin-top: 2vh;
+  margin-right: 8vw;
+  margin-bottom: 10vh;
+}
+
+.explr-area-dpdown {
+  margin-left: 6vw;
+  margin-top: 3vh;
+}
+
+.btn-container-explorar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 30vh;
+  margin: 25vh 20vw;
+}
