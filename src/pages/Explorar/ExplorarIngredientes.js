@@ -16,9 +16,10 @@ function IngCards(Meal, list, clickIng) {
     <div>
       {list.filter((ing, i) => i < 12).map((item, i) =>
         <button
-          onClick={() => clickIng(item)}
-          data-testid={`${i}-ingredient-card`}
-          className="card-rec"
+        key={Meal ? item.strIngredient : item.strIngredient1}
+        onClick={() => clickIng(item)}
+        data-testid={`${i}-ingredient-card`}
+        className="card-rec"
         >
           <div className="card">
             <img
