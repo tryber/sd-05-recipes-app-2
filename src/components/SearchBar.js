@@ -17,8 +17,8 @@ function filterAPIComidas(ing, type, setResults) {
       return ing.length > 1
         ? alert('Sua busca deve conter somente 1 (um) caracter')
         : api.byMealFirstLetter(ing).then((data) => setResults(data.meals));
-    default:
-      return false;
+    // default:
+    //   return false;
   }
 }
 
@@ -34,8 +34,8 @@ function filterAPIBebidas(ing, type, setResults) {
       return ing.length > 1
         ? alert('Sua busca deve conter somente 1 (um) caracter')
         : api.byDrinkFirstLetter(ing).then((data) => setResults(data.drinks));
-    default:
-      return false;
+    // default:
+    //   return false;
   }
 }
 
@@ -75,9 +75,10 @@ const radiosBtn = (radioFilter) => {
 };
 
 // LÓGICA CASO SÓ TENHA 1 RESPOSTA OU NENHUMA CONSIDERANDO OS FILTROS APLICADOS
-const resultValidation = (history, filteredData) => {
+const resultValidation = (history, filteredData, setData) => {
   if (filteredData === null) {
-    return alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+    alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+    return setData('');
   }
   if (
     filteredData.length === 1 &&
@@ -106,7 +107,7 @@ export default function SearchBar() {
   const [radioFilter, setRadioFilter] = useState();
 
   useEffect(() => {
-    resultValidation(history, filteredData);
+    resultValidation(history, filteredData, setFilteredData);
   }, [filteredData]);
 
   const hClick = () => {
@@ -117,7 +118,7 @@ export default function SearchBar() {
     if (pathname === '/bebidas') {
       return filterAPIBebidas(ingredientName, radioFilter, setFilteredData);
     }
-    return true;
+    return setIngredientName('');
   };
 
   if (searchBarOn) {
