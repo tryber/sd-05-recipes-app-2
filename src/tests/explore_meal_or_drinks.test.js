@@ -3,8 +3,6 @@ import { waitFor, fireEvent, getByText } from '@testing-library/react';
 import * as api from '../services/api';
 import renderWithRouter from '../services/renderWithRouter';
 import Provider from '../contexts/Provider';
-import * as mockAPI from './mockAPI';
-import Explorar from '../pages/Explorar/Explorar';
 import ExplorarComOuBeb from '../pages/Explorar/ExplorarComOuBeb';
 
 const fetchMock = require('../../cypress/mocks/fetch');
