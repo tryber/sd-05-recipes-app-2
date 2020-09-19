@@ -25,7 +25,10 @@ function filterAPIComidas(ing, type, setResults) {
 function filterAPIBebidas(ing, type, setResults) {
   switch (type) {
     case 'ingredient':
-      api.byDrinkIngredient(ing).then((data) => setResults(data.drinks));
+      api.byDrinkIngredient(ing).then((data) => {
+        if (data === undefined) return setResults(null);
+        setResults(data.drinks)
+      });
       return true;
     case 'name':
       api.byDrinkName(ing).then((data) => setResults(data.drinks));
@@ -110,13 +113,10 @@ export default function SearchBar() {
 
   const hClick = () => {
     const pathname = history.location.pathname;
-    if (pathname === '/comidas') {
-      return filterAPIComidas(ingredientName, radioFilter, setFilteredData);
-    }
     if (pathname === '/bebidas') {
       return filterAPIBebidas(ingredientName, radioFilter, setFilteredData);
     }
-    return setIngredientName('');
+    return filterAPIComidas(ingredientName, radioFilter, setFilteredData);
   };
 
   if (searchBarOn) {
