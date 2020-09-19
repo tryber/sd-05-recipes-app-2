@@ -27,7 +27,7 @@ function filterAPIBebidas(ing, type, setResults) {
     case 'ingredient':
       api.byDrinkIngredient(ing).then((data) => {
         if (data === undefined) return setResults(null);
-        setResults(data.drinks)
+        return setResults(data.drinks);
       });
       return true;
     case 'name':
