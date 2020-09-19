@@ -38,6 +38,14 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 30vh;
-  margin: 25vh 20vw;
+  height: 80vh;
+  padding: 25vh 20vw;
+}
+
+.explorar-btn {
+  background-color: rgb(255, 174, 13);
+  border-radius: 20px;
+  height: 8vh;
+  margin: 1vh 0.5vw;
+  width: 42vw;
 }
