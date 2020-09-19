@@ -137,25 +137,3 @@ export const mockIngredChicken = Promise.resolve({
     },
   ],
 });
-
-// export const mockNameSoup = Promise.resolve(require('../../cypress/mocks/soupMeals'));
-// export const mockA = Promise.resolve(require('../../cypress/mocks/oneMeal'));
-
-// export const mockIngredLemon = Promise.resolve(require('../../cypress/mocks/drinksByIngredient'));
-// export const mockNameGin = Promise.resolve(require('../../cypress/mocks/ginDrinks'));
-// export const mockADrink = Promise.resolve(require('../../cypress/mocks/oneDrink'));
-
-// export const mockBeefMeals = Promise.resolve(require('../../cypress/mocks/beefMeals'));
-// export const mockBreakFMeals = Promise.resolve(require('../../cypress/mocks/breakfastMeals'));
-// export const mockChickMeals = Promise.resolve(require('../../cypress/mocks/chickenMeals'));
-// export const mockDessertMeals = Promise.resolve(require('../../cypress/mocks/dessertMeals'));
-// export const mockGoatMeals = Promise.resolve(require('../../cypress/mocks/goatMeals'));
-
-// export const mockOrdinaryDrink = Promise.resolve(require('../../cypress/mocks/ordinaryDrinks'));
-// export const mockCocktailDrink = Promise.resolve(require('../../cypress/mocks/cocktailDrinks'));
-// export const mockMilkDrink = Promise.resolve(require('../../cypress/mocks/milkDrinks'));
-// export const mockOtherDrink = Promise.resolve(require('../../cypress/mocks/otherDrinks'));
-// export const mockCocoaDrink = Promise.resolve(require('../../cypress/mocks/cocoaDrinks'));
-
-// export const mockMeals = Promise.resolve(require('../../cypress/mocks/meals'));
-// export const mockDrinks = Promise.resolve(require('../../cypress/mocks/drinks'));
