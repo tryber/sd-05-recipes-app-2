@@ -85,15 +85,13 @@ const resultValidation = (history, filteredData, setData) => {
     filteredData !== null &&
     history.location.pathname === '/comidas'
   ) {
-    console.log(filteredData);
-    history.push(`/comidas/${filteredData[0].idMeal}`);
+    return history.push(`/comidas/${filteredData[0].idMeal}`);
   }
   if (
     filteredData.length === 1 &&
     filteredData !== null &&
     history.location.pathname === '/bebidas'
   ) {
-    console.log(filteredData);
     return history.push(`/bebidas/${filteredData[0].idDrink}`);
   }
   return true;
