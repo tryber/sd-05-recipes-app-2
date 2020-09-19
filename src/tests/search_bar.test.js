@@ -22,6 +22,28 @@ const checkTwelveRec = (recipes, type, testid) => {
   })
 };
 
+export const mockNameSoup = Promise.resolve(require('../../cypress/mocks/soupMeals'));
+export const mockA = Promise.resolve(require('../../cypress/mocks/oneMeal'));
+
+export const mockIngredLemon = Promise.resolve(require('../../cypress/mocks/drinksByIngredient'));
+export const mockNameGin = Promise.resolve(require('../../cypress/mocks/ginDrinks'));
+export const mockADrink = Promise.resolve(require('../../cypress/mocks/oneDrink'));
+
+export const mockBeefMeals = Promise.resolve(require('../../cypress/mocks/beefMeals'));
+export const mockBreakFMeals = Promise.resolve(require('../../cypress/mocks/breakfastMeals'));
+export const mockChickMeals = Promise.resolve(require('../../cypress/mocks/chickenMeals'));
+export const mockDessertMeals = Promise.resolve(require('../../cypress/mocks/dessertMeals'));
+export const mockGoatMeals = Promise.resolve(require('../../cypress/mocks/goatMeals'));
+
+export const mockOrdinaryDrink = Promise.resolve(require('../../cypress/mocks/ordinaryDrinks'));
+export const mockCocktailDrink = Promise.resolve(require('../../cypress/mocks/cocktailDrinks'));
+export const mockMilkDrink = Promise.resolve(require('../../cypress/mocks/milkDrinks'));
+export const mockOtherDrink = Promise.resolve(require('../../cypress/mocks/otherDrinks'));
+export const mockCocoaDrink = Promise.resolve(require('../../cypress/mocks/cocoaDrinks'));
+
+export const mockMeals = Promise.resolve(require('../../cypress/mocks/meals'));
+export const mockDrinks = Promise.resolve(require('../../cypress/mocks/drinks'));
+
 describe('Deve ter uma seção de botões para filtrar por categorias', () => {
   it('Tela de comida deve ter categorias e data-test-ids corretos', async () => {
     const { getByTestId } = renderWithRouter(
@@ -61,7 +83,7 @@ describe('Deve ter uma seção de botões para filtrar por categorias', () => {
 
 describe('No filtro de categorias deve existir a opção de filtrar por todas as categorias', () => {
   it('Caso as receitas sejam de comida deve existir a opção de filtrar por todas as categorias', async () => {
-    const { getByTestId, getByAltText } = renderWithRouter(
+    const { getByTestId } = renderWithRouter(
       <Provider>
         <Home />
       </Provider>,
@@ -71,7 +93,7 @@ describe('No filtro de categorias deve existir a opção de filtrar por todas as
     
     expect(getByTestId('All-category-filter')).toBeInTheDocument();
     fireEvent.click(getByTestId('All-category-filter'));
-    await waitFor(() => expect(api.defaultMeals).toHaveBeenCalledTimes(2));
+    await waitFor(() => expect(api.defaultMeals).toHaveBeenCalledTimes(5));
   });
 })
 
@@ -85,7 +107,7 @@ describe('Ao clicar no filtro de categoria, todas as receitas devem mudar para o
     );
     await waitFor(() => expect(api.defaultMeals).toHaveBeenCalled());
     
-    jest.spyOn(api, 'byMealCategory').mockImplementation(() => mockAPI.mockBeefMeals);
+    jest.spyOn(api, 'byMealCategory').mockImplementation(() => mockBeefMeals);
     fireEvent.click(getByTestId('Beef-category-filter'));
     await waitFor(() => expect(api.byMealCategory).toHaveBeenCalled());
     const beefMeals = require('../../cypress/mocks/beefMeals');
@@ -101,7 +123,7 @@ describe('Ao clicar no filtro de categoria, todas as receitas devem mudar para o
     );
     await waitFor(() => expect(api.defaultMeals).toHaveBeenCalled());
     
-    jest.spyOn(api, 'byMealCategory').mockImplementation(() => mockAPI.mockBreakFMeals);
+    jest.spyOn(api, 'byMealCategory').mockImplementation(() => mockBreakFMeals);
     fireEvent.click(getByTestId('Breakfast-category-filter'));
     await waitFor(() => expect(api.byMealCategory).toHaveBeenCalled());
     const breakFestMeals = require('../../cypress/mocks/breakfastMeals');
@@ -117,7 +139,7 @@ describe('Ao clicar no filtro de categoria, todas as receitas devem mudar para o
     );
     await waitFor(() => expect(api.defaultMeals).toHaveBeenCalled());
     
-    jest.spyOn(api, 'byMealCategory').mockImplementation(() => mockAPI.mockChickMeals);
+    jest.spyOn(api, 'byMealCategory').mockImplementation(() => mockChickMeals);
     fireEvent.click(getByTestId('Chicken-category-filter'));
     await waitFor(() => expect(api.byMealCategory).toHaveBeenCalled());
     const chickenMeals = require('../../cypress/mocks/chickenMeals');
@@ -133,7 +155,7 @@ describe('Ao clicar no filtro de categoria, todas as receitas devem mudar para o
     );
     await waitFor(() => expect(api.defaultMeals).toHaveBeenCalled());
     
-    jest.spyOn(api, 'byMealCategory').mockImplementation(() => mockAPI.mockDessertMeals);
+    jest.spyOn(api, 'byMealCategory').mockImplementation(() => mockDessertMeals);
     fireEvent.click(getByTestId('Dessert-category-filter'));
     await waitFor(() => expect(api.byMealCategory).toHaveBeenCalled());
     const dessertMeals = require('../../cypress/mocks/dessertMeals');
@@ -149,7 +171,7 @@ describe('Ao clicar no filtro de categoria, todas as receitas devem mudar para o
     );
     await waitFor(() => expect(api.defaultMeals).toHaveBeenCalled());
     
-    jest.spyOn(api, 'byMealCategory').mockImplementation(() => mockAPI.mockGoatMeals);
+    jest.spyOn(api, 'byMealCategory').mockImplementation(() => mockGoatMeals);
     fireEvent.click(getByTestId('Goat-category-filter'));
     await waitFor(() => expect(api.byMealCategory).toHaveBeenCalled());
     const goatMeals = require('../../cypress/mocks/goatMeals');
@@ -167,7 +189,7 @@ describe('Ao clicar no filtro de categoria, todas as receitas devem mudar para o
     );
     await waitFor(() => expect(api.defaultDrinks).toHaveBeenCalled());
     
-    jest.spyOn(api, 'byDrinkCategory').mockImplementation(() => mockAPI.mockOrdinaryDrink);
+    jest.spyOn(api, 'byDrinkCategory').mockImplementation(() => mockOrdinaryDrink);
     fireEvent.click(getByTestId('Ordinary Drink-category-filter'));
     await waitFor(() => expect(api.byDrinkCategory).toHaveBeenCalled());
     const ordinaryDrinks = require('../../cypress/mocks/ordinaryDrinks');
@@ -183,7 +205,7 @@ describe('Ao clicar no filtro de categoria, todas as receitas devem mudar para o
     );
     await waitFor(() => expect(api.defaultDrinks).toHaveBeenCalled());
     
-    jest.spyOn(api, 'byDrinkCategory').mockImplementation(() => mockAPI.mockCocktailDrink);
+    jest.spyOn(api, 'byDrinkCategory').mockImplementation(() => mockCocktailDrink);
     fireEvent.click(getByTestId('Cocktail-category-filter'));
     await waitFor(() => expect(api.byDrinkCategory).toHaveBeenCalled());
     const cocktailDrinks = require('../../cypress/mocks/cocktailDrinks');
@@ -199,7 +221,7 @@ describe('Ao clicar no filtro de categoria, todas as receitas devem mudar para o
     );
     await waitFor(() => expect(api.defaultDrinks).toHaveBeenCalled());
     
-    jest.spyOn(api, 'byDrinkCategory').mockImplementation(() => mockAPI.mockMilkDrink);
+    jest.spyOn(api, 'byDrinkCategory').mockImplementation(() => mockMilkDrink);
     fireEvent.click(getByTestId('Milk / Float / Shake-category-filter'));
     await waitFor(() => expect(api.byDrinkCategory).toHaveBeenCalled());
     const milkDrinks = require('../../cypress/mocks/milkDrinks');
@@ -215,7 +237,7 @@ describe('Ao clicar no filtro de categoria, todas as receitas devem mudar para o
     );
     await waitFor(() => expect(api.defaultDrinks).toHaveBeenCalled());
     
-    jest.spyOn(api, 'byDrinkCategory').mockImplementation(() => mockAPI.mockOtherDrink);
+    jest.spyOn(api, 'byDrinkCategory').mockImplementation(() => mockOtherDrink);
     fireEvent.click(getByTestId('Other/Unknown-category-filter'));
     await waitFor(() => expect(api.byDrinkCategory).toHaveBeenCalled());
     const otherDrinks = require('../../cypress/mocks/otherDrinks');
@@ -231,7 +253,7 @@ describe('Ao clicar no filtro de categoria, todas as receitas devem mudar para o
     );
     await waitFor(() => expect(api.defaultDrinks).toHaveBeenCalled());
     
-    jest.spyOn(api, 'byDrinkCategory').mockImplementation(() => mockAPI.mockCocoaDrink);
+    jest.spyOn(api, 'byDrinkCategory').mockImplementation(() => mockCocoaDrink);
     fireEvent.click(getByTestId('Cocoa-category-filter'));
     await waitFor(() => expect(api.byDrinkCategory).toHaveBeenCalled());
     const cocoaDrinks = require('../../cypress/mocks/cocoaDrinks');
@@ -239,6 +261,7 @@ describe('Ao clicar no filtro de categoria, todas as receitas devem mudar para o
   });
 });
 
+// ESTE DECRIBE AINDA ESTÁ FALHANDO
 describe('Caso o filtro selecionado no momento seja selecionado de novo, o app deve retornar as receitas sem nenhum filtro, como se fosse um toggle', () => {
   it('Caso as receitas sejam de comida e o filtro tenha sido selecionado novamente, deve-se retornar as 12 primeiras receitas sem filtro', async () => {
     const { getByTestId } = renderWithRouter(
@@ -249,7 +272,7 @@ describe('Caso o filtro selecionado no momento seja selecionado de novo, o app d
     );
     await waitFor(() => expect(api.defaultMeals).toHaveBeenCalled());
     
-    jest.spyOn(api, 'byMealCategory').mockImplementation(() => mockAPI.mockBeefMeals);
+    jest.spyOn(api, 'byMealCategory').mockImplementation(() => mockBeefMeals);
     fireEvent.click(getByTestId('Beef-category-filter'));
     await waitFor(() => expect(api.byMealCategory).toHaveBeenCalled());
     fireEvent.click(getByTestId('Beef-category-filter'));
@@ -267,7 +290,7 @@ describe('Caso o filtro selecionado no momento seja selecionado de novo, o app d
     );
     await waitFor(() => expect(api.defaultDrinks).toHaveBeenCalled());
     
-    jest.spyOn(api, 'byDrinkCategory').mockImplementation(() => mockAPI.mockOrdinaryDrink);
+    jest.spyOn(api, 'byDrinkCategory').mockImplementation(() => mockOrdinaryDrink);
     fireEvent.click(getByTestId('Ordinary Drink-category-filter'));
     await waitFor(() => expect(api.byDrinkCategory).toHaveBeenCalled());
     fireEvent.click(getByTestId('Ordinary Drink-category-filter'));
@@ -276,17 +299,18 @@ describe('Caso o filtro selecionado no momento seja selecionado de novo, o app d
     checkTwelveRec(drinks.drinks, 'Drink', getByTestId);
   });
 });
-  
+
+
 jest.spyOn(api, 'byMealIngredient').mockImplementation(() => mockAPI.mockIngredChicken);
-jest.spyOn(api, 'byMealName').mockImplementation(() => mockAPI.mockNameSoup);
-jest.spyOn(api, 'byMealFirstLetter').mockImplementation(() => mockAPI.mockA);
-jest.spyOn(api, 'byDrinkIngredient').mockImplementation(() => mockAPI.mockIngredLemon);
-jest.spyOn(api, 'byDrinkName').mockImplementation(() => mockAPI.mockNameGin);
-jest.spyOn(api, 'byDrinkFirstLetter').mockImplementation(() => mockAPI.mockADrink);
+jest.spyOn(api, 'byMealName').mockImplementation(() => mockNameSoup);
+jest.spyOn(api, 'byMealFirstLetter').mockImplementation(() => mockA);
+jest.spyOn(api, 'byDrinkIngredient').mockImplementation(() => mockIngredLemon);
+jest.spyOn(api, 'byDrinkName').mockImplementation(() => mockNameGin);
+jest.spyOn(api, 'byDrinkFirstLetter').mockImplementation(() => mockADrink);
 
 describe('Todos os elementos devem respeitar os atributos descritos no protótipo para a barra de busca', () => {
   it('Data-test-ids devem estar na tela ao clicar na lupa', async () => {
-    const { history, getByTestId } = renderWithRouter(
+    const { getByTestId } = renderWithRouter(
       <Provider>
         <Home />
       </Provider>,
@@ -311,6 +335,7 @@ describe('Todos os elementos devem respeitar os atributos descritos no protótip
   });
 });
 
+// ALERTA AINDA NÃO FOI TESTADO. ESTÁ FALHANDO
 describe('A barra de busca deve mudar a forma como serão filtradas as receitas de comida', () => {
   it('Se o radio selecionado for Ingrediente, a busca na API é feita corretamente pelo ingrediente', async () => {
     const { getByTestId } = renderWithRouter(
@@ -396,6 +421,7 @@ describe('A barra de busca deve mudar a forma como serão filtradas as receitas 
   });
 })
 
+// ALERTA AINDA NÃO FOI TESTADO. ESTÁ FALHANDO
 describe('A barra de busca deve mudar a forma como serão filtradas as receitas de bebida', () => {
   it('Se o radio selecionado for Ingrediente, a busca na API é feita corretamente pelo ingrediente', async () => {
     const { getByTestId } = renderWithRouter(
@@ -479,6 +505,7 @@ describe('A barra de busca deve mudar a forma como serão filtradas as receitas 
   });
 })
 
+// ESTE DESCRIBE AINDA ESTÁ FALHANDO.
 describe('Caso apenas uma receita seja encontrada, a rota deve mudar para a tela de detalhes da receita com o ID da mesma na URL', () => {
   it('Caso apenas uma comida seja encontrada, deve-se ir para sua rota de detalhes', async () => {
     const { history, getByTestId } = renderWithRouter(
