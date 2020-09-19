@@ -17,8 +17,8 @@ function filterAPIComidas(ing, type, setResults) {
       return ing.length > 1
         ? alert('Sua busca deve conter somente 1 (um) caracter')
         : api.byMealFirstLetter(ing).then((data) => setResults(data.meals));
-    // default:
-    //   return false;
+    default:
+      return false;
   }
 }
 
@@ -34,8 +34,8 @@ function filterAPIBebidas(ing, type, setResults) {
       return ing.length > 1
         ? alert('Sua busca deve conter somente 1 (um) caracter')
         : api.byDrinkFirstLetter(ing).then((data) => setResults(data.drinks));
-    // default:
-    //   return false;
+    default:
+      return false;
   }
 }
 
@@ -118,7 +118,7 @@ export default function SearchBar() {
     if (pathname === '/bebidas') {
       return filterAPIBebidas(ingredientName, radioFilter, setFilteredData);
     }
-    return setIngredientName('');
+    // return setIngredientName('');
   };
 
   if (searchBarOn) {
