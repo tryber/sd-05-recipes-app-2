@@ -13,7 +13,7 @@ const urlDrink = (item) =>
 
 function IngCards(Meal, list, clickIng) {
   return (
-    <div>
+    <div className="d-flex flex-row flex-wrap justify-content-around">
       {list.filter((ing, i) => i < 12).map((item, i) =>
         <button
           key={Meal ? item.strIngredient : item.strIngredient1}
