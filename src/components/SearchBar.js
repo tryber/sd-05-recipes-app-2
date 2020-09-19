@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import './searchbar.css';
 import * as api from '../services/api';
 import AppContext from '../contexts/AppContext';
-// comentário pra forçar reavaliar
 
 function filterAPIComidas(ing, type, setResults) {
   switch (type) {
