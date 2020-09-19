@@ -53,5 +53,5 @@ Card.propTypes = {
   description: PropTypes.string.isRequired,
   i: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
-  rec: PropTypes.bool,
+  rec: PropTypes.bool.isRequired,
 };
