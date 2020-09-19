@@ -42,7 +42,7 @@ function IngCards(Meal, list, clickIng) {
 
 export default function ExplorarIngredientes() {
   const history = useHistory();
-  const { setFilteredData, Meal, setMeal } = useContext(AppContext);
+  const { setFilteredData, Meal, setMeal, setSelecCategory } = useContext(AppContext);
   const [list, setList] = useState([]);
   useEffect(() => {
     if (history.location.pathname === '/explorar/comidas/ingredientes') {
