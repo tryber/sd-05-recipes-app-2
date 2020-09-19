@@ -116,7 +116,7 @@ export default function SearchBar() {
     if (pathname === '/bebidas') {
       return filterAPIBebidas(ingredientName, radioFilter, setFilteredData);
     }
-    // return setIngredientName('');
+    return setIngredientName('');
   };
 
   if (searchBarOn) {
