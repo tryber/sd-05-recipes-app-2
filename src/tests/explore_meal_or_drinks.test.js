@@ -5,7 +5,6 @@ import renderWithRouter from '../services/renderWithRouter';
 import Provider from '../contexts/Provider';
 import ExplorarComOuBeb from '../pages/Explorar/ExplorarComOuBeb';
 
-const fetchMock = require('../../cypress/mocks/fetch');
 
 describe('Todos os elementos devem respeitar os atributos descritos no protótipo para a tela de explorar bebidas ou comidas', () => {
   it('Tem os data-testids corretos para a tela de explorar comidas', () => {
@@ -115,23 +114,29 @@ describe('Ao clicar em "Por Local de Origem", a rota deve mudar para tela de exp
   });
 });
 
+const randMeal = Promise.resolve(require('../../cypress/mocks/oneMeal'));
+jest.spyOn(api, 'mealRandom').mockImplementation(() => randMeal);
+const randDrink = Promise.resolve(require('../../cypress/mocks/oneDrink'));
+jest.spyOn(api, 'drinkRandom').mockImplementation(() => randDrink);
+
 describe('Ao clicar em "Me Surpreenda!", a rota deve mudar para a tela de detalhes de uma receita, que deve ser escolhida de forma aleatória', () => {
   it('Ao clicar no botão "Me Surpreenda" da tela de explorar comidas a rota muda para a página de detalhes de uma comida aleatória', async () => {
-    const { getByText, getByTestId } = renderWithRouter(
+    const { history, getByText, getByTestId } = renderWithRouter(
       <Provider>
         <ExplorarComOuBeb />
       </Provider>,
       { route: '/explorar/comidas' }
     );
-
+    
     const surpBtn = getByText(/Me Surpreenda!/i);
     fireEvent.click(surpBtn);
-    // await waitFor(() => expect(api.mealRandom).toHaveBeenCalled());
-    // expect(getByTestId('recipe-title')).toBeInTheDocument();
-    // expect(getByTestId('recipe-category')).toBeInTheDocument();
+    await waitFor(() => expect(api.mealRandom).toHaveBeenCalled());
+    const meal = require('../../cypress/mocks/oneMeal').meals;
+    const {location: {pathname}} = history;
+    expect(pathname).toBe(`/comidas/${meal[0].idMeal}`);
   });
-  it('Ao clicar no botão "Explorar Bebidas" da tela de explorar bebidas a rota muda para a página de detalhes de uma bebida aleatória', () => {
-    const { getByText, queryByText } = renderWithRouter(
+  it('Ao clicar no botão "Explorar Bebidas" da tela de explorar bebidas a rota muda para a página de detalhes de uma bebida aleatória', async () => {
+    const { history, getByText } = renderWithRouter(
       <Provider>
         <ExplorarComOuBeb />
       </Provider>,
@@ -140,5 +145,9 @@ describe('Ao clicar em "Me Surpreenda!", a rota deve mudar para a tela de detalh
 
     const surpBtn = getByText(/Me Surpreenda!/i);
     fireEvent.click(surpBtn);
+    await waitFor(() => expect(api.drinkRandom).toHaveBeenCalled());
+    const drink = require('../../cypress/mocks/oneDrink').drinks;
+    const {location: {pathname}} = history;
+    expect(pathname).toBe(`/bebidas/${drink[0].idDrink}`);
   });
 });

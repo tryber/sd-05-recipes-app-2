@@ -45,7 +45,6 @@ export default function ExplorarComOuBeb() {
     if (name === 'ingredientes') {
       history.push(`/explorar/${local}/${name}`);
     } else if (name === 'area') {
-      console.log('yes to no else', name);
       history.push(`/explorar/comidas/${name}`);
     } else if (name === 'surprise') {
       getRandom(local, history, setDetails);
