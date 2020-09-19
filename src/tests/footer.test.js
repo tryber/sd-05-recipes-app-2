@@ -2,8 +2,6 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../services/renderWithRouter';
 import Provider from '../contexts/Provider';
-import Header from '../components/Header';
-import App from '../App';
 import Footer from '../components/Footer';
 
 describe('Todos os elementos devem respeitar os atributos descritos no protótipo para o menu inferior disponível na tela principal de receitas', () => {
