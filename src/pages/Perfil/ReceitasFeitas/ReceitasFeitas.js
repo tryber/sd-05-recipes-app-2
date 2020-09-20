@@ -19,31 +19,33 @@ function ReceitasFeitas() {
   return (
     <div>
       <Header />
-      <div className="profile-cat-section">
-        <button
-          className="btn btn-sm cat-btn"
-          data-testid="filter-by-food-btn"
-          onClick={() => setFilters(done.filter((recipe) => recipe.type === 'comida'))}
-        >
-          Comidas
+      <div className="profile-cont">
+        <div className="profile-cat-section">
+          <button
+            className="btn btn-sm cat-btn"
+            data-testid="filter-by-food-btn"
+            onClick={() => setFilters(done.filter((recipe) => recipe.type === 'comida'))}
+          >
+            Comidas
         </button>
-        <button
-          className="btn btn-sm cat-btn"
-          data-testid="filter-by-drink-btn"
-          onClick={() => setFilters(done.filter((recipe) => recipe.type === 'bebida'))}
-        >
-          Bebidas
+          <button
+            className="btn btn-sm cat-btn"
+            data-testid="filter-by-drink-btn"
+            onClick={() => setFilters(done.filter((recipe) => recipe.type === 'bebida'))}
+          >
+            Bebidas
         </button>
-        <button
-          className="btn btn-sm cat-btn"
-          data-testid="filter-by-all-btn"
-          onClick={() => setFilters(done)}
-        >
-          Todas
+          <button
+            className="btn btn-sm cat-btn"
+            data-testid="filter-by-all-btn"
+            onClick={() => setFilters(done)}
+          >
+            Todas
         </button>
-      </div>
-      <div>
-        {filters.map((card, index) => (<HCard card={card} index={index} favOrDone="done" />))}
+        </div>
+        <div>
+          {filters.map((card, index) => (<HCard card={card} index={index} favOrDone="done" />))}
+        </div>
       </div>
       <Footer />
     </div>

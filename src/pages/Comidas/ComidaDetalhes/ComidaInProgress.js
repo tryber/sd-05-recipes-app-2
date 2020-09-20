@@ -28,12 +28,6 @@ function handleFinalizarReceita(history, details, Meal) {
   storage.setDoneLS(Meal, details);
 }
 
-const style = {
-  position: 'fixed',
-  bottom: 0,
-  left: 0,
-};
-
 const styleDash = {
   textDecoration: 'line-through',
 };
@@ -163,7 +157,6 @@ function ComidaInProgress() {
       </div>
       <button
         className="finish-btn"
-        style={style}
         data-testid="finish-recipe-btn"
         disabled={disabling()}
         onClick={() => handleFinalizarReceita(history, details, Meal)}

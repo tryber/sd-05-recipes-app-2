@@ -3,6 +3,7 @@ import Header from '../../../components/Header';
 import HCard from '../../../components/HorizontalCard';
 import AppContext from '../../../contexts/AppContext';
 import Footer from '../../../components/Footer';
+import '../donefav.css';
 
 function ReceitasFavoritas() {
   const { fav } = useContext(AppContext);
@@ -18,7 +19,7 @@ function ReceitasFavoritas() {
   }, [fav]);
   console.log(favorites);
   return (
-    <div>
+    <div className="profile-cont">
       <Header />
       <div className="profile-cat-section">
         <button

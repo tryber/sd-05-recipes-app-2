@@ -12,8 +12,7 @@
 .explorar-container button {
   border-left: 8px solid rgb(255, 134, 0);
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
-  font-size: 16pt;
-  font-weight: 300;
+  font-size: 14pt;
   margin: 5vh 0 0;
   width: 100%;
 }
@@ -39,13 +38,13 @@
   flex-direction: column;
   justify-content: space-between;
   height: 80vh;
-  padding: 25vh 20vw;
+  padding: 30vh 20vw;
 }
 
 .explorar-btn {
   background-color: rgb(255, 174, 13);
   border-radius: 20px;
-  height: 8vh;
+  height: 6vh;
   margin: 1vh 0.5vw;
   width: 42vw;
 }

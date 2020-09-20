@@ -15,9 +15,12 @@
 .btn-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin: 0 auto;
-  min-height: 60vh;
+  justify-content: space-around;
+  height: 80vh;
+  margin: 10vh auto;
+  padding-top: 5vh;
+  padding-bottom: 40vh;
+  max-width: 60vw;
 }
 
 .btn-opt {
@@ -46,4 +49,15 @@
 .exit-text {
   font-weight: 700;
   padding: 2vh 2vw 1vh 0;
+}
+
+.profile-btn {
+  background-color: rgb(255, 174, 13);
+  border-radius: 20px;
+  border-left: 8px solid rgb(255, 134, 0);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
+  font-size: 14pt;
+  height: 6vh;
+  margin: 1vh 0.5vw;
+  width: 60vw;
 }

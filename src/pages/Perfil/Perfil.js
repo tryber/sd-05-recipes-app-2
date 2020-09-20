@@ -34,14 +34,14 @@ export default function Perfil() {
         <div className="btn-container">
           <button
             data-testid="profile-done-btn"
-            className="btn btn-opt"
+            className="profile-btn"
             onClick={() => history.push('/receitas-feitas')}
           >
             Receitas Feitas
           </button>
           <button
             data-testid="profile-favorite-btn"
-            className="btn btn-opt"
+            className="profile-btn"
             onClick={() => history.push('/receitas-favoritas')}
           >
             Receitas Favoritas
