@@ -84,7 +84,7 @@ function Login() {
     <div className="login-page">
       <div className="login-container">
         <img className="logo" alt="Logo Panelinha" src={logo1}></img>
-        <h3 className="page-title">Bem-vindo(a)!</h3>
+        <h3 className="page-title">Welcome!</h3>
         <form>
           {emailInput(handleEmail)}
           {passwordInput(handlePassword)}

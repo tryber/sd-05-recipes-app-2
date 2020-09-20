@@ -28,15 +28,15 @@ body {
 
 .login-container {
   margin: 0 auto;
+  vertical-align: middle;
 }
 
 .logo {
-  margin-left: 2vw;
   width: 200px;
 }
 
 .page-title {
-  color: #141414  ;
+  color: #141414;
   font-weight: 300;
   text-align: center;
   padding: 2vh 0;
@@ -53,19 +53,58 @@ body {
   border-radius: 15px;
 }
 
+.button-laranja {
+  background-color: var(--laranja);
+  /* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
+.button-laranja:hover {
+  box-shadow: 0 5px 10px rgba(92, 92, 92, 0.8);
+  opacity: 0.9;
+  transform: translateY(-3px);
+}
+
 @media (min-width: 400px) {
-  .login-page {
-    margin: 15vh auto;
-    height: 640px;
-    width: 360px;
-    border: solid 2px #ffae0d;
+  body {
+    background-image: url('../../images/background/bg-light-center-horiz.png');
   }
 
+  .login-page {
+    background-image: none;
+    margin: 10vh auto;
+    height: 80vh;
+    width: 60vw;
+  }
+
+  .login-container {
+    text-align: center;
+    vertical-align: middle;
+  }
+  
   .logo {
-    margin-left: 0.5vw;
+    width: 400px;
   }
 
   .enter-button {
     margin-top: 5vh;
+    font-size: 21pt;
   }
+
+  .button-laranja {
+    font-size: 16pt;
+    height: 5vh;
+    width: 10vw;
+  }
+
+  .form-input {
+    width: 400px;
+    font-size: 14pt;
+  }
+
+  .page-title {
+    font-size: 24pt;
+  }
+
 }
