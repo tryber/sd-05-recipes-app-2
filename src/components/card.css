@@ -52,3 +52,21 @@
   opacity: 0.9;
   outline: none;
 }
+
+@media (min-width: 400px) {
+  .card {
+    width: 12vw;
+  }
+
+  .card-rec {
+    width: 12vw;
+  }
+
+  .home-body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 10vw 10vh;
+  }
+}

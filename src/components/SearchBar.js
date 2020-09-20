@@ -162,9 +162,9 @@ export function FilterButtons() {
   }, [history.location.pathname]);
 
   return (
-    <div className="btn-toolbar cat-section">
+    <div className="cat-section">
       <button
-        className="btn btn-sm cat-btn"
+        className="cat-btn"
         value="All"
         data-testid="All-category-filter"
         onClick={(e) => handleCat(e)}
@@ -176,7 +176,7 @@ export function FilterButtons() {
         .map((cat) => (
           <button
             key={cat.id}
-            className="btn btn-sm cat-btn"
+            className="cat-btn"
             data-testid={`${cat.strCategory}-category-filter`}
             value={cat.strCategory}
             onClick={(e) => handleCat(e)}
