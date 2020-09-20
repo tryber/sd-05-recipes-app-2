@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import shareI from '../images/shareIcon.svg';
-import blackHI from '../images/blackHeartIcon.svg';
+import blackHI from '../images/blackHeartIcon.png';
 import AppContext from '../contexts/AppContext';
 import './horizontalCard.css';
 

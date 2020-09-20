@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import * as storage from '../services/localStorage';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.png';
 import AppContext from '../contexts/AppContext';
 
 function share(Meal, details, setCopied) {

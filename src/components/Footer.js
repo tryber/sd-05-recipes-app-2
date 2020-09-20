@@ -10,13 +10,13 @@ export default function Footer() {
   return (
     <div className="navbar fixed-bottom footer-comp" data-testid="footer">
       <button data-testid="drinks-bottom-btn" onClick={() => history.push('/bebidas')} src={drinks}>
-        <img alt="drinks" src={drinks} />
+        <img alt="drinks" className="nav-icon" src={drinks} />
       </button>
       <button onClick={() => history.push('/explorar')}>
-        <img data-testid="explore-bottom-btn" alt="explorar" src={explore} />
+        <img alt="explorar" className="nav-icon" data-testid="explore-bottom-btn" src={explore} />
       </button>
       <button onClick={() => history.push('/comidas')}>
-        <img alt="comidas" data-testid="food-bottom-btn" src={meal} />
+        <img alt="comidas" className="nav-icon" data-testid="food-bottom-btn" src={meal} />
       </button>
     </div>
   );

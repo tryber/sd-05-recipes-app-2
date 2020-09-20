@@ -56,7 +56,7 @@ function Header() {
         onClick={() => history.push('/perfil')}
         src={profileIcon}
       >
-        <img alt="profile" src={profileIcon} />
+        <img alt="profile" className="nav-icon" src={profileIcon} />
       </button>
       <h5 className="header-title" data-testid="page-title">
         {headerName}
@@ -68,7 +68,7 @@ function Header() {
           onClick={() => setSearchBarOn(!searchBarOn)}
           src={search}
         >
-          <img alt="search" src={search} />
+          <img alt="search" className="nav-icon" src={search} />
         </button>
       )}
     </div>

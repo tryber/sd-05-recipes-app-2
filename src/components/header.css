@@ -15,6 +15,7 @@
 .header-comp {
   background-color: rgb(255, 134, 0);
   position: relative;
+  height: 8vh;
 }
 
 .header-comp button img:hover {
@@ -23,7 +24,6 @@
 
 .header-comp .header-title {
   left: 50%;
-  padding-top: 1.5vh;
   position: absolute;
   transform: translate(-50%, 0);
 }
@@ -42,4 +42,9 @@
 .header-comp button:focus , .footer-comp button:focus {
   opacity: 0.9;
   outline: none;
+}
+
+.nav-icon {
+  height: 5vh;
+  width: auto;
 }
