@@ -23,7 +23,7 @@ export default function Footer() {
       >
         <img alt="drinks" src={drinks} />
       </button>
-      <button onClick={() => history.push('/explorar')}>
+      <button onClick={() => handleClick('explorar', setSelecCategory, history)}>
         <img data-testid="explore-bottom-btn" alt="explorar" src={explore} />
       </button>
       <button onClick={() => handleClick('comidas', setSelecCategory, history)}>

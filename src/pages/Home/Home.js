@@ -8,8 +8,10 @@ import AppContext from '../../contexts/AppContext';
 import AllCards from '../../components/AllCards';
 import Loading from '../../components/Loading';
 
-function mealStarter(setCards, setLoading, cards, Meal) {
-  if (cards.length > 0 && Meal) {
+function mealStarter(setCards, setLoading, cards, Meal, filteredData, setSelecCategory) {
+  if (filteredData.length > 0 && Meal) {
+    setSelecCategory('');
+    setCards(filteredData);
     setLoading(false);
   } else {
     api.defaultMeals().then((data) => {
@@ -19,8 +21,10 @@ function mealStarter(setCards, setLoading, cards, Meal) {
   }
 }
 
-function drinkStarter(setCards, setLoading, cards, Meal) {
-  if (cards.length > 0 && !Meal) {
+function drinkStarter(setCards, setLoading, cards, Meal, filteredData, setSelecCategory) {
+  if (filteredData && !Meal) {
+    setSelecCategory('');
+    setCards(filteredData);
     setLoading(false);
   } else {
     api.defaultDrinks().then((data) => {
@@ -33,12 +37,12 @@ function drinkStarter(setCards, setLoading, cards, Meal) {
 function meal({
   selecCategory,
   caCh,
-  setCards,
   setcaCh,
-  setLoading,
-  filteredData,
   filCh,
   setfilCh,
+  setCards,
+  setLoading,
+  filteredData,
 }) {
   if (selecCategory && selecCategory !== caCh && selecCategory !== 'All') {
     api.byMealCategory(selecCategory).then((data) => {
@@ -69,7 +73,6 @@ function drink({
 }) {
   if (selecCategory && selecCategory !== caCh && selecCategory !== 'All') {
     api.byDrinkCategory(selecCategory).then((data) => {
-      console.log(caCh, 'OI', selecCategory);
       setCards(data.drinks);
       setcaCh(selecCategory);
     });
@@ -89,7 +92,7 @@ function Home() {
   const {
     location: { pathname },
   } = useHistory();
-  const { selecCategory, filteredData, Meal, setMeal, cards, setCards } = useContext(AppContext);
+  const { selecCategory, filteredData, Meal, setMeal, cards, setCards, setSelecCategory } = useContext(AppContext);
   const [loading, setLoading] = useState(true);
   const [caCh, setcaCh] = useState('');
   const [filCh, setfilCh] = useState('');
@@ -97,17 +100,26 @@ function Home() {
   useEffect(() => {
     if (pathname === '/comidas') {
       setMeal(true);
-      mealStarter(setCards, setLoading, cards, Meal);
-    } else {
+      mealStarter(setCards, setLoading, cards, Meal, filteredData, setSelecCategory);
+    } else if (pathname === '/bebidas') {
       setMeal(false);
-      drinkStarter(setCards, setLoading, cards, Meal);
+      drinkStarter(setCards, setLoading, cards, Meal, filteredData, setSelecCategory);
     }
   }, [pathname]);
 
   useEffect(() => {
     if (pathname === '/comidas') {
       setMeal(true);
-      meal({ selecCategory, caCh, setCards, setcaCh, setLoading, filteredData, filCh, setfilCh });
+      meal({
+        selecCategory,
+        caCh,
+        setCards,
+        setcaCh,
+        setLoading,
+        filteredData,
+        filCh,
+        setfilCh,
+      });
     } else if (pathname === '/bebidas') {
       setMeal(false);
       drink({ selecCategory, caCh, setCards, setcaCh, setLoading, filteredData, filCh, setfilCh });
