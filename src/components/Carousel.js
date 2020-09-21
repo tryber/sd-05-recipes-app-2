@@ -17,7 +17,7 @@ export default function ControlledCarousel({recom, history, Meal}) {
   }
 
   return (
-    <Carousel activeIndex={index} onSelect={handleSelect}>
+    <Carousel className="carousel-div" activeIndex={index} onSelect={handleSelect}>
       {recom.map((each, i) => 
         (i === 0) ? (
           <Carousel.Item>
@@ -28,7 +28,7 @@ export default function ControlledCarousel({recom, history, Meal}) {
                 alt="First slide"
               />
             </button>
-            <Carousel.Caption>
+            <Carousel.Caption className="carousel-text">
               <p data-testid={`${i}-recomendation-title`}>{Meal ? each.strDrink : each.strMeal}</p>
             </Carousel.Caption>
           </Carousel.Item>) : (
@@ -40,7 +40,7 @@ export default function ControlledCarousel({recom, history, Meal}) {
                   alt={Meal ? each.strDrink : each.strMeal}
                 />
               </button>
-              <Carousel.Caption>
+              <Carousel.Caption className="carousel-text">
                 <p data-testid={`${i}-recomendation-title`}>{Meal ? each.strDrink : each.strMeal}</p>
               </Carousel.Caption>
             </Carousel.Item>

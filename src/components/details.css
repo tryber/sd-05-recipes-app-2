@@ -126,6 +126,16 @@
   padding-left: 6vw;
 }
 
+/* arquivo Carousel.js */
+.carousel-text p {
+  background-color: rgb(255, 134, 0);
+  border-radius: 15px;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 auto 1.5vh;
+  max-width: 60%;
+}
+
 @media (min-width: 400px) {
   .card-container {
     width: 30vw;
@@ -178,7 +188,6 @@
   }
 
   .video-container {
-    border: 3px solid red;
     margin: 0 auto;
     text-align: center;
   }
@@ -187,7 +196,18 @@
     height: 60vh;
     width: 40vw;
   }
-  
+
+  .carousel-div {
+    max-width: 25vw;
+    margin: 0 auto;
+  }
+
+  .carousel-text p {
+    font-size: 30px;
+    margin: 0 auto 2vh;
+    padding: 0.5vh 0;
+  }
+
   .start-btn {
     font-size: 18pt;
     margin: 10vh 15vw;
