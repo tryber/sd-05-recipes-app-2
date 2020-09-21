@@ -69,6 +69,11 @@
   width: 60vw;
 }
 
+.profile-btn:focus, .profile-btn:hover {
+  opacity: 0.8;
+  outline: none;
+}
+
 @media (min-width: 400px) {
   .profile-page {
     background-image: url(../../images/background/bg-light-center-horiz.png);

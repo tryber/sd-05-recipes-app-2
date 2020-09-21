@@ -10,7 +10,7 @@
   opacity: 0.6;
 }
 
-.cat-btn:focus , .cat-btn:disabled {
+.cat-btn:focus, .cat-btn:disabled {
   border: none;
   outline: none;
 }

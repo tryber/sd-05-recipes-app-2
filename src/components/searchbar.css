@@ -14,15 +14,15 @@
   width: 42vw;
 }
 
-.cat-btn:hover {
+.categories-buttons:hover {
   opacity: 0.6;
 }
 
-/* .cat-btn:focus,
-.cat-btn:disabled {
+.categories-buttons:focus,
+.categories-buttons:disabled {
   border: none;
   outline: none;
-} */
+}
 
 .search-container {
   padding: 2vh 5vw;
