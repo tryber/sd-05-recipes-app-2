@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import shareI from '../images/shareIcon.svg';
@@ -13,7 +13,7 @@ function handleClick(history, type, id) {
   }
 }
 
-function shareBt(id, type, setCopied) {
+function shareBt(id, type, setCopiado) {
   let linkToCopy;
   if (type === 'comida') {
     linkToCopy = `http://localhost:3000/comidas/${id}`;
@@ -27,9 +27,9 @@ function shareBt(id, type, setCopied) {
   document.execCommand('copy');
   textCopy.remove();
 
-  setCopied(true);
+  setCopiado(true);
   setTimeout(() => {
-    setCopied(false);
+    setCopiado(false);
   }, 5000);
 }
 
@@ -49,8 +49,9 @@ function disFav(id, type, setFav) {
 }
 
 function HCard({ card, index, favOrDone }) {
-  const { copied, setCopied, setFav } = useContext(AppContext);
+  const { setFav } = useContext(AppContext);
   const history = useHistory();
+  const [copiado, setCopiado] = useState(false);
 
   return (
     <button className="card-rec">
@@ -91,9 +92,9 @@ function HCard({ card, index, favOrDone }) {
                 />
               </button>
             )}
-            <button className="det-btn" onClick={() => shareBt(card.id, card.type, setCopied)}>
+            <button className="det-btn" onClick={() => shareBt(card.id, card.type, setCopiado)}>
               <img data-testid={`${index}-horizontal-share-btn`} alt="share button" src={shareI} />
-              {copied && <span>Link copiado!</span>}
+              {copiado && <span>Link copiado!</span>}
             </button>
           </div>
         </div>
