@@ -9,14 +9,14 @@ export default function Footer() {
   const history = useHistory();
   return (
     <div className="navbar fixed-bottom footer-comp" data-testid="footer">
-      <button data-testid="drinks-bottom-btn" onClick={() => history.push('/bebidas')} src={drinks}>
-        <img alt="drinks" className="nav-icon" src={drinks} />
+      <button onClick={() => history.push('/comidas')}>
+        <img alt="comidas" className="nav-icon" data-testid="food-bottom-btn" src={meal} />
       </button>
       <button onClick={() => history.push('/explorar')}>
         <img alt="explorar" className="nav-icon" data-testid="explore-bottom-btn" src={explore} />
       </button>
-      <button onClick={() => history.push('/comidas')}>
-        <img alt="comidas" className="nav-icon" data-testid="food-bottom-btn" src={meal} />
+      <button data-testid="drinks-bottom-btn" onClick={() => history.push('/bebidas')} src={drinks}>
+        <img alt="drinks" className="nav-icon" src={drinks} />
       </button>
     </div>
   );
