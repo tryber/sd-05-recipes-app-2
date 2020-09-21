@@ -13,7 +13,7 @@ function DetailHeader({ Meal, details }) {
         backgroundRepeat: 'no-repeat'
       }}>
       </div>
-      < div className="details-header" >
+      <div className="details-header">
         <div className="title-side">
           <h2 className="det-title" data-testid="recipe-title">
             {Meal ? details.strMeal : details.strDrink}
@@ -22,8 +22,8 @@ function DetailHeader({ Meal, details }) {
             {details.strCategory} {!Meal ? `- ${details.strAlcoholic}` : ''}
           </h5>
         </div>
-      </div >
-        <ShLiButton />
+      </div>
+      <ShLiButton />
     </div >
   );
 }

@@ -46,7 +46,7 @@
   display: flex;
 }
 
- .det-btn:hover {
+.det-btn:hover {
   opacity: 0.8;
 }
 
@@ -139,6 +139,21 @@
   .details-header {
     margin-left: 25vw;
     margin-right: 25vw;
+  }
+
+  .icon-side {
+    margin-left: 25vw;
+    margin-right: 25vw;
+    padding: 1vh 0 0;
+  }
+
+  .det-btn img {
+    height: 3.5vh;
+  }
+
+  .det-btn span {
+    font-size: 20px;
+    padding-left: 1vw;
   }
 
   .details-body {
