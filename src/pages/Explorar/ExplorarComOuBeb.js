@@ -57,13 +57,7 @@ export default function ExplorarComOuBeb() {
   return (
     <div>
       <Header />
-      <div style={{
-        backgroundImage: `url(${background})`,
-        backgroundPosition: 'center',
-        backgroundSize: '360px 640px, cover',
-        backgroundRepeat: 'no-repeat',
-        height: '100vh',
-      }}>
+      <div>
         <div className="btn-container-explorar">
           {btns.map((topic) => (
             <button

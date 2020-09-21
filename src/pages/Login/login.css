@@ -55,7 +55,6 @@ body {
 
 .button-laranja {
   background-color: var(--laranja);
-  /* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
   cursor: pointer;
   transition: all 0.3s ease 0s;
 }
@@ -66,23 +65,19 @@ body {
   transform: translateY(-3px);
 }
 
-@media (min-width: 400px) {
-  body {
-    background-image: url('../../images/background/bg-light-center-horiz.png');
-  }
-
+@media screen and (min-width: 400px) {
   .login-page {
-    background-image: none;
-    margin: 10vh auto;
-    height: 80vh;
-    width: 60vw;
+    background-image: url('../../images/background/bg-light-left-horiz.png') !important;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
   }
 
   .login-container {
     text-align: center;
     vertical-align: middle;
   }
-  
+
   .logo {
     width: 400px;
   }
@@ -106,5 +101,4 @@ body {
   .page-title {
     font-size: 24pt;
   }
-
 }
