@@ -65,3 +65,32 @@ button {
   height: 20rem;
   width: 20rem;
 }
+
+.notFound-page {
+  max-width: 90vw;
+  text-align: center;
+  margin: 25vh auto;
+}
+
+.notFound-page img {
+  width: 80vw; 
+}
+
+.notFound-text {
+  padding-bottom: 2vh;
+}
+
+@media (min-width: 400px) {
+  .notFound-page {
+    margin: 8vh auto;
+  }
+
+  .notFound-page img {
+    width: 40vw;  
+  }
+
+  .notFound-text {
+    font-size: 60px;
+    padding-bottom: 5vh;
+  }
+}
