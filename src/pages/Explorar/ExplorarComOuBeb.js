@@ -55,7 +55,7 @@ export default function ExplorarComOuBeb() {
   };
 
   return (
-    <div>
+    <div className="explorar-page">
       <Header />
       <div>
         <div className="btn-container-explorar">
@@ -63,7 +63,7 @@ export default function ExplorarComOuBeb() {
             <button
               key={topic.name}
               data-testid={topic.datatId}
-              className="btn-amarelo btn btn-sm cat-btn"
+              className="explorar-categ-buttons"
               onClick={() => handleClick(topic.name)}
             >
               {topic.text}

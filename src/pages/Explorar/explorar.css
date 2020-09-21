@@ -1,19 +1,23 @@
+.explorar-page {
+  background-image: url(../../images/background/bg-light-right.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
 .explorar-container {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 80vh;
-  margin: 10vh auto;
-  padding-top: 5vh;
-  padding-bottom: 30vh;
-  max-width: 60vw;
+  margin: 20vh auto;
+  width: 60vw;
 }
 
 .explorar-container button {
   border-left: 8px solid rgb(255, 134, 0);
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
   font-size: 14pt;
-  margin: 5vh 0 0;
+  margin-top: 10vh;
   height: 7vh;
 }
 
@@ -47,15 +51,22 @@
   margin: 1vh 0.5vw;
 }
 
+.explorar-categ-buttons {
+  background-color: rgb(255, 174, 13);
+  border-radius: 20px;
+}
+
 @media (min-width: 400px) {
-  .explorar {
-    background-image: url(../../images/background/bg-light-left-horiz.png);
+  .explorar-page {
+    background-image: url(../../images/background/bg-light-center-horiz.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 0;
   }
-  
+
   .explorar-container {
-    margin-top: 5vh;
-    margin-left: 38vw;
-    text-align: center;
+    margin: 20vh auto;
+    width: 23vw;
   }
 
   .explorar-container button {
@@ -64,4 +75,15 @@
     width: 22vw;
   }
 
+  .btn-container-explorar {
+    padding-left: 35vw;
+  }
+
+  .explorar-categ-buttons {
+    background-color: rgb(255, 174, 13);
+    border-radius: 20px;
+    font-size: 18pt;
+    margin-top: 3vh;
+    width: 30vw;
+  }
 }

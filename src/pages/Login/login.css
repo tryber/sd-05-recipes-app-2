@@ -67,10 +67,10 @@ body {
 
 @media screen and (min-width: 400px) {
   .login-page {
-    background-image: url('../../images/background/bg-light-left-horiz.png') !important;
+    background-image: url('../../images/background/bg-light-center-horiz.png') !important;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: auto;
+    background-size: cover;
   }
 
   .login-container {

@@ -7,7 +7,7 @@ import Footer from '../../components/Footer';
 export default function Explorar() {
   const history = useHistory();
   return (
-    <div>
+    <div className="explorar-page">
       <Header />
       <div className="explorar-container">
         <button
