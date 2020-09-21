@@ -33,8 +33,13 @@
 }
 
 .explr-area-dpdown {
-  margin-left: 6vw;
+  margin-left: 35vw;
   margin-top: 3vh;
+}
+
+.explr-area-dpdown select {
+  border: none;
+  padding: 1vh 1vw 1vh 2vw;
 }
 
 .btn-container-explorar {
@@ -85,5 +90,13 @@
     font-size: 18pt;
     margin-top: 3vh;
     width: 30vw;
+  }
+
+  .explr-area-dpdown {
+    margin-left: 45vw;
+  }
+
+  .explr-area-dpdown select {
+    font-size: 18pt;
   }
 }
