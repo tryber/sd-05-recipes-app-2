@@ -6,23 +6,23 @@
   /*   max-width: 95vw; */
 }
 
-.cat-btn {
+.categories-buttons {
   background-color: rgb(255, 174, 13);
   border-radius: 20px;
   height: 5vh;
   margin: 1vh 0.2vw;
-  /*   width: 42vw; */
+  width: 42vw;
 }
 
 .cat-btn:hover {
   opacity: 0.6;
 }
 
-.cat-btn:focus,
+/* .cat-btn:focus,
 .cat-btn:disabled {
   border: none;
   outline: none;
-}
+} */
 
 .search-container {
   padding: 2vh 5vw;
@@ -44,9 +44,11 @@
 }
 
 @media (min-width: 400px) {
-  .cat-btn {
-    height: 5vh;
-    margin: 1vh 0.2vw;
-    width: 10vw;
+  .categories-buttons {
+    width: 20vw;
+  }
+
+  .cat-section {
+    margin: 2vh 10vw;
   }
 }

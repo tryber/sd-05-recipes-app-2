@@ -164,7 +164,7 @@ export function FilterButtons() {
   return (
     <div className="cat-section">
       <button
-        className="cat-btn"
+        className="categories-buttons"
         value="All"
         data-testid="All-category-filter"
         onClick={(e) => handleCat(e)}
@@ -176,7 +176,7 @@ export function FilterButtons() {
         .map((cat) => (
           <button
             key={cat.id}
-            className="cat-btn"
+            className="categories-buttons"
             data-testid={`${cat.strCategory}-category-filter`}
             value={cat.strCategory}
             onClick={(e) => handleCat(e)}
