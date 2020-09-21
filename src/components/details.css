@@ -177,9 +177,20 @@
     font-size: 18pt;
   }
 
+  .video-container {
+    border: 3px solid red;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .video-container iframe {
+    height: 60vh;
+    width: 40vw;
+  }
+  
   .start-btn {
     font-size: 18pt;
     margin: 10vh 15vw;
   }
   
-  }
+}

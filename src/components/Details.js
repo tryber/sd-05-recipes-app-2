@@ -54,13 +54,15 @@ const movie = (details) => {
   return (
     <div>
       <h4 className="topic-title">Vídeo</h4>
-      <iframe
-        width="300"
-        height="240"
-        data-testid="video"
-        src={details.strYoutube && details.strYoutube.replace('watch?v=', 'embed/')}
-      >
-      </iframe>
+      <div className="video-container">
+        <iframe
+          width="300"
+          height="240"
+          data-testid="video"
+          src={details.strYoutube && details.strYoutube.replace('watch?v=', 'embed/')}
+        >
+        </iframe>
+      </div>
     </div>
   )
 }

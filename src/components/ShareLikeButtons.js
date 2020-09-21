@@ -54,7 +54,7 @@ function ShLiButton() {
         />
       </button>
       <button className="det-btn" onClick={() => share(Meal, details, setCopied)}>
-        <img data-testid="share-btn" alt="share button" src={shareIcon} />{' '}
+        <img data-testid="share-btn" alt="share button" src={shareIcon} />
         {copied && <span>Link copiado!</span>}
       </button>
     </div>
