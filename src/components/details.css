@@ -118,7 +118,6 @@
   transition: 0.3s ease;
 }
 
-
 .prog-list {
   list-style-type: none;
 }
@@ -126,3 +125,46 @@
 .prog-list label {
   padding-left: 6vw;
 }
+
+@media (min-width: 400px) {
+  .card-container {
+    width: 30vw;
+    margin: 0 auto;
+  }
+
+  .header-pic {
+    height: 60vh;
+  }
+
+  .details-header {
+    margin-left: 25vw;
+    margin-right: 25vw;
+  }
+
+  .details-body {
+    margin-left: 25vw;
+    margin-right: 25vw;
+  }
+
+  .details-body p {
+    font-size: 14pt;
+  }
+
+  .details-body li {
+    font-size: 16pt;
+  }
+
+  .title-side h2 {
+    font-size: 35pt;
+  }
+
+  .title-side h5 {
+    font-size: 18pt;
+  }
+
+  .start-btn {
+    font-size: 18pt;
+    margin: 10vh 15vw;
+  }
+  
+  }

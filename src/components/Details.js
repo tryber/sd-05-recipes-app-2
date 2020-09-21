@@ -79,7 +79,6 @@ function Details({ Meal, details, recom, ingredientsList }) {
 
   return (
     <div>
-      <Header />
       <div>
         <DetailHeader Meal={Meal} details={details} />
       </div>
