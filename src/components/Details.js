@@ -9,6 +9,7 @@ import Header from './Header';
 import Footer from './Footer';
 import * as storage from '../services/localStorage';
 import AppContext from '../contexts/AppContext';
+import ControlledCarousel from './Carousel';
 
 const startObj = {
   cocktails: {},
@@ -104,7 +105,8 @@ function Details({ Meal, details, recom, ingredientsList }) {
         <p data-testid="instructions">{details.strInstructions}</p>
         {Meal && movie(details)}
         <h4 className="topic-title">Recomendadas</h4>
-        <div className="card-container">
+        <ControlledCarousel recom={recom} history={history} Meal={Meal} />
+        {/* <div className="card-container">
           {recom.map((each, index) => (
             <Card
               description={Meal ? each.strDrink : each.strMeal}
@@ -114,7 +116,7 @@ function Details({ Meal, details, recom, ingredientsList }) {
               rec
             />
           ))}
-        </div>
+        </div> */}
         <button
           data-testid="start-recipe-btn"
           className={DIS ? 'hidden' : 'start-btn'}
