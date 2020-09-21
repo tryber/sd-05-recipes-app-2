@@ -42,7 +42,7 @@ function IngCards(Meal, list, clickIng) {
 
 export default function ExplorarIngredientes() {
   const history = useHistory();
-  const { setFilteredData, Meal, setMeal } = useContext(AppContext);
+  const { setCards, Meal, setMeal } = useContext(AppContext);
   const [list, setList] = useState([]);
   useEffect(() => {
     if (history.location.pathname === '/explorar/comidas/ingredientes') {
@@ -57,10 +57,10 @@ export default function ExplorarIngredientes() {
 
   const clickIng = (ing) => {
     if (Meal) {
-      api.byMealIngredient(ing.strIngredient).then((data) => setFilteredData(data.meals));
+      api.byMealIngredient(ing.strIngredient).then((data) => setCards(data.meals));
       history.push('/comidas');
     } else {
-      api.byDrinkIngredient(ing.strIngredient1).then((data) => setFilteredData(data.drinks));
+      api.byDrinkIngredient(ing.strIngredient1).then((data) => setCards(data.drinks));
       history.push('/bebidas');
     }
   };

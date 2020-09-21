@@ -8,18 +8,26 @@ import AppContext from '../../contexts/AppContext';
 import AllCards from '../../components/AllCards';
 import Loading from '../../components/Loading';
 
-function mealStarter(setCards, setLoading) {
-  api.defaultMeals().then((data) => {
-    setCards(data.meals);
+function mealStarter(setCards, setLoading, cards, Meal) {
+  if (cards.length > 0 && Meal) {
     setLoading(false);
-  });
+  } else {
+    api.defaultMeals().then((data) => {
+      setCards(data.meals);
+      setLoading(false);
+    });
+  }
 }
 
-function drinkStarter(setCards, setLoading) {
-  api.defaultDrinks().then((data) => {
-    setCards(data.drinks);
+function drinkStarter(setCards, setLoading, cards, Meal) {
+  if (cards.length > 0 && !Meal) {
     setLoading(false);
-  });
+  } else {
+    api.defaultDrinks().then((data) => {
+      setCards(data.drinks);
+      setLoading(false);
+    });
+  }
 }
 
 function meal({
@@ -61,6 +69,7 @@ function drink({
 }) {
   if (selecCategory && selecCategory !== caCh && selecCategory !== 'All') {
     api.byDrinkCategory(selecCategory).then((data) => {
+      console.log(caCh, 'OI', selecCategory);
       setCards(data.drinks);
       setcaCh(selecCategory);
     });
@@ -80,8 +89,7 @@ function Home() {
   const {
     location: { pathname },
   } = useHistory();
-  const { selecCategory, filteredData, Meal, setMeal } = useContext(AppContext);
-  const [cards, setCards] = useState([]);
+  const { selecCategory, filteredData, Meal, setMeal, cards, setCards } = useContext(AppContext);
   const [loading, setLoading] = useState(true);
   const [caCh, setcaCh] = useState('');
   const [filCh, setfilCh] = useState('');
@@ -89,10 +97,10 @@ function Home() {
   useEffect(() => {
     if (pathname === '/comidas') {
       setMeal(true);
-      mealStarter(setCards, setLoading);
+      mealStarter(setCards, setLoading, cards, Meal);
     } else {
       setMeal(false);
-      drinkStarter(setCards, setLoading);
+      drinkStarter(setCards, setLoading, cards, Meal);
     }
   }, [pathname]);
 
