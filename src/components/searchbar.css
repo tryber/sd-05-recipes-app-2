@@ -9,6 +9,7 @@
 .categories-buttons {
   background-color: rgb(255, 174, 13);
   border-radius: 20px;
+  font-size: 10pt;
   height: 5vh;
   margin: 1vh 0.2vw;
   width: 42vw;

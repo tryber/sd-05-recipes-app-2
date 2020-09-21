@@ -82,20 +82,20 @@ const resultValidation = (history, filteredData, setData) => {
     alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
     return setData('');
   }
-  if (
-    filteredData.length === 1 &&
-    filteredData !== null &&
-    history.location.pathname === '/comidas'
-  ) {
-    return history.push(`/comidas/${filteredData[0].idMeal}`);
-  }
-  if (
-    filteredData.length === 1 &&
-    filteredData !== null &&
-    history.location.pathname === '/bebidas'
-  ) {
-    return history.push(`/bebidas/${filteredData[0].idDrink}`);
-  }
+  // if (
+  //   filteredData.length === 1 &&
+  //   filteredData !== null &&
+  //   history.location.pathname === '/comidas'
+  // ) {
+  //   return history.push(`/comidas/${filteredData[0].idMeal}`);
+  // }
+  // if (
+  //   filteredData.length === 1 &&
+  //   filteredData !== null &&
+  //   history.location.pathname === '/bebidas'
+  // ) {
+  //   return history.push(`/bebidas/${filteredData[0].idDrink}`);
+  // }
   return true;
 };
 
