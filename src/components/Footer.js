@@ -13,7 +13,7 @@ function handleClick(path, setSelecCategory, history) {
 
 export default function Footer() {
   const history = useHistory();
-  const { setSelecCategory, setCards } = useContext(AppContext);
+  const { setSelecCategory } = useContext(AppContext);
   return (
     <div className="navbar fixed-bottom footer-comp" data-testid="footer">
       <button
