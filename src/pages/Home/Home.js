@@ -8,9 +8,8 @@ import AppContext from '../../contexts/AppContext';
 import AllCards from '../../components/AllCards';
 import Loading from '../../components/Loading';
 
-function mealStarter(setCards, setLoading, cards, Meal, filteredData, setSelecCategory) {
+function mealStarter(setCards, setLoading, Meal, filteredData) {
   if (filteredData.length > 0 && Meal) {
-    setSelecCategory('');
     setCards(filteredData);
     setLoading(false);
   } else {
@@ -21,9 +20,8 @@ function mealStarter(setCards, setLoading, cards, Meal, filteredData, setSelecCa
   }
 }
 
-function drinkStarter(setCards, setLoading, cards, Meal, filteredData, setSelecCategory) {
+function drinkStarter(setCards, setLoading, Meal, filteredData) {
   if (filteredData && !Meal) {
-    setSelecCategory('');
     setCards(filteredData);
     setLoading(false);
   } else {
@@ -92,7 +90,7 @@ function Home() {
   const {
     location: { pathname },
   } = useHistory();
-  const { selecCategory, filteredData, Meal, setMeal, cards, setCards, setSelecCategory } = useContext(AppContext);
+  const { selecCategory, filteredData, Meal, setMeal, cards, setCards } = useContext(AppContext);
   const [loading, setLoading] = useState(true);
   const [caCh, setcaCh] = useState('');
   const [filCh, setfilCh] = useState('');
@@ -100,10 +98,10 @@ function Home() {
   useEffect(() => {
     if (pathname === '/comidas') {
       setMeal(true);
-      mealStarter(setCards, setLoading, cards, Meal, filteredData, setSelecCategory);
+      mealStarter(setCards, setLoading, Meal, filteredData);
     } else if (pathname === '/bebidas') {
       setMeal(false);
-      drinkStarter(setCards, setLoading, cards, Meal, filteredData, setSelecCategory);
+      drinkStarter(setCards, setLoading, Meal, filteredData);
     }
   }, [pathname]);
 
