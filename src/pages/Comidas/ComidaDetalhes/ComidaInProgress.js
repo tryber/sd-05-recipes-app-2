@@ -49,8 +49,10 @@ function checkLS(str, id, history) {
     }
   }
   if (LS && history.location.pathname.includes('bebidas')) {
-    const newCheck = LS.cocktails[id].some((each) => each === str);
-    return newCheck;
+    if (LS.cocktails[id]) {
+      const newCheck = LS.cocktails[id].some((each) => each === str);
+      return newCheck;
+    }
   }
   return false;
 }
