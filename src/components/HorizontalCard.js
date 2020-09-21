@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import shareI from '../images/shareIcon.svg';
@@ -14,7 +14,7 @@ function handleClick(history, type, id) {
   }
 }
 
-function shareBt(id, type, setCopied) {
+function shareBt(id, type, setCopiado) {
   let linkToCopy;
   if (type === 'comida') {
     linkToCopy = `http://localhost:3000/comidas/${id}`;
@@ -28,9 +28,9 @@ function shareBt(id, type, setCopied) {
   document.execCommand('copy');
   textCopy.remove();
 
-  setCopied(true);
+  setCopiado(true);
   setTimeout(() => {
-    setCopied(false);
+    setCopiado(false);
   }, 5000);
 }
 
@@ -50,8 +50,9 @@ function disFav(id, type, setFav) {
 }
 
 function HCard({ card, index, favOrDone }) {
-  const { copied, setCopied, setFav } = useContext(AppContext);
+  const { setFav } = useContext(AppContext);
   const history = useHistory();
+  const [copiado, setCopiado] = useState(false);
 
   return (
     <div className="card-horizontal">
@@ -72,7 +73,8 @@ function HCard({ card, index, favOrDone }) {
             <p>
               <b>Feita em:</b>
               <span data-testid={`${index}-horizontal-done-date`}>{card.doneDate}</span>
-            </p>)}
+            </p>
+          )}
           {favOrDone === 'done' && (
             <span>
               {card.tags.filter((tag, index) => index <= 1).map((each) => (
@@ -80,18 +82,24 @@ function HCard({ card, index, favOrDone }) {
               ))}
             </span>
           )}
-        </div>
-        {favOrDone === 'fav' && (
-          <div className="hcard-btns">
-            <button onClick={() => disFav(card.id, card.type, setFav)}>
-              <img src={blackHI} alt="favorite button" data-testid={`${index}-horizontal-favorite-btn`} />
-            </button>
-            <button onClick={() => shareBt(card.id, card.type, setCopied)}>
-              <img data-testid={`${index}-horizontal-share-btn`} alt="share button" src={shareI} />
-              {copied && <span>Link copiado!</span>}
-            </button>
+          <div>
+            {favOrDone === 'fav' && (
+              <div className="hcard-btns">
+                <button className="det-btn" onClick={() => disFav(card.id, card.type, setFav)}>
+                  <img
+                    src={blackHI}
+                    alt="favorite button"
+                    data-testid={`${index}-horizontal-favorite-btn`}
+                  />
+                </button>
+                <button className="det-btn" onClick={() => shareBt(card.id, card.type, setCopiado)}>
+                  <img data-testid={`${index}-horizontal-share-btn`} alt="share button" src={shareI} />
+                  {copiado && <span>Link copiado!</span>}
+                </button>
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
@@ -100,7 +108,7 @@ function HCard({ card, index, favOrDone }) {
 export default HCard;
 
 HCard.propTypes = {
-  card: PropTypes.objectOf(PropTypes.object).isRequired,
+        card: PropTypes.objectOf(PropTypes.object).isRequired,
   index: PropTypes.number.isRequired,
   favOrDone: PropTypes.string.isRequired,
 };

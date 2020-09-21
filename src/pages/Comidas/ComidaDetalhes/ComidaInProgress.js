@@ -37,13 +37,13 @@ const styleNone = {
 
 function checkLS(str, id, history) {
   const LS = JSON.parse(localStorage.getItem('inProgressRecipes'));
-  if (LS && history.location.pathname.includes('comidas')) {
-    if (LS.meals[id]) {
-      const newCheck = LS.meals[id].some((each) => each === str);
-      return newCheck;
-    }
+  if (!LS) {
+    return false;
   }
-  if (LS && history.location.pathname.includes('bebidas')) {
+  if (LS.meals[id] && history.location.pathname.includes('comidas')) {
+    const newCheck = LS.meals[id].some((each) => each === str);
+    return newCheck;
+  } else if (LS.cocktails[id] && history.location.pathname.includes('bebidas')) {
     const newCheck = LS.cocktails[id].some((each) => each === str);
     return newCheck;
   }

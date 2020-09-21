@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import './searchbar.css';
 import * as api from '../services/api';
 import AppContext from '../contexts/AppContext';
-// comentário pra forçar reavaliar
 
 function filterAPIComidas(ing, type, setResults) {
   switch (type) {
@@ -25,7 +24,10 @@ function filterAPIComidas(ing, type, setResults) {
 function filterAPIBebidas(ing, type, setResults) {
   switch (type) {
     case 'ingredient':
-      api.byDrinkIngredient(ing).then((data) => setResults(data.drinks));
+      api.byDrinkIngredient(ing).then((data) => {
+        if (data === undefined) return setResults(null);
+        return setResults(data.drinks);
+      });
       return true;
     case 'name':
       api.byDrinkName(ing).then((data) => setResults(data.drinks));
@@ -75,24 +77,23 @@ const radiosBtn = (radioFilter) => {
 };
 
 // LÓGICA CASO SÓ TENHA 1 RESPOSTA OU NENHUMA CONSIDERANDO OS FILTROS APLICADOS
-const resultValidation = (history, filteredData) => {
+const resultValidation = (history, filteredData, setData) => {
   if (filteredData === null) {
-    return alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+    alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+    return setData('');
   }
   if (
     filteredData.length === 1 &&
     filteredData !== null &&
     history.location.pathname === '/comidas'
   ) {
-    console.log(filteredData);
-    history.push(`/comidas/${filteredData[0].idMeal}`);
+    return history.push(`/comidas/${filteredData[0].idMeal}`);
   }
   if (
     filteredData.length === 1 &&
     filteredData !== null &&
     history.location.pathname === '/bebidas'
   ) {
-    console.log(filteredData);
     return history.push(`/bebidas/${filteredData[0].idDrink}`);
   }
   return true;
@@ -106,18 +107,15 @@ export default function SearchBar() {
   const [radioFilter, setRadioFilter] = useState();
 
   useEffect(() => {
-    resultValidation(history, filteredData);
+    resultValidation(history, filteredData, setFilteredData);
   }, [filteredData]);
 
   const hClick = () => {
     const pathname = history.location.pathname;
-    if (pathname === '/comidas') {
-      return filterAPIComidas(ingredientName, radioFilter, setFilteredData);
-    }
     if (pathname === '/bebidas') {
       return filterAPIBebidas(ingredientName, radioFilter, setFilteredData);
     }
-    return true;
+    return filterAPIComidas(ingredientName, radioFilter, setFilteredData);
   };
 
   if (searchBarOn) {

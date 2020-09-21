@@ -15,27 +15,30 @@ const urlDrink = (item) =>
 function IngCards(Meal, list, clickIng) {
   return (
     <div className="explorar-ingr d-flex flex-row flex-wrap justify-content-around">
-      {list.filter((ing, i) => i < 12).map((item, i) =>
-        <button
-          onClick={() => clickIng(item)}
-          data-testid={`${i}-ingredient-card`}
-          className="card-rec"
-        >
-          <div className="card">
-            <img
-              src={Meal ? urlMeal(item) : urlDrink(item)}
-              alt={Meal ? item.strIngredient : item.strIngredient1}
-              className="card-image-top"
-              data-testid={`${i}-card-img`}
-            />
-            <div className="card-body card-description">
-              <p data-testid={`${i}-card-name`}>
-                {Meal ? item.strIngredient : item.strIngredient1}
-              </p>
+      {list
+        .filter((ing, i) => i < 12)
+        .map((item, i) => (
+          <button
+            key={Meal ? item.strIngredient : item.strIngredient1}
+            onClick={() => clickIng(item)}
+            data-testid={`${i}-ingredient-card`}
+            className="card-rec"
+          >
+            <div className="card">
+              <img
+                src={Meal ? urlMeal(item) : urlDrink(item)}
+                alt={Meal ? item.strIngredient : item.strIngredient1}
+                className="card-image-top"
+                data-testid={`${i}-card-img`}
+              />
+              <div className="card-body card-description">
+                <p data-testid={`${i}-card-name`}>
+                  {Meal ? item.strIngredient : item.strIngredient1}
+                </p>
+              </div>
             </div>
-          </div>
-        </button>,
-      )}
+          </button>
+        ))}
     </div>
   );
 }
@@ -55,10 +58,12 @@ export default function ExplorarIngredientes() {
     }
   }, []);
 
-  const clickIng = (ing) => {
+  const clickIng = async (ing) => {
     if (Meal) {
-      api.byMealIngredient(ing.strIngredient).then((data) => setFilteredData(data.meals));
-      history.push('/comidas');
+      api.byMealIngredient(ing.strIngredient).then((data) => {
+        setFilteredData(data.meals);
+        history.push('/comidas');
+      });
     } else {
       api.byDrinkIngredient(ing.strIngredient1).then((data) => setFilteredData(data.drinks));
       history.push('/bebidas');
