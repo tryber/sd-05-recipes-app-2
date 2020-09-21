@@ -34,9 +34,9 @@
 
 .icon-side {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1.5vh 2vw 0 3vw;
+  flex-direction: row;
+  justify-content: left;
+  padding: 1vh 2vw 0 7vw;
 }
 
 .det-btn {
@@ -57,8 +57,8 @@
 
 .det-btn span {
   color: rgb(255, 134, 0);
-  font-size: 12px;
-  padding-left: 2vw;
+  font-size: 14px;
+  padding-left: 3vw;
 }
 
 .details-body {

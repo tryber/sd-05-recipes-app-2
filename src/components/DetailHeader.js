@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './details.css';
 import ShLiButton from './ShareLikeButtons';
-import { repeat } from 'lodash';
 
 function DetailHeader({ Meal, details }) {
   return (
@@ -23,8 +22,8 @@ function DetailHeader({ Meal, details }) {
             {details.strCategory} {!Meal ? `- ${details.strAlcoholic}` : ''}
           </h5>
         </div>
-        <ShLiButton />
       </div >
+        <ShLiButton />
     </div >
   );
 }
