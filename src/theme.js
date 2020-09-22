@@ -3,19 +3,21 @@ import darkCenterBg from './images/background/bg-dark-center.png';
 import lightCenterDesk from './images/background/bg-light-center-horiz.png';
 
 export const lightTheme = {
-  body: "#f2e7da",  
+  body: 'var(--bege)',  
   toggleBorder: "#fff",
-  text: "#141414",
+  text: 'var(--off-black)',
   backgroundImage: lightCenterBg,
   bgImgDesktop: lightCenterDesk,
   bgColorHeadFoot: 'var(--laranja)',
+  bgCard: '#fff'
 };
 
 export const darkTheme = {
-  body: "#141414",  
+  body: 'var(--off-black)',  
   toggleBorder: "#6B8096",
-  text: "#ffae0d",
+  text: 'var(--amarelo)',
   backgroundImage: darkCenterBg,
-  bgImgDesktop: "#141414",
+  bgImgDesktop: 'var(--off-black)',
   bgColorHeadFoot: 'var(--off-gray)',
+  bgCard: 'var(--off-gray)',
 };

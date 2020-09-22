@@ -1,9 +1,18 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './card.css';
 import AppContext from '../contexts/AppContext';
+
+const CardButton = styled.button`
+  background-color: ${props => props.theme.body};
+`;
+
+const CardBody = styled.div`
+  background-color: ${props => props.theme.bgCard};
+`;
 
 function HandleClick(id, history, setSelectedId, setMeal) {
   const info = id.split(' ');
@@ -21,12 +30,12 @@ function Card(props) {
   const history = useHistory();
   const { description, thumb, i, id, rec } = props;
   return (
-    <button
+    <CardButton
       className={rec && i > 1 ? 'hidden card-rec' : 'card-rec'}
       data-testid={rec ? `${i}-recomendation-card` : `${i}-recipe-card`}
       onClick={() => HandleClick(id, history, setSelectedId, setMeal)}
     >
-      <div className="card">
+      <CardBody className="card">
         <img
           src={thumb}
           alt={description}
@@ -41,8 +50,8 @@ function Card(props) {
             {description}
           </p>
         </div>
-      </div>
-    </button>
+      </CardBody>
+    </CardButton>
   );
 }
 
