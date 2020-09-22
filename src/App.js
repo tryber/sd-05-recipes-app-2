@@ -15,6 +15,7 @@ import Perfil from './pages/Perfil/Perfil';
 import ReceitasFeitas from './pages/Perfil/ReceitasFeitas/ReceitasFeitas';
 import ReceitasFavoritas from './pages/Perfil/ReceitasFavoritas/ReceitasFavoritas';
 import NotFound from './components/NotFound';
+import Header from './components/Header';
 
 
 import { ThemeProvider } from "styled-components";
@@ -26,7 +27,7 @@ import moon from './images/moon.svg';
 
 const ButtonChange = styled.button`
   background-color: var(--amarelo);
-  height: 40px;
+  height: 30px;
   border-radius: 50%;
   position: fixed;
   top: 1.5vh;
@@ -40,6 +41,18 @@ const ButtonChange = styled.button`
   }
   :hover {
     box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  img {
+    height: 20px;
+  }
+
+  @media screen and (min-width: 400px) {
+    height: 40px;
+    
+    img {
+    height: 30px;
+  }
   }
 `;
 
@@ -68,9 +81,10 @@ function App() {
       <Provider>
         <div>
         <ButtonChange onClick={toggleTheme}>
-          <img src={theme === 'light' ? sun : moon } alt="theme mode" height="30px" />
+          <img src={theme === 'light' ? sun : moon } alt="theme mode" />
         </ButtonChange>
           <BrowserRouter>
+            {/* <Header /> */}
             <Switch>
               <Route exact path="/comidas" component={Home} />
               <Route exact path="/bebidas" component={Home} />

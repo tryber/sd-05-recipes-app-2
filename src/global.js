@@ -27,6 +27,5 @@ body {
   padding: 0;    
   font-family: sans-serif;    
   transition: all 0.25s linear;
-  transition: background-image 0.3s ease-in-out;
 }
 `;

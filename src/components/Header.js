@@ -1,9 +1,14 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 import './header.css';
 import profileIcon from '../images/profileIcon.svg';
 import search from '../images/searchIcon.svg';
 import AppContext from '../contexts/AppContext';
+
+const HeaderDiv = styled.div`
+  background-color: ${props => props.theme.bgColorHeadFoot};
+`;
 
 const pageName = (history, setName, searchIcon) => {
   switch (history.location.pathname) {
@@ -49,7 +54,7 @@ function Header() {
   }, [history.location.pathname]);
 
   return (
-    <div className="navbar header-comp">
+    <HeaderDiv className="navbar header-comp">
       {hasSearch && (
         <button
           className="navbar-toggler nav-icon"
@@ -71,7 +76,7 @@ function Header() {
       >
         <img alt="profile" className="nav-icon" src={profileIcon} />
       </button>
-    </div>
+    </HeaderDiv>
   );
 }
 

@@ -8,6 +8,7 @@ export const lightTheme = {
   text: "#141414",
   backgroundImage: lightCenterBg,
   bgImgDesktop: lightCenterDesk,
+  bgColorHeadFoot: 'var(--laranja)',
 };
 
 export const darkTheme = {
@@ -16,4 +17,5 @@ export const darkTheme = {
   text: "#ffae0d",
   backgroundImage: darkCenterBg,
   bgImgDesktop: "#141414",
+  bgColorHeadFoot: 'var(--off-gray)',
 };
