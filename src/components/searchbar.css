@@ -19,8 +19,7 @@
   opacity: 0.6;
 }
 
-.categories-buttons:focus,
-.categories-buttons:disabled {
+.categories-buttons:focus {
   border: none;
   outline: none;
 }
