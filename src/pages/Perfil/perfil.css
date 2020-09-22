@@ -1,4 +1,11 @@
-.profile-body {
+.profile-page {
+  background-image: url(../../images/background/bg-light-center.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+.profile-container {
   display: flex;
   flex-direction: column;
   margin: 1vh auto;
@@ -9,24 +16,26 @@
 .email {
   border-bottom: 2px solid rgb(255, 134, 0);
   font-weight: 300;
-  margin: 3vh auto;
+  margin: 3vh auto 0;
 }
 
 .btn-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin: 0 auto;
-  min-height: 60vh;
+  justify-content: space-around;
+  height: 80vh;
+  margin: 10vh auto;
+  padding-top: 5vh;
+  padding-bottom: 40vh;
+  max-width: 60vw;
 }
 
 .btn-opt {
   border-left: 8px solid rgb(255, 134, 0);
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
-  font-size: 24px;
-  font-style: italic;
+  font-size: 16pt;
   font-weight: 300;
-  margin: 3vh 0;
+  margin: 5vh 0;
   width: 100%;
 }
 
@@ -47,4 +56,45 @@
 .exit-text {
   font-weight: 700;
   padding: 2vh 2vw 1vh 0;
+}
+
+.profile-btn {
+  background-color: rgb(255, 174, 13);
+  border-radius: 20px;
+  border-left: 8px solid rgb(255, 134, 0);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
+  font-size: 14pt;
+  margin-top: 4vh;
+  height: 7vh;
+  width: 60vw;
+}
+
+.profile-btn:focus, .profile-btn:hover {
+  opacity: 0.8;
+  outline: none;
+}
+
+@media (min-width: 400px) {
+  .profile-page {
+    background-image: url(../../images/background/bg-light-center-horiz.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 0;
+  }
+
+  .profile-container {
+    height: 70vh;
+    width: 40vw;
+  }
+
+  .profile-btn {
+    font-size: 18pt;
+    height: 7vh;
+    width: 22vw;
+    margin-top: 10vh;
+  }
+
+  .email {
+    font-size: 18pt;
+  }
 }

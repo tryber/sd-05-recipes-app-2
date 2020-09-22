@@ -21,13 +21,13 @@ export default function Footer() {
         onClick={() => handleClick('bebidas', setSelecCategory, history)}
         src={drinks}
       >
-        <img alt="drinks" src={drinks} />
+        <img alt="drinks" className="nav-icon" src={drinks} />
       </button>
       <button onClick={() => handleClick('explorar', setSelecCategory, history)}>
-        <img data-testid="explore-bottom-btn" alt="explorar" src={explore} />
+        <img data-testid="explore-bottom-btn" className="nav-icon" alt="explorar" src={explore} />
       </button>
       <button onClick={() => handleClick('comidas', setSelecCategory, history)}>
-        <img alt="comidas" data-testid="food-bottom-btn" src={meal} />
+        <img alt="comidas" className="nav-icon" data-testid="food-bottom-btn" src={meal} />
       </button>
     </div>
   );

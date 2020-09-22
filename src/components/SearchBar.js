@@ -82,20 +82,20 @@ const resultValidation = (history, filteredData, setData) => {
     alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
     return setData('');
   }
-  if (
-    filteredData.length === 1 &&
-    filteredData !== null &&
-    history.location.pathname === '/comidas'
-  ) {
-    return history.push(`/comidas/${filteredData[0].idMeal}`);
-  }
-  if (
-    filteredData.length === 1 &&
-    filteredData !== null &&
-    history.location.pathname === '/bebidas'
-  ) {
-    return history.push(`/bebidas/${filteredData[0].idDrink}`);
-  }
+  // if (
+  //   filteredData.length === 1 &&
+  //   filteredData !== null &&
+  //   history.location.pathname === '/comidas'
+  // ) {
+  //   return history.push(`/comidas/${filteredData[0].idMeal}`);
+  // }
+  // if (
+  //   filteredData.length === 1 &&
+  //   filteredData !== null &&
+  //   history.location.pathname === '/bebidas'
+  // ) {
+  //   return history.push(`/bebidas/${filteredData[0].idDrink}`);
+  // }
   return true;
 };
 
@@ -160,9 +160,9 @@ export function FilterButtons() {
   }, [history.location.pathname]);
 
   return (
-    <div className="btn-toolbar cat-section">
+    <div className="cat-section">
       <button
-        className="btn btn-sm cat-btn"
+        className="categories-buttons"
         value="All"
         data-testid="All-category-filter"
         onClick={(e) => handleCat(e)}
@@ -174,7 +174,7 @@ export function FilterButtons() {
         .map((cat) => (
           <button
             key={cat.id}
-            className="btn btn-sm cat-btn"
+            className="categories-buttons"
             data-testid={`${cat.strCategory}-category-filter`}
             value={cat.strCategory}
             onClick={(e) => handleCat(e)}

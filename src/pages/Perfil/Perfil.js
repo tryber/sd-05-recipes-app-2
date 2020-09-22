@@ -15,27 +15,27 @@ export default function Perfil() {
   };
 
   useEffect(() => {
-    setMail(localStorage.getItem('user'));
+    setMail(JSON.parse(localStorage.getItem('user')).email);
   }, []);
 
   return (
-    <div>
+    <div className="profile-page">
       <Header />
-      <div className="profile-body">
-        <h4 className="email" data-testid="profile-email">
+      <div className="profile-container">
+        <p className="email" data-testid="profile-email">
           {mail}
-        </h4>
+        </p>
         <div className="btn-container">
           <button
             data-testid="profile-done-btn"
-            className="btn btn-opt"
+            className="btn-laranja profile-btn"
             onClick={() => history.push('/receitas-feitas')}
           >
             Receitas Feitas
           </button>
           <button
             data-testid="profile-favorite-btn"
-            className="btn btn-opt"
+            className="btn-laranja profile-btn"
             onClick={() => history.push('/receitas-favoritas')}
           >
             Receitas Favoritas

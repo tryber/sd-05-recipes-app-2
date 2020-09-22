@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { useHistory, useParams } from 'react-router-dom';
 import './details.css';
 import './card.css';
-// import shareIcon from '../images/shareIcon.svg';
-// import whiteHeartIcon from '../images/whiteHeartIcon.svg';
-// import goBack from '../images/go-back.svg';
-import Card from './Card';
+// import Card from './Card';
 import DetailHeader from './DetailHeader';
+// import Header from './Header';
+import Footer from './Footer';
 import * as storage from '../services/localStorage';
 import AppContext from '../contexts/AppContext';
+import ControlledCarousel from './Carousel';
 
 const startObj = {
   cocktails: {},
@@ -49,6 +49,23 @@ function handleIniciarReceita(history, id) {
     existingLS(history, id, LS);
   }
 }
+/* consultado do 'https://www.w3schools.com/html/html_youtube.asp' e PR felipe */
+const movie = (details) => {
+  return (
+    <div>
+      <h4 className="topic-title">Vídeo</h4>
+      <div className="video-container">
+        <iframe
+          width="300"
+          height="240"
+          data-testid="video"
+          src={details.strYoutube && details.strYoutube.replace('watch?v=', 'embed/')}
+        >
+        </iframe>
+      </div>
+    </div>
+  )
+}
 
 function Details({ Meal, details, recom, ingredientsList }) {
   const { setLiked } = useContext(AppContext);
@@ -87,12 +104,10 @@ function Details({ Meal, details, recom, ingredientsList }) {
         {ingredientsList(details)}
         <h4 className="topic-title">Instructions</h4>
         <p data-testid="instructions">{details.strInstructions}</p>
-        <h4 className="topic-title">Vídeo</h4>
-        <video width="300" height="240" controls>
-          <source data-testid="video" src={details.strYoutube} type="video/mp4" />
-        </video>
+        {Meal && movie(details)}
         <h4 className="topic-title">Recomendadas</h4>
-        <div className="card-container">
+        <ControlledCarousel recom={recom} history={history} Meal={Meal} />
+        {/* <div className="card-container">
           {recom.map((each, index) => (
             <Card
               description={Meal ? each.strDrink : each.strMeal}
@@ -102,15 +117,16 @@ function Details({ Meal, details, recom, ingredientsList }) {
               rec
             />
           ))}
-        </div>
+        </div> */}
         <button
           data-testid="start-recipe-btn"
           className={DIS ? 'hidden' : 'start-btn'}
           onClick={() => handleIniciarReceita(history, id)}
         >
-          {IP ? 'Continuar Receita' : 'Iniciar receita'}
+          {IP ? 'Continue recipe' : 'Start recipe'}
         </button>
       </div>
+      <Footer />
     </div>
   );
 }

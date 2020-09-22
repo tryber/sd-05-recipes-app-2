@@ -15,7 +15,7 @@
 body {
   background-color: var(--bege);
   color: var(--off-black);
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 a {
@@ -28,17 +28,9 @@ a:hover {
   text-decoration: none;
 }
 
-.button-laranja {
-  background-color: var(--laranja);
-  /* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
-  cursor: pointer;
-  transition: all 0.3s ease 0s;
-}
-
-.button-laranja:hover {
-  box-shadow: 0 5px 10px rgba(92, 92, 92, 0.8);
-  opacity: 0.9;
-  transform: translateY(-3px);
+button {
+  border: 0;
+  background-color: none;
 }
 
 .btn-amarelo {
@@ -72,4 +64,33 @@ a:hover {
 .loading-spin {
   height: 20rem;
   width: 20rem;
+}
+
+.notFound-page {
+  max-width: 90vw;
+  text-align: center;
+  margin: 25vh auto;
+}
+
+.notFound-page img {
+  width: 80vw; 
+}
+
+.notFound-text {
+  padding-bottom: 2vh;
+}
+
+@media (min-width: 400px) {
+  .notFound-page {
+    margin: 8vh auto;
+  }
+
+  .notFound-page img {
+    width: 40vw;  
+  }
+
+  .notFound-text {
+    font-size: 60px;
+    padding-bottom: 5vh;
+  }
 }

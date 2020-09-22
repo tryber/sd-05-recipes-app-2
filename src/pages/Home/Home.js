@@ -7,6 +7,7 @@ import Footer from '../../components/Footer';
 import AppContext from '../../contexts/AppContext';
 import AllCards from '../../components/AllCards';
 import Loading from '../../components/Loading';
+import '../../components/card.css';
 
 function mealStarter(setCards, setLoading, Meal, filteredData) {
   if (filteredData.length > 0 && Meal) {

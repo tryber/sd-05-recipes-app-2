@@ -1,3 +1,33 @@
 .dashed {
   text-decoration: line-through;
 }
+
+.finish-btn {
+  background-color: #57cc99;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+  font-size: 16pt;
+  height: 7vh;
+  margin-bottom: 15vh;
+  margin-left: 25vw;
+}
+
+.finish-btn:hover {
+  background-color: #FFAE0D;
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.7);
+  transition: 0.3s ease;
+}
+
+.finish-btn:focus {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  outline: none;
+  transition: 0.3s ease;
+}
+
+@media (min-width: 400px) {
+  .finish-btn {
+    font-size: 18pt;
+    margin-left: 45vw;
+  }
+}

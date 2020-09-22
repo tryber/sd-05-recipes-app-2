@@ -50,27 +50,27 @@ function Header() {
 
   return (
     <div className="navbar header-comp">
-      <button
-        className="navbar-toggler"
-        data-testid="profile-top-btn"
-        onClick={() => history.push('/perfil')}
-        src={profileIcon}
-      >
-        <img alt="profile" src={profileIcon} />
-      </button>
-      <h5 className="header-title" data-testid="page-title">
-        {headerName}
-      </h5>
       {hasSearch && (
         <button
-          className="navbar-toggler"
+          className="navbar-toggler nav-icon"
           data-testid="search-top-btn"
           onClick={() => setSearchBarOn(!searchBarOn)}
           src={search}
         >
-          <img alt="search" src={search} />
+          <img alt="search" className="nav-icon" src={search} />
         </button>
       )}
+      <h5 className="header-title" data-testid="page-title">
+        {headerName}
+      </h5>
+      <button
+        className="navbar-toggler nav-icon"
+        data-testid="profile-top-btn"
+        onClick={() => history.push('/perfil')}
+        src={profileIcon}
+      >
+        <img alt="profile" className="nav-icon" src={profileIcon} />
+      </button>
     </div>
   );
 }

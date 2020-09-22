@@ -7,19 +7,19 @@ import Footer from '../../components/Footer';
 export default function Explorar() {
   const history = useHistory();
   return (
-    <div>
+    <div className="explorar-page">
       <Header />
       <div className="explorar-container">
         <button
           data-testid="explore-food"
-          className="btn"
+          className="btn-laranja explorar-btn"
           onClick={() => history.push('/explorar/comidas')}
         >
           Explorar Comidas
         </button>
         <button
           data-testid="explore-drinks"
-          className="btn"
+          className="btn-laranja explorar-btn"
           onClick={() => history.push('/explorar/bebidas')}
         >
           Explorar Bebidas
