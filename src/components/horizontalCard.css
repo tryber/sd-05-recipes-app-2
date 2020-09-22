@@ -15,6 +15,10 @@
   width: auto;
 }
 
+.hcard-info {
+  padding-left: 2vw;
+}
+
 .hcard-title {
   font-size: 11pt;
   padding: 1vh 1vw;
@@ -26,6 +30,7 @@
 }
 
 .hcard-details {
+  padding-left: 1vw;
   font-size: 11pt;
 }
 
@@ -42,8 +47,9 @@
 
 .h-tags {
   display: inline-block;
-  background-color: #cccccc;
+  color: rgb(255, 134, 0);
   border-radius: 10px;
   font-size: 10pt;
   padding: 3%;
+  margin-left: 1vw;
 }

@@ -5,6 +5,7 @@ import shareI from '../images/shareIcon.svg';
 import blackHI from '../images/blackHeartIcon.png';
 import AppContext from '../contexts/AppContext';
 import './horizontalCard.css';
+import { CardButton, CardBody } from '../StyledComps';
 
 function handleClick(history, type, id) {
   if (type === 'comida') {
@@ -55,11 +56,11 @@ function HCard({ card, index, favOrDone }) {
   const [copiado, setCopiado] = useState(false);
 
   return (
-    <div className="card-horizontal">
+    <CardBody className="card-horizontal">
       <div className="d-flex align-items-center">
-        <button onClick={() => handleClick(history, card.type, card.id)}>
+        <CardBody onClick={() => handleClick(history, card.type, card.id)}>
           <img className="hcard-img" src={card.image} alt={card.name} data-testid={`${index}-horizontal-image`} />
-        </button>
+        </CardBody>
       </div>
       <div className="hcard-info">
         <div className="hcard-title">
@@ -78,30 +79,30 @@ function HCard({ card, index, favOrDone }) {
           {favOrDone === 'done' && (
             <span>
               {card.tags.filter((tag, index) => index <= 1).map((each) => (
-                <span className="h-tags" data-testid={`${index}-${each}-horizontal-tag`}>{each}</span>
+                <CardButton className="h-tags" data-testid={`${index}-${each}-horizontal-tag`}>{each}</CardButton>
               ))}
             </span>
           )}
           <div>
             {favOrDone === 'fav' && (
               <div className="hcard-btns">
-                <button className="det-btn" onClick={() => disFav(card.id, card.type, setFav)}>
+                <CardBody className="det-btn" onClick={() => disFav(card.id, card.type, setFav)}>
                   <img
                     src={blackHI}
                     alt="favorite button"
                     data-testid={`${index}-horizontal-favorite-btn`}
                   />
-                </button>
-                <button className="det-btn" onClick={() => shareBt(card.id, card.type, setCopiado)}>
+                </CardBody>
+                <CardBody className="det-btn" onClick={() => shareBt(card.id, card.type, setCopiado)}>
                   <img data-testid={`${index}-horizontal-share-btn`} alt="share button" src={shareI} />
                   {copiado && <span>Link copiado!</span>}
-                </button>
+                </CardBody>
               </div>
             )}
           </div>
         </div>
       </div>
-    </div>
+    </CardBody>
   );
 }
 
