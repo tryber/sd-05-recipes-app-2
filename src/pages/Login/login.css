@@ -17,14 +17,14 @@ body {
   background-color: rgb(242, 231, 218);
 }
 
-.login-page {
+/* .login-page {
   align-items: center;
-  background-image: url('../../images/background/bg-light-center.png');
+  background-image: var(--bg-img);
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
   height: 100vh;
-}
+} */
 
 .login-container {
   margin: 0 auto;
@@ -35,12 +35,12 @@ body {
   width: 200px;
 }
 
-.page-title {
+/* .page-title {
   color: #141414;
   font-weight: 300;
   text-align: center;
   padding: 2vh 0;
-}
+} */
 
 .enter-button {
   display: flex;
@@ -66,12 +66,12 @@ body {
 }
 
 @media screen and (min-width: 400px) {
-  .login-page {
+  /* .login-page {
     background-image: url('../../images/background/bg-light-center-horiz.png') !important;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-  }
+  } */
 
   .login-container {
     text-align: center;
@@ -98,7 +98,7 @@ body {
     font-size: 14pt;
   }
 
-  .page-title {
+  /* .page-title {
     font-size: 24pt;
-  }
+  } */
 }

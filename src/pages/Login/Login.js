@@ -1,8 +1,38 @@
 import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import styled from "styled-components";
 import './login.css';
 import AppContext from '../../contexts/AppContext';
 import logo1 from '../../images/logo_01.png';
+
+const MyLogin = styled.div`
+  background-image: url(${props => props.theme.backgroundImage});
+  align-items: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  height: 100vh;
+  transition: background-image 0.4s ease-in-out;
+
+  @media screen and (min-width: 400px) {
+    background-image: url(${props => props.theme.bgImgDesktop});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: background-image 0.4s ease-in-out;
+  }
+`;
+
+const MyTitle = styled.h3`
+  color: ${props => props.theme.text};;
+  font-weight: 300;
+  text-align: center;
+  padding: 2vh 0;
+
+  @media screen and (min-width: 400px) {
+    font-size: 24pt;
+  }
+`;
 
 function emailInput(handleEmail) {
   return (
@@ -81,10 +111,10 @@ function Login() {
     };
    */
   return (
-    <div className="login-page">
+    <MyLogin>
       <div className="login-container">
         <img className="logo" alt="Logo Panelinha" src={logo1}></img>
-        <h3 className="page-title">Welcome!</h3>
+        <MyTitle>Welcome!</MyTitle>
         <form>
           {emailInput(handleEmail)}
           {passwordInput(handlePassword)}
@@ -101,7 +131,7 @@ function Login() {
           </button>
         </div>
       </div>
-    </div>
+    </MyLogin>
   );
 }
 
