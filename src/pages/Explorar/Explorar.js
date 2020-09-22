@@ -3,11 +3,12 @@ import { useHistory } from 'react-router-dom';
 import './explorar.css';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import { BackgroundBody } from '../../BackgroundComp';
 
 export default function Explorar() {
   const history = useHistory();
   return (
-    <div className="explorar-page">
+    <BackgroundBody className="explorar-page">
       <Header />
       <div className="explorar-container">
         <button
@@ -26,6 +27,6 @@ export default function Explorar() {
         </button>
       </div>
       <Footer />
-    </div>
+    </BackgroundBody>
   );
 }
