@@ -11,6 +11,7 @@ export const lightTheme = {
   bgColorHeadFoot: 'var(--laranja)',
   bgCard: '#fff',
   bgTextImg: 'none',
+  iconBg: 'var(--bege)',
 };
 
 export const darkTheme = {
@@ -22,4 +23,5 @@ export const darkTheme = {
   bgColorHeadFoot: 'var(--off-gray)',
   bgCard: 'var(--off-gray)',
   bgTextImg: 'var(--off-gray)',
+  iconBg: 'var(--off-gray)',
 };

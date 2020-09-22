@@ -1,14 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import styled from 'styled-components';
 import './header.css';
 import profileIcon from '../images/profileIcon.svg';
 import search from '../images/searchIcon.svg';
 import AppContext from '../contexts/AppContext';
-
-const HeaderDiv = styled.div`
-  background-color: ${props => props.theme.bgColorHeadFoot};
-`;
+import { HeaderDiv } from '../StyledComps';
 
 const pageName = (history, setName, searchIcon) => {
   switch (history.location.pathname) {
@@ -55,6 +51,17 @@ function Header() {
 
   return (
     <HeaderDiv className="navbar header-comp">
+      <button
+        className="navbar-toggler nav-icon"
+        data-testid="profile-top-btn"
+        onClick={() => history.push('/perfil')}
+        src={profileIcon}
+      >
+        <img alt="profile" className="nav-icon" src={profileIcon} />
+      </button>
+      <h6 className="header-title" data-testid="page-title">
+        {headerName}
+      </h6>
       {hasSearch && (
         <button
           className="navbar-toggler nav-icon"
@@ -65,17 +72,6 @@ function Header() {
           <img alt="search" className="nav-icon" src={search} />
         </button>
       )}
-      <h5 className="header-title" data-testid="page-title">
-        {headerName}
-      </h5>
-      <button
-        className="navbar-toggler nav-icon"
-        data-testid="profile-top-btn"
-        onClick={() => history.push('/perfil')}
-        src={profileIcon}
-      >
-        <img alt="profile" className="nav-icon" src={profileIcon} />
-      </button>
     </HeaderDiv>
   );
 }

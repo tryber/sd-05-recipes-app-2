@@ -5,7 +5,7 @@ import Header from '../../components/Header';
 import AppContext from '../../contexts/AppContext';
 import * as api from '../../services/api';
 import './explorar.css';
-import background from '../../images/background/bg-light-center.png';
+import { BackgroundBody } from '../../StyledComps';
 
 const typeOfExplore = [
   { datatId: 'explore-by-ingredient', name: 'ingredientes', text: 'Por Ingredientes' },
@@ -54,7 +54,7 @@ export default function ExplorarComOuBeb() {
   };
 
   return (
-    <div className="explorar-page">
+    <BackgroundBody className="explorar-page">
       <Header />
       <div>
         <div className="btn-container-explorar">
@@ -71,6 +71,6 @@ export default function ExplorarComOuBeb() {
         </div>
       </div>
       <Footer />
-    </div>
+    </BackgroundBody>
   );
 }
