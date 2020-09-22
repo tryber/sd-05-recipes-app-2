@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import './explorar.css';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import { BackgroundBody } from '../../BackgroundComp';
+import { BackgroundBody } from '../../StyledComps';
 
 export default function Explorar() {
   const history = useHistory();

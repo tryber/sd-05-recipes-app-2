@@ -9,7 +9,8 @@ export const lightTheme = {
   backgroundImage: lightCenterBg,
   bgImgDesktop: lightCenterDesk,
   bgColorHeadFoot: 'var(--laranja)',
-  bgCard: '#fff'
+  bgCard: '#fff',
+  bgTextImg: 'none',
 };
 
 export const darkTheme = {
@@ -20,4 +21,5 @@ export const darkTheme = {
   bgImgDesktop: 'var(--off-black)',
   bgColorHeadFoot: 'var(--off-gray)',
   bgCard: 'var(--off-gray)',
+  bgTextImg: 'var(--off-gray)',
 };

@@ -4,6 +4,7 @@ import './perfil.css';
 import door from '../../images/door.svg';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import { BackgroundBody } from '../../StyledComps';
 
 export default function Perfil() {
   const history = useHistory();
@@ -19,7 +20,7 @@ export default function Perfil() {
   }, []);
 
   return (
-    <div className="profile-page">
+    <BackgroundBody className="profile-page">
       <Header />
       <div className="profile-container">
         <p className="email" data-testid="profile-email">
@@ -51,6 +52,6 @@ export default function Perfil() {
         </button>
       </div>
       <Footer />
-    </div>
+    </BackgroundBody>
   );
 }

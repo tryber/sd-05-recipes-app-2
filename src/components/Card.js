@@ -1,18 +1,10 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './card.css';
 import AppContext from '../contexts/AppContext';
-
-const CardButton = styled.button`
-  background-color: ${props => props.theme.body};
-`;
-
-const CardBody = styled.div`
-  background-color: ${props => props.theme.bgCard};
-`;
+import { CardButton, CardBody } from '../StyledComps';
 
 function HandleClick(id, history, setSelectedId, setMeal) {
   const info = id.split(' ');
