@@ -62,7 +62,6 @@
 
 @media (min-width: 400px) {
   .explorar-page {
-    background-image: url(../../images/background/bg-light-center-horiz.png);
     background-repeat: no-repeat;
     background-size: cover;
     margin-bottom: 0;

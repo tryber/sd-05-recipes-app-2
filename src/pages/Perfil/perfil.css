@@ -1,22 +1,20 @@
 .profile-page {
-  background-image: url(../../images/background/bg-light-center.png);
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .profile-container {
   display: flex;
   flex-direction: column;
-  margin: 1vh auto;
+  margin: 1vh auto 0;
   max-width: 80vw;
-  min-height: 80vh;
 }
 
 .email {
   border-bottom: 2px solid rgb(255, 134, 0);
   font-weight: 300;
-  margin: 3vh auto 0;
+  margin: 5vh auto 0;
 }
 
 .btn-container {
@@ -24,7 +22,7 @@
   flex-direction: column;
   justify-content: space-around;
   height: 80vh;
-  margin: 10vh auto;
+  margin: 10vh auto 0;
   padding-top: 5vh;
   padding-bottom: 40vh;
   max-width: 60vw;
@@ -35,7 +33,7 @@
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
   font-size: 16pt;
   font-weight: 300;
-  margin: 5vh 0;
+  margin: 5vh 0 0;
   width: 100%;
 }
 
@@ -54,6 +52,7 @@
 }
 
 .exit-text {
+  color: rgb(255, 174, 13);
   font-weight: 700;
   padding: 2vh 2vw 1vh 0;
 }
@@ -76,22 +75,21 @@
 
 @media (min-width: 400px) {
   .profile-page {
-    background-image: url(../../images/background/bg-light-center-horiz.png);
     background-repeat: no-repeat;
     background-size: cover;
     margin-bottom: 0;
   }
 
   .profile-container {
-    height: 70vh;
+    height: 100vh;
     width: 40vw;
   }
 
   .profile-btn {
     font-size: 18pt;
     height: 7vh;
-    width: 22vw;
     margin-top: 10vh;
+    width: 22vw;
   }
 
   .email {

@@ -27,3 +27,15 @@
   margin-bottom: 15vh;
   margin-right: 2vw;
 }
+
+@media (min-width: 400px) {
+  .cat-btn {
+    font-size: 16pt;
+    max-width: 30vw;
+    min-width: 20vw;
+  }
+  
+  .profile-cat-section {
+    max-width: 60vw;
+  }
+}

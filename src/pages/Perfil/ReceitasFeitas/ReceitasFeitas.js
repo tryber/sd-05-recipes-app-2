@@ -43,7 +43,7 @@ function ReceitasFeitas() {
             Todas
         </button>
         </div>
-        <div>
+        <div className="favdone-card-container">
           {filters.map((card, index) => (<HCard card={card} index={index} favOrDone="done" />))}
         </div>
       </div>

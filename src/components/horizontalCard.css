@@ -53,3 +53,36 @@
   padding: 3%;
   margin-left: 1vw;
 }
+
+@media (min-width: 400px) {
+  .favdone-card-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .card-horizontal {
+    max-width: 30vw;
+  }
+
+  .hcard-title {
+    font-size: 14pt;
+    padding: 1vh 1vw 1vh 0;
+  }
+  
+  .hcard-title h4 {
+    font-size: 16pt;
+  }
+
+  .hcard-details {
+    padding-left: 0;
+    font-size: 12pt;
+  }
+
+  .hcard-btns img {
+    height: 40px;
+  }
+
+  .h-tags {
+    margin-left: 0.5vw;
+  }
+}

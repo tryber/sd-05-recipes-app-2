@@ -18,6 +18,16 @@ export const BackgroundBody = styled.div`
 
   p {
     background-color: ${props => props.theme.bgTextImg};
+    border-radius: 15px;
+    padding: 1vh 1vw;
+  };
+
+  @media screen and (min-width: 400px) {
+    background-image: url(${props => props.theme.bgImgDesktop});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: background-image 0.4s ease-in-out;
   }
 `;
 
@@ -28,6 +38,15 @@ export const ShLikBtn = styled.button`
   height: 40px;
   text-align: center;
   width: 40px;
+
+  @media screen and (min-width: 400px) {
+    height: 50px;
+    width: 50px;
+
+    img {
+      margin-left: 2px;
+    }
+  }
 `;
 
 export const BgList = styled.div`

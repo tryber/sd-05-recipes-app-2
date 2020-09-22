@@ -1,6 +1,7 @@
 import lightCenterBg from './images/background/bg-light-center.png';
 import darkCenterBg from './images/background/bg-dark-center.png';
 import lightCenterDesk from './images/background/bg-light-center-horiz.png';
+import darkCenterDesk from './images/background/bg-dark-center-horiz.png';
 
 export const lightTheme = {
   body: 'var(--bege)',  
@@ -19,7 +20,7 @@ export const darkTheme = {
   toggleBorder: "#6B8096",
   text: 'var(--amarelo)',
   backgroundImage: darkCenterBg,
-  bgImgDesktop: 'var(--off-black)',
+  bgImgDesktop: darkCenterDesk,
   bgColorHeadFoot: 'var(--off-gray)',
   bgCard: 'var(--off-gray)',
   bgTextImg: 'var(--off-gray)',
