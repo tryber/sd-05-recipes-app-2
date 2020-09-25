@@ -9,6 +9,7 @@ import DetailHeader from '../../../components/DetailHeader';
 import * as builder from '../../../services/builders';
 import Loading from '../../../components/Loading';
 /* import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'; */
+import Footer from '../../../components/Footer';
 
 function disabling() {
   let disabled = true;
@@ -26,12 +27,6 @@ function handleFinalizarReceita(history, details, Meal) {
   storage.removeIPLS(Meal, details);
   storage.setDoneLS(Meal, details);
 }
-
-const style = {
-  position: 'fixed',
-  bottom: 0,
-  left: 0,
-};
 
 const styleDash = {
   textDecoration: 'line-through',
@@ -119,6 +114,7 @@ function ingredientsList(details, setUtilizados, utilizados, id, history) {
           </li>
         ))}
       </ul>
+      <Footer />
     </div>
   );
 }
@@ -160,8 +156,7 @@ function ComidaInProgress() {
         <p data-testid="instructions">{details.strInstructions}</p>
       </div>
       <button
-        className="start-btn"
-        style={style}
+        className="finish-btn"
         data-testid="finish-recipe-btn"
         disabled={disabling()}
         onClick={() => handleFinalizarReceita(history, details, Meal)}

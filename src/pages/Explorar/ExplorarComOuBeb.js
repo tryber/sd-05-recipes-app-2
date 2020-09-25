@@ -4,6 +4,8 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import AppContext from '../../contexts/AppContext';
 import * as api from '../../services/api';
+import './explorar.css';
+import { BackgroundBody } from '../../StyledComps';
 
 const typeOfExplore = [
   { datatId: 'explore-by-ingredient', name: 'ingredientes', text: 'Por Ingredientes' },
@@ -52,21 +54,23 @@ export default function ExplorarComOuBeb() {
   };
 
   return (
-    <div>
+    <BackgroundBody className="explorar-page">
       <Header />
-      <div className="btn-container">
-        {btns.map((topic) => (
-          <button
-            key={topic.name}
-            data-testid={topic.datatId}
-            className="btn"
-            onClick={() => handleClick(topic.name)}
-          >
-            {topic.text}
-          </button>
-        ))}
+      <div>
+        <div className="btn-container-explorar">
+          {btns.map((topic) => (
+            <button
+              key={topic.name}
+              data-testid={topic.datatId}
+              className="explorar-categ-buttons"
+              onClick={() => handleClick(topic.name)}
+            >
+              {topic.text}
+            </button>
+          ))}
+        </div>
       </div>
       <Footer />
-    </div>
+    </BackgroundBody>
   );
 }

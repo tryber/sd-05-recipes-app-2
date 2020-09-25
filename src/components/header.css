@@ -13,8 +13,9 @@
 } */
 
 .header-comp {
-  background-color: rgb(255, 134, 0);
   position: relative;
+  height: 10vh;
+  padding-left: 12vw;
 }
 
 .header-comp button img:hover {
@@ -22,15 +23,14 @@
 }
 
 .header-comp .header-title {
+  top: 3.5vh;
   left: 50%;
-  padding-top: 1.5vh;
   position: absolute;
   transform: translate(-50%, 0);
 }
 
 /* inicio do footer  */
 .footer-comp {
-  background-color: rgb(255, 134, 0);
   position: fixed;
 }
 
@@ -42,4 +42,30 @@
 .header-comp button:focus , .footer-comp button:focus {
   opacity: 0.9;
   outline: none;
+}
+
+.nav-icon {
+  height: 26px;
+  width: auto;
+}
+
+@media (min-width: 400px) {
+  .nav-icon {
+    height: 45px;
+    width: auto;
+  }
+  
+  .header-comp {
+    padding-left: 20vw;
+    padding-right: 20vw;
+  }
+
+  .footer-comp {
+    padding-left: 20vw;
+    padding-right: 20vw;
+  }
+
+  .header-title {
+    font-size: 24pt;
+  }
 }

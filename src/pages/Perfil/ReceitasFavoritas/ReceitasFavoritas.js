@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import Header from '../../../components/Header';
 import HCard from '../../../components/HorizontalCard';
 import AppContext from '../../../contexts/AppContext';
+import Footer from '../../../components/Footer';
+import '../donefav.css';
 
 function ReceitasFavoritas() {
   const { fav } = useContext(AppContext);
@@ -17,29 +19,37 @@ function ReceitasFavoritas() {
   }, [fav]);
   console.log(favorites);
   return (
-    <div>
+    <div className="profile-cont">
       <Header />
-      <div>
-        <button data-testid="filter-by-all-btn" onClick={() => setFilters(favorites)}>
-          Todas
-        </button>
+      <div className="profile-cat-section">
         <button
+          className="btn btn-sm cat-btn"
           data-testid="filter-by-food-btn"
           onClick={() => setFilters(favorites.filter((recipe) => recipe.type === 'comida'))}
         >
           Comidas
         </button>
         <button
+          className="btn btn-sm cat-btn"
           data-testid="filter-by-drink-btn"
           onClick={() => setFilters(favorites.filter((recipe) => recipe.type === 'bebida'))}
         >
           Bebidas
         </button>
+        <button
+          className="btn btn-sm cat-btn"
+          data-testid="filter-by-all-btn"
+          onClick={() => setFilters(favorites)}>
+          Todas
+        </button>
       </div>
-      {filters.map((card, index) => (
-        <HCard card={card} index={index} favOrDone="fav" />
-      ))}
       {fav && <span>Favoritos atualizados</span>}
+      <div className="favdone-card-container">
+        {filters.map((card, index) => (
+          <HCard card={card} index={index} favOrDone="fav" />
+        ))}
+      </div>
+      <Footer />
     </div>
   );
 }

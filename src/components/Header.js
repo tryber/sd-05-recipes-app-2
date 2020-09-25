@@ -4,6 +4,7 @@ import './header.css';
 import profileIcon from '../images/profileIcon.svg';
 import search from '../images/searchIcon.svg';
 import AppContext from '../contexts/AppContext';
+import { HeaderDiv } from '../StyledComps';
 
 const pageName = (history, setName, searchIcon) => {
   switch (history.location.pathname) {
@@ -49,29 +50,29 @@ function Header() {
   }, [history.location.pathname]);
 
   return (
-    <div className="navbar header-comp">
+    <HeaderDiv className="navbar header-comp">
       <button
-        className="navbar-toggler"
+        className="navbar-toggler nav-icon"
         data-testid="profile-top-btn"
         onClick={() => history.push('/perfil')}
         src={profileIcon}
       >
-        <img alt="profile" src={profileIcon} />
+        <img alt="profile" className="nav-icon" src={profileIcon} />
       </button>
-      <h5 className="header-title" data-testid="page-title">
+      <h6 className="header-title" data-testid="page-title">
         {headerName}
-      </h5>
+      </h6>
       {hasSearch && (
         <button
-          className="navbar-toggler"
+          className="navbar-toggler nav-icon"
           data-testid="search-top-btn"
           onClick={() => setSearchBarOn(!searchBarOn)}
           src={search}
         >
-          <img alt="search" src={search} />
+          <img alt="search" className="nav-icon" src={search} />
         </button>
       )}
-    </div>
+    </HeaderDiv>
   );
 }
 

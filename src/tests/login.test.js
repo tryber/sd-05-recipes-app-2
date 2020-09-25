@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import Login from '../pages/Login/Login';
 import renderWithRouter from '../services/renderWithRouter';
 import Provider from '../contexts/Provider';
@@ -18,11 +18,11 @@ describe('Todos os elementos devem respeitar os atributos descritos no protótip
 
 describe('A pessoa deve conseguir escrever seu email no input de email', () => {
   it('É possível escrever o email', () => {
-    const { getByLabelText } = renderWithRouter(
+    const { getByPlaceholderText } = renderWithRouter(
       <Provider>
         <Login />
       </Provider>);
-    const emailInput = getByLabelText(/E-mail:/i);
+    const emailInput = getByPlaceholderText(/E-mail/i);
     fireEvent.change(emailInput, { target: { value: 'myemail@emailprovider.com' } });
     expect(emailInput.value).toBe('myemail@emailprovider.com');
   });
@@ -30,11 +30,11 @@ describe('A pessoa deve conseguir escrever seu email no input de email', () => {
 
 describe('A pessoa deve conseguir escrever sua senha no input de senha', () => {
   it('É possível escrever a senha', () => {
-    const { getByLabelText } = renderWithRouter(
+    const { getByPlaceholderText } = renderWithRouter(
       <Provider>
         <Login />
       </Provider>);
-    const passwordInput = getByLabelText(/Senha:/i);
+    const passwordInput = getByPlaceholderText(/Senha/i);
     fireEvent.change(passwordInput, { target: { value: '12345678' } });
     expect(passwordInput.value).toBe('12345678');
   });
@@ -42,13 +42,13 @@ describe('A pessoa deve conseguir escrever sua senha no input de senha', () => {
 
 describe('O formulário só fica válido após um email válido e uma senha de mais de 6 caracteres serem preenchidos', () => {
   it('O botão deve estar desativado se o email for inválido', () => {
-    const { getByRole, getByLabelText } = renderWithRouter(
+    const { getByRole, getByPlaceholderText } = renderWithRouter(
       <Provider>
         <Login />
       </Provider>);
     const submitBtn = getByRole('button', { name: /Entrar/i });
-    const emailInput = getByLabelText(/E-mail:/i);
-    const passwordInput = getByLabelText(/Senha:/i);
+    const emailInput = getByPlaceholderText(/E-mail/i);
+    const passwordInput = getByPlaceholderText(/Senha/i);
 
     expect(submitBtn).toBeDisabled();
 
@@ -61,13 +61,13 @@ describe('O formulário só fica válido após um email válido e uma senha de m
   });
 
   it('O botão deve estar desativado se a senha deve tiver 6 caracteres ou menos', () => {
-    const { getByRole, getByLabelText } = renderWithRouter(
+    const { getByRole, getByPlaceholderText } = renderWithRouter(
       <Provider>
         <Login />
       </Provider>);
     const submitBtn = getByRole('button', { name: /Entrar/i });
-    const emailInput = getByLabelText(/E-mail:/i);
-    const passwordInput = getByLabelText(/Senha:/i);
+    const emailInput = getByPlaceholderText(/E-mail/i);
+    const passwordInput = getByPlaceholderText(/Senha/i);
 
     expect(submitBtn).toBeDisabled();
 
@@ -78,13 +78,13 @@ describe('O formulário só fica válido após um email válido e uma senha de m
   });
 
   it('O botão deve estar ativado se o email e a senha forem válidos', () => {
-    const { getByRole, getByLabelText } = renderWithRouter(
+    const { getByRole, getByPlaceholderText } = renderWithRouter(
       <Provider>
         <Login />
       </Provider>);
     const submitBtn = getByRole('button', { name: /Entrar/i });
-    const emailInput = getByLabelText(/E-mail:/i);
-    const passwordInput = getByLabelText(/Senha:/i);
+    const emailInput = getByPlaceholderText(/E-mail/i);
+    const passwordInput = getByPlaceholderText(/Senha/i);
 
     expect(submitBtn).toBeDisabled();
 
@@ -97,13 +97,13 @@ describe('O formulário só fica válido após um email válido e uma senha de m
 
 describe('Após a submissão, 2 tokens devem ser salvos em localStorage identificados pelas chaves mealsToken e cocktailsToken', () => {
   it('Após a submissão mealsToken e cocktailsToken devem estar salvos em localStorage', () => {
-    const { getByRole, getByLabelText } = renderWithRouter(
+    const { getByRole, getByPlaceholderText } = renderWithRouter(
       <Provider>
         <Login />
       </Provider>);
     const submitBtn = getByRole('button', { name: /Entrar/i });
-    const emailInput = getByLabelText(/E-mail:/i);
-    const passwordInput = getByLabelText(/Senha:/i);
+    const emailInput = getByPlaceholderText(/E-mail/i);
+    const passwordInput = getByPlaceholderText(/Senha/i);
 
     expect(submitBtn).toBeDisabled();
     localStorage.clear();
@@ -119,13 +119,13 @@ describe('Após a submissão, 2 tokens devem ser salvos em localStorage identifi
 
 describe('Após a submissão, o e-mail de pessoa usuária deve ser salvo em localStorage na chave user', () => {
   it('Após a submissão a chave user deve estar salva em localStorage', () => {
-    const { getByRole, getByLabelText } = renderWithRouter(
+    const { getByRole, getByPlaceholderText } = renderWithRouter(
       <Provider>
         <Login />
       </Provider>);
     const submitBtn = getByRole('button', { name: /Entrar/i });
-    const emailInput = getByLabelText(/E-mail:/i);
-    const passwordInput = getByLabelText(/Senha:/i);
+    const emailInput = getByPlaceholderText(/E-mail/i);
+    const passwordInput = getByPlaceholderText(/Senha/i);
 
     expect(submitBtn).toBeDisabled();
     localStorage.clear();
@@ -140,13 +140,13 @@ describe('Após a submissão, o e-mail de pessoa usuária deve ser salvo em loca
 
 describe('Após a submissão e validação com sucesso do login, o usuário deve ser redirecionado para a tela principal de receitas de comidas', () => {
   it('A rota muda para a tela principal de receitas de comidas', () => {
-    const { getByRole, getByLabelText, history } = renderWithRouter(
+    const { getByTestId, getByPlaceholderText, history } = renderWithRouter(
       <Provider>
         <Login />
       </Provider>);
-    const submitBtn = getByRole('button', { name: /Entrar/i });
-    const emailInput = getByLabelText(/E-mail:/i);
-    const passwordInput = getByLabelText(/Senha:/i);
+    const submitBtn = getByTestId("login-submit-btn");
+    const emailInput = getByPlaceholderText(/E-mail/i);
+    const passwordInput = getByPlaceholderText(/Senha/i);
 
     expect(submitBtn).toBeDisabled();
     localStorage.clear();
@@ -155,7 +155,7 @@ describe('Após a submissão e validação com sucesso do login, o usuário deve
     fireEvent.change(passwordInput, { target: { value: '12345678' } });
     fireEvent.click(submitBtn);
     const pathname = history.location.pathname;
-    expect(pathname).toEqual('/comidas')
+    expect(pathname).toBe('/comidas')
   });
 });
 

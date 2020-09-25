@@ -5,6 +5,8 @@ import Header from '../../components/Header';
 import Loading from '../../components/Loading';
 import AppContext from '../../contexts/AppContext';
 import * as api from '../../services/api';
+import './explorar.css';
+import { CardButton, CardBody } from '../../StyledComps';
 
 const urlMeal = (item) =>
   `https://www.themealdb.com/images/ingredients/${item.strIngredient}-Small.png`;
@@ -13,17 +15,17 @@ const urlDrink = (item) =>
 
 function IngCards(Meal, list, clickIng) {
   return (
-    <div className="d-flex flex-row flex-wrap justify-content-around">
+    <div className="explorar-ingr d-flex flex-row flex-wrap justify-content-around">
       {list
         .filter((ing, i) => i < 12)
         .map((item, i) => (
-          <button
+          <CardButton
             key={Meal ? item.strIngredient : item.strIngredient1}
             onClick={() => clickIng(item)}
             data-testid={`${i}-ingredient-card`}
             className="card-rec"
           >
-            <div className="card">
+            <CardBody className="card">
               <img
                 src={Meal ? urlMeal(item) : urlDrink(item)}
                 alt={Meal ? item.strIngredient : item.strIngredient1}
@@ -35,8 +37,8 @@ function IngCards(Meal, list, clickIng) {
                   {Meal ? item.strIngredient : item.strIngredient1}
                 </p>
               </div>
-            </div>
-          </button>
+            </CardBody>
+          </CardButton>
         ))}
     </div>
   );

@@ -2,8 +2,10 @@ import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import shareI from '../images/shareIcon.svg';
-import blackHI from '../images/blackHeartIcon.svg';
+import blackHI from '../images/blackHeartIcon.png';
 import AppContext from '../contexts/AppContext';
+import './horizontalCard.css';
+import { CardButton, CardBody } from '../StyledComps';
 
 function handleClick(history, type, id) {
   if (type === 'comida') {
@@ -54,59 +56,60 @@ function HCard({ card, index, favOrDone }) {
   const [copiado, setCopiado] = useState(false);
 
   return (
-    <button className="card-rec">
-      <div className="card">
-        <button onClick={() => handleClick(history, card.type, card.id)}>
-          <img
-            src={card.image}
-            alt={card.name}
-            className="card-image-top"
-            data-testid={`${index}-horizontal-image`}
-          />
-        </button>
-        <div className="card-body card-description">
-          <p
-            className="card-title d-flex flex-column justify-content-end align-items-center"
-            data-testid={`${index}-horizontal-top-text`}
-          >
+    <CardBody className="card-horizontal">
+      <div className="d-flex align-items-center">
+        <CardBody onClick={() => handleClick(history, card.type, card.id)}>
+          <img className="hcard-img" src={card.image} alt={card.name} data-testid={`${index}-horizontal-image`} />
+        </CardBody>
+      </div>
+      <div className="hcard-info">
+        <div className="hcard-title">
+          <span data-testid={`${index}-horizontal-top-text`}>
             {`${card.type === 'bebida' ? card.alcoholicOrNot : card.area} - ${card.category}`}
-          </p>
-          <button onClick={() => handleClick(history, card.type, card.id)}>
-            <p data-testid={`${index}-horizontal-name`}>{card.name}</p>
-          </button>
-          <p data-testid={`${index}-horizontal-done-date`}>{card.doneDate}</p>
+          </span>
+          <h4 data-testid={`${index}-horizontal-name`}>{card.name}</h4>
+        </div>
+        <div className="hcard-details">
           {favOrDone === 'done' && (
             <p>
-              {card.tags.map((each) => (
-                <span data-testid={`${index}-${each}-horizontal-tag`}>{each}&nbsp;</span>
-              ))}
+              <b>Feita em:</b>
+              <span data-testid={`${index}-horizontal-done-date`}>{card.doneDate}</span>
             </p>
+          )}
+          {favOrDone === 'done' && (
+            <span>
+              {card.tags.filter((tag, index) => index <= 1).map((each) => (
+                <CardButton className="h-tags" data-testid={`${index}-${each}-horizontal-tag`}>{each}</CardButton>
+              ))}
+            </span>
           )}
           <div>
             {favOrDone === 'fav' && (
-              <button className="det-btn" onClick={() => disFav(card.id, card.type, setFav)}>
-                <img
-                  src={blackHI}
-                  alt="favorite button"
-                  data-testid={`${index}-horizontal-favorite-btn`}
-                />
-              </button>
+              <div className="hcard-btns">
+                <CardBody className="det-btn" onClick={() => disFav(card.id, card.type, setFav)}>
+                  <img
+                    src={blackHI}
+                    alt="favorite button"
+                    data-testid={`${index}-horizontal-favorite-btn`}
+                  />
+                </CardBody>
+                <CardBody className="det-btn" onClick={() => shareBt(card.id, card.type, setCopiado)}>
+                  <img data-testid={`${index}-horizontal-share-btn`} alt="share button" src={shareI} />
+                  {copiado && <span>Link copiado!</span>}
+                </CardBody>
+              </div>
             )}
-            <button className="det-btn" onClick={() => shareBt(card.id, card.type, setCopiado)}>
-              <img data-testid={`${index}-horizontal-share-btn`} alt="share button" src={shareI} />
-              {copiado && <span>Link copiado!</span>}
-            </button>
           </div>
         </div>
       </div>
-    </button>
+    </CardBody>
   );
 }
 
 export default HCard;
 
 HCard.propTypes = {
-  card: PropTypes.objectOf(PropTypes.object).isRequired,
+        card: PropTypes.objectOf(PropTypes.object).isRequired,
   index: PropTypes.number.isRequired,
   favOrDone: PropTypes.string.isRequired,
 };

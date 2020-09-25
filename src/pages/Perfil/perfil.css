@@ -1,32 +1,39 @@
-.profile-body {
+.profile-page {
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height: 100vh; */
+}
+
+.profile-container {
   display: flex;
   flex-direction: column;
-  margin: 1vh auto;
+  margin: 1vh auto 0;
   max-width: 80vw;
-  min-height: 80vh;
 }
 
 .email {
   border-bottom: 2px solid rgb(255, 134, 0);
   font-weight: 300;
-  margin: 3vh auto;
+  margin: 5vh auto 0;
 }
 
 .btn-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin: 0 auto;
-  min-height: 60vh;
+  justify-content: space-around;
+  height: 80vh;
+  margin: 10vh auto 0;
+  padding-top: 5vh;
+  padding-bottom: 40vh;
+  max-width: 60vw;
 }
 
 .btn-opt {
   border-left: 8px solid rgb(255, 134, 0);
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
-  font-size: 24px;
-  font-style: italic;
+  font-size: 16pt;
   font-weight: 300;
-  margin: 3vh 0;
+  margin: 5vh 0 0;
   width: 100%;
 }
 
@@ -45,6 +52,47 @@
 }
 
 .exit-text {
+  color: rgb(255, 174, 13);
   font-weight: 700;
   padding: 2vh 2vw 1vh 0;
+}
+
+.profile-btn {
+  background-color: rgb(255, 174, 13);
+  border-radius: 20px;
+  border-left: 8px solid rgb(255, 134, 0);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
+  font-size: 14pt;
+  margin-top: 4vh;
+  height: 7vh;
+  width: 60vw;
+}
+
+.profile-btn:focus, .profile-btn:hover {
+  opacity: 0.8;
+  outline: none;
+}
+
+@media (min-width: 400px) {
+  .profile-page {
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 0;
+  }
+
+  .profile-container {
+    height: 100vh;
+    width: 40vw;
+  }
+
+  .profile-btn {
+    font-size: 18pt;
+    height: 7vh;
+    margin-top: 10vh;
+    width: 22vw;
+  }
+
+  .email {
+    font-size: 18pt;
+  }
 }

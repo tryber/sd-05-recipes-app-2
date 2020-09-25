@@ -1,0 +1,41 @@
+.cat-btn {
+  background-color: rgb(255, 174, 13);
+  border-radius: 20px;
+  height: 5vh;
+  margin: 1vh 0.2vw;
+  min-width: 42vw;
+}
+
+.cat-btn:hover {
+  opacity: 0.6;
+}
+
+.cat-btn:focus, .cat-btn:disabled {
+  border: none;
+  outline: none;
+}
+
+.profile-cat-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 1vh auto;
+  max-width: 95vw;
+}
+
+.profile-cont {
+  margin-bottom: 15vh;
+  margin-right: 2vw;
+}
+
+@media (min-width: 400px) {
+  .cat-btn {
+    font-size: 16pt;
+    max-width: 30vw;
+    min-width: 20vw;
+  }
+  
+  .profile-cat-section {
+    max-width: 60vw;
+  }
+}

@@ -7,6 +7,7 @@ import AppContext from '../../../contexts/AppContext';
 import Details from '../../../components/Details';
 import Loading from '../../../components/Loading';
 import * as builder from '../../../services/builders';
+import { BgList } from '../../../StyledComps';
 /* import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel'; */
 
 function ingredientsList(details) {
@@ -16,7 +17,7 @@ function ingredientsList(details) {
   return (
     <div className="topic-container">
       <h4 className="topic-title">Ingredients</h4>
-      <div className="list-container">
+      <BgList className="list-container">
         <ul>
           {quantities.map((element, index) => (
             <li data-testid={`${index}-ingredient-name-and-measure`}>
@@ -24,7 +25,7 @@ function ingredientsList(details) {
             </li>
           ))}
         </ul>
-      </div>
+      </BgList>
     </div>
   );
 }

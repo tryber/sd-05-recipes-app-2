@@ -10,7 +10,7 @@
 }
 
 .header-pic {
-  height: 30vh;
+  height: 35vh;
   width: 100vw;
 }
 
@@ -34,9 +34,9 @@
 
 .icon-side {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1.5vh 2vw 0 3vw;
+  flex-direction: row;
+  justify-content: left;
+  padding: 1vh 2vw 0 7vw;
 }
 
 .det-btn {
@@ -46,19 +46,19 @@
   display: flex;
 }
 
-/* .det-btn:hover {
+.det-btn:hover {
   opacity: 0.8;
 }
 
 .det-btn:focus {
   border: none;
   outline: none;
-} */
+}
 
 .det-btn span {
   color: rgb(255, 134, 0);
-  font-size: 12px;
-  padding-left: 2vw;
+  font-size: 14px;
+  padding-left: 3vw;
 }
 
 .details-body {
@@ -68,14 +68,15 @@
 
 /* arquivo ComidaDetalhes */
 
-/* .topic-container {
+ .topic-container {
   margin: 3vh 0;
-} */
+}
 
 .topic-title {
   border-bottom: 1px solid rgb(255, 134, 0);
   font-weight: 400;
   margin: 3vh 2vw 2vh 0;
+  padding-top: 3vh;
 }
 
 .list-container {
@@ -94,18 +95,19 @@
 }
 
 .start-btn {
-  background-color: rgb(255, 134, 0);
+  background-color: #57cc99;
   border: none;
   border-radius: 15px;
-  bottom: 0;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.8);
-  margin: 3vh auto;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+  font-size: 16pt;
+  margin-top: 10vh;
+  margin-bottom: 5vh;
+  margin-left: 20vw;
   padding: 1vh 5vw;
-  position: fixed;
 }
 
 .start-btn:hover {
-  background-color: rgb(255, 174, 13);
+  background-color: #FFAE0D;
   box-shadow: 0 8px 8px rgba(0, 0, 0, 0.7);
   transition: 0.3s ease;
 }
@@ -116,11 +118,99 @@
   transition: 0.3s ease;
 }
 
-
 .prog-list {
   list-style-type: none;
 }
 
 .prog-list label {
   padding-left: 6vw;
+}
+
+/* arquivo Carousel.js */
+.carousel-text p {
+  background-color: rgb(255, 134, 0);
+  border-radius: 15px;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 auto 1.5vh;
+  max-width: 60%;
+}
+
+@media (min-width: 400px) {
+  .card-container {
+    width: 30vw;
+    margin: 0 auto;
+  }
+
+  .header-pic {
+    height: 60vh;
+  }
+
+  .details-header {
+    margin-left: 25vw;
+    margin-right: 25vw;
+  }
+
+  .icon-side {
+    margin-left: 25vw;
+    margin-right: 25vw;
+    padding: 1vh 0 0;
+  }
+
+  .det-btn img {
+    height: 3.5vh;
+  }
+
+  .det-btn span {
+    font-size: 20px;
+    padding-left: 1vw;
+  }
+
+  .details-body {
+    margin-left: 25vw;
+    margin-right: 25vw;
+  }
+
+  .details-body p {
+    font-size: 14pt;
+  }
+
+  .details-body li {
+    font-size: 16pt;
+  }
+
+  .title-side h2 {
+    font-size: 35pt;
+  }
+
+  .title-side h5 {
+    font-size: 18pt;
+  }
+
+  .video-container {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .video-container iframe {
+    height: 60vh;
+    width: 40vw;
+  }
+
+  .carousel-div {
+    max-width: 25vw;
+    margin: 0 auto;
+  }
+
+  .carousel-text p {
+    font-size: 30px;
+    margin: 0 auto 2vh;
+    padding: 0.5vh 0;
+  }
+
+  .start-btn {
+    font-size: 18pt;
+    margin: 10vh 15vw;
+  }
+  
 }
