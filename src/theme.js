@@ -1,7 +1,7 @@
 import lightCenterBg from './images/background/bg-light-center.png';
-import darkCenterBg from './images/background/bg-dark-center.png';
+import darkCenterBg from './images/background/bg-dark-center.jpg';
 import lightCenterDesk from './images/background/bg-light-center-horiz.png';
-import darkCenterDesk from './images/background/bg-dark-center-horiz.png';
+import darkCenterDesk from './images/background/bg-dark-center-horiz.jpg';
 
 export const lightTheme = {
   body: 'var(--bege)',  
