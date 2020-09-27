@@ -48,7 +48,7 @@ jest.spyOn(inProgress, 'disabling').mockImplementation(false);
 jest.spyOn(localStorage, 'getItem').mockImplementation(() => doneRecLS);
 jest.spyOn(JSON, 'parse').mockImplementation((e) => e);
 
-describe('Testar a página de comidas na receitas feitas e nos favoritos', () => {
+describe('Testar a página de comidas na receitas feitas', () => {
   test('Verifica se todos elementos necessarios foram renderizados', async () => {
     const { getByTestId, history } = renderWithRouter(
       <Provider>
@@ -70,7 +70,7 @@ describe('Testar a página de comidas na receitas feitas e nos favoritos', () =>
   });
 });
 
-describe('Testar a página de comidas na receitas feitas e nos favoritos', () => {
+describe('Testar a página de comidas na receitas feitas', () => {
   test('Testa se a página de receitas feits renderiza com local Storage', async () => {
     const { getByTestId, history } = renderWithRouter(
       <Provider>
@@ -78,7 +78,6 @@ describe('Testar a página de comidas na receitas feitas e nos favoritos', () =>
       </Provider>,
       { route: '/receitas-feitas' },
     );
-    console.log(localStorage);
     const allBtn = getByTestId('filter-by-all-btn');
     expect(allBtn).toBeInTheDocument();
     const foodBtn = getByTestId('filter-by-food-btn');
@@ -110,7 +109,6 @@ describe('Testar a página de comidas na receitas feitas e nos favoritos', () =>
       </Provider>,
       { route: '/receitas-favoritas' },
     );
-    console.log(localStorage);
     const allBtn = getByTestId('filter-by-all-btn');
     expect(allBtn).toBeInTheDocument();
     const foodBtn = getByTestId('filter-by-food-btn');
