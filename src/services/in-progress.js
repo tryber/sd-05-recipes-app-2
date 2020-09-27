@@ -11,13 +11,6 @@ export function disabling() {
   return disabled;
 }
 
-export function handleDashed(e, setUtilizados, utilizados, id, history) {
-  if (e.target.checked) {
-    isChecked(setUtilizados, utilizados, history, id, e);
-  } else {
-    notChecked(setUtilizados, utilizados, history, id, e);
-  }
-}
 
 function isChecked(setUtilizados, utilizados, history, id, e) {
   const line = document.getElementsByClassName(`${e.target.id}`)[0];
@@ -50,4 +43,12 @@ export function handleFinalizarReceita(history, details, Meal) {
   history.push('/receitas-feitas');
   storage.removeIPLS(Meal, details);
   storage.setDoneLS(Meal, details);
+}
+
+export function handleDashed(e, setUtilizados, utilizados, id, history) {
+  if (e.target.checked) {
+    isChecked(setUtilizados, utilizados, history, id, e);
+  } else {
+    notChecked(setUtilizados, utilizados, history, id, e);
+  }
 }

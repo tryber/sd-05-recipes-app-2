@@ -5,7 +5,6 @@ import Provider from '../contexts/Provider';
 import * as api from '../services/api';
 import { mockSuccessFood, mockSuccessDrink } from './recipes_list.test';
 import * as share from '../services/share';
-import * as fn from '../services/hcardfn';
 import HCard from '../components/HorizontalCard';
 
 const comida = Promise.resolve(require('../../cypress/mocks/oneMeal'));
@@ -37,8 +36,7 @@ jest.spyOn(api, 'defaultMeals').mockImplementation(() => mockSuccessFood);
 jest.spyOn(api, 'defaultDrinks').mockImplementation(() => mockSuccessDrink);
 jest.spyOn(api, 'byMealId').mockImplementation(() => comida);
 jest.spyOn(api, 'byDrinkId').mockImplementation(() => bebida);
-jest.spyOn(share, 'share').mockImplementation(() => console.log('tooth'));
-jest.spyOn(fn, 'handleClick');
+jest.spyOn(share, 'handleClick');
 jest.spyOn(JSON, 'parse').mockImplementation(() => favRecLS);
 
 describe('Testar a página de comidas na receitas feitas e nos favoritos', () => {
@@ -65,6 +63,6 @@ describe('Testar a página de comidas na receitas feitas e nos favoritos', () =>
     expect(cardFav).toBeInTheDocument();
     
     fireEvent.click(cardImg);
-    expect(fn.handleClick).toBeCalled();
+    expect(share.handleClick).toBeCalled();
   });
 });

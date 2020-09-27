@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import shareI from '../images/shareIcon.svg';
 import blackHI from '../images/blackHeartIcon.svg';
 import AppContext from '../contexts/AppContext';
-import * as fn from '../services/hcardfn';
+import * as fn from '../services/share';
 
 function shareBt(id, type, setCopiado) {
   let linkToCopy;

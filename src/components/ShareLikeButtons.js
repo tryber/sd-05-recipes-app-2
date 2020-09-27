@@ -5,7 +5,7 @@ import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import AppContext from '../contexts/AppContext';
-import * as share from '../services/share'
+import * as share from '../services/share';
 
 function favoriting(setLiked, liked, details, Meal) {
   if (!liked) {
@@ -44,4 +44,3 @@ ShLiButton.propTypes = {
   copied: PropTypes.bool.isRequired,
   setCopied: PropTypes.func.isRequired,
 };
-
