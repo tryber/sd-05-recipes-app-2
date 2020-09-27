@@ -8,18 +8,18 @@ import AllCards from '../../components/AllCards';
 export default function ExplorarArea() {
   const [areaList, setAreaList] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [cards, setCards] = useState([]);
+  const [areaCards, setAreaCard] = useState([]);
   const Meal = true;
 
   useEffect(() => {
-    api.defaultMeals().then((data) => setCards(data.meals));
+    api.defaultMeals().then((data) => setAreaCard(data.meals));
     api.mealListArea().then((data) => setAreaList(data.meals));
     setLoading(false);
   }, []);
 
   const hCh = (area) => {
     setLoading(true);
-    api.byMealArea(area).then((data) => setCards(data.meals));
+    api.byMealArea(area).then((data) => setAreaCard(data.meals));
     setLoading(false);
   };
 
@@ -38,7 +38,7 @@ export default function ExplorarArea() {
         </select>
       </div>
       <div className="home-body">
-        <AllCards cards={cards} Meal={Meal} />
+        <AllCards cards={areaCards} Meal={Meal} />
       </div>
       <Footer />
     </div>
