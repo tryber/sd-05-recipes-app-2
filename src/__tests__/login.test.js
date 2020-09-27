@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, act } from '@testing-library/react';
+import { fireEvent, getByTestId, screen } from '@testing-library/react';
 import Login from '../pages/Login/Login';
 import renderWithRouter from '../services/renderWithRouter';
 import Provider from '../contexts/Provider';
@@ -126,12 +126,12 @@ describe('Após a submissão, 2 tokens devem ser salvos em localStorage identifi
 
 describe('Após a submissão, o e-mail de pessoa usuária deve ser salvo em localStorage na chave user', () => {
   it('Após a submissão a chave user deve estar salva em localStorage', () => {
-    const { getByRole, getByLabelText } = renderWithRouter(
+    const { getByLabelText } = renderWithRouter(
       <Provider>
         <Login />
       </Provider>,
     );
-    const submitBtn = getByRole('button', { name: /Entrar/i });
+    const submitBtn = screen.getByTestId('login-submit-btn');
     const emailInput = getByLabelText(/E-mail:/i);
     const passwordInput = getByLabelText(/Senha:/i);
 
@@ -155,16 +155,14 @@ describe('Após a submissão e validação com sucesso do login, o usuário deve
       { route: '/' },
     );
     localStorage.clear();
-    const submitBtn = getByTestId('login-submit-btn');
+    const submitBtn = screen.getByTestId(/login-submit-btn/);
     const emailInput = getByLabelText(/E-mail:/i);
     const passwordInput = getByLabelText(/Senha:/i);
 
     expect(submitBtn).toBeDisabled();
-    act(() => {
-      fireEvent.change(emailInput, { target: { value: 'myemail@emailprovider.com' } });
-      fireEvent.change(passwordInput, { target: { value: '12345678' } });
-      fireEvent.click(submitBtn);
-    });
+    fireEvent.change(emailInput, { target: { value: 'myemail@emailprovider.com' } });
+    fireEvent.change(passwordInput, { target: { value: '12345678' } });
+    fireEvent.click(submitBtn);
     const {
       location: { pathname },
     } = history;

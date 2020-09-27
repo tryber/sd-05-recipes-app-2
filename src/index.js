@@ -4,10 +4,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter } from 'react-router-dom';
 
 const container = document.getElementById('root');
 
-ReactDOM.render(<App />, container);
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  container,
+);
 
 // debugContextDevtool(container);
 

@@ -77,7 +77,7 @@ function Login() {
     if (checkPassword(e.target.value, setPasswordChecked) === true) setPassword(e.target.value);
   };
 
-  const saveToStorage = () => {
+  const saveToStorage = (history) => {
     localStorage.setItem('mealsToken', 1);
     localStorage.setItem('cocktailsToken', 1);
     localStorage.setItem('user', JSON.stringify({ email }));
@@ -103,7 +103,7 @@ function Login() {
             data-testid="login-submit-btn"
             type="button"
             disabled={!(emailChecked && passwordChecked)}
-            onClick={() => saveToStorage(email)}
+            onClick={() => saveToStorage(history)}
           >
             Entrar
           </button>
